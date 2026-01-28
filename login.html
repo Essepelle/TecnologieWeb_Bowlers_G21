@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Login</title>
+        <script>
+            function validaModulo(elementoModulo) {
+                if (elementoModulo.username.value == "") {
+                    alert("Devi inserire una login");
+                    elementoModulo.username.focus();
+                    return false;
+                }
+                if (elementoModulo.password.value == "") {
+                    alert("Devi inserire una password");
+                    elementoModulo.password.focus();
+                    return false;
+                }
+                return true;
+            }
+        </script>
+        <link rel="stylesheet" type="text/css" href="login.css"/>
+        <link rel="icon" type="icon" href="resources/logo.png"/>
+    </head>
+    <body>
+        <div class="login">
+        <img class="logo" src="resources/logo.png"/>
+        <h1>Benvenuto Bowler!</h1>
+        <h3>Effettua il login</h3>
+        <form method="post" action="login-manager.php" onsubmit="return validaModulo(this)">
+            <div class="form">
+            <p>
+                <input type="text" name="username" id="username" class="text" placeholder="Username"/>
+            </p>
+            <p>
+                <input type="password" name="password" id="password" class="text" placeholder="Password"/>
+            </p>
+            </div>
+            <input type="submit" name="invia" value="Login" class="button"/>
+
+        </form>
+        <p>Nuovo utente?</p>
+        <input type="button" name="registrati" value="Registrati" onclick="window.location.href='registrati.php'" class="button"/>
+        </div>
+    </body>
+</html>

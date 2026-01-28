@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
+
+body{
+    background-image: url("resources/background.gif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.login{
+    margin: 2.5%;
+    padding: 2.5%;
+    background-color: #8a2be280;
+    border-radius: 20pt;
+    color: white;
+    text-shadow: 0px 0px 10px black;
+    font-family: "Limelight", system-ui;
+    box-shadow: 0px 0px 10px black;
+}
+div.form{
+    margin: 2.5%;
+    padding: 0.25%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: #00000080;
+    border-radius: 20pt;
+    color: white;
+    text-shadow: 0px 0px 10px black;
+    font-family: "Limelight", system-ui;
+    box-shadow: 0px 0px 10px black;
+
+}
+img.logo{
+    height: 25%;
+}
+input{
+    border-style: hidden;
+    text-align: center;
+    font-size: large;
+    color: white;
+    font-family: "Limelight", system-ui;
+    text-shadow: 0px 0px 10px black;
+ 
+}
+
+input.text{
+    background-color: transparent;
+}
+
+input.button{
+    border-radius: 5pt;
+    background-color: #00000080;
+    padding: 5px;
+}
+input::placeholder{
+    color: white;
+    opacity: 1;
+    text-shadow: 0px 0px 10px black;
+
+}
+
+input:focus{
+    outline: none;
+    background-color: inherit;
+}
