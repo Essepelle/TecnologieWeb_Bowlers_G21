@@ -1,0 +1,14 @@
+body {
+    background-image: url("resources/capocchia.jpeg");
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+main {
+     height: 100%;
+     background-color: #000000aa;
+     width: 80%;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+}

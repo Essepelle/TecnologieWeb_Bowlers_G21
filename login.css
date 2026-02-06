@@ -1,58 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
 body{
-    background-image: url("resources/background.gif");
+    background-image: url("resources/capocchia.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     text-align: center;
-    vertical-align: middle;
-}
-
-div.login{
-    margin: 2.5%;
-    padding: 2.5%;
-    background-color: #8a2be280;
-    border-radius: 20pt;
+    font-family: "Belanosima", system-ui;
     color: white;
+    margin: 2.5%;
+    justify-items: center;
+}
+div.content{
+    width: 75%;
+    display: flex;
+    align-items: center;
+     background-color: #000000aa;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-color: white;
+    border-radius: 20pt;
+    border-style: solid;
+    border-width: 2px;
+    color: white;
+    padding-left:2.5;
+    padding-right: 2.5%;
+}
+div.login{
+    width: 75%;
+    float: left;
+    margin: 2.5%;
+    margin-left: 1.25%;
+    padding: 1%;
     text-shadow: 0px 0px 10px black;
-    font-family: "Limelight", system-ui;
-    box-shadow: 0px 0px 10px black;
 }
 div.form{
-    margin: 2.5%;
-    padding: 0.25%;
+    padding: 2.5%;
     margin-top: 1%;
     margin-bottom: 1%;
-    background-color: #00000080;
+    background-color: #ff00ff80;
     border-radius: 20pt;
     color: white;
     text-shadow: 0px 0px 10px black;
-    font-family: "Limelight", system-ui;
-    box-shadow: 0px 0px 10px black;
-
+    box-shadow: 0px 0px 10px black;   
 }
-img.logo{
-    height: 25%;
+div.nuovoUtente{
+    padding: 2.5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    background-color: #00b7ff80;
+    border-radius: 20pt;
+    color: white;
+    text-shadow: 0px 0px 10px black;
+    box-shadow: 0px 0px 10px black;
+}
+.logo{
+    width: 25%;
+    border-radius: 100%; box-shadow: 0px 0px 20px black;
 }
 input{
     border-style: hidden;
-    text-align: center;
     font-size: large;
     color: white;
-    font-family: "Limelight", system-ui;
+    font-family: "Belanosima", system-ui;
     text-shadow: 0px 0px 10px black;
  
 }
 
 input.text{
     background-color: transparent;
+    margin-right: 1em;
+    padding: 0.5em;
+    width: 90%;
 }
 
 input.button{
-    border-radius: 5pt;
+    border-radius: 20pt;
     background-color: #00000080;
-    padding: 5px;
+    padding: 0.5em;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 input::placeholder{
     color: white;
@@ -63,5 +89,10 @@ input::placeholder{
 
 input:focus{
     outline: none;
-    background-color: inherit;
+    background-color: transparent;
+}
+
+input:autofill{
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: white !important;
 }
