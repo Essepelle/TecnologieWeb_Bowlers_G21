@@ -170,7 +170,7 @@ $ora_attuale = (int)date('H');
 
                 <?php elseif ($nomeGioco == 'Laser Game'): ?>
                     <label>Numero Persone:</label><br>
-                    <input type="number" name="numero_persone" min="1" max="20" required>
+                    <input type="number" name="numero_persone" min="2" max="10" required>
 
                 <?php elseif ($nomeGioco == 'Carte'): ?>
                     <label>Partecipazione Torneo:</label><br>
