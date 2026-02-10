@@ -101,9 +101,24 @@ if (!empty($username)) {
                 <div class="testo-card">
                     <h1><?= htmlspecialchars($row['nome_gioco']) ?></h1>
                     <p><?= nl2br(htmlspecialchars($presentazione)) ?></p>
-                    <button type="button" onclick="window.location.href='dettaglio_gioco.php?gioco=<?= urlencode($row['nome_gioco']) ?>'">
+
+
+                    <!-- Si discrimina l'utente registrato da quello non registrato -->
+                    <?php if (isset($_SESSION['utente'])): ?>
+                    <!-- utente loggato -->
+                    <button type="button"
+                        onclick="window.location.href='dettaglio_gioco.php?gioco=<?= urlencode($row['nome_gioco']) ?>'">
                         Prenota
                     </button>
+                    <?php else: ?>
+                    <!-- utente NON loggato -->
+                        <button type="button"
+                            onclick="window.location.href='login.html?redirect=prenota&gioco=<?= urlencode($row['nome_gioco']) ?>'">
+                            Prenota
+                        </button>
+                    <?php endif; ?>
+
+
                 </div>
             </div>
         <?php endwhile; ?>
