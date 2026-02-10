@@ -19,8 +19,15 @@ if (isset($_POST['elimina_prenotazione'])) {
 
 // 2. Recupero prenotazioni attive dell'utente
 // Ordiniamo per data_ora così le più vicine appaiono per prime
-$sql_select = "SELECT * FROM prenotazioni WHERE username_utente = $1 ORDER BY data_ora ASC";
+$sql_select = "SELECT * FROM prenotazioni 
+               WHERE username_utente = $1 
+               AND data_ora >= CURRENT_TIMESTAMP 
+               ORDER BY data_ora ASC";
 $risultato_pren = pg_query_params($db, $sql_select, array($username));
+
+// Pulizia automatica prenotazioni scadute
+$sql_clean = "DELETE FROM prenotazioni WHERE data_ora < CURRENT_TIMESTAMP";
+pg_query($db, $sql_clean);
 
 // 3. Recupero giochi per la sidebar sinistra
 $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gioco;");
