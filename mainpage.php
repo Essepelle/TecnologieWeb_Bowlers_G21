@@ -66,7 +66,7 @@ if (!$prodotti) {
 
 <?php
 /* ============================
-   3) MOSTRA I PRODOTTI
+   MOSTRA I GIOCHI
    ============================ */
 while ($row = pg_fetch_assoc($prodotti)) {
 ?>
@@ -88,9 +88,9 @@ while ($row = pg_fetch_assoc($prodotti)) {
 
 <ul>
 <?php
-/* 
-   4) MOSTRA I PRODOTTI NEL CARRELLO */
-   
+/* ============================
+   MOSTRA I GIOCHI PRENOTATI
+   ============================ */  
 if (!empty($_SESSION['carrello'])) {
 
     // Prepara query per SINGOLO prodotto
