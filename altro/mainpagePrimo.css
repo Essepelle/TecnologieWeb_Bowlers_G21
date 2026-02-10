@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
+body{
+    background-image: url("resources/capocchia.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+    font-family: "Belanosima", system-ui;
+    color: white;
+    place-items: center center;
+    display: grid;
+    margin:0;
+    size: 100%;
+    grid-template-rows: auto 1fr auto;
+}
+
+header {
+    width: calc(100% - 40pt);
+    background-color: #ff00ff80;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 0 20pt 0 20pt;
+    box-shadow: 0px 0px 10px black;
+}
+
+.site {
+    display: flex;
+    align-items: center;
+    cursor:pointer;
+    font-family: "Racing Sans One", system-ui;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+    margin-right: 10pt;
+}
+
+.user {
+    display: flex;
+    float: right;
+    align-items: center;
+    cursor: pointer;
+    justify-self: right;
+}
+.grid {
+  display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20pt;
+}
+
+.prodotto {
+    background-color: #ffbf0080;
+    box-shadow: 0 0 10px black;
+    padding: 20pt;
+    text-align: center;
+    border-radius: 20pt;
+    transition: box-shadow 0.2s ease; 
+}
+
+.prodotto:hover {
+    background-color: #ffbf0080;
+    border-style: none;
+}
+.prodotto img {
+    padding: 20pt;
+    background-color: white;
+    border-radius: 20pt;
+    width: 100px;
+    height: auto;
+    min-height: 100px;
+}
+
+button {
+  margin-top: 10px;
+  width: calc(100px + 40pt);
+  border: none;
+  border-radius: 20pt;
+  cursor: pointer;
+    border-radius: 20pt;
+    background-color: #00000080;
+    padding: 0.5em 1em 0.5em 1em;
+}
+
+button:active,
+button:hover,
+button:focus {
+    border-radius: 20pt;
+    background-color: #00000080; /* più scuro quando premuto */
+    padding: 0.5em 1em;
+    box-shadow: 0 0 10px black;
+}
+
+
+svuota_carrello{
+        margin-top: 10px;
+        padding: 8px 12px;
+        background: #cc0000;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+}
+
+
+#carrello-box {
+    background: #f8f9fa;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    width: 350px;
+    margin-top: 30px;
+}
+
+#carrello-box h2 {
+    margin-top: 0;
+}
+
+#carrello-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+#carrello-box li {
+    padding: 6px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#totale-carrello {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+footer {
+    text-align: center;
+    width: 100%;
+    align-self: baseline;
+}
+
+#footer-box {
+    background-color: #00b7ff80; /* colore solido */
+    color: white;
+    padding: 5px;
+    margin: 0 auto;
+    font-size: 10px;
+    box-shadow: 0px 0px 10px black;
+}
+
+#footer-box p {
+    margin: 5px 0;
+}
+
+
+main{
+    width: calc(100% - 80pt);
+    margin: 20pt;
+    padding: 20pt;
+    display: grid;
+    min-height: 100vh;
+    place-items: start stretch;
+    background-color: #000000aa;
+    border-radius: 20pt;
+    box-shadow: 0 0 10px black;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    
+}
