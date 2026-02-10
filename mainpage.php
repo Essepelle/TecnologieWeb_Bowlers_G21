@@ -132,5 +132,37 @@ if (!$risultatoGiochi) {
         <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
     </div>
 </footer>
+
+<script>
+document.querySelectorAll('.sidebar-left a').forEach(link => {
+    link.addEventListener('click', function () {
+        const targetId = this.getAttribute('href').substring(1);
+        const targetDiv = document.getElementById(targetId);
+
+        if (targetDiv) {
+            // rimuove eventuali evidenziazioni precedenti
+            document.querySelectorAll('.evidenzia, .fade').forEach(el => {
+                el.classList.remove('evidenzia', 'fade');
+            });
+
+            // aggiunge evidenzia
+            targetDiv.classList.add('evidenzia');
+
+            // dopo 3 secondi, avvia fade
+            setTimeout(() => {
+                targetDiv.classList.add('fade');
+            }, 1000);
+
+            // rimuove completamente 
+            setTimeout(() => {
+                targetDiv.classList.remove('evidenzia', 'fade');
+            }, 2000);
+        }
+    });
+});
+</script>
+
+
+
 </body>
 </html>

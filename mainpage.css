@@ -208,6 +208,26 @@ main {
     gap: 20pt;
 }
 
+
+.evidenzia {
+    background-color: #d6c0f5; /* lilla/viola chiaro */
+    box-shadow: 0 0 20px rgba(128, 0, 128, 0.6); /* glow viola */
+    transition: background-color 1s ease, box-shadow 1s ease; /* dissolvenza graduale */
+}
+
+/*stato normale, in modo da avere una transizione più gradevole*/
+.card-gioco-odd.fade {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.card-gioco-even.fade {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+
+
 .card-gioco-odd img {
     grid-area: 1 / 1 / 4 / 2;
     height: 100%;
