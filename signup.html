@@ -1,27 +1,31 @@
 <html>
     <meta charset="UTF-8"/>
     <head>
-        <title>Registrazione</title>
+        <title>Registrazione - The Bowler Club</title>
         <script>
             function validaRegistrazione(elementoModulo) {
+                // Controllo Nome
                 if (elementoModulo.nome.value == "") {
                     alert("Devi inserire il tuo nome!");
                     elementoModulo.nome.focus();
                     return false;
                 }
+                // Controllo Email (Nuovo campo coerente con DB)
+                if (elementoModulo.email.value == "") {
+                    alert("Devi inserire un'email valida!");
+                    elementoModulo.email.focus();
+                    return false;
+                }
+                // Controllo Username (Sarà la nostra Primary Key)
                 if (elementoModulo.username.value == "") {
                     alert("Devi scegliere un username!");
                     elementoModulo.username.focus();
                     return false;
                 }
+                // Controllo Password
                 if (elementoModulo.password.value == "") {
                     alert("Devi scegliere una password!");
                     elementoModulo.password.focus();
-                    return false;
-                }
-                if (elementoModulo.conferma_password.value == "") {
-                    alert("Devi confermare la password!");
-                    elementoModulo.conferma_password.focus();
                     return false;
                 }
                 if (elementoModulo.password.value != elementoModulo.conferma_password.value) {
@@ -49,19 +53,26 @@
                         <input type="text" name="nome" id="nome" class="text" placeholder="Nome completo"/>
                         <i class="fa-solid fa-id-card"></i>
                         <div class="l1"><hr/></div>
+
+                        <input type="email" name="email" id="email" class="text" placeholder="Email"/>
+                        <i class="fa-solid fa-envelope"></i>
+                        <div class="l2"><hr/></div>
+
                         <input type="text" name="username" id="username" class="text" placeholder="Scegli Username"/>
                         <i class="fa-solid fa-user"></i>
-                        <div class="l2"><hr/></div>
+                        <div class="l3"><hr/></div>
+
                         <input type="password" name="password" id="password" class="text" placeholder="Password"/>
                         <i class="fa-solid fa-key"></i>
-                        <div class="l3"><hr/></div>
+                        <div class="l4"><hr/></div>
+
                         <input type="password" name="conferma_password" id="conferma_password" class="text" placeholder="Conferma Password"/>
                         <i class="fa-solid fa-check-double"></i>
-                        <div class="l4"><hr/></div>
+                        <div class="l5"><hr/></div>
+
                         <div class="submit"><input type="submit" name="registra" value="Registrati" class="button"/></div>
                     </div>
                 </form>
-
                 <div class="account">Hai già un account?
                     <input type="button" name="login" value="Accedi" onclick="window.location.href='login.html'" class="button"/>
                 </div>
