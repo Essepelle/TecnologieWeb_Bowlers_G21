@@ -19,10 +19,10 @@ if (isset($_POST['conferma_prenotazione'])) {
     $numero_persone = $_POST['numero_persone'] ?? null;
     $partecipa_torneo = $_POST['partecipa_torneo'] ?? null;
 
-    $sql = "INSERT INTO prenotazioni (username_utente, nome_gioco, data_ora, numero_tavolo, numero_pista, numero_persone, partecipa_torneo) 
+    $sql = "INSERT INTO prenotazioni (username_utente, nome_gioco, data_ora, numero_tavolo, numero_pista, numero_persone, partecipazione_torneo) 
             VALUES ($1, $2, $3, $4, $5, $6, $7)";
     
-    $params = array($username, $nome_gioco, $data_ora, $numero_tavolo, $numero_pista, $numero_persone, $partecipa_torneo);
+    $params = array($username, $nome_gioco, $data_ora, $numero_tavolo, $numero_pista, $numero_persone, $partecipazione_torneo);
     $result = pg_query_params($db, $sql, $params);
 
     if ($result) {
