@@ -26,6 +26,13 @@ $descrizioneEstesa = file_exists($nomeFileDescr) ? file_get_contents($nomeFileDe
 $sqlGiochi = "SELECT nome_gioco FROM giochi ORDER BY nome_gioco;";
 $risultatoGiochi = pg_query($db, $sqlGiochi);
 
+// 5. Recupero le prenotazioni per la sidebar di destra
+$sql_sidebar = "SELECT nome_gioco, data_ora FROM prenotazioni 
+                WHERE username_utente = $1 
+                AND data_ora >= CURRENT_TIMESTAMP
+                ORDER BY data_ora ASC LIMIT 5";
+$res_sidebar = pg_query_params($db, $sql_sidebar, array($_SESSION['utente']));
+
 // Variabili per controllo data e ora attuale
 $oggi = date('Y-m-d');
 $ora_attuale = (int)date('H');
@@ -156,18 +163,30 @@ $ora_attuale = (int)date('H');
                 <button type="submit" name="conferma_prenotazione">Aggiungi alla prenotazione</button>
             </form>
             <br>
-            <button type="button" onclick="window.location.href='mainpage.php'" style="background: #444;">Annulla</button>
         </div>
     </div>
 </main>
 
 <aside class="sidebar-right">
     <p class="titolo-sidebar">PRENOTAZIONI ATTIVE</p>
-    <div id="carrello-box">
-        <?php if (!empty($_SESSION['carrello'])): ?>
-            <ul><?php foreach ($_SESSION['carrello'] as $item) echo "<li>".htmlspecialchars($item)."</li>"; ?></ul>
+    <div id="carrello-box" style="font-size: 0.9em;">
+        <?php if (pg_num_rows($res_sidebar) > 0): ?>
+            <ul style="list-style: none; padding: 0;">
+                <?php while ($item = pg_fetch_assoc($res_sidebar)): 
+                    // Formattiamo la data per renderla più bella (es. 12 Feb, 21:00)
+                    $data_f = date('d M, H:i', strtotime($item['data_ora']));
+                ?>
+                    <li style="margin-bottom: 15px; border-bottom: 1px solid #ff00ff40; padding-bottom: 5px;">
+                        <strong style="color: #00b7ff; text-transform: uppercase;">
+                            <?= htmlspecialchars($item['nome_gioco']) ?>
+                        </strong><br>
+                        <span style="color: #ccc;"><?= $data_f ?></span>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
         <?php else: ?>
-            <p>Nessuna prenotazione</p>
+            <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata.</p>
+            <button onclick="window.location.href='mainpage.php'" style="width: 100%;">Prenota Ora</button>
         <?php endif; ?>
     </div>
 </aside>

@@ -44,16 +44,15 @@ if (isset($_POST['conferma_prenotazione'])) {
 
     $result = pg_query_params($db, $sql, $params);
 
+   // ... dopo l'inserimento nel database con successo ...
     if ($result) {
-        // Se la prenotazione ha successo, la rimuoviamo dal carrello visivo se presente
-        if (isset($_SESSION['carrello']) && ($key = array_search($nome_gioco, $_SESSION['carrello'])) !== false) {
-            unset($_SESSION['carrello'][$key]);
+        // Rimuoviamo il gioco dal carrello temporaneo della sessione (se lo usi ancora)
+        if (isset($_SESSION['carrello'])) {
+            unset($_SESSION['carrello']); 
         }
-        // Reindirizzamento con messaggio di successo
-        header("Location: mainpage.php?prenotazione=ok");
-    } else {
-        // In caso di errore del database
-        echo "Si è verificato un errore durante l'inserimento: " . pg_last_error($db);
+        // Reindirizziamo alla home o alle prenotazioni
+        header("Location: prenotazioni.php?msg=success");
+        exit();
     }
 } else {
     // Se si tenta di accedere al file senza inviare il form
