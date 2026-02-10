@@ -1,6 +1,7 @@
 <?php
 include "db.php";
 session_start();
+$username = $_SESSION['utente'] ?? '';
 
 // 1. Recupero il nome del gioco dalla URL
 $nomeGioco = $_GET['gioco'] ?? '';
@@ -31,7 +32,7 @@ $sql_sidebar = "SELECT nome_gioco, data_ora FROM prenotazioni
                 WHERE username_utente = $1 
                 AND data_ora >= CURRENT_TIMESTAMP
                 ORDER BY data_ora ASC LIMIT 5";
-$res_sidebar = pg_query_params($db, $sql_sidebar, array($_SESSION['utente']));
+$res_sidebar = pg_query_params($db, $sql_sidebar, array($username));
 
 // Variabili per controllo data e ora attuale
 $oggi = date('Y-m-d');
@@ -185,8 +186,7 @@ $ora_attuale = (int)date('H');
                 <?php endwhile; ?>
             </ul>
         <?php else: ?>
-            <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata.</p>
-            <button onclick="window.location.href='mainpage.php'" style="width: 100%;">Prenota Ora</button>
+            <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata</p>
         <?php endif; ?>
     </div>
 </aside>

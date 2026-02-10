@@ -2,23 +2,25 @@
 include "db.php"; 
 session_start();
 
-/* 1) AGGIUNTA GIOCO AL CARRELLO (mantenuta per coerenza con il ritorno dal dettaglio) */
-if (isset($_POST['add_to_cart'])) {
-    $nomeGioco = $_POST['nome_gioco'];
-    if (!isset($_SESSION['carrello'])) {
-        $_SESSION['carrello'] = [];
-    }
-    if (!in_array($nomeGioco, $_SESSION['carrello'])) {
-        $_SESSION['carrello'][] = $nomeGioco;
-    }
-}
+// Recupero username dalla sessione (necessario per la query sidebar)
+$username = $_SESSION['utente'] ?? '';
 
-/* 2) RECUPERA TUTTI I GIOCHI DAL DB */
+/* 1) RECUPERA TUTTI I GIOCHI DAL DB */
 $sqlGiochi = "SELECT nome_gioco, immagine FROM giochi ORDER BY nome_gioco;";
 $risultatoGiochi = pg_query($db, $sqlGiochi);
 
 if (!$risultatoGiochi) {
     die("Errore query giochi: " . pg_last_error($db));
+}
+
+/* 2) RECUPERO LE PRENOTAZIONI PER LA SIDEBAR DI DESTRA (Logica allineata a dettaglio_gioco.php) */
+$res_sidebar = null;
+if (!empty($username)) {
+    $sql_sidebar = "SELECT nome_gioco, data_ora FROM prenotazioni 
+                    WHERE username_utente = $1 
+                    AND data_ora >= CURRENT_TIMESTAMP
+                    ORDER BY data_ora ASC LIMIT 5";
+    $res_sidebar = pg_query_params($db, $sql_sidebar, array($username));
 }
 ?>
 <!DOCTYPE html>
@@ -62,7 +64,7 @@ if (!$risultatoGiochi) {
 <aside class="sidebar-left">
     <p class="titolo-sidebar">SERVIZI OFFERTI</p>
     <ul>
-        <li><a href="#presentazione">Presentazione</a></li>
+        <li><a href="#presentazione">Home</a></li>
         <?php 
         // Generazione dinamica dei link della sidebar basata sui giochi nel DB
         pg_result_seek($risultatoGiochi, 0);
@@ -110,19 +112,23 @@ if (!$risultatoGiochi) {
 
 <aside class="sidebar-right">
     <p class="titolo-sidebar">PRENOTAZIONI ATTIVE</p>
-    <div id="carrello-box" style="font-size: 90%;">
-        <?php if (!empty($_SESSION['carrello'])): ?>
-            <ul style="padding-left: 20px;">
-                <?php foreach ($_SESSION['carrello'] as $gioco): ?>
-                    <li>
-                        <?= htmlspecialchars($gioco) ?> 
-                        <br><a href="prenota_dettaglio.php?gioco=<?= urlencode($gioco) ?>" style="font-size: 0.8em; color: #ff00ff;">Configura</a>
+    <div id="carrello-box" style="font-size: 0.9em;">
+        <?php if ($res_sidebar && pg_num_rows($res_sidebar) > 0): ?>
+            <ul style="list-style: none; padding: 0;">
+                <?php while ($item = pg_fetch_assoc($res_sidebar)): 
+                    // Formattiamo la data per renderla più bella (es. 12 Feb, 21:00)
+                    $data_f = date('d M, H:i', strtotime($item['data_ora']));
+                ?>
+                    <li style="margin-bottom: 15px; border-bottom: 1px solid #ff00ff40; padding-bottom: 5px;">
+                        <strong style="color: #00b7ff; text-transform: uppercase;">
+                            <?= htmlspecialchars($item['nome_gioco']) ?>
+                        </strong><br>
+                        <span style="color: #ccc;"><?= $data_f ?></span>
                     </li>
-                <?php endforeach; ?>
+                <?php endwhile; ?>
             </ul>
-            <button onclick="window.location.href='checkout.php'" style="width: 100%; margin-top: 10px;">Conferma Tutto</button>
         <?php else: ?>
-            <p>Nessuna prenotazione</p>
+            <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata</p>
         <?php endif; ?>
     </div>
 </aside>
