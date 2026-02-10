@@ -9,6 +9,8 @@ if (!isset($_SESSION['utente'])) {
 }
 
 $username = $_SESSION['utente'];
+$nome_completo = $_SESSION['nome'];
+$email = $_SESSION['email'];
 
 // 1. Gestione eliminazione prenotazione
 if (isset($_POST['elimina_prenotazione'])) {
@@ -65,7 +67,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <main>
     <div style="padding: 20px;">
         <h1 style="color: #ff00ff; text-align: center;">Gestione Prenotazioni</h1>
-        <p style="text-align: center;">Qui puoi visualizzare e annullare i tuoi appuntamenti.</p>
+        <p style="text-align: center;">Qui puoi visualizzare e annullare le tue prenotazioni.</p>
 
         <?php if (pg_num_rows($risultato_pren) > 0): ?>
             <div class="grid-giochi">
@@ -114,7 +116,15 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
     <p class="titolo-sidebar">INFO ACCOUNT</p>
     <div id="carrello-box">
         <p>Username: <strong><?= htmlspecialchars($username) ?></strong></p>
+        <p>Nome Completo: <strong><?= htmlspecialchars($nome_completo) ?></strong></p>
+        <p>Email: <strong><?= htmlspecialchars($email) ?></strong></p>
         <button onclick="window.location.href='logout.php'" style="width: 100%;">Logout</button>
+
+        <form action="elimina_account.php" method="POST" onsubmit="return confirm('ATTENZIONE: Sei sicuro di voler eliminare definitivamente il tuo account? Questa operazione cancellerà anche tutte le tue prenotazioni e non è reversibile.');">
+            <button type="submit" name="conferma_eliminazione" style="width: 100%; background-color:rgb(56, 56, 56); color: white; font-weight: bold; border: none; padding: 10px; cursor: pointer;">
+                Elimina Account
+            </button>
+        </form>
     </div>
 </aside>
 

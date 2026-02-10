@@ -48,37 +48,57 @@ $ora_attuale = (int)date('H');
     <link rel="stylesheet" href="mainpage.css">
     <link rel="icon" type="icon" href="resources/logo.png"/>
     <script>
-        // Funzione JS per filtrare le ore in base alla data selezionata
-        function aggiornaOre() {
-            const dateInput = document.getElementById('data_prenotazione');
-            const hourSelect = document.getElementById('ora_prenotazione');
-            const oggi = "<?= $oggi ?>";
-            const oraCorrente = <?= $ora_attuale ?>;
-            
-            hourSelect.innerHTML = "";
-            let oraInizio = 10; // Orario apertura club
+    function aggiornaOre() {
+        const dateInput = document.getElementById('data_prenotazione');
+        const hourSelect = document.getElementById('ora_prenotazione');
+        
+        // Otteniamo la data odierna in formato YYYY-MM-DD
+        const oraLocale = new Date();
+        const oggi = oraLocale.toISOString().split('T')[0];
+        const oraCorrente = oraLocale.getHours();
+        const minutiCorrenti = oraLocale.getMinutes();
+        
+        hourSelect.innerHTML = "";
+        
+        // Sequenza richiesta: 00, 01, 02 e poi dalle 10 alle 23
+        const baseOre = [0, 1, 17, 18, 19, 20, 21, 22, 23];
+        
+        let listaCompleta = [];
+        baseOre.forEach(h => {
+            // Formattiamo l'ora con lo zero davanti (es: 0 diventa "00")
+            let oraLabel = h < 10 ? "0" + h : h;
+            listaCompleta.push({ h: h, m: 0, label: oraLabel + ":00" });
+            listaCompleta.push({ h: h, m: 30, label: oraLabel + ":30" });
+        });
 
-            if (dateInput.value === oggi) {
-                oraInizio = oraCorrente + 1; // Solo ore future rispetto a ora attuale
-                if (oraInizio < 10) oraInizio = 10;
-            }
-
-            if (oraInizio > 24) {
-                const opt = document.createElement('option');
-                opt.text = "Esaurito per oggi";
-                opt.disabled = true;
-                hourSelect.add(opt);
-            } else {
-                for (let h = oraInizio; h <= 24; h++) {
-                    const opt = document.createElement('option');
-                    let val = h < 10 ? "0" + h + ":00" : h + ":00";
-                    opt.value = val;
-                    opt.text = val;
-                    hourSelect.add(opt);
-                }
-            }
+        let orariDisponibili = listaCompleta;
+        
+        // Se la data selezionata è oggi, filtriamo gli orari già passati
+        if (dateInput.value === oggi) {
+            orariDisponibili = listaCompleta.filter(t => {
+                if (t.h > oraCorrente) return true;
+                if (t.h === oraCorrente && t.m > minutiCorrenti) return true;
+                return false;
+            });
         }
-    </script>
+
+        if (orariDisponibili.length === 0) {
+            const opt = document.createElement('option');
+            opt.text = "Nessun orario disponibile";
+            opt.disabled = true;
+            hourSelect.add(opt);
+        } else {
+            orariDisponibili.forEach(t => {
+                const opt = document.createElement('option');
+                opt.value = t.label;
+                opt.text = t.label;
+                hourSelect.add(opt);
+            });
+        }
+    }
+    // Eseguiamo la funzione all'avvio
+    window.onload = aggiornaOre;
+</script>
 </head>
 
 <body onload="aggiornaOre()">
