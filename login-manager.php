@@ -4,64 +4,74 @@ session_start();
 ?>
 <html>
 <head>
-	<title>Gestione Login</title>
+    <meta charset="UTF-8"/>
+    <title>Gestione Login - The Bowler Club</title>
+    <link rel="stylesheet" type="text/css" href="login.css"/>
 </head>
-<body>
-	<?php
+<body style="display: block; padding: 50px;">
+    <div class="form" style="margin: 0 auto; width: 50%; text-align: center;">
+    <?php
+        // Verifichiamo che i dati siano stati inviati dal form
+        if (isset($_POST['username']) && isset($_POST['password'])) {
+            $username = $_POST['username'];
+            $password = $_POST['password'];
 
+            // Recuperiamo l'intera riga dell'utente dal DB
+            $userRow = get_user($username, $db);
 
-		if($_POST['username'] || $_POST['password']){
-			$username =  $_POST['username'];
-			$pass =  $_POST['password'];
-			//chiama la funzione get_pwd che controlla
-			//se username esiste nel DB. Se esiste, restituisce la password (hash), altrimenti restituisce false.
-			//$hash = get_pwd($user,$db);
-			// Recupero intera riga utente
-   			$userRow = get_user($username, $db);
-			if(!$userRow){
-				echo "<p> L'utente non esiste. <a href=\"login.html\">Riprova</a></p>";
-			}
-			else{
-				if(password_verify($pass, $userRow['password'])){
-					echo "<p>Login Eseguito con successo</p>";
-					//Se il login è corretto, inizializziamo la sessione
-					
-					$_SESSION['utente']=$userRow['username'];
-                    $_SESSION['utente_id'] = $userRow['id'];
-					$_SESSION['nome'] = $userRow['nome'];
-        			header("Location: index2.php");
-       				 exit;
-					//echo "<p><a href=\"reserved.php\">Accedi</a> al contenuto riservato solo agli utenti registrati<p>";
-				}
-				else{
-					echo 'Username o password errati. <a href="login.html">Riprova</a>';
-				}
-			}
-		}
-		else{
-			echo "<p>ERRORE: username o password non inseriti <a href=\"login.html\">Riprova</a></p>";
-			exit();
-		}
-	?>
+            if (!$userRow) {
+                echo "<h2>Errore</h2>";
+                echo "<p>L'username <strong>" . htmlspecialchars($username) . "</strong> non esiste.</p>";
+                echo "<a href='login.html' class='button'>Riprova</a>";
+            } else {
+                // Verifichiamo la password usando la colonna 'pass' del tuo DB
+                if (password_verify($password, $userRow['pass'])) {
+                    // Login riuscito: inizializziamo la sessione
+                    $_SESSION['utente'] = $userRow['username'];
+                    $_SESSION['nome']   = $userRow['nome_completo'];
+                    $_SESSION['email']  = $userRow['email'];
+
+                    // Reindirizzamento alla home del sito
+                    header("Location: mainpage.php");
+                    exit;
+                } else {
+                    echo "<h2>Accesso Negato</h2>";
+                    echo "<p>Username o password errati.</p>";
+                    echo "<a href='login.html' class='button'>Riprova</a>";
+                }
+            }
+        } else {
+            echo "<h2>Errore</h2>";
+            echo "<p>Inserire username e password per accedere.</p>";
+            echo "<a href='login.html' class='button'>Torna al Login</a>";
+        }
+    ?>
+    </div>
 </body>
 </html>
 
 <?php
-	
-	function get_user($user, $db){
-    $sql = "SELECT id, nome, username, password 
-            FROM account 
+/**
+ * Recupera i dati dell'utente basandosi sullo username
+ * Adeguato alla tua tabella: username, nome_completo, email, pass
+ */
+function get_user($user, $db) {
+    // Usiamo i nomi esatti delle tue colonne
+    $sql = "SELECT username, nome_completo, email, pass 
+            FROM utenti 
             WHERE username = $1;";
-    $prep = pg_prepare($db, "sqlUser", $sql); 
-    $ret = pg_execute($db, "sqlUser", array($user));
+    
+    // Usiamo pg_query_params per semplicità e sicurezza
+    $ret = pg_query_params($db, $sql, array($user));
 
     if (!$ret) {
-        echo "ERRORE QUERY: " . pg_last_error($db);
+        // Opzionale: log dell'errore per debug
+        // echo "ERRORE QUERY: " . pg_last_error($db);
         return false;
     }
 
     if ($row = pg_fetch_assoc($ret)) {
-        return $row; // restituiamo TUTTA la riga
+        return $row; // Restituisce l'array con username, nome_completo, email e pass
     } else {
         return false;
     }
