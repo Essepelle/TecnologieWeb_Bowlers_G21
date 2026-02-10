@@ -29,7 +29,7 @@ if (!$prodotti) {
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Neon Lanes</title>
+<title>The Bowler Club</title>
 <link rel="stylesheet" href="mainpage.css">
 <link rel="icon" type="icon" href="resources/logo.png"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -41,12 +41,23 @@ if (!$prodotti) {
 <header>
     <div class="site" onclick="window.location.href='mainpage.php'">
         <img src="resources/logo.png" class="logo">
-        <h1>Neon Lanes</h1>
+        <h1>The Bowler Club</h1>
     </div>
-    <div class="user"><h1>
-        Ciao <?= htmlspecialchars($username)?>
-        <i class="fa-solid fa-user" style="margin-left: 10px;"></i>
-    </h1></div>
+    <div class="user">
+        <?php if (isset($_SESSION['username'])): ?>
+            <h2 onclick="toogleMenu()">
+                Ciao <?= htmlspecialchars($username)?>
+                <i class="fa-solid fa-user" style="margin-left: 10px;"></i>
+            </h2>
+
+            <div class="logged">
+                <a href="prenotazioni.php">Mostra le Prenotazioni</a>
+                <a href="<?php session_write_close()?>">Logout</a>
+            </div>
+        <?php else: ?>
+            <h2 onclick="window.location.href='login.html'">Effettua il Login</h2>
+        <?php endif; ?>
+    </div>
 </header>
 
 <main>
@@ -109,7 +120,7 @@ if (!empty($_SESSION['carrello'])) {
 
 <footer>
     <div id="footer-box">
-        <p>© 2026 - Neon Lanes - Bowlers_G21 - Pascariello Vincenzo, Pellecchia Simone, Turi Martina</p>
+        <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
         <p id="data-ogg"></p>
     </div>
 </footer>

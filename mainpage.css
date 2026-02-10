@@ -1,80 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Asimovian&display=swap');
-html, body {
-    display: grid;
-    margin:0;
-    height:100%;
-    grid-template-rows: auto 1fr auto;
-    font-family: "Asimovian", system-ui;
-    background-image: url(resources/background.gif);
-        background-size: cover;
+@import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
+body{
+    background-image: url("resources/capocchia.jpeg");
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
+    text-align: center;
+    font-family: "Belanosima", system-ui;
+    color: white;
+    place-items: center center;
+    display: grid;
+    margin:0;
+    size: 100%;
+    grid-template-rows: auto 1fr auto;
 }
 
 header {
+    width: calc(100% - 40pt);
     background-color: #ff00ff80;
-    display: box;
-    padding-left: 1%;
-    padding-right: 1%;
     color: white;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    padding: 0 20pt 0 20pt;
+    box-shadow: 0px 0px 10px black;
 }
 
 .site {
     display: flex;
-    float: left;
     align-items: center;
     cursor:pointer;
+    font-family: "Racing Sans One", system-ui;
 }
 
 .logo {
     height: 50px;
     width: 50px;
-    margin-right: 10px;
+    margin-right: 10pt;
 }
 
 .user {
     display: flex;
-    float: inline-end;
+    float: right;
     align-items: center;
+    cursor: pointer;
+    justify-self: right;
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 15px;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20pt;
 }
 
 .prodotto {
-  border: 2px solid #ddd;
-  padding: 10px;
-  text-align: center;
-  border-radius: 20pt;
-
- transition: box-shadow 0.2s ease; 
+    background-color: #ffbf0080;
+    box-shadow: 0 0 10px black;
+    padding: 20pt;
+    text-align: center;
+    border-radius: 20pt;
+    transition: box-shadow 0.2s ease; 
 }
-
-/*.prodotto:hover {
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}*/
 
 .prodotto:hover {
-    background-color: #eef;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    background-color: #ffbf0080;
+    border-style: none;
 }
 .prodotto img {
-  width: 100px;
-  height: auto;
+    padding: 20pt;
+    background-color: white;
+    border-radius: 20pt;
+    width: 100px;
+    height: auto;
+    min-height: 100px;
 }
 
 button {
   margin-top: 10px;
-  padding: 6px 10px;
-  background: green;
-  color: white;
+  width: calc(100px + 40pt);
   border: none;
-  border-radius: 4px;
+  border-radius: 20pt;
   cursor: pointer;
+    border-radius: 20pt;
+    background-color: #00000080;
+    padding: 0.5em 1em 0.5em 1em;
 }
+
+button:active,
+button:hover,
+button:focus {
+    border-radius: 20pt;
+    background-color: #00000080; /* più scuro quando premuto */
+    padding: 0.5em 1em;
+    box-shadow: 0 0 10px black;
+}
+
 
 svuota_carrello{
         margin-top: 10px;
@@ -116,7 +137,6 @@ svuota_carrello{
 }
 
 footer {
-    margin-top: 40px;
     text-align: center;
     width: 100%;
     align-self: baseline;
@@ -128,6 +148,7 @@ footer {
     padding: 5px;
     margin: 0 auto;
     font-size: 10px;
+    box-shadow: 0px 0px 10px black;
 }
 
 #footer-box p {
@@ -135,8 +156,19 @@ footer {
 }
 
 
-main {
-    min-height: 580px;
+main{
+    width: calc(100% - 80pt);
+    margin: 20pt;
+    padding: 20pt;
+    display: grid;
+    min-height: 100vh;
+    place-items: start stretch;
+    background-color: #000000aa;
+    border-radius: 20pt;
+    box-shadow: 0 0 10px black;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     color: white;
-    padding: 1%;
+    
 }
