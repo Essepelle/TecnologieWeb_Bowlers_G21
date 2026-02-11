@@ -1,0 +1,211 @@
+/* Struttura Main e Titolo */
+.main-content {
+    flex: 1; 
+    padding: 20px;
+}
+
+.page-title {
+    color: #ff00ff; 
+    text-align: center; 
+    text-transform: uppercase;
+}
+
+/* Sezione Food */
+.food-section {
+    text-align: center; 
+    margin-bottom: 50pt; 
+    background: rgba(255, 255, 255, 0.05); 
+    padding: 20pt; 
+    border-radius: 15px; 
+    border: 1px dashed #ff00ff;
+}
+
+.food-section h2 {
+    color: rgb(255, 255, 255); 
+    margin-top: 0; 
+    font-size: 2em; 
+    text-transform: uppercase;
+}
+
+.food-image {
+    width: 50%; 
+    border-radius: 20pt;
+}
+
+.food-description {
+    font-size: 1.2em; 
+    line-height: 1.6; 
+    color: #ccc; 
+    max-width: 800px; 
+    margin: 10pt auto 0 auto;
+}
+
+/* Area FAQ e Form */
+.faq-section-title {
+    color: #00b7ff; 
+    margin-bottom: 20px;
+}
+
+.login-alert {
+    text-align: center; 
+    padding: 20px; 
+    background: #222; 
+    border-radius: 5px;
+}
+
+.login-alert a {
+    color: #ff00ff; 
+    font-weight: bold; 
+    text-decoration: none;
+}
+
+.review-textarea {
+    width: 100%; 
+    margin-bottom: 15px; 
+    background: #111; 
+    color: #fff; 
+    border: 1px solid #444; 
+    padding: 10px; 
+    border-radius: 5px;
+}
+
+.btn-submit-review {
+    background: #ff00ff; 
+    color: white; 
+    border: none; 
+    padding: 12px 25px; 
+    cursor: pointer; 
+    font-weight: bold; 
+    border-radius: 5px; 
+    width: 100%;
+}
+
+/* Sezione Recensioni e Filtri */
+.reviews-container {
+    margin-top: 40px;
+}
+
+.reviews-header {
+    border-bottom: 2px solid #ff00ff; 
+    padding-bottom: 10px; 
+    margin-bottom: 20px;
+}
+
+.reviews-header h3 {
+    color: #eee; 
+    margin-bottom: 15px;
+}
+
+.filter-wrapper {
+    display: flex; 
+    gap: 10px; 
+    flex-wrap: wrap; 
+    align-items: center;
+}
+
+.filter-label {
+    color: #888; 
+    font-size: 0.8em; 
+    text-transform: uppercase; 
+    margin-right: 5px;
+}
+
+.filter-link {
+    text-decoration: none; 
+    padding: 5px 12px; 
+    color: #fff; 
+    border-radius: 4px; 
+    font-size: 0.8em; 
+    border: 1px solid #444;
+}
+
+.filter-active { background: #ff00ff; }
+.filter-inactive { background: #222; }
+.filter-all-active { background: #ff00ff; }
+.filter-all-inactive { background: #333; }
+
+/* Box Commenti e Scroll */
+.comments-scroll-box {
+    max-height: 300px; 
+    overflow-y: auto; 
+    padding-right: 15px; 
+    scrollbar-width: thin; 
+    scrollbar-color: #ff00ff #222;
+}
+
+.comment-card {
+    background: rgba(255, 255, 255, 0.03); 
+    padding: 15px; 
+    border-radius: 8px; 
+    margin-bottom: 15px; 
+    border-left: 4px solid #ff00ff;
+}
+
+.comment-author {
+    color: #00b7ff; 
+    font-size: 1.1em;
+}
+
+.comment-date {
+    margin-left: 10px; 
+    color: rgb(136, 139, 140); 
+    font-size: 0.85em;
+}
+
+.comment-stars {
+    color: #ffcc00; 
+    margin-left: 15px; 
+    font-size: 1.1em;
+}
+
+.comment-stars-empty {
+    color: #333;
+}
+
+.comment-text {
+    color: #eee; 
+    font-style: italic; 
+    margin-top: 8px; 
+    padding-left: 5px;
+}
+
+.no-reviews {
+    color: #888; 
+    text-align: center; 
+    padding: 40px;
+}
+
+/* Sidebar Right */
+.reservation-game {
+    color: #00b7ff; 
+    text-transform: uppercase;
+}
+
+.reservation-date {
+    color: #ccc; 
+    font-size: 0.9em;
+}
+
+.no-reservations {
+    color: #999; 
+    font-style: italic;
+}
+
+.sidebar-account-title {
+    margin-top: 30px;
+}
+
+.sidebar-user-info {
+    font-size: 0.9em; 
+    color: #ccc;
+}
+
+.sidebar-guest-msg {
+    font-style: italic; 
+    line-height: 1.6;
+}
+
+/* Interattività */
+.clickable {
+    cursor: pointer;
+}

@@ -226,8 +226,6 @@ main {
     box-shadow: none;
 }
 
-
-
 .card-gioco-odd img {
     grid-area: 1 / 1 / 4 / 2;
     height: 100%;
@@ -258,43 +256,6 @@ button:hover {
 }
 
 
-/* --- Stili per Area FAQ --- */
-.faq-area { 
-    background: rgba(26, 26, 26, 0.8); 
-    padding: 20px; 
-    border-radius: 10px; 
-    margin-top: 40px; 
-    border: 1px solid #333; 
-}
-
-.faq-form textarea { 
-    width: 100%; 
-    background: #222; 
-    color: #fff; 
-    border: 1px solid #ff00ff; 
-    padding: 10px; 
-    border-radius: 5px; 
-    resize: vertical; 
-    box-sizing: border-box; /* Importante per non uscire dai bordi */
-}
-
-.commento-singolo { 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-    padding: 15px 0; 
-}
-
-.commento-user { 
-    color: #00b7ff; 
-    font-weight: bold; 
-    display: block; 
-    margin-bottom: 4px; 
-}
-
-.commento-testo { 
-    color: #ccc; 
-    font-style: italic; 
-}
-
 /* Stile specifico per la lista prenotazioni nella sidebar */
 .sidebar-right ul {
     list-style: none;
@@ -306,43 +267,6 @@ button:hover {
     margin-bottom: 15px;
     border-bottom: 1px solid rgba(255, 0, 255, 0.3);
     padding-bottom: 8px;
-}
-
-/*Stelle per le recensioni*/
-/* Container per le stelle */
-.rating-stars {
-    display: flex;
-    flex-direction: row-reverse; /* Inverte per gestire l'effetto hover correttamente */
-    justify-content: flex-end;
-    margin-bottom: 15px;
-}
-
-/* Nascondiamo i radio button originali */
-.rating-stars input {
-    display: none;
-}
-
-/* Stile della stella vuota */
-.rating-stars label {
-    cursor: pointer;
-    font-size: 30px;
-    color: #444; /* Colore stella spenta */
-    transition: color 0.2s ease-in-out;
-}
-
-/* Colore giallo per la stella selezionata e quelle precedenti */
-.rating-stars input:checked ~ label,
-.rating-stars label:hover,
-.rating-stars label:hover ~ label {
-    color: #ffcc00; /* Giallo oro */
-}
-
-/* Testo descrittivo accanto alle stelle */
-.label-voto {
-    display: block;
-    color: #ccc;
-    margin-bottom: 5px;
-    font-size: 0.9em;
 }
 
 
