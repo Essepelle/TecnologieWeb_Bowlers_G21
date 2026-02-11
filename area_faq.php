@@ -13,14 +13,21 @@ if (isset($_POST['invia_commento']) && !empty(trim($_POST['testo_commento'])) &&
     // Recupero il voto (stelle) dal form
     $stelle = (!empty($_POST['voto_stelle'])) ? intval($_POST['voto_stelle']) : null;
     
-    // MODIFICA STRETTAEMNTE NECESSARIA: Aggiunto public. e colonna stelle
+    // Assicurati che 'recensione' e 'data_recensione' corrispondano esattamente ai nomi nel DB
+    // Se id_recensione non è SERIAL, l'inserimento fallirà senza un valore esplicito
     $sql_ins = "INSERT INTO public.faq (username, recensione, data_recensione, stelle) 
                 VALUES ($1, $2, CURRENT_TIMESTAMP, $3)";
     
-    pg_query_params($db, $sql_ins, array($username, $testo, $stelle));
-    
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
+    $result = pg_query_params($db, $sql_ins, array($username, $testo, $stelle));
+
+    // Controllo esito query
+    if ($result) {
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
+    } else {
+        // Rimuovere o commentare in produzione, serve per vedere l'errore SQL
+        die("Errore nel salvataggio: " . pg_last_error($db));
+    }
 }
 
 // --- 2. RECUPERO DATI SIDEBAR ---
@@ -31,7 +38,7 @@ if ($username) {
 }
 
 // --- 3. RECUPERO FAQ ---
-// MODIFICA STRETTAEMNTE NECESSARIA: Aggiunto public.
+// Ordinamento per data per mostrare le più recenti
 $sql_faq = "SELECT username, recensione, data_recensione, stelle FROM public.faq ORDER BY data_recensione DESC";
 $risultato_faq = pg_query($db, $sql_faq);
 
@@ -68,8 +75,8 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 </header>
 
 <aside class="sidebar-left">
+    <p class="titolo-sidebar">SERVIZI OFFERTI</p>
     <?php if ($username): ?>
-        <p class="titolo-sidebar">MENU</p>
         <ul>
             <li><a href="mainpage.php">Torna alla Home</a></li>
             <?php pg_result_seek($risultatoGiochi, 0);
@@ -79,7 +86,6 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
             <li><a href="area_faq.php">Area Food e Recensioni</a></li>
         </ul>
     <?php else: ?>
-        <p class="titolo-sidebar">SERVIZI OFFERTI</p>
         <ul>
             <li><a href="mainpage.php#presentazione">Home</a></li>
             <?php pg_result_seek($risultatoGiochi, 0);
@@ -131,7 +137,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                     <div class="commento-singolo">
                         <div class="commento-meta">
                             <strong style="color: #00b7ff; font-size: 1.1em;">@<?= htmlspecialchars($f['username']) ?></strong>
-                            <span style="margin-left: 10px;">il <?= date('d/m/Y H:i', strtotime($f['data_recensione'])) ?></span>
+                            <span style="margin-left: 10px; color:rgb(136, 139, 140);">il <?= date('d/m/Y H:i', strtotime($f['data_recensione'])) ?></span>
                             
                             <?php if (!empty($f['stelle'])): ?>
                                 <span style="color: #ffcc00; margin-left: 15px; font-size: 1.2em;">
@@ -139,7 +145,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                                 </span>
                             <?php endif; ?>
                         </div>
-                        <div class="commento-testo">"<?= htmlspecialchars($f['recensione']) ?>"</div>
+                        <div class="commento-testo" style="color:rgb(255, 255, 255);">"<?= htmlspecialchars($f['recensione']) ?>"</div>
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
