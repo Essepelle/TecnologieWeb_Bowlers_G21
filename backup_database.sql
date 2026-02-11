@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict ZJHPtZ8owivo2VaBIpatgXrLudZUmtCaiK1yPQa9GTukeTabxgVmWt50YcJbZKd
+\restrict wTgUud7TKP9fa162eODpKGI3w7glKeTs1csXg6UC7IEAl7cD7fh7FvQmsSV8M4h
 
 -- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.1
 
--- Started on 2026-02-11 17:21:23
+-- Started on 2026-02-11 17:24:26
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -20,25 +20,6 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- TOC entry 4 (class 2615 OID 2200)
--- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
---
-
-CREATE SCHEMA public;
-
-
-ALTER SCHEMA public OWNER TO pg_database_owner;
-
---
--- TOC entry 5047 (class 0 OID 0)
--- Dependencies: 4
--- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
---
-
-COMMENT ON SCHEMA public IS 'standard public schema';
-
 
 SET default_tablespace = '';
 
@@ -78,7 +59,7 @@ CREATE SEQUENCE public.faq_id_recensione_seq
 ALTER SEQUENCE public.faq_id_recensione_seq OWNER TO postgres;
 
 --
--- TOC entry 5049 (class 0 OID 0)
+-- TOC entry 5044 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: faq_id_recensione_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -135,7 +116,7 @@ CREATE SEQUENCE public.prenotazioni_id_prenotazione_seq
 ALTER SEQUENCE public.prenotazioni_id_prenotazione_seq OWNER TO postgres;
 
 --
--- TOC entry 5053 (class 0 OID 0)
+-- TOC entry 5048 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: prenotazioni_id_prenotazione_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -159,7 +140,7 @@ CREATE TABLE public.utenti (
 ALTER TABLE public.utenti OWNER TO postgres;
 
 --
--- TOC entry 4871 (class 2604 OID 16615)
+-- TOC entry 4867 (class 2604 OID 16615)
 -- Name: faq id_recensione; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -167,7 +148,7 @@ ALTER TABLE ONLY public.faq ALTER COLUMN id_recensione SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4869 (class 2604 OID 16608)
+-- TOC entry 4865 (class 2604 OID 16608)
 -- Name: prenotazioni id_prenotazione; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -175,7 +156,7 @@ ALTER TABLE ONLY public.prenotazioni ALTER COLUMN id_prenotazione SET DEFAULT ne
 
 
 --
--- TOC entry 5041 (class 0 OID 16612)
+-- TOC entry 5037 (class 0 OID 16612)
 -- Dependencies: 224
 -- Data for Name: faq; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -191,7 +172,7 @@ COPY public.faq (id_recensione, username, recensione, data_recensione, stelle) F
 
 
 --
--- TOC entry 5036 (class 0 OID 16491)
+-- TOC entry 5032 (class 0 OID 16491)
 -- Dependencies: 219
 -- Data for Name: giochi; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -205,7 +186,7 @@ Carte	img/carte.jpg
 
 
 --
--- TOC entry 5039 (class 0 OID 16565)
+-- TOC entry 5035 (class 0 OID 16565)
 -- Dependencies: 222
 -- Data for Name: prenotazioni; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -219,7 +200,7 @@ COPY public.prenotazioni (id_prenotazione, username_utente, nome_gioco, data_ora
 
 
 --
--- TOC entry 5037 (class 0 OID 16552)
+-- TOC entry 5033 (class 0 OID 16552)
 -- Dependencies: 220
 -- Data for Name: utenti; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -230,7 +211,7 @@ pipa	MARTINA	martina0turi@gmail.com	$2y$10$iFcxUB2Ct8/1itk4C8TsruPeaOggjrZ6oMMhq
 
 
 --
--- TOC entry 5056 (class 0 OID 0)
+-- TOC entry 5051 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: faq_id_recensione_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -239,7 +220,7 @@ SELECT pg_catalog.setval('public.faq_id_recensione_seq', 16, true);
 
 
 --
--- TOC entry 5057 (class 0 OID 0)
+-- TOC entry 5052 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: prenotazioni_id_prenotazione_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -248,7 +229,7 @@ SELECT pg_catalog.setval('public.prenotazioni_id_prenotazione_seq', 42, true);
 
 
 --
--- TOC entry 4885 (class 2606 OID 16622)
+-- TOC entry 4881 (class 2606 OID 16622)
 -- Name: faq faq_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -257,7 +238,7 @@ ALTER TABLE ONLY public.faq
 
 
 --
--- TOC entry 4875 (class 2606 OID 16496)
+-- TOC entry 4871 (class 2606 OID 16496)
 -- Name: giochi giochi_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -266,7 +247,7 @@ ALTER TABLE ONLY public.giochi
 
 
 --
--- TOC entry 4881 (class 2606 OID 16573)
+-- TOC entry 4877 (class 2606 OID 16573)
 -- Name: prenotazioni prenotazioni_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -275,7 +256,7 @@ ALTER TABLE ONLY public.prenotazioni
 
 
 --
--- TOC entry 4877 (class 2606 OID 16563)
+-- TOC entry 4873 (class 2606 OID 16563)
 -- Name: utenti utenti_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -284,7 +265,7 @@ ALTER TABLE ONLY public.utenti
 
 
 --
--- TOC entry 4879 (class 2606 OID 16561)
+-- TOC entry 4875 (class 2606 OID 16561)
 -- Name: utenti utenti_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -293,7 +274,7 @@ ALTER TABLE ONLY public.utenti
 
 
 --
--- TOC entry 4882 (class 1259 OID 16609)
+-- TOC entry 4878 (class 1259 OID 16609)
 -- Name: unica_prenotazione_pista; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -301,7 +282,7 @@ CREATE UNIQUE INDEX unica_prenotazione_pista ON public.prenotazioni USING btree 
 
 
 --
--- TOC entry 4883 (class 1259 OID 16610)
+-- TOC entry 4879 (class 1259 OID 16610)
 -- Name: unica_prenotazione_tavolo; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -309,7 +290,7 @@ CREATE UNIQUE INDEX unica_prenotazione_tavolo ON public.prenotazioni USING btree
 
 
 --
--- TOC entry 4888 (class 2606 OID 16623)
+-- TOC entry 4884 (class 2606 OID 16623)
 -- Name: faq fk_utente; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -318,7 +299,7 @@ ALTER TABLE ONLY public.faq
 
 
 --
--- TOC entry 4886 (class 2606 OID 16579)
+-- TOC entry 4882 (class 2606 OID 16579)
 -- Name: prenotazioni prenotazioni_nome_gioco_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -327,7 +308,7 @@ ALTER TABLE ONLY public.prenotazioni
 
 
 --
--- TOC entry 4887 (class 2606 OID 16574)
+-- TOC entry 4883 (class 2606 OID 16574)
 -- Name: prenotazioni prenotazioni_username_utente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -336,7 +317,7 @@ ALTER TABLE ONLY public.prenotazioni
 
 
 --
--- TOC entry 5048 (class 0 OID 0)
+-- TOC entry 5043 (class 0 OID 0)
 -- Dependencies: 224
 -- Name: TABLE faq; Type: ACL; Schema: public; Owner: postgres
 --
@@ -345,7 +326,7 @@ GRANT ALL ON TABLE public.faq TO www;
 
 
 --
--- TOC entry 5050 (class 0 OID 0)
+-- TOC entry 5045 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: SEQUENCE faq_id_recensione_seq; Type: ACL; Schema: public; Owner: postgres
 --
@@ -354,7 +335,7 @@ GRANT SELECT,USAGE ON SEQUENCE public.faq_id_recensione_seq TO www;
 
 
 --
--- TOC entry 5051 (class 0 OID 0)
+-- TOC entry 5046 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: TABLE giochi; Type: ACL; Schema: public; Owner: postgres
 --
@@ -363,7 +344,7 @@ GRANT ALL ON TABLE public.giochi TO www;
 
 
 --
--- TOC entry 5052 (class 0 OID 0)
+-- TOC entry 5047 (class 0 OID 0)
 -- Dependencies: 222
 -- Name: TABLE prenotazioni; Type: ACL; Schema: public; Owner: postgres
 --
@@ -372,7 +353,7 @@ GRANT ALL ON TABLE public.prenotazioni TO www;
 
 
 --
--- TOC entry 5054 (class 0 OID 0)
+-- TOC entry 5049 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: SEQUENCE prenotazioni_id_prenotazione_seq; Type: ACL; Schema: public; Owner: postgres
 --
@@ -381,7 +362,7 @@ GRANT SELECT,USAGE ON SEQUENCE public.prenotazioni_id_prenotazione_seq TO www;
 
 
 --
--- TOC entry 5055 (class 0 OID 0)
+-- TOC entry 5050 (class 0 OID 0)
 -- Dependencies: 220
 -- Name: TABLE utenti; Type: ACL; Schema: public; Owner: postgres
 --
@@ -389,11 +370,11 @@ GRANT SELECT,USAGE ON SEQUENCE public.prenotazioni_id_prenotazione_seq TO www;
 GRANT ALL ON TABLE public.utenti TO www;
 
 
--- Completed on 2026-02-11 17:21:23
+-- Completed on 2026-02-11 17:24:26
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict ZJHPtZ8owivo2VaBIpatgXrLudZUmtCaiK1yPQa9GTukeTabxgVmWt50YcJbZKd
+\unrestrict wTgUud7TKP9fa162eODpKGI3w7glKeTs1csXg6UC7IEAl7cD7fh7FvQmsSV8M4h
 
