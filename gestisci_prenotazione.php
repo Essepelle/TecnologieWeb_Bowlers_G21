@@ -9,35 +9,72 @@ if (!isset($_SESSION['utente'])) {
 
 if (isset($_POST['conferma_prenotazione'])) {
     $username = $_SESSION['utente'];
-    $nome_gioco = $_POST['nome_gioco'];
+    $nomeGioco = $_POST['nome_gioco'];
     $data = $_POST['data_prenotazione'];
     $ora = $_POST['ora_prenotazione'];
-    $data_ora = $data . ' ' . $ora;
 
-    $numero_tavolo = $_POST['numero_tavolo'] ?? null;
-    $numero_pista = $_POST['numero_pista'] ?? null;
-    $numero_persone = $_POST['numero_persone'] ?? null;
-    $partecipa_torneo = ($_POST['partecipa_torneo'] === 'si') ? 'true' : 'false';
-
-    $sql = "INSERT INTO prenotazioni (username_utente, nome_gioco, data_ora, numero_tavolo, numero_pista, numero_persone, partecipazione_torneo) 
-            VALUES ($1, $2, $3, $4, $5, $6, $7)
-            ON CONFLICT DO NOTHING";
-    
-    $params = array($username, $nome_gioco, $data_ora, $numero_tavolo, $numero_pista, $numero_persone, $partecipa_torneo);
-    $result = pg_query_params($db, $sql, $params);
-
-    if ($result) {
-        // Verifichiamo se è stata effettivamente inserita una riga
-        if (pg_affected_rows($result) > 0) {
-            // Successo: la riga è stata inserita
-            header("Location: dettaglio_gioco.php?gioco=" . urlencode($nome_gioco) . "&res=success");
-        } else {
-            // Conflitto: ON CONFLICT ha bloccato l'inserimento
-            header("Location: dettaglio_gioco.php?gioco=" . urlencode($nome_gioco) . "&res=duplicate");
+    // Controllo sicurezza Carte: solo Mercoledì (3) e Venerdì (5) alle 21:00
+    if ($nomeGioco === 'Carte') {
+        $giorno = date('N', strtotime($data));
+        if ($giorno != 3 && $giorno != 5) {
+            die("Giorno non valido per Carte.");
         }
+        $ora = "21:00"; 
+    }
+
+    $dataOraFinale = $data . " " . $ora;
+
+    // Controllo Duplicati
+    $sql_check = "SELECT * FROM prenotazioni WHERE username_utente = $1 AND nome_gioco = $2 AND data_ora = $3";
+    $res_check = pg_query_params($db, $sql_check, array($username, $nomeGioco, $dataOraFinale));
+
+    if (pg_num_rows($res_check) > 0) {
+        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=duplicate");
         exit();
+    }
+
+    // Recupero dati dal form con i nomi corretti
+    $n_tavolo = $_POST['numero_tavolo'] ?? null;
+    $n_pista  = $_POST['numero_pista'] ?? null;
+    $n_persone = $_POST['numero_persone'] ?? null;
+    $torneo   = $_POST['partecipa_torneo'] ?? null;
+
+    // Conversione valore torneo per colonna boolean di PostgreSQL
+    $torneo_bool = null;
+    if ($torneo === 'si') {
+        $torneo_bool = 'true';
+    } elseif ($torneo === 'no') {
+        $torneo_bool = 'false';
+    }
+
+    // QUERY CORRETTA: nomi colonne allineati al tuo database
+    $sql_insert = "INSERT INTO prenotazioni (
+        username_utente, 
+        nome_gioco, 
+        data_ora, 
+        numero_pista, 
+        numero_tavolo, 
+        numero_persone, 
+        partecipazione_torneo
+    ) VALUES ($1, $2, $3, $4, $5, $6, $7)";
+    
+    $params = array(
+        $username,      // $1
+        $nomeGioco,     // $2
+        $dataOraFinale, // $3
+        $n_pista,       // $4
+        $n_tavolo,      // $5
+        $n_persone,     // $6
+        $torneo_bool    // $7
+    );
+
+    $res_insert = pg_query_params($db, $sql_insert, $params);
+
+    if ($res_insert) {
+        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=success");
     } else {
-        echo "Errore tecnico: " . pg_last_error($db);
+        // In caso di errore, visualizza il messaggio tecnico per il debug
+        echo "Errore DB: " . pg_last_error($db);
     }
 } else {
     header("Location: mainpage.php");

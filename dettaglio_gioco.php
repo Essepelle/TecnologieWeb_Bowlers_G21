@@ -20,7 +20,7 @@ if (!$gioco) {
     die("Gioco non trovato.");
 }
 
-// 3. Lettura descrizione estesa dalla cartella descrizioni/
+// 3. Lettura descrizione estesa
 $nomeFileDescr = "descrizioni/descr_" . strtolower(str_replace(' ', '_', $nomeGioco)) . ".txt";
 $descrizioneEstesa = file_exists($nomeFileDescr) ? file_get_contents($nomeFileDescr) : "Dettagli non disponibili.";
 
@@ -35,9 +35,7 @@ $sql_sidebar = "SELECT nome_gioco, data_ora FROM prenotazioni
                 ORDER BY data_ora ASC LIMIT 5";
 $res_sidebar = pg_query_params($db, $sql_sidebar, array($username));
 
-// Variabili per controllo data e ora attuale
 $oggi = date('Y-m-d');
-$ora_attuale = (int)date('H');
 ?>
 
 <!DOCTYPE html>
@@ -47,54 +45,13 @@ $ora_attuale = (int)date('H');
     <title><?= htmlspecialchars($nomeGioco) ?> - Prenota</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="dettaglio_gioco.css">
     <link rel="icon" type="icon" href="resources/logo.png"/>
-    <script>
-    function aggiornaOre() {
-        const dateInput = document.getElementById('data_prenotazione');
-        const hourSelect = document.getElementById('ora_prenotazione');
-        
-        const oraLocale = new Date();
-        const oggiStr = oraLocale.toISOString().split('T')[0];
-        const oraCorrente = oraLocale.getHours();
-        const minutiCorrenti = oraLocale.getMinutes();
-        
-        hourSelect.innerHTML = "";
-        
-        const baseOre = [0, 1, 17, 18, 19, 20, 21, 22, 23];
-        
-        let listaCompleta = [];
-        baseOre.forEach(h => {
-            let oraLabel = h < 10 ? "0" + h : h;
-            listaCompleta.push({ h: h, m: 0, label: oraLabel + ":00" });
-            listaCompleta.push({ h: h, m: 30, label: oraLabel + ":30" });
-        });
-
-        let orariDisponibili = listaCompleta;
-        
-        if (dateInput.value === oggiStr) {
-            orariDisponibili = listaCompleta.filter(t => {
-                if (t.h > oraCorrente) return true;
-                if (t.h === oraCorrente && t.m > minutiCorrenti) return true;
-                return false;
-            });
-        }
-
-        if (orariDisponibili.length === 0) {
-            const opt = document.createElement('option');
-            opt.text = "Nessun orario disponibile";
-            opt.disabled = true;
-            hourSelect.add(opt);
-        } else {
-            orariDisponibili.forEach(t => {
-                const opt = document.createElement('option');
-                opt.value = t.label;
-                opt.text = t.label;
-                hourSelect.add(opt);
-            });
-        }
-    }
-    window.onload = aggiornaOre;
-    </script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css"> <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/it.js"></script>
+    <script src="data_orario.js"></script>
 </head>
 
 <body>
@@ -107,9 +64,7 @@ $ora_attuale = (int)date('H');
     <div class="user">
         <?php if (isset($_SESSION['utente'])): ?>
             <div class="dropdown-container">
-                <h2 style="cursor: pointer;">
-                    Ciao <?= htmlspecialchars($_SESSION['nome']) ?>
-                </h2>
+                <h2 style="cursor: pointer;">Ciao <?= htmlspecialchars($_SESSION['nome']) ?></h2>
                 <div class="logged-menu">
                     <a href="prenotazioni.php">Le mie Prenotazioni</a>
                     <a href="logout.php">Logout</a>
@@ -138,66 +93,44 @@ $ora_attuale = (int)date('H');
 
 <main>
     <div class="card-gioco-odd">
-        <img src="<?= htmlspecialchars($gioco['immagine']) ?>" alt="<?= htmlspecialchars($nomeGioco) ?>">
-        
+        <img src="<?= htmlspecialchars($gioco['immagine']) ?>">
         <div>
             <h1><?= htmlspecialchars($nomeGioco) ?></h1>
-            <p><?= nl2br(htmlspecialchars($descrizioneEstesa)) ?></p>
             
-            <form method="POST" action="gestisci_prenotazione.php" onsubmit="return confirm('Sei sicuro di voler confermare la prenotazione per <?= htmlspecialchars($nomeGioco) ?>?');">
+            <form method="POST" action="gestisci_prenotazione.php" onsubmit="if(!document.getElementById('ora_prenotazione_valore').value){alert('Seleziona un orario!'); return false;}">
                 <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
                 
-                <label>Seleziona Giorno:</label><br>
-                <input type="date" id="data_prenotazione" name="data_prenotazione" 
-                       min="<?= $oggi ?>" value="<?= $oggi ?>" onchange="aggiornaOre()" required><br><br>
+                <label>Scegli il Giorno:</label><br>
+                <input type="text" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." readonly required><br><br>
 
-                <label>Orario:</label><br>
-                <select id="ora_prenotazione" name="ora_prenotazione" required></select><br><br>
+                <label>Scegli l'Orario:</label>
+                <span class="label-istruzioni">(Clicca su un orario disponibile)</span>
+                <div id="orari-bottoni-container" class="orari-container">
+                    <p style="color: #555;">Seleziona prima una data valida.</p>
+                </div>
+                
+                <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" required>
 
                 <?php if ($nomeGioco == 'Biliardo'): ?>
-                    <label>Seleziona Tavolo:</label><br>
-                    <select name="numero_tavolo" required>
-                        <?php foreach(['01','02','03','04','05','06'] as $t) echo "<option value='$t'>$t</option>"; ?>
-                    </select>
+                    <?php endif; ?>
 
-                <?php elseif ($nomeGioco == 'Bowling'): ?>
-                    <label>Seleziona Pista:</label><br>
-                    <select name="numero_pista" required>
-                        <?php for($p=1; $p<=24; $p++) echo "<option value='$p'>Pista $p</option>"; ?>
-                    </select>
-
-                <?php elseif ($nomeGioco == 'Laser Game'): ?>
-                    <label>Numero Persone:</label><br>
-                    <input type="number" name="numero_persone" min="2" max="10" required>
-
-                <?php elseif ($nomeGioco == 'Carte'): ?>
-                    <label>Partecipazione Torneo:</label><br>
-                    <select name="partecipa_torneo">
-                        <option value="si">Sì, partecipa al torneo</option>
-                        <option value="no">No, tavolo libero</option>
-                    </select>
-                <?php endif; ?>
-
-                <br><br>
-                <button type="submit" name="conferma_prenotazione">Aggiungi alla prenotazione</button>
+                <br>
+                <button type="submit" name="conferma_prenotazione" class="btn-submit">CONFERMA</button>
             </form>
-            <br>
         </div>
     </div>
 </main>
 
 <aside class="sidebar-right">
     <p class="titolo-sidebar">PRENOTAZIONI ATTIVE</p>
-    <div id="carrello-box" style="font-size: 0.9em;">
+    <div id="carrello-box">
         <?php if (pg_num_rows($res_sidebar) > 0): ?>
             <ul style="list-style: none; padding: 0;">
                 <?php while ($item = pg_fetch_assoc($res_sidebar)): 
                     $data_f = date('d M, H:i', strtotime($item['data_ora']));
                 ?>
                     <li style="margin-bottom: 15px; border-bottom: 1px solid #ff00ff40; padding-bottom: 5px;">
-                        <strong style="color: #00b7ff; text-transform: uppercase;">
-                            <?= htmlspecialchars($item['nome_gioco']) ?>
-                        </strong><br>
+                        <strong style="color: #00b7ff; text-transform: uppercase;"><?= htmlspecialchars($item['nome_gioco']) ?></strong><br>
                         <span style="color: #ccc;"><?= $data_f ?></span>
                     </li>
                 <?php endwhile; ?>
@@ -206,32 +139,23 @@ $ora_attuale = (int)date('H');
             <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata</p>
         <?php endif; ?>
     </div>
-
-    <p class="titolo-sidebar" style="margin-top: 30px;">ACCOUNT</p>
-    <div style="font-size: 0.9em; color: #ccc;">
-        <p style="overflow-wrap: break-word;">Username: <?= htmlspecialchars($username) ?></p>
-        <p style="overflow-wrap: break-word;">Email: <?= htmlspecialchars($email) ?></p>
-    </div>
 </aside>
 
 <footer>
     <div id="footer-box">
-    <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
+        <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
     </div>
 </footer>
 
 <?php if (isset($_GET['res'])): ?>
     <script>
-        // Usiamo un piccolo ritardo per essere sicuri che la pagina sia visibile
         window.addEventListener('load', function() {
             setTimeout(function() {
                 <?php if ($_GET['res'] == 'success'): ?>
                     alert("Prenotazione registrata con successo!");
                 <?php elseif ($_GET['res'] == 'duplicate'): ?>
-                    alert("Attenzione! Hai già una prenotazione per questo gioco in questa fascia oraria.");
+                    alert("Attenzione! Hai già una prenotazione per questa fascia oraria.");
                 <?php endif; ?>
-                
-                // Pulizia URL
                 const url = new URL(window.location);
                 url.searchParams.delete('res');
                 window.history.replaceState({}, document.title, url);
@@ -239,6 +163,13 @@ $ora_attuale = (int)date('H');
         });
     </script>
 <?php endif; ?>
+
+<script>
+        // Avvia la logica passando il nome del gioco da PHP a JS
+        document.addEventListener('DOMContentLoaded', function() {
+            initPrenotazione("<?= $nomeGioco ?>");
+        });
+</script>
 
 </body>
 </html>
