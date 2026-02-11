@@ -116,7 +116,7 @@ $ora_attuale = (int)date('H');
                 </div>
             </div>
         <?php else: ?>
-            <h2 onclick="window.location.href='login.html'" style="cursor:pointer;">Effettua il Login</h2>
+            <h2 onclick="window.location.href='login.php'" style="cursor:pointer;">Effettua il Login</h2>
         <?php endif; ?>
     </div>
 </header>

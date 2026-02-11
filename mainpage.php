@@ -114,7 +114,7 @@ if (!empty($username)) {
                     <?php else: ?>
                     <!-- utente NON loggato -->
                         <button type="button"
-                            onclick="window.location.href='login.html?redirect=prenota&gioco=<?= urlencode($row['nome_gioco']) ?>'">
+                            onclick="window.location.href='login.php?redirect=prenota&gioco=<?= urlencode($row['nome_gioco']) ?>'">
                             Prenota
                         </button>
                     <?php endif; ?>
