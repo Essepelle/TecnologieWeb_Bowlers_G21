@@ -1,59 +1,58 @@
 <?php
 include 'db.php';
 session_start();
-?>
-<html>
-<head>
-    <meta charset="UTF-8"/>
-    <title>Esito Registrazione - The Bowler Club</title>
-    <link rel="stylesheet" type="text/css" href="login.css"/>
-</head>
-<body style="display: block; padding: 50px;">
-    <div class="form" style="margin: 0 auto; width: 50%; text-align: center;">
-    <?php
-        // Verifichiamo la ricezione di tutti i dati dal form HTML
-        if (isset($_POST['username'], $_POST['password'], $_POST['nome'], $_POST['email'])) {
-            
-            $nome_completo = $_POST['nome'];
-            $email         = $_POST['email'];
-            $username      = $_POST['username'];
-            $password      = $_POST['password'];
-            $conferma      = $_POST['conferma_password'];
 
-            // 1. Controllo corrispondenza password
-            if ($password !== $conferma) {
-                echo "<h2>Errore</h2><p>Le password non coincidono. <a href='signup.html'>Riprova</a></p>";
-                exit;
-            }
+// Verifichiamo la ricezione di tutti i dati dal form HTML
+if (isset($_POST['username'], $_POST['password'], $_POST['nome'], $_POST['email'])) {
+    
+    $nome_completo = $_POST['nome'];
+    $email         = $_POST['email'];
+    $username      = $_POST['username'];
+    $password      = $_POST['password'];
+    $conferma      = $_POST['conferma_password'];
 
-            // 2. Controllo se l'utente esiste già
-            if (user_exists($username, $db)) {
-                echo "<h2>Attenzione</h2>";
-                echo "<p>L'username <strong>" . htmlspecialchars($username) . "</strong> è già in uso.</p>";
-                echo "<input type='button' value='Scegline un altro' onclick=\"window.location.href='signup.html'\" class='button'/>";
-            } else {
-                // 3. Registrazione nuovo utente
-                $hash_password = password_hash($password, PASSWORD_DEFAULT);
+    $_SESSION['old_data'] = [
+        'nome'=> $nome_completo,
+        'email'=> $email,
+        'username'=> $username
+    ];
+    
+    $_SESSION['form_target'] = 'signup';
 
-                if (register_user($username, $nome_completo, $email, $hash_password, $db)) {
-                    echo "<h2>Benvenuto a bordo!</h2>";
-                    echo "<p>Registrazione completata con successo.</p>";
-                    echo "<br/><input type='button' value='Vai al Login' onclick=\"window.location.href='login.html'\" class='button'/>";
-                } else {
-                    echo "<h2>Errore di Sistema</h2>";
-                    echo "<p>Non è stato possibile completare l'operazione. Verifica la connessione al database.</p>";
-                    echo "<a href='signup.html'>Torna alla registrazione</a>";
-                }
-            }
+    
+    // 1. Controllo corrispondenza password
+    if ($password !== $conferma) {
+        $_SESSION['error_signup'] = "Le password non coincidono.";
+        header("Location: login.php");
+        exit;
+    }
+
+    // 2. Controllo se l'utente esiste già
+    if (user_exists($username, $db)) {
+        $_SESSION["error_signup"] = "L'username '$username' è già in uso.";
+        header("Location: login.php");
+        exit;
+    } else {
+        // 3. Registrazione nuovo utente
+        $hash_password = password_hash($password, PASSWORD_DEFAULT);
+
+        if (register_user($username, $nome_completo, $email, $hash_password, $db)) {
+            unset($_SESSION['old_data']);
+            unset($_SESSION['form_target']);
+            $_SESSION['success'] = "Registrazione completata con successo.";
+            header("Location: login.php");
+            exit;
         } else {
-            echo "<p>Errore: Dati mancanti dal modulo. <a href='signup.html'>Riprova</a></p>";
+            $_SESSION['error_signup'] = "Errore di Sistema nel database.";
+            header("Location: login.php");
+            exit;
         }
-    ?>
-    </div>
-</body>
-</html>
+    }
+} else {
+    header("Location: login.php");
+    exit;
+}
 
-<?php
 /**
  * Verifica l'esistenza dello username (PK)
  */
