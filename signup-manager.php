@@ -32,8 +32,13 @@ if (isset($_POST['username'], $_POST['password'], $_POST['nome'], $_POST['email'
         $_SESSION["error_signup"] = "L'username '$username' è già in uso.";
         header("Location: login.php");
         exit;
+    // 3. Controllo se l'email esiste già
+    } elseif (email_exists($email, $db)) {
+        $_SESSION["error_signup"] = "L'email '$email' è già in uso.";
+        header("Location: login.php");
+        exit;
     } else {
-        // 3. Registrazione nuovo utente
+        // 4. Registrazione nuovo utente
         $hash_password = password_hash($password, PASSWORD_DEFAULT);
 
         if (register_user($username, $nome_completo, $email, $hash_password, $db)) {
@@ -60,6 +65,13 @@ function user_exists($user, $db) {
     // Nota: PostgreSQL è case-sensitive, assicurati che la tabella si chiami 'utenti'
     $sql = "SELECT username FROM utenti WHERE username = $1";
     $ret = pg_query_params($db, $sql, array($user));
+    if ($ret && pg_num_rows($ret) > 0) return true;
+    return false;
+}
+
+function email_exists($email, $db) {
+    $sql = "SELECT email FROM utenti WHERE email = $3";
+    $ret = pg_query_params($db, $sql, array($email));
     if ($ret && pg_num_rows($ret) > 0) return true;
     return false;
 }
