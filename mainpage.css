@@ -257,6 +257,58 @@ button:hover {
     box-shadow: 0 0 10px #ff00ff;
 }
 
+
+/* --- Stili per Area FAQ --- */
+.faq-area { 
+    background: rgba(26, 26, 26, 0.8); 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin-top: 40px; 
+    border: 1px solid #333; 
+}
+
+.faq-form textarea { 
+    width: 100%; 
+    background: #222; 
+    color: #fff; 
+    border: 1px solid #ff00ff; 
+    padding: 10px; 
+    border-radius: 5px; 
+    resize: vertical; 
+    box-sizing: border-box; /* Importante per non uscire dai bordi */
+}
+
+.commento-singolo { 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    padding: 15px 0; 
+}
+
+.commento-user { 
+    color: #00b7ff; 
+    font-weight: bold; 
+    display: block; 
+    margin-bottom: 4px; 
+}
+
+.commento-testo { 
+    color: #ccc; 
+    font-style: italic; 
+}
+
+/* Stile specifico per la lista prenotazioni nella sidebar */
+.sidebar-right ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-right li {
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 0, 255, 0.3);
+    padding-bottom: 8px;
+}
+
+
 /* Footer */
 footer {
     text-align: center;

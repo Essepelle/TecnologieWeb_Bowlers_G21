@@ -1,7 +1,8 @@
 <?php
 include "db.php";
 session_start();
-$username = $_SESSION['utente'] ?? '';
+$username = $_SESSION['utente'];
+$email = $_SESSION['email'];
 
 // 1. Recupero il nome del gioco dalla URL
 $nomeGioco = $_GET['gioco'] ?? '';
@@ -208,6 +209,12 @@ $ora_attuale = (int)date('H');
         <?php else: ?>
             <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata</p>
         <?php endif; ?>
+    </div>
+
+    <p class="titolo-sidebar" style="margin-top: 30px;">ACCOUNT</p>
+    <div style="font-size: 0.9em; color: #ccc;">
+        <p style="overflow-wrap: break-word;">Username: <?= htmlspecialchars($username) ?></p>
+        <p style="overflow-wrap: break-word;">Email: <?= htmlspecialchars($email) ?></p>
     </div>
 </aside>
 

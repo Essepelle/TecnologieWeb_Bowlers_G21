@@ -3,7 +3,8 @@ include "db.php";
 session_start();
 
 // Recupero username dalla sessione (necessario per la query sidebar)
-$username = $_SESSION['utente'] ?? '';
+$username = $_SESSION['utente'];
+$email = $_SESSION['email'];
 
 /* 1) RECUPERA TUTTI I GIOCHI DAL DB */
 $sqlGiochi = "SELECT nome_gioco, immagine FROM giochi ORDER BY nome_gioco;";
@@ -73,7 +74,7 @@ if (!empty($username)) {
         ?>
             <li><a href="#<?= $anchorId ?>"><?= htmlspecialchars($rowSide['nome_gioco']) ?></a></li>
         <?php endwhile; ?>
-        <li><a href="#areafood">Area Food</a></li>
+        <li><a href="area_faq.php">Area Food e Recensioni</a></li>
     </ul>
 </aside>
 
@@ -144,6 +145,20 @@ if (!empty($username)) {
             </ul>
         <?php else: ?>
             <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata</p>
+        <?php endif; ?>
+    </div>
+    <p class="titolo-sidebar" style="margin-top: 30px;">ACCOUNT</p>
+    <div style="font-size: 0.9em; color: #ccc;">
+        <?php if (isset($_SESSION['utente'])): ?>
+            <p style="overflow-wrap: break-word;">Username: <?= htmlspecialchars($username) ?></p>
+            <p style="overflow-wrap: break-word;">Email: <?= htmlspecialchars($email) ?></p>
+        <?php else: ?>
+            <p style="font-style: italic; line-height: 1.6;">
+                Non sei ancora dei nostri?<br>
+                Registrati subito per accedere<br>
+                a tutti i servizi del club<br>
+                e gestire le tue prenotazioni!
+            </p>
         <?php endif; ?>
     </div>
 </aside>
