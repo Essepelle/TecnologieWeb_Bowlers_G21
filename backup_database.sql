@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict o3Z81Z3raJYkiuOOtcB61HFccuCNqc1sCgWAJFBJFpaCKI4fj9lahysvcsL3gh6
+\restrict pbyzAv1OxJTL15lHXT9slxF6ZnyL3EkgrMB9HT2IZkrfhrcbpmbNKt6ub0djLkB
 
 -- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.1
 
--- Started on 2026-02-11 13:54:35
+-- Started on 2026-02-11 15:14:39
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -181,8 +181,12 @@ ALTER TABLE ONLY public.prenotazioni ALTER COLUMN id_prenotazione SET DEFAULT ne
 --
 
 COPY public.faq (id_recensione, username, recensione, data_recensione, stelle) FROM stdin;
-1	pipa	aa	2026-02-11 13:48:45.656342	3
-2	pipa	ringrazio a cristo	2026-02-11 13:49:03.284803	5
+11	pipa	ciao vinni	2026-02-11 14:59:49.822448	2
+12	pipa	ciao simone	2026-02-11 15:02:32.432438	3
+13	pipa	ciao sabry	2026-02-11 15:04:54.697544	2
+14	pipa	ciao marty	2026-02-11 15:06:08.282626	5
+15	pipa	aa	2026-02-11 15:07:19.044131	3
+16	pipa	aaa	2026-02-11 15:08:27.312135	1
 \.
 
 
@@ -235,7 +239,7 @@ pipa	MARTINA	martina0turi@gmail.com	$2y$10$iFcxUB2Ct8/1itk4C8TsruPeaOggjrZ6oMMhq
 -- Name: faq_id_recensione_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.faq_id_recensione_seq', 2, true);
+SELECT pg_catalog.setval('public.faq_id_recensione_seq', 16, true);
 
 
 --
@@ -389,11 +393,11 @@ GRANT SELECT,USAGE ON SEQUENCE public.prenotazioni_id_prenotazione_seq TO www;
 GRANT ALL ON TABLE public.utenti TO www;
 
 
--- Completed on 2026-02-11 13:54:35
+-- Completed on 2026-02-11 15:14:39
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict o3Z81Z3raJYkiuOOtcB61HFccuCNqc1sCgWAJFBJFpaCKI4fj9lahysvcsL3gh6
+\unrestrict pbyzAv1OxJTL15lHXT9slxF6ZnyL3EkgrMB9HT2IZkrfhrcbpmbNKt6ub0djLkB
 
