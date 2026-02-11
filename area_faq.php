@@ -172,7 +172,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 
 <footer>
     <div id="footer-box">
-        <p>© 2026 - The Bowler Club</p>
+    <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
     </div>
 </footer>
 
