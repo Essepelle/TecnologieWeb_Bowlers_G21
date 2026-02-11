@@ -24,14 +24,23 @@ if (isset($_POST['conferma_prenotazione'])) {
 
     $dataOraFinale = $data . " " . $ora;
 
-    // Controllo Duplicati
-    $sql_check = "SELECT * FROM prenotazioni WHERE username_utente = $1 AND nome_gioco = $2 AND data_ora = $3";
-    $res_check = pg_query_params($db, $sql_check, array($username, $nomeGioco, $dataOraFinale));
+    // Controllo 1: utente ha già prenotazione a quest'ora (qualsiasi gioco)
+$sql_check_orario = "SELECT * FROM prenotazioni WHERE username_utente = $1 AND data_ora = $2";
+$res_check_orario = pg_query_params($db, $sql_check_orario, array($username, $dataOraFinale));
 
-    if (pg_num_rows($res_check) > 0) {
-        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=duplicate");
-        exit();
-    }
+if (pg_num_rows($res_check_orario) > 0) {
+    header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=orario_occupato");
+    exit();
+}
+
+// Controllo 2: stesso gioco, stessa ora, stesso tavolo/pista
+$sql_check_duplicate = "SELECT * FROM prenotazioni WHERE username_utente = $1 AND nome_gioco = $2 AND data_ora = $3";
+$res_check_duplicate = pg_query_params($db, $sql_check_duplicate, array($username, $nomeGioco, $dataOraFinale));
+
+if (pg_num_rows($res_check_duplicate) > 0) {
+    header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=duplicate");
+    exit();
+}
 
     // Recupero dati dal form con i nomi corretti
     $n_tavolo = $_POST['numero_tavolo'] ?? null;

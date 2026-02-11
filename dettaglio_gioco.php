@@ -155,6 +155,8 @@ $oggi = date('Y-m-d');
                     alert("Prenotazione registrata con successo!");
                 <?php elseif ($_GET['res'] == 'duplicate'): ?>
                     alert("Attenzione! Hai già una prenotazione per questa fascia oraria.");
+                <?php elseif ($_GET['res'] == 'orario_occupato'): ?>
+                    alert("Attenzione! Hai già una prenotazione per questa fascia oraria.");
                 <?php endif; ?>
                 const url = new URL(window.location);
                 url.searchParams.delete('res');
