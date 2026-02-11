@@ -70,7 +70,7 @@ function user_exists($user, $db) {
 }
 
 function email_exists($email, $db) {
-    $sql = "SELECT email FROM utenti WHERE email = $3";
+    $sql = "SELECT email FROM utenti WHERE email = $1";
     $ret = pg_query_params($db, $sql, array($email));
     if ($ret && pg_num_rows($ret) > 0) return true;
     return false;
