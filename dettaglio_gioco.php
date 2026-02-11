@@ -53,20 +53,17 @@ $ora_attuale = (int)date('H');
         const dateInput = document.getElementById('data_prenotazione');
         const hourSelect = document.getElementById('ora_prenotazione');
         
-        // Otteniamo la data odierna in formato YYYY-MM-DD
         const oraLocale = new Date();
-        const oggi = oraLocale.toISOString().split('T')[0];
+        const oggiStr = oraLocale.toISOString().split('T')[0];
         const oraCorrente = oraLocale.getHours();
         const minutiCorrenti = oraLocale.getMinutes();
         
         hourSelect.innerHTML = "";
         
-        // Sequenza richiesta: 00, 01, 02 e poi dalle 10 alle 23
         const baseOre = [0, 1, 17, 18, 19, 20, 21, 22, 23];
         
         let listaCompleta = [];
         baseOre.forEach(h => {
-            // Formattiamo l'ora con lo zero davanti (es: 0 diventa "00")
             let oraLabel = h < 10 ? "0" + h : h;
             listaCompleta.push({ h: h, m: 0, label: oraLabel + ":00" });
             listaCompleta.push({ h: h, m: 30, label: oraLabel + ":30" });
@@ -74,8 +71,7 @@ $ora_attuale = (int)date('H');
 
         let orariDisponibili = listaCompleta;
         
-        // Se la data selezionata è oggi, filtriamo gli orari già passati
-        if (dateInput.value === oggi) {
+        if (dateInput.value === oggiStr) {
             orariDisponibili = listaCompleta.filter(t => {
                 if (t.h > oraCorrente) return true;
                 if (t.h === oraCorrente && t.m > minutiCorrenti) return true;
@@ -97,12 +93,12 @@ $ora_attuale = (int)date('H');
             });
         }
     }
-    // Eseguiamo la funzione all'avvio
     window.onload = aggiornaOre;
-</script>
+    </script>
 </head>
 
-<body onload="aggiornaOre()">
+<body>
+
 <header>
     <div class="site" onclick="window.location.href='mainpage.php'">
         <img src="resources/logo.png" class="logo" alt="Logo">
@@ -148,14 +144,14 @@ $ora_attuale = (int)date('H');
             <h1><?= htmlspecialchars($nomeGioco) ?></h1>
             <p><?= nl2br(htmlspecialchars($descrizioneEstesa)) ?></p>
             
-            <form method="POST" action="gestisci_prenotazione.php">
+            <form method="POST" action="gestisci_prenotazione.php" onsubmit="return confirm('Sei sicuro di voler confermare la prenotazione per <?= htmlspecialchars($nomeGioco) ?>?');">
                 <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
                 
                 <label>Seleziona Giorno:</label><br>
                 <input type="date" id="data_prenotazione" name="data_prenotazione" 
                        min="<?= $oggi ?>" value="<?= $oggi ?>" onchange="aggiornaOre()" required><br><br>
 
-                <label>Orario (Solo ore intere):</label><br>
+                <label>Orario:</label><br>
                 <select id="ora_prenotazione" name="ora_prenotazione" required></select><br><br>
 
                 <?php if ($nomeGioco == 'Biliardo'): ?>
@@ -196,7 +192,6 @@ $ora_attuale = (int)date('H');
         <?php if (pg_num_rows($res_sidebar) > 0): ?>
             <ul style="list-style: none; padding: 0;">
                 <?php while ($item = pg_fetch_assoc($res_sidebar)): 
-                    // Formattiamo la data per renderla più bella (es. 12 Feb, 21:00)
                     $data_f = date('d M, H:i', strtotime($item['data_ora']));
                 ?>
                     <li style="margin-bottom: 15px; border-bottom: 1px solid #ff00ff40; padding-bottom: 5px;">
@@ -224,6 +219,26 @@ $ora_attuale = (int)date('H');
     <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
     </div>
 </footer>
+
+<?php if (isset($_GET['res'])): ?>
+    <script>
+        // Usiamo un piccolo ritardo per essere sicuri che la pagina sia visibile
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                <?php if ($_GET['res'] == 'success'): ?>
+                    alert("Prenotazione registrata con successo!");
+                <?php elseif ($_GET['res'] == 'duplicate'): ?>
+                    alert("Attenzione! Hai già una prenotazione per questo gioco in questa fascia oraria.");
+                <?php endif; ?>
+                
+                // Pulizia URL
+                const url = new URL(window.location);
+                url.searchParams.delete('res');
+                window.history.replaceState({}, document.title, url);
+            }, 100);
+        });
+    </script>
+<?php endif; ?>
 
 </body>
 </html>
