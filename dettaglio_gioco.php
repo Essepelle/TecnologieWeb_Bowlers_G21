@@ -136,6 +136,7 @@ $ora_attuale = (int)date('H');
                 </a>
             </li>
         <?php endwhile; ?>
+        <li><a href="area_faq.php">Area Food e Recensioni</a></li>
     </ul>
 </aside>
 
@@ -220,7 +221,7 @@ $ora_attuale = (int)date('H');
 
 <footer>
     <div id="footer-box">
-        <p>© 2026 - The Bowler Club</p>
+    <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
     </div>
 </footer>
 

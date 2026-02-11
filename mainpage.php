@@ -3,8 +3,8 @@ include "db.php";
 session_start();
 
 // Recupero username dalla sessione (necessario per la query sidebar)
-$username = $_SESSION['utente'];
-$email = $_SESSION['email'];
+$username = $_SESSION['utente'] ?? "";
+$email = $_SESSION['email'] ?? "";
 
 /* 1) RECUPERA TUTTI I GIOCHI DAL DB */
 $sqlGiochi = "SELECT nome_gioco, immagine FROM giochi ORDER BY nome_gioco;";
@@ -128,7 +128,7 @@ if (!empty($username)) {
             $classeFood = ($i % 2 !== 0) ? 'card-gioco-even' : 'card-gioco-odd';
         ?>
         <div id="area-food" class="<?= $classeFood ?>">
-            <img src="resources/food_area.jpg" alt="Area Food">
+            <img src="img/area_food.jpg" alt="Area Food">
             
             <div class="testo-card">
                 <h1>Area Food & Recensioni</h1>

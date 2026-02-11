@@ -61,6 +61,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
         <?php while ($r = pg_fetch_assoc($risultatoGiochi)): ?>
             <li><a href="dettaglio_gioco.php?gioco=<?= urlencode($r['nome_gioco']) ?>"><?= htmlspecialchars($r['nome_gioco']) ?></a></li>
         <?php endwhile; ?>
+        <li><a href="area_faq.php">Area Food e Recensioni</a></li>
     </ul>
 </aside>
 
@@ -130,7 +131,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 
 <footer>
     <div id="footer-box">
-        <p>© 2026 - The Bowler Club</p>
+    <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
     </div>
 </footer>
 
