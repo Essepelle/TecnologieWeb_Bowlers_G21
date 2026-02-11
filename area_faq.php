@@ -8,6 +8,7 @@ if (!isset($_SESSION['utente'])) {
 }
 
 $username = $_SESSION['utente'];
+$nome_completo = $_SESSION['nome'];
 $email = $_SESSION['email'];
 
 // Gestione Post Commento

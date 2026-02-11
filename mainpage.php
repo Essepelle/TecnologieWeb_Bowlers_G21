@@ -74,7 +74,7 @@ if (!empty($username)) {
         ?>
             <li><a href="#<?= $anchorId ?>"><?= htmlspecialchars($rowSide['nome_gioco']) ?></a></li>
         <?php endwhile; ?>
-        <li><a href="area_faq.php">Area Food e Recensioni</a></li>
+        <li><a href="#area-food">Area Food e Recensioni</a></li>
     </ul>
 </aside>
 
@@ -118,11 +118,30 @@ if (!empty($username)) {
                             Prenota
                         </button>
                     <?php endif; ?>
-
-
                 </div>
             </div>
         <?php endwhile; ?>
+
+        <hr/>
+        <?php 
+            // Determiniamo la classe in base al numero di giochi per mantenere l'alternanza
+            $classeFood = ($i % 2 !== 0) ? 'card-gioco-even' : 'card-gioco-odd';
+        ?>
+        <div id="area-food" class="<?= $classeFood ?>">
+            <img src="resources/food_area.jpg" alt="Area Food">
+            
+            <div class="testo-card">
+                <h1>Area Food & Recensioni</h1>
+                <p>Vieni a scoprire la nostra selezione di snack, pizze e cocktail! <br>
+                Il posto perfetto per ricaricarsi tra una partita e l'altra.</p>
+
+                <button type="button" 
+                    onclick="window.location.href='area_faq.php'">
+                    Vai alle Recensioni
+                </button>
+            </div>
+        </div>
+        </div> </main>
     </div>
 </main>
 
