@@ -20,7 +20,8 @@ if (isset($_POST['conferma_prenotazione'])) {
     $partecipa_torneo = $_POST['partecipa_torneo'] ?? null;
 
     $sql = "INSERT INTO prenotazioni (username_utente, nome_gioco, data_ora, numero_tavolo, numero_pista, numero_persone, partecipazione_torneo) 
-            VALUES ($1, $2, $3, $4, $5, $6, $7)";
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            ON CONFLICT DO NOTHING";// per non far inserire prenotazioni allo stesso gioco nella stessa ora
     
     $params = array($username, $nome_gioco, $data_ora, $numero_tavolo, $numero_pista, $numero_persone, $partecipazione_torneo);
     $result = pg_query_params($db, $sql, $params);
