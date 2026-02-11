@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict pbyzAv1OxJTL15lHXT9slxF6ZnyL3EkgrMB9HT2IZkrfhrcbpmbNKt6ub0djLkB
+\restrict ZJHPtZ8owivo2VaBIpatgXrLudZUmtCaiK1yPQa9GTukeTabxgVmWt50YcJbZKd
 
 -- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.1
 
--- Started on 2026-02-11 15:14:39
+-- Started on 2026-02-11 17:21:23
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -212,13 +212,9 @@ Carte	img/carte.jpg
 
 COPY public.prenotazioni (id_prenotazione, username_utente, nome_gioco, data_ora, numero_pista, numero_tavolo, numero_persone, partecipazione_torneo) FROM stdin;
 3	pipa	Bowling	2026-02-26 13:00:00	24	\N	\N	\N
-7	pipa	Biliardo	2026-02-12 00:00:00	\N	1	\N	\N
-9	pipa	Biliardo	2026-02-12 01:00:00	\N	1	\N	\N
-11	pipa	Biliardo	2026-02-11 20:00:00	\N	1	\N	\N
-23	pipa	Biliardo	2026-02-11 17:00:00	\N	1	\N	\N
-25	pipa	Biliardo	2026-02-11 17:00:00	\N	2	\N	\N
-26	pipa	Bowling	2026-02-11 17:00:00	1	\N	\N	\N
-28	pipa	Bowling	2026-02-11 17:00:00	6	\N	\N	\N
+32	pipa	Biliardo	2026-02-11 17:00:00	\N	1	\N	\N
+41	pipa	Biliardo	2026-02-11 17:30:00	\N	1	\N	\N
+42	pipa	Carte	2026-02-11 17:00:00	\N	\N	\N	t
 \.
 
 
@@ -248,7 +244,7 @@ SELECT pg_catalog.setval('public.faq_id_recensione_seq', 16, true);
 -- Name: prenotazioni_id_prenotazione_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.prenotazioni_id_prenotazione_seq', 28, true);
+SELECT pg_catalog.setval('public.prenotazioni_id_prenotazione_seq', 42, true);
 
 
 --
@@ -393,11 +389,11 @@ GRANT SELECT,USAGE ON SEQUENCE public.prenotazioni_id_prenotazione_seq TO www;
 GRANT ALL ON TABLE public.utenti TO www;
 
 
--- Completed on 2026-02-11 15:14:39
+-- Completed on 2026-02-11 17:21:23
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict pbyzAv1OxJTL15lHXT9slxF6ZnyL3EkgrMB9HT2IZkrfhrcbpmbNKt6ub0djLkB
+\unrestrict ZJHPtZ8owivo2VaBIpatgXrLudZUmtCaiK1yPQa9GTukeTabxgVmWt50YcJbZKd
 
