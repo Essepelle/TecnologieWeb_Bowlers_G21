@@ -198,11 +198,12 @@ main {
 
 .card-gioco:nth-child(2n){
     grid-template-columns: 3fr 7fr;
+    justify-items: left;
+    text-align: left;
 }
 
 .card-gioco:nth-child(2n) img {
     grid-column: 1;
-    justify-self: left;
 }
 .card-gioco:nth-child(2n) > *:not(img) {
     grid-column: 2;
@@ -211,6 +212,7 @@ main {
 .card-gioco:nth-child(4n){
     grid-template-columns: 7fr 3fr;
     justify-items: right;
+    text-align: right;
 }
 
 .card-gioco:nth-child(4n) img {
