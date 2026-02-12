@@ -42,7 +42,8 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
     <title>Le Mie Prenotazioni - The Bowler Club</title>
     <link rel="stylesheet" href="mainpage.css">
 </head>
-<body>
+
+<body style="grid-template-columns: 15% 1fr 15%;">
 
 <header>
     <div class="site" onclick="window.location.href='mainpage.php'">
@@ -66,17 +67,27 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 </aside>
 
 <main>
-    <div style="padding: 20px;">
-        <h1 style="color: #ff00ff; text-align: center;">Gestione Prenotazioni</h1>
-        <p style="text-align: center;">Qui puoi visualizzare e annullare le tue prenotazioni.</p>
+  
+        
+        <h1 style="padding: unset; margin-top: unset">Gestione Prenotazioni</h1>
+        
+        <p style="text-align: center; margin-bottom: 30px;">Qui puoi visualizzare e annullare le tue prenotazioni.</p>
 
         <?php if (pg_num_rows($risultato_pren) > 0): ?>
             <div class="grid-giochi">
                 <?php while ($pren = pg_fetch_assoc($risultato_pren)): ?>
-                    <div class="card-gioco-odd" style="grid-template-columns: 100%; margin-bottom: 10px; border: 1px solid #ff00ff80;">
-                        <div style="padding: 15px;">
-                            <h2 style="color: #00b7ff;"><?= htmlspecialchars($pren['nome_gioco']) ?></h2>
-                            <p><strong>Data e Ora:</strong> <?= date('d/m/Y H:i', strtotime($pren['data_ora'])) ?></p>
+                    <div class="card-gioco-odd" style="
+                        grid-template-columns: 100%; 
+                        margin-bottom: 20px; /* Più spazio tra le card */
+                        border: 2px solid #ff00ff80; /* Bordo fucsia leggermente più spesso */
+                        border-radius: 15px; /* Angoli arrotondati */
+                        background-color: rgba(30, 30, 30, 0.9); /* Sfondo scuro semitrasparente */
+                        box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Ombra per dare profondità */
+                        overflow: hidden; /* Assicura che il contenuto stia nei bordi arrotondati */
+                    ">
+                        <div style="padding: 20px;">
+                            <h2 style="color: #00b7ff; margin-top: 0;"><?= htmlspecialchars($pren['nome_gioco']) ?></h2>
+                            <p style="font-size: 1.1em;"><strong>Data e Ora:</strong> <?= date('d/m/Y H:i', strtotime($pren['data_ora'])) ?></p>
                             
                             <?php if ($pren['numero_tavolo']): ?>
                                 <p><strong>Tavolo:</strong> <?= htmlspecialchars($pren['numero_tavolo']) ?></p>
@@ -90,13 +101,9 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                                 <p><strong>Persone:</strong> <?= htmlspecialchars($pren['numero_persone']) ?></p>
                             <?php endif; ?>
 
-                            <?php if ($pren['partecipazione_torneo'] == 't'): ?>
-                                <p style="color: #00ff00;">✓ Iscritto al Torneo</p>
-                            <?php endif; ?>
-
-                            <form method="POST" onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');">
+                            <form method="POST" onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');" style="margin-top: 20px;">
                                 <input type="hidden" name="id_prenotazione" value="<?= $pren['id_prenotazione'] ?>">
-                                <button type="submit" name="elimina_prenotazione" style="background-color: #ff4d4d; margin-top: 10px;">
+                                <button type="submit" name="elimina_prenotazione" style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%;">
                                     Annulla Prenotazione
                                 </button>
                             </form>
@@ -105,12 +112,12 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                 <?php endwhile; ?>
             </div>
         <?php else: ?>
-            <div style="text-align: center; margin-top: 50px;">
-                <p>Non hai ancora effettuato prenotazioni.</p>
-                <button onclick="window.location.href='mainpage.php'">Prenota ora</button>
+            <div style="text-align: center; margin-top: 50px; padding: 30px; background: rgba(0,0,0,0.5); border-radius: 15px;">
+                <p style="font-size: 1.2em;">Non hai ancora effettuato prenotazioni.</p>
+                <button onclick="window.location.href='mainpage.php'" style="margin-top: 20px;">Prenota ora</button>
             </div>
         <?php endif; ?>
-    </div>
+
 </main>
 
 <aside class="sidebar-right">
@@ -119,10 +126,10 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
         <p>Username: <strong><?= htmlspecialchars($username) ?></strong></p>
         <p>Nome Completo: <strong><?= htmlspecialchars($nome_completo) ?></strong></p>
         <p>Email: <strong><?= htmlspecialchars($email) ?></strong></p>
-        <button onclick="window.location.href='logout.php'" style="width: 100%;">Logout</button>
+        <button onclick="window.location.href='logout.php'" style="width: 100%; margin-top: 10px; font-weight: bold;">Logout</button>
 
-        <form action="elimina_account.php" method="POST" onsubmit="return confirm('ATTENZIONE: Sei sicuro di voler eliminare definitivamente il tuo account? Questa operazione cancellerà anche tutte le tue prenotazioni e non è reversibile.');">
-            <button type="submit" name="conferma_eliminazione" style="width: 100%; background-color:rgb(56, 56, 56); color: white; font-weight: bold; border: none; padding: 10px; cursor: pointer;">
+        <form action="elimina_account.php" method="POST" onsubmit="return confirm('ATTENZIONE: Sei sicuro di voler eliminare definitivamente il tuo account? Questa operazione cancellerà anche tutte le tue prenotazioni e non è reversibile.');" style="margin-top: 10px;">
+            <button type="submit" name="conferma_eliminazione" style="width: 100%; font-weight: bold; border: none; padding: 10px; cursor: pointer;">
                 Elimina Account
             </button>
         </form>
