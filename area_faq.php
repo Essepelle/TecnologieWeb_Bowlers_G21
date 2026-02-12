@@ -174,7 +174,12 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
             <p>User: <?= htmlspecialchars($username) ?></p>
             <p>Email: <?= htmlspecialchars($email) ?></p>
         <?php else: ?>
-            <p class="sidebar-guest-msg">Registrati subito per accedere a tutti i servizi!</p>
+            <p style="font-style: italic; line-height: 1.6;">
+                Non sei ancora dei nostri?<br>
+                Registrati subito per accedere<br>
+                a tutti i servizi del club<br>
+                e gestire le tue prenotazioni!
+            </p>
         <?php endif; ?>
     </div>
 </aside>
