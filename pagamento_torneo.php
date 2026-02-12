@@ -86,5 +86,23 @@ $dati = $_SESSION['pending_reservation'];
             <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
         </div>
     </footer>
+
+    <script>
+        document.querySelector('.payment-form').addEventListener('submit', function(e) {
+            const scadenza = document.getElementsByName('scadenza')[0].value;
+            const [mese, anno] = scadenza.split('/').map(n => parseInt(n, 10));
+            
+            const oggi = new Date();
+            const meseCorrente = oggi.getMonth() + 1;
+            const annoCorrente = parseInt(oggi.getFullYear().toString().slice(-2), 10);
+
+            // Controllo validità temporale
+            if (anno < annoCorrente || (anno === annoCorrente && mese < meseCorrente)) {
+                alert("La carta è scaduta. Inserisci una data valida.");
+                e.preventDefault(); // Blocca l'invio del form
+            }
+        });
+    </script>
+
 </body>
 </html>
