@@ -1,63 +1,99 @@
 
 /*PAGAMENTO*/
+main{
+    background-color: transparent;
+    backdrop-filter: unset;
+    -webkit-backdrop-filter: unset;
+    align-content: center;
+    min-height: 89vh;
+}
 .payment-container {
-    max-width: 450px;
-    margin: 50px auto;
-    background: #1a1a1a;
-    padding: 30px;
-    border-radius: 15px;
+    display: block;
+    background: #000000aa;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20pt;
+    border-radius: 20pt;
     border: 2px solid #00b7ff;
-    box-shadow: 0 0 20px rgba(0, 183, 255, 0.3);
+    box-shadow: 0 0 10pt rgba(0, 183, 255, 0.3);
     color: white;
-    font-family: 'Segoe UI', sans-serif;
+    justify-items: stretch;
+    margin:20pt;
 }
 
 .recap-box {
     background: #252525;
     padding: 15px;
-    border-radius: 8px;
+    border-radius: 20pt;
     margin-bottom: 20px;
-    border-left: 4px solid #ff00ff;
+    border-left: 20pt solid #ff00ff;
+    text-align: justify;
+    box-shadow: 0 0 10pt black;
+}
+
+.payment-form {
+    display: grid;
+    place-items: center stretch;
+    color: white;
+    text-shadow: 0 0 10pt black;
 }
 
 .payment-form label {
     display: block;
     margin: 10px 0 5px;
     font-size: 0.9em;
-    color: #ccc;
+    color: white;
 }
 
-.payment-form input {
-    width: 100%;
-    padding: 10px;
+.payment-form input[type="text"] {
+    padding: 1em;
     background: #333;
     border: 1px solid #444;
     color: white;
-    border-radius: 5px;
+    border-radius: 20pt;
     margin-bottom: 10px;
+    box-shadow: 0 0 10pt black;
+    text-shadow: 0 0 10pt black;
+}
+.payment-form input[type="text"]:focus{
+    outline: none;
+    box-shadow: 0 0 10px #ffbf00;
+    z-index: 1;
 }
 
 .form-row {
-    display: flex;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center stretch;
+    gap: 0;
+
+}
+
+.form-row input#scadenza {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+    clip-path: inset(-20px 0 -20px -20px);
+}
+
+.form-row input#cvv {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    clip-path: inset(-20px -20px -20px 0);
 }
 
 .btn-pay {
-    width: 100%;
-    padding: 12px;
+    padding: 1em;
     background: #00b7ff;
     border: none;
     color: white;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20pt;
     margin-top: 15px;
     transition: 0.3s;
-
 }
 
 .btn-pay:hover {
-    background: #0086bd;
     box-shadow: 0 0 10px #00b7ff;
 }
 
@@ -65,7 +101,7 @@
     display: block;
     text-align: center;
     margin-top: 15px;
-    color: #ff4444;
+    color: red;
     text-decoration: none;
     font-size: 0.8em;
 }
