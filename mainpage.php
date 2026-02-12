@@ -85,10 +85,7 @@ if (!empty($username)) {
     <div class="grid-giochi">
         <?php
         pg_result_seek($risultatoGiochi, 0);
-        $i = 0;
         while ($row = pg_fetch_assoc($risultatoGiochi)):
-            $i++;
-            $classe = ($i % 2 === 0) ? 'card-gioco-even' : 'card-gioco-odd';
             $anchorId = str_replace(' ', '-', $row['nome_gioco']);
             
             // Puntamento alla cartella descrizioni/
@@ -96,10 +93,9 @@ if (!empty($username)) {
             $presentazione = file_exists($nomeFilePres) ? file_get_contents($nomeFilePres) : "Scopri di più cliccando su prenota.";
         ?>
             <hr/>
-            <div id="<?= $anchorId ?>" class="<?= $classe ?>">
+            <div id="<?= $anchorId ?>" class="card-gioco">
                 <img src="<?= htmlspecialchars($row['immagine']) ?>" alt="<?= htmlspecialchars($row['nome_gioco']) ?>">
                 
-                <div class="testo-card">
                     <h1><?= htmlspecialchars($row['nome_gioco']) ?></h1>
                     <p><?= nl2br(htmlspecialchars($presentazione)) ?></p>
 
@@ -118,19 +114,13 @@ if (!empty($username)) {
                             Prenota
                         </button>
                     <?php endif; ?>
-                </div>
             </div>
         <?php endwhile; ?>
 
         <hr/>
-        <?php 
-            // Determiniamo la classe in base al numero di giochi per mantenere l'alternanza
-            $classeFood = ($i % 2 !== 0) ? 'card-gioco-even' : 'card-gioco-odd';
-        ?>
-        <div id="area-food" class="<?= $classeFood ?>">
+        <div id="area-food" class="card-gioco">
             <img src="img/area_food.jpg" alt="Area Food">
             
-            <div class="testo-card">
                 <h1>Area Food & Recensioni</h1>
                 <p>Vieni a scoprire la nostra selezione di snack, pizze e cocktail! <br>
                 Il posto perfetto per ricaricarsi tra una partita e l'altra.</p>
@@ -139,7 +129,6 @@ if (!empty($username)) {
                     onclick="window.location.href='area_faq.php'">
                     Vai alle Recensioni
                 </button>
-            </div>
         </div>
         </div> </main>
     </div>

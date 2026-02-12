@@ -168,73 +168,70 @@ main {
     display: block;
     grid-template-columns: repeat(1, max);
     flex-wrap: wrap; 
-    gap: 20pt; 
     place-items: stretch stretch;
-}
-.card-gioco-even {
-    border-radius: 15px;
-    padding: 20pt 20pt 20pt 0;
-    place-items: stretch stretch;
-    text-align: right;
-    transition: transform 0.3s ease;
-    display: grid;
-    grid-template-columns: 78% 20%;
-    gap: 20pt;
-    
+    margin-bottom: 20pt;
 }
 
-.card-gioco-even h1{
-    font-size: 200%;
+.grid-giochi hr{
+    margin-top: 20pt;
+    margin-bottom: 20pt;
 }
-.card-gioco-even img {
-    grid-area: 1 / 2 / 4 / 3;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    background: white;
-    padding: 5px;
-    box-sizing: border-box;
-    margin-right: 20pt;
-}
-.card-gioco-odd {
-    border-radius: 15px;
-    padding: 20pt 0 20pt 0;
-    place-items: stretch stretch;
-    text-align: left;
-    transition: transform 0.3s ease;
+.card-gioco {
     display: grid;
-    grid-template-columns: 20% 80%;
-    gap: 20pt;
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 20pt;
+    row-gap: 1em;
+    place-items: center stretch;
+    padding: 20pt;
+    border-radius: 20pt;
+    text-shadow: 0 0 10pt black;
 }
+.card-gioco img {
+    grid-row: 1 / -1;
+    width: 100%;
+    height: 200pt;
+    object-fit: cover;
+    border-radius: 20pt;
+    box-sizing: border-box;
+    box-shadow: 0 0 10pt black;
+}
+
+.card-gioco:nth-child(2n){
+    grid-template-columns: 3fr 7fr;
+}
+
+.card-gioco:nth-child(2n) img {
+    grid-column: 1;
+    justify-self: left;
+}
+.card-gioco:nth-child(2n) > *:not(img) {
+    grid-column: 2;
+}
+
+.card-gioco:nth-child(4n){
+    grid-template-columns: 7fr 3fr;
+    justify-items: right;
+}
+
+.card-gioco:nth-child(4n) img {
+    grid-column: 2;
+}
+.card-gioco:nth-child(4n) > *:not(img) {
+    grid-column: 1;
+}
+
 
 
 .evidenzia {
-    background-color: #d6c0f5; /* lilla/viola chiaro */
-    box-shadow: 0 0 20px rgba(128, 0, 128, 0.6); /* glow viola */
-    transition: background-color 1s ease, box-shadow 1s ease; /* dissolvenza graduale */
+    background-color: #ffbf0080;
+    box-shadow: 0 0 10pt black;
+    transition: background-color 1s ease, box-shadow 1s ease;
 }
 
 /*stato normale, in modo da avere una transizione più gradevole*/
-.card-gioco-odd.fade {
+.card-gioco.fade {
     background-color: transparent;
     box-shadow: none;
-}
-
-.card-gioco-even.fade {
-    background-color: transparent;
-    box-shadow: none;
-}
-
-.card-gioco-odd img {
-    grid-area: 1 / 1 / 4 / 2;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    background: white;
-    padding: 5px;
-    box-sizing: border-box;
 }
 
 /* Pulsanti */
@@ -248,11 +245,12 @@ button {
     font-family: inherit;
     transition: 0.3s;
     margin-top: 10px;
+    max-width: fit-content; 
 }
 
 button:hover {
     background-color: #ff00ff;
-    box-shadow: 0 0 10px #ff00ff;
+    box-shadow: 0 0 10pt black;
 }
 
 
