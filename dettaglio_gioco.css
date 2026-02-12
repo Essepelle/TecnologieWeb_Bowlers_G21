@@ -275,7 +275,6 @@ footer {
     padding: 12px 15px;                   /* Padding ridotto (era 20px) */
     border-radius: 8px;                   /* Angoli leggermente più piccoli */
     margin-bottom: 20px;                  /* Meno spazio sotto */
-    margin-right: 28px;
     line-height: 1.4;                     /* Testo più compatto */
     font-size: 1.2em;                     /* Dimensione testo più piccola e fine */
     color: #ddd;                          /* Bianco morbido (meno sparato) */
@@ -293,7 +292,6 @@ footer {
     padding: 12px 15px;                   /* Padding ridotto (era 20px) */
     border-radius: 8px;                   /* Angoli leggermente più piccoli */
     margin-bottom: 20px;                  /* Meno spazio sotto */
-    margin-right: 28px;
     line-height: 1.2;                     /* Testo più compatto */
     font-size: 1em;                     /* Dimensione testo più piccola e fine */
     color: #ddd;                          /* Bianco morbido (meno sparato) */
@@ -327,6 +325,8 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); 
     gap: 10px;
+    font-weight: bold;
+    font-size: 1.5em;
     width: 100%;
 }
 
@@ -366,4 +366,104 @@ footer {
     border-color: white !important;
     box-shadow: 0 0 15px rgba(255, 0, 255, 0.6);
     transform: scale(1.05);
+}
+
+#titolo {
+    margin: unset;
+    margin-bottom: 10pt;
+    padding: unset;
+    font-size: 4rem;
+    font-family: "Racing Sans One", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1;
+    color: #fff;
+}
+
+
+
+/* Container flessibile per allineare testi e immagine */
+.testata-gioco-flex {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start; /* Allinea in alto */
+    margin-bottom: 30px;
+}
+
+/* La colonna dei testi occupa tutto lo spazio rimanente */
+.colonna-testi {
+    flex: 1;
+}
+
+/* L'immagine mantiene la sua dimensione o si adatta */
+.box-form {
+    flex: 1; /* Il form prende lo spazio necessario */
+}
+
+.box-immagine-laterale {
+    flex: 0 0 300px; /* Larghezza fissa per l'immagine laterale */
+}
+
+.box-immagine-laterale img {
+    width: 400px;
+    height: 400px;
+    overflow: hidden; /* Taglia l'immagine che esce dai bordi */
+    
+    border-radius: 10px;
+    box-shadow: 0 0 11px rgba(0, 0, 0, 0.5);
+    background: rgb(31, 30, 30);
+    padding: 3px;
+}
+
+
+/* Responsive: su schermi piccoli (es. smartphone) tornano uno sotto l'altro */
+@media (max-width: 768px) {
+    .testata-gioco-flex {
+        flex-direction: column;
+    }
+    .box-immagine-laterale img {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+
+
+/* Layout interno al Form */
+.form-row-superiore {
+    display: flex;
+    gap: 40px; /* Spazio tra le due colonne */
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.colonna-data-ora {
+    flex: 1; /* Prende lo spazio necessario per il calendario e orari */
+    background: rgba(255, 255, 255, 0.05); /* Opzionale: un leggero fondo per distinguere l'area */
+    padding: 15px;
+    border-radius: 10px;
+    min-width: 400px;
+}
+
+.colonna-risorsa {
+    flex: 1; /* Prende lo spazio per la griglia di piste/tavoli */
+    background: rgba(255, 255, 255, 0.05); /* Opzionale: un leggero fondo per distinguere l'area */
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 1px solid #444;
+    min-width: 400px;
+}
+
+/* Centratura del bottone finale */
+.box-submit {
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    width: 100%;
+}
+
+.btn-submit {
+    width: 100%;
+    max-width: 400px;
+    font-size: 1.2rem;
 }

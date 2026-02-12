@@ -139,12 +139,9 @@ if (!empty($username)) {
 
 <aside class="sidebar-right">
     <p class="titolo-sidebar">PRENOTAZIONI ATTIVE</p>
-    
-    <p style="color:#888;">Solo le più recenti:</p>
-
     <div id="carrello-box">
         <?php if ($res_sidebar && pg_num_rows($res_sidebar) > 0): ?>
-            
+            <p style="color:#888;">Solo le più recenti:</p>
             <ul style="list-style: none; padding: 0;">
                 <?php while ($item = pg_fetch_assoc($res_sidebar)): 
                     // Formattiamo la data per renderla più bella (es. 12 Feb, 21:00)

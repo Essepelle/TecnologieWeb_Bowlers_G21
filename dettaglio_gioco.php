@@ -96,11 +96,14 @@ $oggi = date('Y-m-d');
 </aside>
 
 <main>
-    <div class="card-gioco-odd">
-        <img src="<?= htmlspecialchars($gioco['immagine']) ?>">
-        <div>
-            <h1><?= htmlspecialchars($nomeGioco) ?></h1>
-            
+    <h1 id="titolo"><?= htmlspecialchars($nomeGioco) ?></h1>
+    <div class="testata-gioco-flex">
+
+        <div class="box-immagine-laterale">
+            <img src="<?= htmlspecialchars($gioco['immagine']) ?>" alt="Immagine <?= htmlspecialchars($nomeGioco) ?>">
+        </div>
+
+        <div class="colonna-testi">
             <div class="box-descrizione">
                 <?= nl2br(htmlspecialchars($descrizioneRidotta)) ?>
             </div>
@@ -109,24 +112,30 @@ $oggi = date('Y-m-d');
                 <p class="titolo-sidebar">REGOLE:</p>
                 <?= nl2br(htmlspecialchars($descrizioneEstesa)) ?>
             </div>
+        </div>        
+        
+    </div>
 
-            <form method="POST" action="gestisci_prenotazione.php" onsubmit="if(!document.getElementById('ora_prenotazione_valore').value){alert('Seleziona un orario!'); return false;}">
-                <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
+    <div class="container-prenotazione">
+        <form method="POST" action="gestisci_prenotazione.php" onsubmit="...">
+            <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
+
+            <div class="form-row-superiore">
                 
-                <br>
-                <label>Scegli il Giorno:</label><br>
-                <input type="text" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." readonly required><br><br>
+                <div class="colonna-data-ora">
+                    <label>Scegli il Giorno:</label><br>
+                    <input type="text" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." readonly required>
 
-                <label>Scegli l'Orario:</label>
-                <span class="label-istruzioni">(Clicca su un orario disponibile)</span>
-                <div id="orari-bottoni-container" class="orari-container">
-                    <p style="color: #555;">Seleziona prima una data valida.</p>
+                    <br><br>
+                    <label>Scegli l'Orario:</label>
+                    <span class="label-istruzioni">(Clicca su un orario disponibile)</span>
+                    <div id="orari-bottoni-container" class="orari-container">
+                        <p style="color: #555;">Seleziona prima una data valida.</p>
+                    </div>
+                    <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" required>
                 </div>
-                
-                <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" required>
 
-                <div class="box-input-specifici">
-                    
+                <div class="colonna-risorsa">
                     <?php if ($nomeGioco == 'Bowling'): ?>
                         <label>Seleziona Pista (1-24):</label>
                         <div class="selector-grid">
@@ -153,22 +162,34 @@ $oggi = date('Y-m-d');
                                 <label for="persone_<?= $i ?>"><?= $i ?></label>
                             <?php endfor; ?>
                         </div>
-                    
+
+                    <?php elseif ($nomeGioco == 'Carte'): ?>
+                        <br><br>
+                        <label><u>ATTENZIONE</u> : Pagamento Bancario</label>
+                        <p style="font-size: 0.9em; color: #bbb; margin-top: 10px;">
+                        Per questo servizio è richiesto il pagamento anticipato.
+                        Cliccando su "Conferma Prenotazione", sarai reindirizzato 
+                        in modo sicuro al nostro portale di pagamento bancario 
+                        per completare l'operazione.
+                        </p>
+                        <br><br>
                     <?php endif; ?>
-
                 </div>
+            </div>
 
-                <button type="submit" name="conferma_prenotazione" class="btn-submit">CONFERMA</button>
-            </form>
+            <div class="box-submit">
+                <button type="submit" name="conferma_prenotazione" class="btn-submit">CONFERMA PRENOTAZIONE</button>
+            </div>
+        </form>
         </div>
     </div>
 </main>
 
 <aside class="sidebar-right">
     <p class="titolo-sidebar">PRENOTAZIONI ATTIVE</p>
-    <p style="color:#888;">Solo le più recenti:</p>
     <div id="carrello-box">
         <?php if (pg_num_rows($res_sidebar) > 0): ?>
+            <p style="color:#888;">Solo le più recenti:</p>
             <ul style="list-style: none; padding: 0;">
                 <?php while ($item = pg_fetch_assoc($res_sidebar)): 
                     $data_f = date('d M, H:i', strtotime($item['data_ora']));
