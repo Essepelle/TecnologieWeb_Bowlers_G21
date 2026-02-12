@@ -1,3 +1,6 @@
+@import url('[https://fonts.googleapis.com/css2?family=Belanosima&display=swap](https://fonts.googleapis.com/css2?family=Belanosima&display=swap)');
+@import url('[https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap](https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap)');
+
 /* Struttura Main e Titolo */
 .main-content {
     flex: 1; 
@@ -5,45 +8,41 @@
 }
 
 .page-title {
-    color: #ff00ff; 
+    color: white; 
     text-align: center; 
     text-transform: uppercase;
 }
 
 /* Sezione Food */
 .food-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    place-items: center center;
+    gap: 20pt;
     text-align: center; 
-    margin-bottom: 50pt; 
-    background: rgba(255, 255, 255, 0.05); 
+    margin-bottom: 20pt; 
+    background: rgba(26, 26, 26, 0.8); 
     padding: 20pt; 
     border-radius: 15px; 
-    border: 1px dashed #ff00ff;
+    border: 1px solid #333; 
 }
 
-.food-section h2 {
-    color: rgb(255, 255, 255); 
-    margin-top: 0; 
-    font-size: 2em; 
-    text-transform: uppercase;
+h2 {
+    color: #00b7ff; 
+    text-shadow: 0 0 10pt black;
+    font-family: 'Belanosima', system-ui;
 }
 
-.food-image {
+.food-section img {
     width: 50%; 
     border-radius: 20pt;
+    box-shadow: 0 0 10pt black;
 }
 
-.food-description {
+.food-section p {
     font-size: 1.2em; 
     line-height: 1.6; 
-    color: #ccc; 
-    max-width: 800px; 
-    margin: 10pt auto 0 auto;
-}
-
-/* Area FAQ e Form */
-.faq-section-title {
-    color: #00b7ff; 
-    margin-bottom: 20px;
+    text-shadow: 0 0 10pt black;
 }
 
 .login-alert {
@@ -67,13 +66,13 @@
     border: 1px solid #444; 
     padding: 10px; 
     border-radius: 5px;
-    
-    /* MODIFICHE */
     resize: none;          /* Blocca il ridimensionamento manuale */
     overflow-y: hidden;    /* Nasconde la barra di scorrimento verticale */
     min-height: 60px;      /* Altezza di partenza fissa */
     transition: height 0.1s ease; /* Fluidità nell'espansione */
     box-sizing: border-box;
+    font-family: 'Belanosima', system-ui;
+    font-size: 1em;
 }
 
 .review-textarea:focus{
@@ -86,10 +85,10 @@
     background: #ff00ff; 
     color: white; 
     border: none; 
-    padding: 12px 25px; 
+    padding: 0.5em 1em; 
     cursor: pointer; 
     font-weight: bold; 
-    border-radius: 5px; 
+    border-radius: 20pt; 
     width: 100%;
 }
 
@@ -229,7 +228,6 @@
     background: rgba(26, 26, 26, 0.8); 
     padding: 20px; 
     border-radius: 10px; 
-    margin-top: 40px; 
     border: 1px solid #333; 
 }
 
@@ -291,8 +289,13 @@
 
 /* Testo descrittivo accanto alle stelle */
 .label-voto {
-    display: block;
+    display: flex;
     color: #ccc;
     margin-bottom: 5px;
-    font-size: 0.9em;
+    font-size: 1em;
+    text-align: left;
+}
+
+h3#sezione-recensioni{
+    text-align: left;
 }

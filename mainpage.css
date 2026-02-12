@@ -161,7 +161,7 @@ aside li a:hover {
 main {
     grid-area: 2 / 2 / 3 / 3;
     background-color: #000000aa;
-    padding: 20pt 20pt 0 20pt;
+    padding: 20pt;
     box-sizing: border-box;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -182,7 +182,6 @@ main h1{
     grid-template-columns: repeat(1, max);
     flex-wrap: wrap; 
     place-items: stretch stretch;
-    margin-bottom: 20pt;
 }
 
 .grid-giochi hr{

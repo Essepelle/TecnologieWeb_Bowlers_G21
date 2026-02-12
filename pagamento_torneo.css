@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
 
 /*PAGAMENTO*/
 main{
@@ -54,10 +55,11 @@ main{
     margin-bottom: 10px;
     box-shadow: 0 0 10pt black;
     text-shadow: 0 0 10pt black;
+    font-family: 'Belanosima', sans-serif;
 }
 .payment-form input[type="text"]:focus{
     outline: none;
-    box-shadow: 0 0 10px #ffbf00;
+    box-shadow: 0 0 10px #00b7ff;
     z-index: 1;
 }
 
@@ -83,7 +85,7 @@ main{
 
 .btn-pay {
     padding: 1em;
-    background: #00b7ff;
+    background: #ff00ff;
     border: none;
     color: white;
     font-weight: bold;
@@ -91,10 +93,11 @@ main{
     border-radius: 20pt;
     margin-top: 15px;
     transition: 0.3s;
+    font-family: 'Belanosima', sans-serif;
 }
 
 .btn-pay:hover {
-    box-shadow: 0 0 10px #00b7ff;
+    box-shadow: 0 0 10px #ff00ff;
 }
 
 .btn-cancel {
@@ -104,4 +107,5 @@ main{
     color: red;
     text-decoration: none;
     font-size: 0.8em;
+    font-family: 'Belanosima', sans-serif;
 }
