@@ -127,6 +127,7 @@ aside {
     grid-area: 2 / 3 / 3 / 4;
     text-align: right;
 }
+
 /* Stili specifici per la navigazione nella sidebar sinistra */
 aside ul {
     list-style: none;

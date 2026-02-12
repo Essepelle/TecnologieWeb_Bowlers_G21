@@ -151,12 +151,12 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
     <div id="carrello-box">
         <?php if ($res_sidebar && pg_num_rows($res_sidebar) > 0): ?>
             <p style="color:#888;">Solo le più recenti:</p>
-            <ul style="list-style: none; padding: 0;">
+            <ul>
                 <?php while ($item = pg_fetch_assoc($res_sidebar)): 
                     // Formattiamo la data per renderla più bella (es. 12 Feb, 21:00)
                     $data_f = date('d M, H:i', strtotime($item['data_ora']));
                 ?>
-                    <li style="margin-bottom: 15px; border-bottom: 1px solid #ff00ff40; padding-bottom: 5px;">
+                    <li>
                         <strong style="color: #00b7ff; text-transform: uppercase;">
                             <?= htmlspecialchars($item['nome_gioco']) ?>
                         </strong><br>
