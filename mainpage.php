@@ -79,7 +79,7 @@ if (!empty($username)) {
 </aside>
 
 <main>
-    <h1 id="presentazione">I Nostri Servizi</h1>
+    <h1 id="presentazione" class="titolo">I Nostri Servizi</h1>
     <p id="info"> Vieni a scoprire il tempio del divertimento da The Bowler Club! <br>
         Aperti ogni giorno dalle <b>17:00</b> alle <b>02:00</b> per garantirti il massimo dell'adrenalina 
         quando preferisci. <br> Siamo il punto di riferimento per chi cerca lanci mozzafiato, 

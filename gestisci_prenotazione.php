@@ -24,31 +24,40 @@ if (isset($_POST['conferma_prenotazione'])) {
 
     $dataOraFinale = $data . " " . $ora;
 
-    // Controllo 1: utente ha già prenotazione a quest'ora (qualsiasi gioco)
-$sql_check_orario = "SELECT * FROM prenotazioni WHERE username_utente = $1 AND data_ora = $2";
-$res_check_orario = pg_query_params($db, $sql_check_orario, array($username, $dataOraFinale));
+    // Controllo 1: utente ha già una prenotazione a quest'ora (qualsiasi gioco)
+    $sql_check_orario = "SELECT * FROM prenotazioni WHERE username_utente = $1 AND data_ora = $2";
+    $res_check_orario = pg_query_params($db, $sql_check_orario, array($username, $dataOraFinale));
 
-if (pg_num_rows($res_check_orario) > 0) {
-    header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=orario_occupato");
-    exit();
-}
+    if (pg_num_rows($res_check_orario) > 0) {
+        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=orario_occupato");
+        exit();
+    }
 
-// Controllo 2: stesso gioco, stessa ora, stesso tavolo/pista
-$sql_check_duplicate = "SELECT * FROM prenotazioni WHERE username_utente = $1 AND nome_gioco = $2 AND data_ora = $3";
-$res_check_duplicate = pg_query_params($db, $sql_check_duplicate, array($username, $nomeGioco, $dataOraFinale));
-
-if (pg_num_rows($res_check_duplicate) > 0) {
-    header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=duplicate");
-    exit();
-}
-
-    // Recupero dati dal form con i nomi corretti
+    // Recupero dati dal form
     $n_tavolo = $_POST['numero_tavolo'] ?? null;
     $n_pista  = $_POST['numero_pista'] ?? null;
     $n_persone = $_POST['numero_persone'] ?? null;
     $torneo   = $_POST['partecipa_torneo'] ?? null;
 
-    // Conversione valore torneo per colonna boolean di PostgreSQL
+    // NUOVO CONTROLLO: Verifica disponibilità fisica della risorsa (Tavolo o Pista)
+    // Questo previene l'errore "unica_prenotazione_tavolo" nel database
+    $sql_check_disponibilita = "SELECT * FROM prenotazioni 
+                                WHERE nome_gioco = $1 
+                                AND data_ora = $2 
+                                AND (
+                                    (numero_tavolo IS NOT NULL AND numero_tavolo = $3) OR 
+                                    (numero_pista IS NOT NULL AND numero_pista = $4)
+                                )";
+    
+    $res_dispo = pg_query_params($db, $sql_check_disponibilita, array($nomeGioco, $dataOraFinale, $n_tavolo, $n_pista));
+
+    if (pg_num_rows($res_dispo) > 0) {
+        // Se il tavolo o la pista sono già occupati da qualcun altro
+        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=risorsa_occupata");
+        exit();
+    }
+
+    // Conversione valore torneo per colonna boolean
     $torneo_bool = null;
     if ($torneo === 'si') {
         $torneo_bool = 'true';
@@ -56,14 +65,14 @@ if (pg_num_rows($res_check_duplicate) > 0) {
         $torneo_bool = 'false';
     }
 
-    // QUERY CORRETTA: nomi colonne allineati al tuo database
+    // QUERY CORRETTA: senza la virgola di troppo
     $sql_insert = "INSERT INTO prenotazioni (
         username_utente, 
         nome_gioco, 
         data_ora, 
         numero_pista, 
         numero_tavolo, 
-        numero_persone,      
+        numero_persone      
     ) VALUES ($1, $2, $3, $4, $5, $6)";
     
     $params = array(
@@ -72,25 +81,21 @@ if (pg_num_rows($res_check_duplicate) > 0) {
         $dataOraFinale, // $3
         $n_pista,       // $4
         $n_tavolo,      // $5
-        $n_persone,     // $6
-        $torneo_bool    // $7
+        $n_persone      // $6
     );
     
-    // LOGICA NUOVA: Se è il torneo di Carte, devia al pagamento
+    // Logica Torneo Carte
     if ($nomeGioco === 'Carte') {
-        // Salviamo i dati in sessione per non perderli durante il pagamento
         $_SESSION['pending_reservation'] = $params;
         header("Location: pagamento_torneo.php");
         exit();
     }
     
-    // Se non è carte, procedi con l'insert normale (codice esistente)
     $res_insert = pg_query_params($db, $sql_insert, $params);
 
     if ($res_insert) {
         header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=success");
     } else {
-        // In caso di errore, visualizza il messaggio tecnico per il debug
         echo "Errore DB: " . pg_last_error($db);
     }
 } else {

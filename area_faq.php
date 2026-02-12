@@ -32,11 +32,19 @@ if ($username) {
 
 // --- 3. LOGICA FAQ ---
 $filtro_stelle = isset($_GET['filtro_stelle']) ? intval($_GET['filtro_stelle']) : null;
+
 if ($filtro_stelle && $filtro_stelle >= 1 && $filtro_stelle <= 5) {
-    $sql_faq = "SELECT username, recensione, data_recensione, stelle FROM public.faq WHERE stelle = $1 ORDER BY data_recensione DESC"; 
+    // Se c'è un filtro per stelle, ordiniamo per data (più recenti prima)
+    $sql_faq = "SELECT username, recensione, data_recensione, stelle 
+                FROM public.faq 
+                WHERE stelle = $1 
+                ORDER BY data_recensione DESC"; 
     $risultato_faq = pg_query_params($db, $sql_faq, array($filtro_stelle));
 } else {
-    $sql_faq = "SELECT username, recensione, data_recensione, stelle FROM public.faq ORDER BY stelle DESC NULLS LAST, data_recensione DESC";
+    // SELEZIONATO "TUTTE": Ordiniamo solo per data di recensione decrescente
+    $sql_faq = "SELECT username, recensione, data_recensione, stelle 
+                FROM public.faq 
+                ORDER BY data_recensione DESC";
     $risultato_faq = pg_query($db, $sql_faq);
 }
 $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gioco;");
@@ -85,7 +93,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 </aside>
 
 <main class="main-content">
-    <h1 class="page-title">Area Food & Community</h1>
+    <h1 id="titolo" class="page-title">Area Food & Community</h1>
     
     <div class="food-section">
         <h2>Il Gusto entra in Gioco!</h2>

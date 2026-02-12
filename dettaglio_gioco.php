@@ -181,7 +181,6 @@ $oggi = date('Y-m-d');
                 <button type="submit" name="conferma_prenotazione" class="btn-submit">CONFERMA PRENOTAZIONE</button>
             </div>
         </form>
-        </div>
     </div>
 </main>
 
@@ -227,6 +226,8 @@ $oggi = date('Y-m-d');
                     alert("Attenzione! Hai già una prenotazione per questa fascia oraria.");
                 <?php elseif ($_GET['res'] == 'orario_occupato'): ?>
                     alert("Attenzione! Hai già una prenotazione per questa fascia oraria.");
+                <?php elseif ($_GET['res'] == 'risorsa_occupata'): ?>
+                    alert("Attenzione! Il tavolo o la pista selezionata è già occupata. Per favore seleziona un'altra risorsa o un altro orario.");
                 <?php endif; ?>
                 const url = new URL(window.location);
                 url.searchParams.delete('res');

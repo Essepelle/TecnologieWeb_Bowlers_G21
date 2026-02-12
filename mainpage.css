@@ -335,6 +335,19 @@ footer {
     margin-top: 0pt;
     margin-bottom: 0pt;
 }
+
+.titolo {
+    margin: unset;
+    margin-bottom: 10pt;
+    padding: unset;
+    font-size: 4rem;
+    font-family: "Racing Sans One", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1;
+    color: #fff;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
     .container { flex-direction: column; }
