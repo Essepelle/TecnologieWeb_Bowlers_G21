@@ -79,7 +79,7 @@ if (!empty($username)) {
 </aside>
 
 <main>
-    <h2 id="presentazione">I Nostri Servizi</h2>
+    <h1 id="presentazione">I Nostri Servizi</h1>
     <p>Benvenuto, questi sono i servizi che offriamo presso il nostro club:</p>
 
     <div class="grid-giochi">
