@@ -76,7 +76,16 @@ if (pg_num_rows($res_check_duplicate) > 0) {
         $n_persone,     // $6
         $torneo_bool    // $7
     );
-
+    
+    // LOGICA NUOVA: Se è il torneo di Carte, devia al pagamento
+    if ($nomeGioco === 'Carte') {
+        // Salviamo i dati in sessione per non perderli durante il pagamento
+        $_SESSION['pending_reservation'] = $params;
+        header("Location: pagamento_torneo.php");
+        exit();
+    }
+    
+    // Se non è carte, procedi con l'insert normale (codice esistente)
     $res_insert = pg_query_params($db, $sql_insert, $params);
 
     if ($res_insert) {
