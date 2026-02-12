@@ -91,7 +91,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
         <h2>🍔 Il Gusto entra in Gioco!</h2>
         <img src="img/area_food.jpg" class="food-image">
         <p class="food-description">
-            Tra un colpo e l’altro, ricarica le energie nella nostra esclusiva Area Food...
+            Appendi la stecca al chiodo e posa la carabina: è tempo di rifocillarsi nella nostra Area Food, il quartier generale del gusto e del relax! Tra un burger succulento e una pizza da campioni, potrai commentare i tuoi successi (o le tue clamorose sviste) in un'atmosfera vibrante e amichevole. Che tu sia qui per una cena di squadra o per uno snack veloce tra una sfida e l'altra, troverai sempre il carburante giusto per tornare in pista più forte di prima. Ricorda: lo strike più importante della serata è quello che farai seduto a tavola! Unisciti a noi, brinda con gli amici e goditi il lato più saporito del divertimento.
         </p>
     </div>
 
