@@ -36,6 +36,10 @@ header {
     text-shadow: 0 0 10pt black;
     z-index: 1000;
 }
+h1{
+    font-family: "Racing Sans One", system-ui;
+}
+
 .site {
     display: flex;
     align-items: center;
@@ -161,6 +165,7 @@ main {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     min-height: 100vh;
+    text-align: center;
 }
 
 /* Griglia Giochi */
