@@ -80,7 +80,10 @@ if (!empty($username)) {
 
 <main>
     <h1 id="presentazione">I Nostri Servizi</h1>
-    <p>Benvenuto, questi sono i servizi che offriamo presso il nostro club:</p>
+    <p id="info"> Vieni a scoprire il tempio del divertimento da The Bowler Club! <br>
+        Aperti ogni giorno dalle <b>17:00</b> alle <b>02:00</b> per garantirti il massimo dell'adrenalina 
+        quando preferisci. <br> Siamo il punto di riferimento per chi cerca lanci mozzafiato, 
+        sfide laser e ottima cucina. <br> La tua prossima serata memorabile inizia qui!</p>
 
     <div class="grid-giochi">
         <?php
@@ -97,7 +100,7 @@ if (!empty($username)) {
                 <img src="<?= htmlspecialchars($row['immagine']) ?>" alt="<?= htmlspecialchars($row['nome_gioco']) ?>">
                 
                     <h1><?= htmlspecialchars($row['nome_gioco']) ?></h1>
-                    <p><?= nl2br(htmlspecialchars($presentazione)) ?></p>
+                    <p id="info_gioco"><?= nl2br(htmlspecialchars($presentazione)) ?></p>
 
 
                     <!-- Si discrimina l'utente registrato da quello non registrato -->
@@ -122,7 +125,7 @@ if (!empty($username)) {
             <img src="img/area_food.jpg" alt="Area Food">
             
                 <h1>Area Food & Recensioni</h1>
-                <p>Vieni a scoprire la nostra selezione di snack, pizze e cocktail! <br>
+                <p id="info_gioco">Vieni a scoprire la nostra selezione di snack, pizze e cocktail! <br>
                 Il posto perfetto per ricaricarsi tra una partita e l'altra.</p>
 
                 <button type="button" 

@@ -266,6 +266,7 @@ button {
     transition: 0.3s;
     margin-top: 10px;
     max-width: fit-content; 
+    font-size: 130%;
 }
 
 button:hover {
@@ -310,6 +311,31 @@ footer {
     margin: 5px 0;
 }
 
+#info {
+    font-size: 1.3em;
+    margin-top: 0pt;
+    margin-bottom: 0pt;
+
+    background: rgba(26, 26, 26, 0.8);  /* Sfondo più trasparente e leggero */
+    backdrop-filter: blur(4px);           /* Sfocatura leggera */
+    padding: 12px 15px;                   /* Padding ridotto (era 20px) */
+    border-radius: 8px;                   /* Angoli leggermente più piccoli */
+    margin-bottom: 20px;                  /* Meno spazio sotto */
+    margin-right: 28px;
+    line-height: 1.4;                     /* Testo più compatto */
+    color: #ddd;                          /* Bianco morbido (meno sparato) */
+
+    /* Bordo: invece che una barra grossa a sinistra, un bordo sottile ed elegante */
+    border-right: 3px solid #fff200;       /* Accento laterale più sottile */
+    border-left: 3px solid #fff200;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Ombra più delicata */
+}
+
+#info_gioco {
+    font-size: 1.4em;
+    margin-top: 0pt;
+    margin-bottom: 0pt;
+}
 /* Responsive */
 @media (max-width: 900px) {
     .container { flex-direction: column; }
