@@ -270,22 +270,41 @@ footer {
 /* Stile per il box della Descrizione Estesa */
 /* Stile per il box della Descrizione Estesa - Versione "Small & Cute" */
 .box-descrizione {
-    background-color: rgba(0, 0, 0, 0.4); /* Sfondo più trasparente e leggero */
+    background: rgba(26, 26, 26, 0.8);  /* Sfondo più trasparente e leggero */
     backdrop-filter: blur(4px);           /* Sfocatura leggera */
     padding: 12px 15px;                   /* Padding ridotto (era 20px) */
     border-radius: 8px;                   /* Angoli leggermente più piccoli */
     margin-bottom: 20px;                  /* Meno spazio sotto */
     margin-right: 28px;
     line-height: 1.4;                     /* Testo più compatto */
-    font-size: 0.9em;                     /* Dimensione testo più piccola e fine */
+    font-size: 1.2em;                     /* Dimensione testo più piccola e fine */
     color: #ddd;                          /* Bianco morbido (meno sparato) */
 
     /* Bordo: invece che una barra grossa a sinistra, un bordo sottile ed elegante */
     border: 1px solid rgba(0, 183, 255, 0.2); 
-    border-left: 3px solid #00b7ff;       /* Accento laterale più sottile */
+    border-right: 3px solid #00b7ff;       /* Accento laterale più sottile */
     
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Ombra più delicata */
 }
+
+.box-regole {
+    background: rgba(26, 26, 26, 0.8);   /* Sfondo più trasparente e leggero */
+    backdrop-filter: blur(4px);           /* Sfocatura leggera */
+    padding: 12px 15px;                   /* Padding ridotto (era 20px) */
+    border-radius: 8px;                   /* Angoli leggermente più piccoli */
+    margin-bottom: 20px;                  /* Meno spazio sotto */
+    margin-right: 28px;
+    line-height: 1.2;                     /* Testo più compatto */
+    font-size: 1em;                     /* Dimensione testo più piccola e fine */
+    color: #ddd;                          /* Bianco morbido (meno sparato) */
+
+    /* Bordo: invece che una barra grossa a sinistra, un bordo sottile ed elegante */
+    border: 1px solid rgba(0, 183, 255, 0.2); 
+    border-left: 3px solid #ff00ff;       /* Accento laterale più sottile */
+    
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Ombra più delicata */
+}
+
 
 /* Contenitore generale box input */
 .box-input-specifici {

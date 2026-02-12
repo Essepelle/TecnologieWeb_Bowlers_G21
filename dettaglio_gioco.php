@@ -20,7 +20,10 @@ if (!$gioco) {
     die("Gioco non trovato.");
 }
 
-// 3. Lettura descrizione estesa
+// 3. Lettura descrizione estesa e ridotta
+$nomeFilePres = "descrizioni/pres_" . strtolower(str_replace(' ', '_', $nomeGioco)) . ".txt";
+$descrizioneRidotta = file_exists($nomeFilePres) ? file_get_contents($nomeFilePres) : "Dettagli non disponibili.";
+
 $nomeFileDescr = "descrizioni/descr_" . strtolower(str_replace(' ', '_', $nomeGioco)) . ".txt";
 $descrizioneEstesa = file_exists($nomeFileDescr) ? file_get_contents($nomeFileDescr) : "Dettagli non disponibili.";
 
@@ -99,6 +102,11 @@ $oggi = date('Y-m-d');
             <h1><?= htmlspecialchars($nomeGioco) ?></h1>
             
             <div class="box-descrizione">
+                <?= nl2br(htmlspecialchars($descrizioneRidotta)) ?>
+            </div>
+
+            <div class="box-regole">
+                <p class="titolo-sidebar">REGOLE:</p>
                 <?= nl2br(htmlspecialchars($descrizioneEstesa)) ?>
             </div>
 
