@@ -113,6 +113,7 @@ $oggi = date('Y-m-d');
             <form method="POST" action="gestisci_prenotazione.php" onsubmit="if(!document.getElementById('ora_prenotazione_valore').value){alert('Seleziona un orario!'); return false;}">
                 <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
                 
+                <br>
                 <label>Scegli il Giorno:</label><br>
                 <input type="text" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." readonly required><br><br>
 

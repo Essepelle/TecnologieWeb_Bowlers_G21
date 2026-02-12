@@ -63,9 +63,8 @@ if (pg_num_rows($res_check_duplicate) > 0) {
         data_ora, 
         numero_pista, 
         numero_tavolo, 
-        numero_persone, 
-        partecipazione_torneo
-    ) VALUES ($1, $2, $3, $4, $5, $6, $7)";
+        numero_persone,      
+    ) VALUES ($1, $2, $3, $4, $5, $6)";
     
     $params = array(
         $username,      // $1

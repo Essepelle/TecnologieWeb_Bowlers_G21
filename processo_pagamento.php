@@ -32,7 +32,7 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
 
     $params = $_SESSION['pending_reservation'];
     // ... resto del codice per l'inserimento nel DB ...
-    $sql_insert = "INSERT INTO prenotazioni (username_utente, nome_gioco, data_ora, numero_pista, numero_tavolo, numero_persone, partecipazione_torneo) 
+    $sql_insert = "INSERT INTO prenotazioni (username_utente, nome_gioco, data_ora, numero_pista, numero_tavolo, numero_persone) 
                    VALUES ($1, $2, $3, $4, $5, $6, $7)";
     
     $res_insert = pg_query_params($db, $sql_insert, $params);
