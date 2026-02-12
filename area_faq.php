@@ -106,7 +106,13 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                         <input type="radio" id="star<?= $i ?>" name="voto_stelle" value="<?= $i ?>" <?= $i==5?'required':'' ?> /><label for="star<?= $i ?>">★</label>
                     <?php endfor; ?>
                 </div>
-                <textarea name="testo_commento" rows="3" class="review-textarea" placeholder="Cosa ne pensi?" required></textarea>
+            <textarea 
+                name="testo_commento" 
+                class="review-textarea" 
+                placeholder="Cosa ne pensi?" 
+                required
+                oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+            ></textarea>
                 <button type="submit" name="invia_commento" class="btn-submit-review">PUBBLICA RECENSIONE</button>
             </form>
         <?php else: ?>
