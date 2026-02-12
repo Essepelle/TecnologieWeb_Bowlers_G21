@@ -139,6 +139,11 @@ $oggi = date('Y-m-d');
             <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata</p>
         <?php endif; ?>
     </div>
+    <p class="titolo-sidebar" style="margin-top: 30px;">ACCOUNT</p>
+    <div style="font-size: 0.9em; color: #ccc;">
+        <p style="overflow-wrap: break-word;">Username: <?= htmlspecialchars($username) ?></p>
+        <p style="overflow-wrap: break-word;">Email: <?= htmlspecialchars($email) ?></p>
+    </div>
 </aside>
 
 <footer>
