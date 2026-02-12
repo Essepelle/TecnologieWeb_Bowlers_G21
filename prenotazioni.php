@@ -90,6 +90,10 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                                 <p><strong>Persone:</strong> <?= htmlspecialchars($pren['numero_persone']) ?></p>
                             <?php endif; ?>
 
+                            <?php if ($pren['partecipazione_torneo'] == 't'): ?>
+                                <p style="color: #00ff00;">✓ Iscritto al Torneo</p>
+                            <?php endif; ?>
+
                             <form method="POST" onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');">
                                 <input type="hidden" name="id_prenotazione" value="<?= $pren['id_prenotazione'] ?>">
                                 <button type="submit" name="elimina_prenotazione" style="background-color: #ff4d4d; margin-top: 10px;">
