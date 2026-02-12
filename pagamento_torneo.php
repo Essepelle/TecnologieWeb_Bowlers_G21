@@ -44,7 +44,7 @@ $dati = $_SESSION['pending_reservation'];
 
     <main>
         <div class="payment-container">
-            <h2>Conferma Partecipazione Torneo</h2>
+            <h1>Conferma Partecipazione Torneo</h1>
             
             <div class="recap-box">
                 <p>Gioco: <strong><?= htmlspecialchars($dati[1]) ?></strong></p>
@@ -52,7 +52,8 @@ $dati = $_SESSION['pending_reservation'];
                 <p>Quota Iscrizione: <strong>€ 5.00</strong></p>
             </div>
 
-            <form action="processo_pagamento.php" method="POST" class="payment-form">
+            <form action="processo_pagamento.php" method="POST">
+            <div class="payment-form">    
                 <label>Titolare Carta</label>
                 <input type="text" name="titolare" placeholder="Nome Cognome" required 
                     pattern="[A-Za-z\s]{5,}" title="Inserisci il nome completo del titolare">
@@ -63,22 +64,19 @@ $dati = $_SESSION['pending_reservation'];
                     pattern="\d{16}" title="Inserisci le 16 cifre della carta senza spazi">
                 
                 <div class="form-row">
-                    <div>
-                        <label>Scadenza</label>
-                        <input type="text" name="scadenza" placeholder="MM/AA" 
-                            maxlength="5" required 
-                            pattern="(0[1-9]|1[0-2])\/[0-9]{2}" title="Formato MM/AA">
-                    </div>
-                    <div>
-                        <label>CVV</label>
-                        <input type="text" name="cvv" placeholder="123" 
-                            maxlength="3" minlength="3" required 
-                            pattern="\d{3}" title="Le 3 cifre sul retro della carta">
-                    </div>
+                    <label>Scadenza</label>
+                    <label>CVV</label>
+                    <input type="text" id="scadenza" name="scadenza" placeholder="MM/AA" 
+                        maxlength="5" required 
+                        pattern="(0[1-9]|1[0-2])\/[0-9]{2}" title="Formato MM/AA">
+                    <input type="text" id="cvv" name="cvv" placeholder="123" 
+                        maxlength="3" minlength="3" required 
+                        pattern="\d{3}" title="Le 3 cifre sul retro della carta">
                 </div>
                 
-                <button type="submit" name="esegui_pagamento" class="btn-pay">PAGA ORA</button>
-                <a href="dettaglio_gioco.php?gioco=Carte" class="btn-cancel">Annulla e Torna Indietro</a>
+                <input type="submit" name="esegui_pagamento" class="btn-pay" value="PAGA ORA">
+                <a href="dettaglio_gioco.php?gioco=Carte" class="btn-cancel">Annulla</a>
+            </div>
             </form>
         </div>
     </main>
