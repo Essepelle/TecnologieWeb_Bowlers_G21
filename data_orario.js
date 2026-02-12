@@ -39,7 +39,7 @@ function generaBottoniOrari(dataScelta, nomeGioco) {
     if (nomeGioco === 'Carte') {
         orari.push({ h: 21, m: 0, label: "21:00" });
     } else {
-        const base = [17, 18, 19, 20, 21, 22, 23, 0, 1];
+        const base = [0, 1, 17, 18, 19, 20, 21, 22, 23];
         base.forEach(h => {
             orari.push({ h: h, m: 0, label: (h < 10 ? "0"+h : h) + ":00" });
             orari.push({ h: h, m: 30, label: (h < 10 ? "0"+h : h) + ":30" });
@@ -55,9 +55,16 @@ function generaBottoniOrari(dataScelta, nomeGioco) {
         // Logica orario passato
         let disabilitato = false;
         if (dataScelta === oggiStr) {
-            let hC = slot.h < 5 ? slot.h + 24 : slot.h;
-            let oC = oraCorrente < 5 ? oraCorrente + 24 : oraCorrente;
-            if (hC < oC || (hC === oC && slot.m <= minutiCorrenti)) disabilitato = true;
+            // Se l'orario è 00:00 o 01:00, sono le prime ore del mattino di OGGI.
+            // Se l'utente sta navigando di pomeriggio/sera, queste ore sono già passate.
+            if (slot.h < 5) {
+                disabilitato = true; 
+            } else {
+                // Per gli orari serali (17-23), controllo standard
+                if (slot.h < oraCorrente || (slot.h === oraCorrente && slot.m <= minutiCorrenti)) {
+                    disabilitato = true;
+                }
+            }
         }
 
         if (disabilitato) {
