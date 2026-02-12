@@ -23,7 +23,10 @@ if (isset($_POST['invia_commento']) && !empty(trim($_POST['testo_commento'])) &&
 // --- 2. LOGICA SIDEBAR ---
 $res_sidebar = null;
 if ($username) {
-    $sql_select = "SELECT * FROM prenotazioni WHERE username_utente = $1 AND data_ora >= CURRENT_TIMESTAMP ORDER BY data_ora ASC";
+    $sql_select = "SELECT nome_gioco, data_ora FROM prenotazioni 
+                    WHERE username_utente = $1 
+                    AND data_ora >= CURRENT_TIMESTAMP
+                    ORDER BY data_ora ASC LIMIT 5";
     $res_sidebar = pg_query_params($db, $sql_select, array($username));
 }
 
@@ -148,16 +151,21 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
     <div id="carrello-box">
         <?php if ($res_sidebar && pg_num_rows($res_sidebar) > 0): ?>
             <p style="color:#888;">Solo le più recenti:</p>
-            <ul>
-                <?php while ($item = pg_fetch_assoc($res_sidebar)): ?>
-                    <li>
-                        <strong class="reservation-game"><?= htmlspecialchars($item['nome_gioco']) ?></strong><br>
-                        <span class="reservation-date"><?= date('d M, H:i', strtotime($item['data_ora'])) ?></span>
+            <ul style="list-style: none; padding: 0;">
+                <?php while ($item = pg_fetch_assoc($res_sidebar)): 
+                    // Formattiamo la data per renderla più bella (es. 12 Feb, 21:00)
+                    $data_f = date('d M, H:i', strtotime($item['data_ora']));
+                ?>
+                    <li style="margin-bottom: 15px; border-bottom: 1px solid #ff00ff40; padding-bottom: 5px;">
+                        <strong style="color: #00b7ff; text-transform: uppercase;">
+                            <?= htmlspecialchars($item['nome_gioco']) ?>
+                        </strong><br>
+                        <span style="color: #ccc;"><?= $data_f ?></span>
                     </li>
                 <?php endwhile; ?>
             </ul>
         <?php else: ?>
-            <p class="no-reservations">Nessuna prenotazione trovata</p>
+            <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata</p>
         <?php endif; ?>
     </div>
     <p class="titolo-sidebar sidebar-account-title">ACCOUNT</p>
