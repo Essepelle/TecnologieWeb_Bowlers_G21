@@ -49,7 +49,8 @@ $oggi = date('Y-m-d');
     <link rel="icon" type="icon" href="resources/logo.png"/>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css"> <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/it.js"></script>
     <script src="data_orario.js"></script>
 </head>
@@ -97,6 +98,10 @@ $oggi = date('Y-m-d');
         <div>
             <h1><?= htmlspecialchars($nomeGioco) ?></h1>
             
+            <div class="box-descrizione">
+                <?= nl2br(htmlspecialchars($descrizioneEstesa)) ?>
+            </div>
+
             <form method="POST" action="gestisci_prenotazione.php" onsubmit="if(!document.getElementById('ora_prenotazione_valore').value){alert('Seleziona un orario!'); return false;}">
                 <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
                 
@@ -111,10 +116,39 @@ $oggi = date('Y-m-d');
                 
                 <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" required>
 
-                <?php if ($nomeGioco == 'Biliardo'): ?>
+                <div class="box-input-specifici">
+                    
+                    <?php if ($nomeGioco == 'Bowling'): ?>
+                        <label>Seleziona Pista (1-24):</label>
+                        <div class="selector-grid">
+                            <?php for ($i = 1; $i <= 24; $i++): ?>
+                                <input type="radio" id="pista_<?= $i ?>" name="numero_pista" value="<?= $i ?>" required>
+                                <label for="pista_<?= $i ?>"><?= $i ?></label>
+                            <?php endfor; ?>
+                        </div>
+
+                    <?php elseif ($nomeGioco == 'Biliardo'): ?>
+                        <label>Seleziona Tavolo (1-6):</label>
+                        <div class="selector-grid">
+                            <?php for ($i = 1; $i <= 6; $i++): ?>
+                                <input type="radio" id="tavolo_<?= $i ?>" name="numero_tavolo" value="<?= $i ?>" required>
+                                <label for="tavolo_<?= $i ?>"><?= $i ?></label>
+                            <?php endfor; ?>
+                        </div>
+
+                    <?php elseif ($nomeGioco == 'Laser Game'): ?>
+                        <label>Numero Persone (Max 10):</label>
+                        <div class="selector-grid">
+                            <?php for ($i = 1; $i <= 10; $i++): ?>
+                                <input type="radio" id="persone_<?= $i ?>" name="numero_persone" value="<?= $i ?>" required>
+                                <label for="persone_<?= $i ?>"><?= $i ?></label>
+                            <?php endfor; ?>
+                        </div>
+                    
                     <?php endif; ?>
 
-                <br>
+                </div>
+
                 <button type="submit" name="conferma_prenotazione" class="btn-submit">CONFERMA</button>
             </form>
         </div>
