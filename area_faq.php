@@ -147,6 +147,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
     <p class="titolo-sidebar">PRENOTAZIONI ATTIVE</p>
     <div id="carrello-box">
         <?php if ($res_sidebar && pg_num_rows($res_sidebar) > 0): ?>
+            <p style="color:#888;">Solo le più recenti:</p>
             <ul>
                 <?php while ($item = pg_fetch_assoc($res_sidebar)): ?>
                     <li>

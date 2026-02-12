@@ -123,6 +123,7 @@ $oggi = date('Y-m-d');
 
 <aside class="sidebar-right">
     <p class="titolo-sidebar">PRENOTAZIONI ATTIVE</p>
+    <p style="color:#888;">Solo le più recenti:</p>
     <div id="carrello-box">
         <?php if (pg_num_rows($res_sidebar) > 0): ?>
             <ul style="list-style: none; padding: 0;">
