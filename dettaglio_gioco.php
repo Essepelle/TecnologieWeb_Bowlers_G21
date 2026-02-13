@@ -213,9 +213,7 @@ $oggi = date('Y-m-d');
 </aside>
 
 <footer>
-    <div id="footer-box">
-        <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
-    </div>
+    © 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21
 </footer>
 
 <?php if (isset($_GET['res'])): ?>
