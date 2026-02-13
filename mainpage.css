@@ -258,6 +258,45 @@ button:hover {
     grid-row: 1;    /* O grid-row: 1 / span 2; se vuoi che prenda tutto lo spazio verticale */
 }
 
+/* Stile del titolo "Seguici su" */
+.social-links h4 {
+    margin-bottom: 10px; /* Spazio sotto il titolo */
+    font-size: 1.1em;
+}
+
+/* Stile base del bottone */
+.social-btn {
+    display: inline-flex; /* Per allineare icona e testo perfettamente */
+    align-items: center;  /* Centra verticalmente il contenuto */
+    gap: 8px;             /* Spazio tra l'icona e la scritta */
+    
+    padding: 10px 20px;   /* Dà "corpo" al bottone */
+    border-radius: 6px;   /* Arrotonda gli angoli */
+    
+    color: white;         /* Testo bianco */
+    text-decoration: none;/* Rimuove la sottolineatura tipica dei link */
+    font-weight: bold;    /* Testo in grassetto */
+    
+    margin-right: 10px;   /* Spazio tra un bottone e l'altro */
+    transition: transform 0.2s, opacity 0.2s; /* Animazione fluida al passaggio del mouse */
+}
+
+/* Effetto Hover (quando passi sopra col mouse) */
+.social-btn:hover {
+    transform: translateY(-2px); /* Il bottone si alza leggermente */
+    opacity: 0.9;                /* Diventa leggermente trasparente */
+}
+
+/* Colore Facebook (Blu ufficiale) */
+.facebook {
+    background-color: #1877F2; 
+}
+
+/* Colore Instagram (Gradiente ufficiale semplificato) */
+.instagram {
+    background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+}
+
 /* Footer */
 footer {
     text-align: center;

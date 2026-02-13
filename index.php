@@ -153,8 +153,8 @@ if (!empty($username)) {
             
             <p class="contact-list" style="justify-content: flex-end;">
                 <p>Via del Bowling, 123 - Roma <i class="fas fa-map-marker-alt"></i></li>
-                <p>+39 012 345 6789 <i class="fas fa-phone"></i></li>
-                <p>info@thebowlerclub.it <i class="fas fa-envelope"></i></li>
+                <p>+39 3299552538 <i class="fas fa-phone"></i></li>
+                <p>simonPelle@outlook.it <i class="fas fa-envelope"></i></li>
             </p>
 
             <div class="social-links">
