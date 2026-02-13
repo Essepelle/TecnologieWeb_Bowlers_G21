@@ -138,33 +138,36 @@ if (!empty($username)) {
 </main>
 
 <aside class="sidebar-right">
-    <p class="titolo-sidebar">PRENOTAZIONI ATTIVE</p>
-    <div id="carrello-box">
-        <?php if ($res_sidebar && pg_num_rows($res_sidebar) > 0): ?>
-            <p style="color:#888;">Solo le più recenti:</p>
-            <ul style="list-style: none; padding: 0;">
-                <?php while ($item = pg_fetch_assoc($res_sidebar)): 
-                    // Formattiamo la data per renderla più bella (es. 12 Feb, 21:00)
-                    $data_f = date('d M, H:i', strtotime($item['data_ora']));
-                ?>
-                    <li style="margin-bottom: 15px; border-bottom: 1px solid #ff00ff40; padding-bottom: 5px;">
-                        <strong style="color: #00b7ff; text-transform: uppercase;">
-                            <?= htmlspecialchars($item['nome_gioco']) ?>
-                        </strong><br>
-                        <span style="color: #ccc;"><?= $data_f ?></span>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
-        <?php else: ?>
-            <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata</p>
-        <?php endif; ?>
-    </div>
-    <p class="titolo-sidebar" style="margin-top: 30px;">ACCOUNT</p>
+    <p class="titolo-sidebar">ACCOUNT</p>
     <div style="font-size: 0.9em; color: #ccc;">
         <?php if (isset($_SESSION['utente'])): ?>
-            <p style="overflow-wrap: break-word;">Username: <?= htmlspecialchars($username) ?></p>
-            <p style="overflow-wrap: break-word;">Email: <?= htmlspecialchars($email) ?></p>
-        <?php else: ?>
+            <p style="overflow-wrap: break-word;"> <p id="title-blue">Username</p> <?= htmlspecialchars($username) ?></p>
+            <p style="overflow-wrap: break-word;"> <p id="title-blue">Email</p> <?= htmlspecialchars($email) ?></p>
+            
+            <p class="titolo-sidebar" style="margin-top: 40px;">PRENOTAZIONI ATTIVE</p>
+            <div id="carrello-box">
+                <?php if ($res_sidebar && pg_num_rows($res_sidebar) > 0): ?>
+                    <p style="color:#888;">Solo le più recenti:</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <?php while ($item = pg_fetch_assoc($res_sidebar)): 
+                            // Formattiamo la data per renderla più bella (es. 12 Feb, 21:00)
+                            $data_f = date('d M, H:i', strtotime($item['data_ora']));
+                        ?>
+                            <li style="margin-bottom: 15px; border-bottom: 1px solid #ff00ff40; padding-bottom: 5px;">
+                                <strong id="title-blue">
+                                    <?= htmlspecialchars($item['nome_gioco']) ?>
+                                </strong><br>
+                                <span style="color: #ccc;"><?= $data_f ?></span>
+                            </li>
+                        <?php endwhile; ?>
+                    </ul>
+                <?php else: ?>
+                    <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata</p>
+                <?php endif; ?>
+            </div>
+        
+        
+            <?php else: ?>
             <p style="font-style: italic; line-height: 1.6;">
                 Non sei ancora dei nostri?<br>
                 Registrati subito per accedere<br>
