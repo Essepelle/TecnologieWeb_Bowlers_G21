@@ -17,14 +17,13 @@
 .food-section {
     display: grid;
     grid-template-columns: 1fr;
-    place-items: center center;
+    place-items: stretch stretch;
     gap: 20pt;
     text-align: center; 
     margin-bottom: 20pt; 
-    background: rgba(26, 26, 26, 0.8); 
-    padding: 20pt; 
-    border-radius: 15px; 
-    border: 1px solid #333; 
+    /*background: rgba(26, 26, 26, 0.8); */
+    /*border-radius: 15px; 
+    border: 1px solid #333; */
 }
 
 main h2 {
@@ -33,16 +32,50 @@ main h2 {
     font-family: 'Belanosima', system-ui;
 }
 
+.photo-menu{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20pt;
+    place-items: stretch stretch;
+
+}
+.menu{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10pt;
+    place-items: start stretch;
+}
+
+.menu strong{
+    grid-column: 1 / -1;
+}
+#article{
+    text-align: left;
+}
+#price{
+    text-align: right;
+}
 .food-section img {
-    width: 50%; 
+    width: 100%;
     border-radius: 20pt;
     box-shadow: 0 0 10pt black;
 }
+.food-section .comments-scroll-box{
+    background: rgba(26, 26, 26, 0.8); 
+    padding: 20pt; 
+    border-top-left-radius: 20pt; 
+    border-bottom-left-radius: 20pt; 
+    border-left: 5pt solid #ff00ff;
+}
 
 .food-section p {
-    font-size: 1.2em; 
-    line-height: 1.6; 
+    font-size: 1em; 
+    line-height: 1.2; 
     text-shadow: 0 0 10pt black;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 20pt;
+    border-radius: 20pt;
+    margin: unset
 }
 
 .login-alert {
@@ -227,8 +260,8 @@ main h2 {
 /* --- Stili per Area FAQ --- */
 .faq-area { 
     background: rgba(26, 26, 26, 0.8); 
-    padding: 20px; 
-    border-radius: 10px; 
+    padding: 20pt; 
+    border-radius: 20pt; 
     border: 1px solid #333; 
 }
 

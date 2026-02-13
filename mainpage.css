@@ -184,70 +184,6 @@ main h1{
 }
 
 
-/* Griglia Giochi 
-.grid-giochi {
-    display: block;
-    grid-template-columns: repeat(1, max);
-    flex-wrap: wrap; 
-    place-items: stretch stretch;
-}
-
-.grid-giochi hr{
-    margin-top: 20pt;
-    margin-bottom: 20pt;
-}
-.card-gioco {
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    column-gap: 20pt;
-    row-gap: 1em;
-    place-items: center stretch;
-    padding: 20pt;
-    border-radius: 20pt;
-    text-shadow: 0 0 10pt black;
-    scroll-margin-top: 20pt;    
-}
-
-.card-gioco h1{
-    padding: unset;
-}
-.card-gioco img {
-    grid-row: 1 / -1;
-    width: 100%;
-    height: 200pt;
-    object-fit: cover;
-    border-radius: 20pt;
-    box-sizing: border-box;
-    box-shadow: 0 0 10pt black;
-}
-
-.card-gioco:nth-child(2n){
-    grid-template-columns: 3fr 7fr;
-    justify-items: left;
-    text-align: left;
-}
-
-.card-gioco:nth-child(2n) img {
-    grid-column: 1;
-}
-.card-gioco:nth-child(2n) > *:not(img) {
-    grid-column: 2;
-}
-
-.card-gioco:nth-child(4n){
-    grid-template-columns: 7fr 3fr;
-    justify-items: right;
-    text-align: right;
-}
-
-.card-gioco:nth-child(4n) img {
-    grid-column: 2;
-}
-.card-gioco:nth-child(4n) > *:not(img) {
-    grid-column: 1;
-}
-*/
-
 .evidenzia {
     /* Sovrascrive il bordo trasparente con il Rosa Neon */
     border-color: #ff00ff !important; 
@@ -467,7 +403,7 @@ footer {
 
 .card-gioco-carousel {
     flex: 0 0 300px; 
-    background: #bfbfbf80;
+    background: rgba(255, 255, 255, 0.05);;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
