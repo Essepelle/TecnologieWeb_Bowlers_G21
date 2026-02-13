@@ -96,7 +96,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                                 
                                 <div id="info_gioco">
                                     <?php if ($pren['numero_tavolo']): ?>
-                                        <p>🪑 Tavolo: <?= htmlspecialchars($pren['numero_tavolo']) ?></p>
+                                        <p>🎱 Tavolo: <?= htmlspecialchars($pren['numero_tavolo']) ?></p>
                                     
                                     <?php elseif ($pren['numero_pista']): ?>
                                         <p>🎳 Pista: <?= htmlspecialchars($pren['numero_pista']) ?></p>
