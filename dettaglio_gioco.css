@@ -287,9 +287,11 @@ button:hover {
     appearance: none;           /* Rimuove stili brutti di default */
 }
 
-#data_prenotazione:focus {
-    border-color: #00b7ff;      /* Bordo azzurro quando attivo */
-    box-shadow: 0 0 10px rgba(0, 183, 255, 0.3);
+#data_prenotazione:focus { /*Bottone per cliccare sulla data*/
+    border-color: #00b7ff;       
+    color: #fff;
+    background: #222;
+    box-shadow: 0 0 10px #ff00ff;
 }
 
 /* QUESTA È FONDAMENTALE: Inverte i colori dell'icona del calendario (da nera a bianca) */
@@ -387,7 +389,7 @@ footer {
 /* STILE DEL BOTTONE */
 .selector-grid label {
     display: flex;
-    justify-content: center;
+    justify-content: center;                                 /*stile per il calendario*/
     align-items: center;
     padding: 12px 5px;       
     background: #1a1a1a;
