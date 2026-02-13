@@ -46,7 +46,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <body style="grid-template-columns: 15% 1fr 15%;">
 
 <header>
-    <div class="site" onclick="window.location.href='mainpage.php'">
+    <div class="site" onclick="window.location.href='index.php'">
         <img src="resources/logo.png" class="logo">
         <h1>The Bowler Club</h1>
     </div>
@@ -58,7 +58,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <aside class="sidebar-left">
     <p class="titolo-sidebar">SERVIZI OFFERTI</p>
     <ul>
-        <li><a href="mainpage.php">Torna alla Home</a></li>
+        <li><a href="index.php">Torna alla Home</a></li>
         <?php while ($r = pg_fetch_assoc($risultatoGiochi)): ?>
             <li><a href="dettaglio_gioco.php?gioco=<?= urlencode($r['nome_gioco']) ?>"><?= htmlspecialchars($r['nome_gioco']) ?></a></li>
         <?php endwhile; ?>
@@ -114,7 +114,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
         <?php else: ?>
             <div style="text-align: center; margin-top: 50px; padding: 30px; background: rgba(0,0,0,0.5); border-radius: 15px;">
                 <p style="font-size: 1.2em;">Non hai ancora effettuato prenotazioni.</p>
-                <button onclick="window.location.href='mainpage.php'" style="margin-top: 20px;">Prenota ora</button>
+                <button onclick="window.location.href='index.php'" style="margin-top: 20px;">Prenota ora</button>
             </div>
         <?php endif; ?>
 

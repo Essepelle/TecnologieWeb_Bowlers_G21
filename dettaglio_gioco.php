@@ -7,7 +7,7 @@ $email = $_SESSION['email'];
 // 1. Recupero il nome del gioco dalla URL
 $nomeGioco = $_GET['gioco'] ?? '';
 if (empty($nomeGioco)) {
-    header("Location: mainpage.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -61,7 +61,7 @@ $oggi = date('Y-m-d');
 <body>
 
 <header>
-    <div class="site" onclick="window.location.href='mainpage.php'">
+    <div class="site" onclick="window.location.href='index.php'">
         <img src="resources/logo.png" class="logo" alt="Logo">
         <h1>The Bowler Club</h1>
     </div>
@@ -83,7 +83,7 @@ $oggi = date('Y-m-d');
 <aside class="sidebar-left">
     <p class="titolo-sidebar">SERVIZI OFFERTI</p>
     <ul>
-        <li><a href="mainpage.php">Torna alla Home</a></li>
+        <li><a href="index.php">Torna alla Home</a></li>
         <?php while ($r = pg_fetch_assoc($risultatoGiochi)): ?>
             <li>
                 <a href="dettaglio_gioco.php?gioco=<?= urlencode($r['nome_gioco']) ?>">

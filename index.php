@@ -41,7 +41,7 @@ if (!empty($username)) {
 
 <body>
 <header>
-    <div class="site" onclick="window.location.href='mainpage.php'">
+    <div class="site" onclick="window.location.href='index.php'">
         <img src="resources/logo.png" class="logo" alt="Logo">
         <h1>The Bowler Club</h1>
     </div>

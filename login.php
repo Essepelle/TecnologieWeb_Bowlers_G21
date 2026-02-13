@@ -29,7 +29,7 @@ unset($_SESSION['form_target']);
 
 <body>
     <header>
-        <div class="site" onclick="window.location.href='mainpage.php'">
+        <div class="site" onclick="window.location.href='index.php'">
             <img src="resources/logo.png" class="logo" alt="Logo">
             <h1>The Bowler Club</h1>
         </div>
@@ -102,7 +102,7 @@ unset($_SESSION['form_target']);
                     </div>
                     <hr />
                     <div class="input-row">
-                        <input type="email" name="email" id="email" class="text" placeholder="Email"
+                        <input type="" name="email" id="email" class="text" placeholder="Email"
                             value="<?php echo htmlspecialchars($old_email); ?>" />
                         <i class="fa-solid fa-envelope"></i>
                     </div>

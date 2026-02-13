@@ -44,7 +44,7 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
         echo "Errore tecnico durante il salvataggio: " . pg_last_error($db);
     }
 } else {
-    header("Location: mainpage.php");
+    header("Location: index.php");
     exit();
 }
 ?>

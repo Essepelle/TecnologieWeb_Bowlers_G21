@@ -99,7 +99,7 @@ if (isset($_POST['conferma_prenotazione'])) {
         echo "Errore DB: " . pg_last_error($db);
     }
 } else {
-    header("Location: mainpage.php");
+    header("Location: index.php");
     exit();
 }
 ?>

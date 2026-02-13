@@ -4,7 +4,7 @@ session_start();
 
 // Controllo sicurezza: l'utente deve essere loggato
 if (!isset($_SESSION['utente']) || !isset($_POST['conferma_eliminazione'])) {
-    header("Location: mainpage.php");
+    header("Location: index.php");
     exit();
 }
 

@@ -61,7 +61,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <body>
 
 <header>
-    <div class="site clickable" onclick="window.location.href='mainpage.php'">
+    <div class="site clickable" onclick="window.location.href='index.php'">
         <img src="resources/logo.png" class="logo" alt="Logo">
         <h1>The Bowler Club</h1>
     </div>
@@ -83,7 +83,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <aside class="sidebar-left">
     <p class="titolo-sidebar">SERVIZI OFFERTI</p>
     <ul>
-        <li><a href="mainpage.php"><?= $username ? 'Torna alla Home' : 'Home' ?></a></li>
+        <li><a href="index.php"><?= $username ? 'Torna alla Home' : 'Home' ?></a></li>
         <?php pg_result_seek($risultatoGiochi, 0);
         while ($r = pg_fetch_assoc($risultatoGiochi)): ?>
             <li><a href="dettaglio_gioco.php?gioco=<?= urlencode($r['nome_gioco']) ?>"><?= htmlspecialchars($r['nome_gioco']) ?></a></li>

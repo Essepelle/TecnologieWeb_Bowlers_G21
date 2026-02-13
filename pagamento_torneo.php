@@ -4,7 +4,7 @@ session_start();
 
 // Se non ci sono dati di prenotazione in sospeso, torna alla home
 if (!isset($_SESSION['pending_reservation'])) {
-    header("Location: mainpage.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -23,7 +23,7 @@ $dati = $_SESSION['pending_reservation'];
 </head>
 <body>
     <header>
-        <div class="site" onclick="window.location.href='mainpage.php'">
+        <div class="site" onclick="window.location.href='index.php'">
             <img src="resources/logo.png" class="logo" alt="Logo">
             <h1>The Bowler Club</h1>
         </div>
