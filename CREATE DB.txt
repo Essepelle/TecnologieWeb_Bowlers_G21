@@ -1,0 +1,85 @@
+-- ==========================================
+-- 0. RIMOZIONE TABELLE ESISTENTI
+-- ==========================================
+DROP TABLE IF EXISTS public.faq CASCADE;
+DROP TABLE IF EXISTS public.prenotazioni CASCADE;
+DROP TABLE IF EXISTS public.utenti CASCADE;
+DROP TABLE IF EXISTS public.giochi CASCADE;
+
+-- ==========================================
+-- 1. CREAZIONE STRUTTURA
+-- ==========================================
+
+-- Tabella Giochi
+CREATE TABLE public.giochi (
+    nome_gioco character varying(50) PRIMARY KEY,
+    immagine character varying(255)
+);
+
+-- Tabella Utenti
+CREATE TABLE public.utenti (
+    username character varying(30) PRIMARY KEY,
+    nome_completo character varying(50) NOT NULL,
+    email character varying(100) NOT NULL UNIQUE,
+    pass text
+);
+
+-- Tabella Prenotazioni
+CREATE TABLE public.prenotazioni (
+    id_prenotazione SERIAL PRIMARY KEY,
+    username_utente character varying(30) REFERENCES public.utenti(username) ON UPDATE CASCADE ON DELETE CASCADE,
+    nome_gioco character varying(50) REFERENCES public.giochi(nome_gioco) ON UPDATE CASCADE,
+    data_ora timestamp without time zone NOT NULL,
+    numero_pista integer,
+    numero_tavolo integer,
+    numero_persone integer
+);
+
+-- Indici di unicità per evitare conflitti di prenotazione (Piste e Tavoli)
+CREATE UNIQUE INDEX unica_prenotazione_pista ON public.prenotazioni (nome_gioco, data_ora, numero_pista) WHERE (numero_pista IS NOT NULL);
+CREATE UNIQUE INDEX unica_prenotazione_tavolo ON public.prenotazioni (nome_gioco, data_ora, numero_tavolo) WHERE (numero_tavolo IS NOT NULL);
+
+-- Tabella Recensioni (FAQ)
+CREATE TABLE public.faq (
+    id_recensione SERIAL PRIMARY KEY,
+    username character varying(30) NOT NULL REFERENCES public.utenti(username) ON UPDATE CASCADE ON DELETE CASCADE,
+    recensione character varying(300) NOT NULL,
+    data_recensione timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
+    stelle integer CHECK (stelle >= 1 AND stelle <= 5)
+);
+
+-- ==========================================
+-- 2. POPOLAMENTO DATI 
+-- ==========================================
+
+-- Inserimento Giochi
+INSERT INTO public.giochi (nome_gioco, immagine) VALUES
+('Bowling', 'img/bowling.jpg'),
+('Biliardo', 'img/biliardo.jpg'),
+('Torneo di Carte', 'img/torneo_di_carte.jpg'),
+('Laser Game', 'img/laser_game.jpg');
+
+-- Inserimento Utenti Random
+INSERT INTO public.utenti (username, nome_completo, email, pass) VALUES
+('admin_user', 'Admin Test', 'admin@example.com', '$2y$10$iFcxUB2Ct8/1itk4C8TsruPeaOggjrZ6oMMhquneZqxRdcHiSnnse'),
+('mario_rossi', 'Mario Rossi', 'mario@rossi.it', '$2y$10$d5vSk7NAKGbqpWS7NBs8GOflEDfN0w4Nk1ynYhgRBCK0WbYJsn/d6'),
+('giulia_b', 'Giulia Bianchi', 'giulia@provider.it', '$2y$10$9ST7O42ymNVKIX6H.QoabuDCwlWJe2m1ZaNwU21D/wWMfG5Mntt1m'),
+('luca_v', 'Luca Verdi', 'luca@mail.com', '$2y$10$nWjb8.oUNeSuQbs.NyckheoWcINegTdjhEruLLIzMrSj2NuOhGZqy');
+
+INSERT INTO public.utenti (username, nome_completo, email, pass) VALUES
+('test_pass', 'Test Pass', 'tpass@example.com', '555'); -- La password non verrà crittografata perchè questo è gestito in php-- 
+
+-- Inserimento Prenotazioni Random
+INSERT INTO public.prenotazioni (username_utente, nome_gioco, data_ora, numero_pista, numero_tavolo, numero_persone) VALUES
+('mario_rossi', 'Bowling', '2026-03-01 18:00:00', 5, NULL, 4),
+('giulia_b', 'Biliardo', '2026-03-01 21:30:00', NULL, 3, 2),
+('luca_v', 'Laser Game', '2026-03-02 15:00:00', NULL, NULL, 10),
+('admin_user', 'Torneo di Carte', '2026-03-05 20:00:00', NULL, NULL, 1),
+('mario_rossi', 'Bowling', '2026-03-10 19:00:00', 12, NULL, 5);
+
+-- Inserimento Recensioni Random
+INSERT INTO public.faq (username, recensione, stelle) VALUES
+('mario_rossi', 'Le piste da bowling sono fantastiche!', 5),
+('giulia_b', 'Bella serata, ma i tavoli da biliardo erano quasi tutti occupati.', 4),
+('luca_v', 'Laser game adrenalinico, torneremo sicuramente!', 5),
+('admin_user', 'Sistema di prenotazione molto semplice da usare.', 4);
