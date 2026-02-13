@@ -41,9 +41,10 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
     <meta charset="UTF-8">
     <title>Le Mie Prenotazioni - The Bowler Club</title>
     <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="prenotazioni.css">
 </head>
 
-<body style="grid-template-columns: 15% 1fr 15%;">
+<body>
 
 <header>
     <div class="site" onclick="window.location.href='index.php'">
@@ -67,69 +68,79 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 </aside>
 
 <main>
-  
-        
-        <h1 class="titolo" style="padding: unset; margin-top: unset">Gestione Prenotazioni</h1>
-        
-        <p style="text-align: center; margin-bottom: 30px;">Qui puoi visualizzare e annullare le tue prenotazioni.</p>
+    <h1 class="titolo" >Gestione Prenotazioni</h1>
+    
+    <?php
+    if (pg_num_rows($risultato_pren) > 0):
+        $prenotazioni_per_data = [];
+        while ($pren = pg_fetch_assoc($risultato_pren)) {
+            $data = date('d/m/Y', strtotime($pren['data_ora']));
+            $prenotazioni_per_data[$data][] = $pren;
+        }
 
-        <?php if (pg_num_rows($risultato_pren) > 0): ?>
-            <div class="grid-giochi">
-                <?php while ($pren = pg_fetch_assoc($risultato_pren)): ?>
-                    <div class="card-gioco-odd" style="
-                        grid-template-columns: 100%; 
-                        margin-bottom: 20px; /* Più spazio tra le card */
-                        border: 2px solid #ff00ff80; /* Bordo fucsia leggermente più spesso */
-                        border-radius: 15px; /* Angoli arrotondati */
-                        background-color: rgba(30, 30, 30, 0.9); /* Sfondo scuro semitrasparente */
-                        box-shadow: 0 5px 15px rgba(0,0,0,0.5); /* Ombra per dare profondità */
-                        overflow: hidden; /* Assicura che il contenuto stia nei bordi arrotondati */
-                    ">
-                        <div style="padding: 20px;">
-                            <h2 style="color: #00b7ff; margin-top: 0;"><?= htmlspecialchars($pren['nome_gioco']) ?></h2>
-                            <p style="font-size: 1.1em;"><strong>Data e Ora:</strong> <?= date('d/m/Y H:i', strtotime($pren['data_ora'])) ?></p>
-                            
-                            <?php if ($pren['numero_tavolo']): ?>
-                                <p><strong>Tavolo:</strong> <?= htmlspecialchars($pren['numero_tavolo']) ?></p>
-                            <?php endif; ?>
-                            
-                            <?php if ($pren['numero_pista']): ?>
-                                <p><strong>Pista:</strong> <?= htmlspecialchars($pren['numero_pista']) ?></p>
-                            <?php endif; ?>
+        foreach ($prenotazioni_per_data as $data => $lista_pren): ?>
+            
+            <h2>                <?= $data ?>            </h2>
+            
+            <hr>
 
-                            <?php if ($pren['numero_persone']): ?>
-                                <p><strong>Persone:</strong> <?= htmlspecialchars($pren['numero_persone']) ?></p>
-                            <?php endif; ?>
+            <div class="carousel-container">
+                <div class="carousel-wrapper">
+                    <?php foreach ($lista_pren as $pren): ?>
+                        <div class="card-gioco-carousel">
+                            <div class="card-content" >
+                                <h3 ><?= htmlspecialchars($pren['nome_gioco']) ?></h3>
+                                <p>
+                                    Ore <?= date('H:i', strtotime($pren['data_ora'])) ?>
+                                </p>
+                                
+                                <div id="info_gioco">
+                                    <?php if ($pren['numero_tavolo']): ?>
+                                        <p>🪑 Tavolo: <?= htmlspecialchars($pren['numero_tavolo']) ?></p>
+                                    
+                                    <?php elseif ($pren['numero_pista']): ?>
+                                        <p>🎳 Pista: <?= htmlspecialchars($pren['numero_pista']) ?></p>
 
-                            <form method="POST" onsubmit="return confirm('Sei sicuro di voler annullare questa prenotazione?');" style="margin-top: 20px;">
-                                <input type="hidden" name="id_prenotazione" value="<?= $pren['id_prenotazione'] ?>">
-                                <button type="submit" name="elimina_prenotazione" style="background-color: #ff4d4d; color: white; border: none; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%;">
-                                    Annulla Prenotazione
-                                </button>
-                            </form>
+                                    <?php elseif ($pren['numero_persone']): ?>
+                                        <p>👥 Persone: <?= htmlspecialchars($pren['numero_persone']) ?></p>
+                                    
+                                    <?php else: ?>
+                                        <p>🃏 Carte: Iscritto con successo</p>
+                                    <?php endif; ?>
+                                </div>
+
+                                <form method="POST" onsubmit="return confirm('Annullare questa prenotazione?');">
+                                    <input type="hidden" name="id_prenotazione" value="<?= $pren['id_prenotazione'] ?>">
+                                    <button type="submit" name="elimina_prenotazione">
+                                        Annulla
+                                    </button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                <?php endwhile; ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
-        <?php else: ?>
-            <div style="text-align: center; margin-top: 50px; padding: 30px; background: rgba(0,0,0,0.5); border-radius: 15px;">
-                <p style="font-size: 1.2em;">Non hai ancora effettuato prenotazioni.</p>
-                <button onclick="window.location.href='index.php'" style="margin-top: 20px;">Prenota ora</button>
-            </div>
-        <?php endif; ?>
 
+        <?php endforeach; ?>
+
+    <?php else: ?>
+        <div>
+            <p>Non hai ancora effettuato prenotazioni attive.</p>
+            <button onclick="window.location.href='index.php'">Prenota ora</button>
+        </div>
+    <?php endif; ?>
 </main>
 
 <aside class="sidebar-right">
     <p class="titolo-sidebar">ACCOUNT</p>
-    <div style="font-size: 0.9em; color: #ccc;">
-        <p style="overflow-wrap: break-word;"> <p id="title-blue"> Username </p> <?= htmlspecialchars($username) ?></p>
-        <p style="overflow-wrap: break-word;"> <p id="title-blue"> Email </p> <?= htmlspecialchars($email) ?></p>
+    <div >
+        <p> <p id="title-blue"> Username </p> <?= htmlspecialchars($username) ?></p>
+        <p> <p id="title-blue"> Email </p> <?= htmlspecialchars($email) ?></p>
         
-        <button onclick="window.location.href='logout.php'" style="width: 100%; margin-top: 10px; font-weight: bold;">Logout</button>
+        <button name="logout" onclick="window.location.href='logout.php'">Logout</button>
 
         <form action="elimina_account.php" method="POST" onsubmit="return confirm('ATTENZIONE: Sei sicuro di voler eliminare definitivamente il tuo account? Questa operazione cancellerà anche tutte le tue prenotazioni e non è reversibile.');" style="margin-top: 10px;">
-            <button type="submit" name="conferma_eliminazione" style="width: 100%; font-weight: bold; border: none; padding: 10px; cursor: pointer;">
+            <button type="submit" name="conferma_eliminazione">
                 Elimina Account
             </button>
         </form>

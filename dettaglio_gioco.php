@@ -164,7 +164,7 @@ $oggi = date('Y-m-d');
                                 <?php endfor; ?>
                             </div>
                         
-                        <?php elseif ($nomeGioco == 'Carte'): ?>
+                        <?php elseif ($nomeGioco == 'Torneo di Carte'): ?>
                         <br><br>
                         <label><u>ATTENZIONE</u> : Pagamento Bancario</label>
                         <p style="font-size: 0.9em; color: #bbb; margin-top: 10px;">

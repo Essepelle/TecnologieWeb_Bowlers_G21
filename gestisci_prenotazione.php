@@ -14,7 +14,7 @@ if (isset($_POST['conferma_prenotazione'])) {
     $ora = $_POST['ora_prenotazione'];
 
     // Controllo sicurezza Carte: solo Mercoledì (3) e Venerdì (5) alle 21:00
-    if ($nomeGioco === 'Carte') {
+    if ($nomeGioco === 'Torneo di Carte') {
         $giorno = date('N', strtotime($data));
         if ($giorno != 3 && $giorno != 5) {
             die("Giorno non valido per Carte.");
@@ -85,7 +85,7 @@ if (isset($_POST['conferma_prenotazione'])) {
     );
     
     // Logica Torneo Carte
-    if ($nomeGioco === 'Carte') {
+    if ($nomeGioco === 'Torneo di Carte') {
         $_SESSION['pending_reservation'] = $params;
         header("Location: pagamento_torneo.php");
         exit();
