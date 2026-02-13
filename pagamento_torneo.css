@@ -59,7 +59,8 @@ main{
 }
 .payment-form input[type="text"]:focus{
     outline: none;
-    box-shadow: 0 0 10px #00b7ff;
+    border: 1px solid #00b7ff;
+    box-shadow: 0 0 10px #ff00ff;
     z-index: 1;
 }
 
