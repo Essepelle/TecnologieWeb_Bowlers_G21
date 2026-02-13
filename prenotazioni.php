@@ -69,7 +69,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <main>
   
         
-        <h1 style="padding: unset; margin-top: unset">Gestione Prenotazioni</h1>
+        <h1 class="titolo" style="padding: unset; margin-top: unset">Gestione Prenotazioni</h1>
         
         <p style="text-align: center; margin-bottom: 30px;">Qui puoi visualizzare e annullare le tue prenotazioni.</p>
 
@@ -121,11 +121,11 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 </main>
 
 <aside class="sidebar-right">
-    <p class="titolo-sidebar">INFO ACCOUNT</p>
-    <div id="carrello-box">
-        <p>Username: <strong><?= htmlspecialchars($username) ?></strong></p>
-        <p>Nome Completo: <strong><?= htmlspecialchars($nome_completo) ?></strong></p>
-        <p>Email: <strong><?= htmlspecialchars($email) ?></strong></p>
+    <p class="titolo-sidebar">ACCOUNT</p>
+    <div style="font-size: 0.9em; color: #ccc;">
+        <p style="overflow-wrap: break-word;"> <p id="title-blue"> Username </p> <?= htmlspecialchars($username) ?></p>
+        <p style="overflow-wrap: break-word;"> <p id="title-blue"> Email </p> <?= htmlspecialchars($email) ?></p>
+        
         <button onclick="window.location.href='logout.php'" style="width: 100%; margin-top: 10px; font-weight: bold;">Logout</button>
 
         <form action="elimina_account.php" method="POST" onsubmit="return confirm('ATTENZIONE: Sei sicuro di voler eliminare definitivamente il tuo account? Questa operazione cancellerà anche tutte le tue prenotazioni e non è reversibile.');" style="margin-top: 10px;">
