@@ -96,14 +96,11 @@ $oggi = date('Y-m-d');
 </aside>
 
 <main>
-    <h1 id="titolo"><?= htmlspecialchars($nomeGioco) ?></h1>
-    <div class="testata-gioco-flex">
-
-        <div class="box-immagine-laterale">
-            <img src="<?= htmlspecialchars($gioco['immagine']) ?>" alt="Immagine <?= htmlspecialchars($nomeGioco) ?>">
-        </div>
-
-        <div class="colonna-testi">
+    <div class="card-gioco-odd">
+        <img src="<?= htmlspecialchars($gioco['immagine']) ?>">
+        <div>
+            <h1 id="titolo"><?= htmlspecialchars($nomeGioco) ?></h1>
+            
             <div class="box-descrizione">
                 <?= nl2br(htmlspecialchars($descrizioneRidotta)) ?>
             </div>
@@ -112,58 +109,62 @@ $oggi = date('Y-m-d');
                 <p class="titolo-sidebar">REGOLE:</p>
                 <?= nl2br(htmlspecialchars($descrizioneEstesa)) ?>
             </div>
-        </div>        
-        
-    </div>
+        </div> 
+    </div> 
 
-    <div class="container-prenotazione">
-        <form method="POST" action="gestisci_prenotazione.php" onsubmit="...">
+    <div class="card-prenotazione">
+        <h2 style="border-bottom: 2px solid #ffcc00; padding-bottom: 10px; margin-bottom: 20px;">Prenota la tua partita</h2>
+
+        <form method="POST" action="gestisci_prenotazione.php" onsubmit="if(!document.getElementById('ora_prenotazione_valore').value){alert('Seleziona un orario!'); return false;}">
             <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
-
-            <div class="form-row-superiore">
+            
+            <div class="prenotazione-layout">
                 
-                <div class="colonna-data-ora">
-                    <label>Scegli il Giorno:</label><br>
-                    <input type="text" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." readonly required>
+<div class="col-data-ora">
+    <label for="data_prenotazione">SCEGLI IL GIORNO:</label>
+    <input type="text" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." readonly required>
 
-                    <br><br>
-                    <label>Scegli l'Orario:</label>
-                    <span class="label-istruzioni">(Clicca su un orario disponibile)</span>
-                    <div id="orari-bottoni-container" class="orari-container">
-                        <p style="color: #555;">Seleziona prima una data valida.</p>
-                    </div>
-                    <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" required>
-                </div>
+    <label>SCEGLI L'ORARIO:</label>
+    <span class="label-istruzioni">(Clicca su un orario disponibile)</span>
+    
+    <div id="orari-bottoni-container" class="orari-container">
+        <p>Seleziona prima una data valida!</p>
+    </div>
+    
+    <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" required>
+</div>
 
-                <div class="colonna-risorsa">
-                    <?php if ($nomeGioco == 'Bowling'): ?>
-                        <label>Seleziona Pista (1-24):</label>
-                        <div class="selector-grid">
-                            <?php for ($i = 1; $i <= 24; $i++): ?>
-                                <input type="radio" id="pista_<?= $i ?>" name="numero_pista" value="<?= $i ?>" required>
-                                <label for="pista_<?= $i ?>"><?= $i ?></label>
-                            <?php endfor; ?>
-                        </div>
+                <div class="col-opzioni">
+                    <div class="box-input-specifici">
+                        
+                        <?php if ($nomeGioco == 'Bowling'): ?>
+                            <label>Seleziona Pista (1-24):</label>
+                            <div class="selector-grid">
+                                <?php for ($i = 1; $i <= 24; $i++): ?>
+                                    <input type="radio" id="pista_<?= $i ?>" name="numero_pista" value="<?= $i ?>" required>
+                                    <label for="pista_<?= $i ?>"><?= $i ?></label>
+                                <?php endfor; ?>
+                            </div>
 
-                    <?php elseif ($nomeGioco == 'Biliardo'): ?>
-                        <label>Seleziona Tavolo (1-6):</label>
-                        <div class="selector-grid">
-                            <?php for ($i = 1; $i <= 6; $i++): ?>
-                                <input type="radio" id="tavolo_<?= $i ?>" name="numero_tavolo" value="<?= $i ?>" required>
-                                <label for="tavolo_<?= $i ?>"><?= $i ?></label>
-                            <?php endfor; ?>
-                        </div>
+                        <?php elseif ($nomeGioco == 'Biliardo'): ?>
+                            <label>Seleziona Tavolo (1-6):</label>
+                            <div class="selector-grid">
+                                <?php for ($i = 1; $i <= 6; $i++): ?>
+                                    <input type="radio" id="tavolo_<?= $i ?>" name="numero_tavolo" value="<?= $i ?>" required>
+                                    <label for="tavolo_<?= $i ?>"><?= $i ?></label>
+                                <?php endfor; ?>
+                            </div>
 
-                    <?php elseif ($nomeGioco == 'Laser Game'): ?>
-                        <label>Numero Persone (Max 10):</label>
-                        <div class="selector-grid">
-                            <?php for ($i = 1; $i <= 10; $i++): ?>
-                                <input type="radio" id="persone_<?= $i ?>" name="numero_persone" value="<?= $i ?>" required>
-                                <label for="persone_<?= $i ?>"><?= $i ?></label>
-                            <?php endfor; ?>
-                        </div>
-
-                    <?php elseif ($nomeGioco == 'Carte'): ?>
+                        <?php elseif ($nomeGioco == 'Laser Game'): ?>
+                            <label>Numero Persone (Max 10):</label>
+                            <div class="selector-grid">
+                                <?php for ($i = 1; $i <= 10; $i++): ?>
+                                    <input type="radio" id="persone_<?= $i ?>" name="numero_persone" value="<?= $i ?>" required>
+                                    <label for="persone_<?= $i ?>"><?= $i ?></label>
+                                <?php endfor; ?>
+                            </div>
+                        
+                        <?php elseif ($nomeGioco == 'Carte'): ?>
                         <br><br>
                         <label><u>ATTENZIONE</u> : Pagamento Bancario</label>
                         <p style="font-size: 0.9em; color: #bbb; margin-top: 10px;">
@@ -172,13 +173,12 @@ $oggi = date('Y-m-d');
                         in modo sicuro al nostro portale di pagamento bancario 
                         per completare l'operazione.
                         </p>
-                        <br><br>
-                    <?php endif; ?>
-                </div>
-            </div>
+                        <?php endif; ?>
 
-            <div class="box-submit">
-                <button type="submit" name="conferma_prenotazione" class="btn-submit">CONFERMA PRENOTAZIONE</button>
+                    </div>
+
+                    <button type="submit" name="conferma_prenotazione" class="btn-submit" style="width: 100%; margin-top: 20px; font-size: 1.2em;">CONFERMA PRENOTAZIONE</button>
+                </div>
             </div>
         </form>
     </div>
@@ -186,9 +186,9 @@ $oggi = date('Y-m-d');
 
 <aside class="sidebar-right">
     <p class="titolo-sidebar">PRENOTAZIONI ATTIVE</p>
+    <p style="color:#888;">Solo le più recenti:</p>
     <div id="carrello-box">
         <?php if (pg_num_rows($res_sidebar) > 0): ?>
-            <p style="color:#888;">Solo le più recenti:</p>
             <ul style="list-style: none; padding: 0;">
                 <?php while ($item = pg_fetch_assoc($res_sidebar)): 
                     $data_f = date('d M, H:i', strtotime($item['data_ora']));

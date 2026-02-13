@@ -117,7 +117,18 @@ aside li a:hover { color: white; padding-left: 5px; }
     margin-bottom: 15px;
     font-size: 125%;
     font-weight: bold;
-    text-align: left;
+}
+
+#titolo {
+    margin: unset;
+    margin-bottom: 10pt;
+    padding: unset;
+    font-size: 4rem;
+    font-family: "Racing Sans One", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1;
+    color: #fff;
 }
 
 main {
@@ -133,39 +144,51 @@ main {
 /* ==========================================================================
    4. CARDS E GRIGLIA GIOCHI
    ========================================================================== */
-.card-gioco-even, .card-gioco-odd {
+.card-gioco-odd {
     border-radius: 15px;
     transition: transform 0.3s ease;
-    display: grid;
-    gap: 20pt;
     padding: 20pt 0;
+    
+    /* GRIGLIA */
+    display: grid;
+    /* La colonna immagine è 40%, il testo 60% */
+    grid-template-columns: 40% 60%; 
+    gap: 20pt;
+    
+    /* Questa è la magia: "stretch" obbliga l'immagine a essere alta 
+       quanto la colonna del testo */
+    align-items: stretch; 
+    
+    /* Rimuoviamo grid-template-rows fissi che creavano problemi */
 }
 
-.card-gioco-even { grid-template-columns: 78% 20%; text-align: right; padding-right: 20pt; }
-.card-gioco-odd { grid-template-columns: 20% 80%; text-align: left; }
-
-.card-gioco-even img, .card-gioco-odd img {
-    height: 100%;
+.card-gioco-odd img {
+    /* Rimuovi grid-area e margin-top vecchi */
     width: 100%;
-    object-fit: cover;
+    height: 100%; /* Occupa tutta l'altezza data dal testo a fianco */
+    object-fit: cover; /* Taglia l'immagine se necessario senza deformarla */
+    
     border-radius: 10px;
-    background: white;
-    padding: 5px;
+    padding: 3px;
     box-sizing: border-box;
+    
+    /* Opzionale: ombra per renderla più carina */
+    box-shadow: 0 0 11px rgba(0,0,0,0.5);
 }
-
-.card-gioco-even img { grid-area: 1 / 2 / 4 / 3; }
-.card-gioco-odd img { grid-area: 1 / 1 / 4 / 2; }
 
 /* ==========================================================================
    5. COMPONENTI DI PRENOTAZIONE (BOTTONI E CALENDARIO)
    ========================================================================== */
 .orari-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-    gap: 12px;
-    margin: 15px 0;
-    max-width: 450px;
+    display: flex;           /* Flexbox è perfetto per allineare liste di oggetti */
+    flex-wrap: wrap;         /* Se i bottoni sono tanti, vanno a capo */
+    justify-content: center; /* IL COMANDO MAGICO: Spinge tutto al CENTRO */
+    align-items: center;     /* Centra anche verticalmente */
+    gap: 10px;               /* Spazio tra i bottoni */
+    
+    width: 100%;             /* Occupa tutto lo spazio disponibile */
+    margin-top: 10px;        /* Un po' di aria dalla scritta sopra */
+    min-height: 30px;        /* Evita che il box sparisca se è vuoto */
 }
 
 button, .btn-orario {
@@ -276,6 +299,7 @@ footer {
     padding: 12px 15px;                   /* Padding ridotto (era 20px) */
     border-radius: 8px;                   /* Angoli leggermente più piccoli */
     margin-bottom: 20px;                  /* Meno spazio sotto */
+    margin-right: 28px;
     line-height: 1.4;                     /* Testo più compatto */
     font-size: 1.2em;                     /* Dimensione testo più piccola e fine */
     color: #ddd;                          /* Bianco morbido (meno sparato) */
@@ -293,6 +317,7 @@ footer {
     padding: 12px 15px;                   /* Padding ridotto (era 20px) */
     border-radius: 8px;                   /* Angoli leggermente più piccoli */
     margin-bottom: 20px;                  /* Meno spazio sotto */
+    margin-right: 28px;
     line-height: 1.2;                     /* Testo più compatto */
     font-size: 1em;                     /* Dimensione testo più piccola e fine */
     color: #ddd;                          /* Bianco morbido (meno sparato) */
@@ -304,31 +329,14 @@ footer {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Ombra più delicata */
 }
 
-
-/* Contenitore generale box input */
-.box-input-specifici {
-    margin: 25px 0;
-    padding: 15px;
-    border-top: 1px solid #444; 
-}
-
-/* Titolo sopra i pulsanti */
-.box-input-specifici > label {
-    display: block;
-    margin-bottom: 10px;
-    color: #ccc;
-    font-weight: bold;
-    font-size: 1em;
-}
-
 /* --- GRIGLIA PULSANTI (Identica a .orari-container) --- */
 .selector-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); 
+    grid-template-columns: repeat(auto-fill, minmax(35px, 1fr)); 
     gap: 10px;
+    width: 100%;
     font-weight: bold;
     font-size: 1.5em;
-    width: 100%;
 }
 
 /* Nascondiamo il pallino del radio button */
@@ -355,9 +363,11 @@ footer {
 
 /* Effetto Hover */
 .selector-grid label:hover {
-    border-color: #00b7ff;
+    border-color: #00b7ff;       
     color: #fff;
     background: #222;
+    box-shadow: 0 0 10px #ff00ff;
+    
 }
 
 /* --- STATO SELEZIONATO (ROSA NEON) --- */
@@ -369,102 +379,118 @@ footer {
     transform: scale(1.05);
 }
 
-#titolo {
-    margin: unset;
-    margin-bottom: 10pt;
-    padding: unset;
-    font-size: 4rem;
-    font-family: "Racing Sans One", sans-serif;
+/* ==========================================================================
+   8. NUOVA SEZIONE: CARD PRENOTAZIONE SEPARATA (ALLINEAMENTO CENTRALE)
+   ========================================================================== */
+
+.card-prenotazione {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center; /* Centra il titolo H2 */
+}
+
+/* Titolo delle sezioni (Label Generiche) */
+.card-prenotazione label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 1.1em;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    line-height: 1;
-    color: #fff;
+    text-align: center; /* Per allinearla alle altre che abbiamo centrato */
 }
 
+.card-prenotazione h2 {
+    font-weight: bold;
+    text-transform: uppercase;
+}
 
+/* Layout: due colonne */
+.prenotazione-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
 
-/* Container flessibile per allineare testi e immagine */
-.testata-gioco-flex {
+/* --- COLONNA SINISTRA: DATA E ORA (Tutto Centrato) --- */
+.col-data-ora {
     display: flex;
-    gap: 20px;
-    align-items: flex-start; /* Allinea in alto */
-    margin-bottom: 30px;
-}
-
-/* La colonna dei testi occupa tutto lo spazio rimanente */
-.colonna-testi {
-    flex: 1;
-}
-
-/* L'immagine mantiene la sua dimensione o si adatta */
-.box-form {
-    flex: 1; /* Il form prende lo spazio necessario */
-}
-
-.box-immagine-laterale {
-    flex: 0 0 300px; /* Larghezza fissa per l'immagine laterale */
-}
-
-.box-immagine-laterale img {
-    width: 400px;
-    height: 400px;
-    overflow: hidden; /* Taglia l'immagine che esce dai bordi */
+    flex-direction: column;
+    width: 100%;
     
-    border-radius: 10px;
-    box-shadow: 0 0 11px rgba(0, 0, 0, 0.5);
-    background: rgb(31, 30, 30);
-    padding: 3px;
+    /* IL PUNTO CRUCIALE: Centra orizzontalmente tutti i figli */
+    align-items: center; 
+    
+    gap: 5px; 
 }
 
-
-/* Responsive: su schermi piccoli (es. smartphone) tornano uno sotto l'altro */
-@media (max-width: 768px) {
-    .testata-gioco-flex {
-        flex-direction: column;
-    }
-    .box-immagine-laterale img {
-        width: 100%;
-        max-width: none;
-    }
+/* Distanzia il blocco ORARIO dal blocco DATA */
+.col-data-ora > label:nth-of-type(2) {
+    margin-top: 30px; /* Più spazio per separare visivamente i due gruppi */
 }
 
+/* Input Data: Centrato anche il testo interno */
+#data_prenotazione {
+    width: 100%;
+    max-width: 280px; 
+    box-sizing: border-box;
+    text-align: center; /* Il cursore e la data scritta staranno al centro */
+}
 
-
-/* Layout interno al Form */
-.form-row-superiore {
+/* Messaggio di errore "Seleziona prima una data..." */
+.orari-container p {
+    width: 100%;             /* Occupa tutta la riga da sola */
+    text-align: center;      /* Testo centrato */
+    margin: 0;
+    color: #888;
+    font-style: italic;
+    padding: 10px 0;
+}
+/* --- COLONNA DESTRA: OPZIONI (Tutto Centrato) --- */
+.col-opzioni {
     display: flex;
-    gap: 40px; /* Spazio tra le due colonne */
-    align-items: flex-start;
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center; /* Anche i bottoni della destra centrati */
 }
 
-.colonna-data-ora {
-    flex: 1; /* Prende lo spazio necessario per il calendario e orari */
-    background: rgba(255, 255, 255, 0.05); /* Opzionale: un leggero fondo per distinguere l'area */
-    padding: 15px;
-    border-radius: 10px;
-    min-width: 400px;
-}
-
-.colonna-risorsa {
-    flex: 1; /* Prende lo spazio per la griglia di piste/tavoli */
-    background: rgba(255, 255, 255, 0.05); /* Opzionale: un leggero fondo per distinguere l'area */
-    padding: 15px;
-    border-radius: 10px;
-    border-left: 1px solid #444;
-    min-width: 400px;
-}
-
-/* Centratura del bottone finale */
-.box-submit {
-    text-align: center;
-    border-top: 1px solid #444;
-    padding-top: 20px;
+/* Rimuovi bordi vecchi */
+.box-input-specifici {
+    margin: 0;
+    padding: 0;
+    border: none;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.btn-submit {
-    width: 100%;
-    max-width: 400px;
-    font-size: 1.2rem;
+/* Griglia dei numeri */
+.selector-grid {
+    display: flex;           /* Usiamo Flexbox per allinearli */
+    flex-wrap: wrap;         /* Se sono tanti, vanno a capo ordinatamente */
+    justify-content: center; /* CENTRA TUTTO IL GRUPPO DI PULSANTI */
+    gap: 10px;               /* Spazio tra i quadratini */
+    width: 100%;             /* Occupa tutta la larghezza disponibile */
+    margin-top: 10px;        /* Un po' di aria dalla scritta sopra */
+}
+
+.selector-grid label {
+    min-width: 40px;         /* Larghezza minima per i numeri */
+    text-align: center;      /* Numero al centro del quadratino */
+    flex: 0 0 auto;          /* Evita che si deformino */
+}
+
+/* Adattamento Mobile */
+@media (max-width: 800px) {
+    .prenotazione-layout {
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+    
+    .card-prenotazione {
+        padding: 15px;
+    }
 }
