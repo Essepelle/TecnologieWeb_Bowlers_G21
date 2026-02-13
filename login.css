@@ -8,7 +8,7 @@ body{
     text-align: center;
     font-family: "Belanosima", system-ui;
     color: white;
-    place-items: center center;
+    place-items: center stretch;
     display: grid;
     gap: 20pt;
     margin:0;
@@ -44,6 +44,7 @@ header .logo {
 }
 
 main{
+    justify-self: center;
     width: 75%;
     display: flex;
     align-items: center;
@@ -78,6 +79,10 @@ div.form{
     place-items: center stretch;
     gap: 20pt;
 }
+hr{
+    box-shadow: 0px 0px 10pt black;
+}
+
 .success-box {
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -140,7 +145,7 @@ div.switch{
 main .logo{
     width: 25%;
     border-radius: 100%;
-    box-shadow: 0px 0px 20px #ffbf00;
+    box-shadow: 0px 0px 10pt black;
     margin: 0 0 0 20pt;
 }
 input{
@@ -187,24 +192,15 @@ input.button:focus {
     border-radius: 20pt;
     background-color: #00000080; /* più scuro quando premuto */
     padding: 0.5em 1em;
-    box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10pt black;
 }
 
 footer {
-    margin-top: 40px;
     text-align: center;
-    width: 100%;
-    vertical-align: baseline;
-}
-
-#footer-box {
+    align-self: flex-end;
     background-color: #00b7ff80; /* colore solido */
     color: white;
-    padding: 5px;
-    margin: 0 auto;
-    font-size: 10px;
-}
-
-#footer-box p {
-    margin: 5px 0;
+    padding: 0.5em;
+    text-shadow: 0px 0px 10pt black;
+    box-shadow: 0px 0px 10pt black;
 }

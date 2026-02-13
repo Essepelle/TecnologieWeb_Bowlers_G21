@@ -224,9 +224,7 @@ function scrollCarousel(direction) {
 </aside>
 
 <footer>
-    <div id="footer-box">
-        <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
-    </div>
+    © 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21
 </footer>
 
 <script>

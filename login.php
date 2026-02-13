@@ -137,9 +137,7 @@ unset($_SESSION['form_target']);
         <img src="resources/logo.png" class="logo" />
     </main>
     <footer>
-        <div id="footer-box">
-            <p>© 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21</p>
-        </div>
+        © 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21
     </footer>
 </body>
 </html>
