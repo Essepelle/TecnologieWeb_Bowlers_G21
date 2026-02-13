@@ -134,10 +134,42 @@ if (!empty($username)) {
         </div>
         <button class="carousel-arrow right" onclick="scrollCarousel(1)">></button>
     </div>
-    <p id="info"> Vieni a scoprire il tempio del divertimento da The Bowler Club! <br>
-        Aperti ogni giorno dalle <b>17:00</b> alle <b>02:00</b> per garantirti il massimo dell'adrenalina 
-        quando preferisci. <br> Siamo il punto di riferimento per chi cerca lanci mozzafiato, 
-        sfide laser e ottima cucina. <br> La tua prossima serata memorabile inizia qui!</p>
+ 
+    <div class="card-info">
+        
+        <div class="info-map">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.8!2d12.49!3d41.90!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sit!2sit!4v1600000000000!5m2!1sit!2sit" 
+                width="100%" 
+                height="300" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        <div class="info-details"> 
+            <h3>Vienici a trovare!</h3>
+            <p>Siamo aperti tutti i giorni dalle <b>17:00</b> alle <b>02:00</b>.</p>
+            
+            <p class="contact-list" style="justify-content: flex-end;">
+                <p>Via del Bowling, 123 - Roma <i class="fas fa-map-marker-alt"></i></li>
+                <p>+39 012 345 6789 <i class="fas fa-phone"></i></li>
+                <p>info@thebowlerclub.it <i class="fas fa-envelope"></i></li>
+            </p>
+
+            <div class="social-links">
+                <h4>Seguici su:</h4>
+                <a href="https://facebook.com" target="_blank" class="social-btn facebook">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://instagram.com" target="_blank" class="social-btn instagram">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
+        </div>
+
+    </div>
+
 </main>
 
 <!-- SCRIPT PER IL FUNZIONAMENTO DEL CAROSELLO -->
