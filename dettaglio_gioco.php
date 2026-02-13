@@ -113,7 +113,7 @@ $oggi = date('Y-m-d');
     </div> 
 
     <div class="card-prenotazione">
-        <h2 style="border-bottom: 2px solid #ffcc00; padding-bottom: 10px; margin-bottom: 20px;">Prenota la tua partita</h2>
+        <h2 style="border-bottom: 2px solid #00b7ff; padding-bottom: 10px; margin-top: unset; margin-bottom: 20px;">Prenota la tua partita</h2>
 
         <form method="POST" action="gestisci_prenotazione.php" onsubmit="if(!document.getElementById('ora_prenotazione_valore').value){alert('Seleziona un orario!'); return false;}">
             <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">

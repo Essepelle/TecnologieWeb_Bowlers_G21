@@ -79,11 +79,8 @@ if (!empty($username)) {
 </aside>
 
 <main>
-    <h1 id="presentazione" class="titolo">I Nostri Servizi</h1>
-    <p id="info"> Vieni a scoprire il tempio del divertimento da The Bowler Club! <br>
-        Aperti ogni giorno dalle <b>17:00</b> alle <b>02:00</b> per garantirti il massimo dell'adrenalina 
-        quando preferisci. <br> Siamo il punto di riferimento per chi cerca lanci mozzafiato, 
-        sfide laser e ottima cucina. <br> La tua prossima serata memorabile inizia qui!</p>
+    <h1 id="presentazione" class="titolo" style="font-size: 3em;">Vieni a scoprire il tempio del divertimento da The Bowler Club!</h1>
+    
     <div class="carousel-container">
         <button class="carousel-arrow left" onclick="scrollCarousel(-1)"><</button>
         <div class="carousel-wrapper" id="gameCarousel">
@@ -137,7 +134,10 @@ if (!empty($username)) {
         </div>
         <button class="carousel-arrow right" onclick="scrollCarousel(1)">></button>
     </div>
-
+    <p id="info"> Vieni a scoprire il tempio del divertimento da The Bowler Club! <br>
+        Aperti ogni giorno dalle <b>17:00</b> alle <b>02:00</b> per garantirti il massimo dell'adrenalina 
+        quando preferisci. <br> Siamo il punto di riferimento per chi cerca lanci mozzafiato, 
+        sfide laser e ottima cucina. <br> La tua prossima serata memorabile inizia qui!</p>
 </main>
 
 <!-- SCRIPT PER IL FUNZIONAMENTO DEL CAROSELLO -->

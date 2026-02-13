@@ -271,8 +271,8 @@ footer {
     color: #ddd;                          /* Bianco morbido (meno sparato) */
 
     /* Bordo: invece che una barra grossa a sinistra, un bordo sottile ed elegante */
-    border-right: 3px solid #fff200;       /* Accento laterale più sottile */
-    border-left: 3px solid #fff200;
+    border-right: 3px solid #ff00ff;       /* Accento laterale più sottile */
+    border-left: 3px solid #ff00ff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Ombra più delicata */
 }
 
