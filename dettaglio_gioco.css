@@ -114,9 +114,18 @@ aside li a:hover { color: white; padding-left: 5px; }
 .titolo-sidebar {
     border-bottom: 2px solid #ff00ff;
     padding-bottom: 5px;
-    margin-bottom: 15px;
-    font-size: 125%;
+    margin-bottom: unset;
+    font-size: 125%; 
     font-weight: bold;
+    margin-top: 0;
+}
+
+#title-blue{
+    color: #00b7ff; 
+    text-transform: uppercase;
+    font-weight: bold;
+    margin: unset;
+    padding: unset;
 }
 
 #titolo {
@@ -179,16 +188,26 @@ main {
 /* ==========================================================================
    5. COMPONENTI DI PRENOTAZIONE (BOTTONI E CALENDARIO)
    ========================================================================== */
+
 .orari-container {
-    display: flex;           /* Flexbox è perfetto per allineare liste di oggetti */
-    flex-wrap: wrap;         /* Se i bottoni sono tanti, vanno a capo */
-    justify-content: center; /* IL COMANDO MAGICO: Spinge tutto al CENTRO */
-    align-items: center;     /* Centra anche verticalmente */
+    display: flex;           /* Flexbox: permette di centrare l'ultima riga */
+    flex-wrap: wrap;         /* Manda a capo i bottoni */
+    justify-content: center; /* CENTRA TUTTO (anche gli elementi dispari dell'ultima riga) */
     gap: 10px;               /* Spazio tra i bottoni */
     
-    width: 100%;             /* Occupa tutto lo spazio disponibile */
-    margin-top: 10px;        /* Un po' di aria dalla scritta sopra */
-    min-height: 30px;        /* Evita che il box sparisca se è vuoto */
+    width: 100%;
+    max-width: 450px;        /* Mantiene il blocco compatto */
+    margin: 15px auto;       /* Centra il contenitore nella pagina */
+}
+
+/* Gestione del messaggio "Seleziona prima una data..." */
+.orari-container p {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    color: #888;
+    font-style: italic;
+    padding: 10px 0;
 }
 
 button, .btn-orario {
@@ -249,6 +268,8 @@ button:hover {
     font-style: italic;
 }
 
+/* GESTIONE DATE PICKER */
+
 #data_prenotazione {
     background: #222;
     color: #fff;
@@ -258,10 +279,29 @@ button:hover {
     border-radius: 5px;
     cursor: pointer;
     outline: none;
+    
+    /* NUOVE PROPRIETÀ PER IL CALENDARIO NATIVO */
+    font-family: inherit;       /* Usa il font del sito */
+    text-align: center;         /* Centra la data */
+    text-transform: uppercase;  /* Rende la data più elegante */
+    appearance: none;           /* Rimuove stili brutti di default */
 }
 
 #data_prenotazione:focus {
-    border-color: #00b7ff;
+    border-color: #00b7ff;      /* Bordo azzurro quando attivo */
+    box-shadow: 0 0 10px rgba(0, 183, 255, 0.3);
+}
+
+/* QUESTA È FONDAMENTALE: Inverte i colori dell'icona del calendario (da nera a bianca) */
+#data_prenotazione::-webkit-calendar-picker-indicator {
+    filter: invert(1); 
+    cursor: pointer;
+    opacity: 0.6;              /* Leggermente trasparente */
+    transition: 0.3s;
+}
+
+#data_prenotazione::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;                /* Bianca accesa al passaggio del mouse */
 }
 
 /* ==========================================================================
@@ -332,7 +372,7 @@ footer {
 /* --- GRIGLIA PULSANTI (Identica a .orari-container) --- */
 .selector-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(35px, 1fr)); 
+    grid-template-columns: repeat(auto-fill, minmax(25px, 1fr)); 
     gap: 10px;
     width: 100%;
     font-weight: bold;
@@ -440,15 +480,7 @@ footer {
     text-align: center; /* Il cursore e la data scritta staranno al centro */
 }
 
-/* Messaggio di errore "Seleziona prima una data..." */
-.orari-container p {
-    width: 100%;             /* Occupa tutta la riga da sola */
-    text-align: center;      /* Testo centrato */
-    margin: 0;
-    color: #888;
-    font-style: italic;
-    padding: 10px 0;
-}
+
 /* --- COLONNA DESTRA: OPZIONI (Tutto Centrato) --- */
 .col-opzioni {
     display: flex;
@@ -493,4 +525,5 @@ footer {
     .card-prenotazione {
         padding: 15px;
     }
+
 }

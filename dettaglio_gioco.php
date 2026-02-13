@@ -51,10 +51,10 @@ $oggi = date('Y-m-d');
     <link rel="stylesheet" href="dettaglio_gioco.css">
     <link rel="icon" type="icon" href="resources/logo.png"/>
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css"> 
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://npmcdn.com/flatpickr/dist/l10n/it.js"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/it.js"></script>-->
     <script src="data_orario.js"></script>
 </head>
 
@@ -122,7 +122,7 @@ $oggi = date('Y-m-d');
                 
 <div class="col-data-ora">
     <label for="data_prenotazione">SCEGLI IL GIORNO:</label>
-    <input type="text" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." readonly required>
+    <input type="date" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." required>
 
     <label>SCEGLI L'ORARIO:</label>
     <span class="label-istruzioni">(Clicca su un orario disponibile)</span>
@@ -185,28 +185,30 @@ $oggi = date('Y-m-d');
 </main>
 
 <aside class="sidebar-right">
-    <p class="titolo-sidebar">PRENOTAZIONI ATTIVE</p>
-    <p style="color:#888;">Solo le più recenti:</p>
-    <div id="carrello-box">
-        <?php if (pg_num_rows($res_sidebar) > 0): ?>
-            <ul style="list-style: none; padding: 0;">
-                <?php while ($item = pg_fetch_assoc($res_sidebar)): 
-                    $data_f = date('d M, H:i', strtotime($item['data_ora']));
-                ?>
-                    <li style="margin-bottom: 15px; border-bottom: 1px solid #ff00ff40; padding-bottom: 5px;">
-                        <strong style="color: #00b7ff; text-transform: uppercase;"><?= htmlspecialchars($item['nome_gioco']) ?></strong><br>
-                        <span style="color: #ccc;"><?= $data_f ?></span>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
-        <?php else: ?>
-            <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata</p>
-        <?php endif; ?>
-    </div>
-    <p class="titolo-sidebar" style="margin-top: 30px;">ACCOUNT</p>
+    <p class="titolo-sidebar">ACCOUNT</p>
     <div style="font-size: 0.9em; color: #ccc;">
-        <p style="overflow-wrap: break-word;">Username: <?= htmlspecialchars($username) ?></p>
-        <p style="overflow-wrap: break-word;">Email: <?= htmlspecialchars($email) ?></p>
+        <p style="overflow-wrap: break-word;"> <p id="title-blue"> Username </p> <?= htmlspecialchars($username) ?></p>
+        <p style="overflow-wrap: break-word;"> <p id="title-blue"> Email </p> <?= htmlspecialchars($email) ?></p>
+        <p class="titolo-sidebar" style="margin-top: 40px;">PRENOTAZIONI ATTIVE</p>
+    
+        <div id="carrello-box">
+            <?php if (pg_num_rows($res_sidebar) > 0): ?>
+                <p style="color:#888;">Solo le più recenti:</p>
+                <ul style="list-style: none; padding: 0;">
+                    <?php while ($item = pg_fetch_assoc($res_sidebar)): 
+                        $data_f = date('d M, H:i', strtotime($item['data_ora']));
+                    ?>
+                        <li style="margin-bottom: 15px; border-bottom: 1px solid #ff00ff40; padding-bottom: 5px;">
+                            <strong id="title-blue"><?= htmlspecialchars($item['nome_gioco']) ?></strong><br>
+                            <span style="color: #ccc;"><?= $data_f ?></span>
+                        </li>
+                    <?php endwhile; ?>
+                </ul>
+            <?php else: ?>
+                <p style="color: #999; font-style: italic;">Nessuna prenotazione trovata</p>
+            <?php endif; ?>
+        </div>
+    
     </div>
 </aside>
 
@@ -238,11 +240,10 @@ $oggi = date('Y-m-d');
 <?php endif; ?>
 
 <script>
+    document.addEventListener('DOMContentLoaded', function() {
         // Avvia la logica passando il nome del gioco da PHP a JS
-        document.addEventListener('DOMContentLoaded', function() {
-            initPrenotazione("<?= $nomeGioco ?>");
-        });
+        initPrenotazione("<?= $nomeGioco ?>");
+    });
 </script>
-
 </body>
 </html>
