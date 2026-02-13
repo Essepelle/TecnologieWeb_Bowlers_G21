@@ -96,8 +96,37 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
     <h1 id="titolo" class="page-title">Area Food & Community</h1>
     
     <div class="food-section">
-        <h2>Il Gusto entra in Gioco!</h2>
+        <div class="photo-menu">
+        <div class="comments-scroll-box">
+        <div class="menu">
+            <strong>Burger & Main Course</strong>
+            <a id="article">Strike Burger</a><a id="price">11.00€</a>
+            <a id="article">Chicken King</a><a id="price">10.50€</a>
+            <a id="article">Veggie Spare</a><a id="price">12.00€</a>
+            <a id="article">Hot Dog Classico</a><a id="price">7.50€</a>
+            <a id="article">Pinsa Margherita</a><a id="price">9.00€</a>
+            <strong>Bibite & Birre</strong>
+            <a id="article">Acqua Naturale/Frizzante</a><a id="price">1.00€</a>
+            <a id="article">Soft drinks</a><a id="price">2.50€</a>
+            <a id="article">Birra alla spina 20cl</a><a id="price">3.50€</a>
+            <a id="article">Birra alla spina 40cl</a><a id="price">5.00€</a>
+            <a id="article">Birre Speciali in bottiglia</a><a id="price">5.00€</a>
+            <a id="article">Monster/Red Bull</a><a id="price">3.50€</a>
+            <strong>Cocktail & Bowling Nigh</strong>
+            <a id="article">Spritz (Aperol/Campari)</a><a id="price">6.50€</a>
+            <a id="article">Gin Tonic/Lemon</a><a id="price">6.50€</a>
+            <a id="article">Vodka Tonic/Lemon</a><a id="price">6.00€</a>
+            <a id="article">Mojito</a><a id="price">7.00€</a>
+            <a id="article">Long Island Iced Tea</a><a id="price">7.00€</a>
+            <a id="article">Analcolico alla Frutta</a><a id="price">5.00€</a>
+            <strong>Dolci e Caffè</strong>
+            <a id="article">Waffle con Nutella e panna</a><a id="price">5.50€</a>
+            <a id="article">Coppa Gelato (3 gusti)</a><a id="price">4.00€</a>
+            <a id="article">Caffè Espresso</a><a id="price">1.00€</a>
+        </div>
+        </div>
         <img src="img/area_food.jpg">
+        </div>
         <p>
             Appendi la stecca al chiodo e posa la carabina: è tempo di rifocillarsi nella nostra Area Food, il quartier generale del gusto e del relax! Tra un burger succulento e una pizza da campioni, potrai commentare i tuoi successi (o le tue clamorose sviste) in un'atmosfera vibrante e amichevole. Che tu sia qui per una cena di squadra o per uno snack veloce tra una sfida e l'altra, troverai sempre il carburante giusto per tornare in pista più forte di prima. Ricorda: lo strike più importante della serata è quello che farai seduto a tavola! Unisciti a noi, brinda con gli amici e goditi il lato più saporito del divertimento.
         </p>
