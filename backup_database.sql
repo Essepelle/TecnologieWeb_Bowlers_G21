@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict osj5WxZBufuMsbBLaIRxGXKElgfQT1bjZgSuya7qiWENHr3Nw6tbiyOprvHI7ff
+\restrict 8Dx8GhKA9OEp80uzMDK2cIN2fjQtqK4BWdKlgAvFO5bWNvVIpp9ukimXOiNxtiz
 
 -- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.1
 
--- Started on 2026-02-12 14:25:56
+-- Started on 2026-02-13 17:05:25
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -186,6 +186,9 @@ COPY public.faq (id_recensione, username, recensione, data_recensione, stelle) F
 14	pipa	ciao marty	2026-02-11 15:06:08.282626	5
 15	pipa	aa	2026-02-11 15:07:19.044131	3
 16	pipa	aaa	2026-02-11 15:08:27.312135	1
+17	sasasas	SERVIZI AL TOP, DIVERTIMENTO ASSICURATO	2026-02-12 21:42:09.927257	4
+18	ginseng	Sica è stronzo	2026-02-13 09:25:01.051971	5
+19	pipa	dd	2026-02-13 14:32:47.590402	3
 \.
 
 
@@ -199,7 +202,7 @@ COPY public.giochi (nome_gioco, immagine) FROM stdin;
 Bowling	img/bowling.jpg
 Biliardo	img/biliardo.jpg
 Laser Game	img/laser-game.jpg
-Carte	img/carte.jpg
+Torneo di Carte	img/carte.jpg
 \.
 
 
@@ -210,23 +213,16 @@ Carte	img/carte.jpg
 --
 
 COPY public.prenotazioni (id_prenotazione, username_utente, nome_gioco, data_ora, numero_pista, numero_tavolo, numero_persone) FROM stdin;
-3	pipa	Bowling	2026-02-26 13:00:00	24	\N	\N
-43	pipa	Bowling	2026-02-19 01:30:00	\N	\N	\N
-44	pipa	Bowling	2026-02-20 17:30:00	\N	\N	\N
-45	pipa	Bowling	2026-02-20 17:00:00	\N	\N	\N
-46	pipa	Biliardo	2026-02-22 17:00:00	\N	\N	\N
-47	pipa	Biliardo	2026-02-20 00:00:00	\N	\N	\N
-48	pipa	Bowling	2026-02-23 00:00:00	\N	\N	\N
-49	pipa	Biliardo	2026-02-26 00:00:00	\N	\N	\N
-50	pipa	Laser Game	2026-02-28 00:00:00	\N	\N	\N
-51	pipa	Laser Game	2026-02-28 22:30:00	\N	\N	\N
-52	pipa	Laser Game	2026-02-16 19:00:00	\N	\N	\N
-53	pipa	Carte	2026-02-27 21:00:00	\N	\N	\N
-54	pipa	Carte	2026-03-20 21:00:00	\N	\N	\N
-55	pipa	Carte	2026-02-25 21:00:00	\N	\N	\N
-56	pipa	Bowling	2026-02-12 01:30:00	\N	\N	\N
-57	pipa	Carte	2026-03-04 21:00:00	\N	\N	\N
-58	pipa	Carte	2026-03-06 21:00:00	\N	\N	\N
+61	sasasas	Biliardo	2026-02-19 00:00:00	\N	2	\N
+64	ginseng	Biliardo	2026-02-14 20:30:00	\N	2	\N
+68	pipa	Bowling	2026-02-20 18:30:00	12	\N	\N
+70	pipa	Bowling	2026-02-20 22:30:00	13	\N	\N
+71	pipa	Biliardo	2026-02-20 01:00:00	\N	4	\N
+72	pipa	Biliardo	2026-02-20 17:30:00	\N	6	\N
+73	pipa	Torneo di Carte	2026-02-27 22:30:00	\N	\N	\N
+74	pipa	Bowling	2026-02-27 18:30:00	14	\N	\N
+75	pipa	Bowling	2026-02-20 17:00:00	11	\N	\N
+76	pipa	Laser Game	2026-02-21 21:00:00	\N	\N	4
 \.
 
 
@@ -238,6 +234,9 @@ COPY public.prenotazioni (id_prenotazione, username_utente, nome_gioco, data_ora
 
 COPY public.utenti (username, nome_completo, email, pass) FROM stdin;
 pipa	MARTINA	martina0turi@gmail.com	$2y$10$iFcxUB2Ct8/1itk4C8TsruPeaOggjrZ6oMMhquneZqxRdcHiSnnse
+sasasas	antonio 	avalenza15@gmail.com	$2y$10$d5vSk7NAKGbqpWS7NBs8GOflEDfN0w4Nk1ynYhgRBCK0WbYJsn/d6
+ginseng	Gabriele Imparato	mipiaceilcazzo@gmail.com	$2y$10$nWjb8.oUNeSuQbs.NyckheoWcINegTdjhEruLLIzMrSj2NuOhGZqy
+antonio	PincoPallino	kkkkkk@a	$2y$10$9ST7O42ymNVKIX6H.QoabuDCwlWJe2m1ZaNwU21D/wWMfG5Mntt1m
 \.
 
 
@@ -247,7 +246,7 @@ pipa	MARTINA	martina0turi@gmail.com	$2y$10$iFcxUB2Ct8/1itk4C8TsruPeaOggjrZ6oMMhq
 -- Name: faq_id_recensione_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.faq_id_recensione_seq', 16, true);
+SELECT pg_catalog.setval('public.faq_id_recensione_seq', 19, true);
 
 
 --
@@ -256,7 +255,7 @@ SELECT pg_catalog.setval('public.faq_id_recensione_seq', 16, true);
 -- Name: prenotazioni_id_prenotazione_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.prenotazioni_id_prenotazione_seq', 58, true);
+SELECT pg_catalog.setval('public.prenotazioni_id_prenotazione_seq', 76, true);
 
 
 --
@@ -401,11 +400,11 @@ GRANT SELECT,USAGE ON SEQUENCE public.prenotazioni_id_prenotazione_seq TO www;
 GRANT ALL ON TABLE public.utenti TO www;
 
 
--- Completed on 2026-02-12 14:25:56
+-- Completed on 2026-02-13 17:05:25
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict osj5WxZBufuMsbBLaIRxGXKElgfQT1bjZgSuya7qiWENHr3Nw6tbiyOprvHI7ff
+\unrestrict 8Dx8GhKA9OEp80uzMDK2cIN2fjQtqK4BWdKlgAvFO5bWNvVIpp9ukimXOiNxtiz
 
