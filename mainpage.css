@@ -249,16 +249,19 @@ main h1{
 */
 
 .evidenzia {
-    background-color: #ffbf0080;
-    box-shadow: 0 0 10pt #ffbf00;
-    transition: background-color 1s ease, box-shadow 1s ease;
+    /* Sovrascrive il bordo trasparente con il Rosa Neon */
+    border-color: #ff00ff !important; 
+    
+    /* Aggiunge un'ombra esterna potente e una interna leggera */
+    box-shadow: 0 0 30px #ff00ff, inset 0 0 20px rgba(255, 0, 255, 0.2) !important; 
+    
+    /* Ingrandisce leggermente la card */
+    transform: scale(1.05); 
+    
+    /* Assicura che la card ingrandita stia sopra alle altre (non tagliata) */
+    z-index: 50; 
 }
 
-/*stato normale, in modo da avere una transizione più gradevole*/
-.card-gioco.fade {
-    background-color: transparent;
-    box-shadow: none;
-}
 
 /* Pulsanti */
 button {
@@ -392,6 +395,15 @@ footer {
     text-align: left;
 }
 
+/* EFFETTO HOVER (Mouse sopra) */
+.card-gioco-carousel:hover {
+    border-color: #ff00ff; /* Il bordo diventa Rosa Neon */
+    box-shadow: 0 0 30px #ff00ff, inset 0 0 20px rgba(255, 0, 255, 0.2); /* Alone luminoso */
+    transform: scale(1.05); /* Si ingrandisce leggermente */
+    z-index: 50; /* Assicura che l'ingrandimento non vada sotto le card vicine */
+    cursor: pointer; /* Cambia il cursore in una manina */
+}
+
 .card-gioco-carousel img {
     width: 100%;
     height: 200px;
@@ -408,8 +420,9 @@ footer {
 
 /* 3. Titoli e testi interni alle card */
 .card-content h1 {
-    color: #333 !important;
-    font-size: 1.5rem !important;
+    color: #00b7ff !important;
+    text-shadow: 0 0 10pt black;
+    font-size: 1.7rem !important;
     margin: 0 0 10px 0 !important;
     padding: 0 !important;
     background: none !important;
@@ -417,7 +430,8 @@ footer {
 
 #info_gioco {
     font-size: 0.9rem !important;
-    color: #666 !important;
+    color: white !important;
+    text-shadow: 0 0 10pt black;
     line-height: 1.4 !important;
     margin-bottom: 15px !important;
     text-shadow: none !important;
@@ -452,9 +466,8 @@ footer {
 }
 
 .card-gioco-carousel {
-    flex: 0 0 300px; /* IMPORTANTE: forza la card a restare larga 300px, creando lo scroll */
-    background: white;
-    color: #333;
+    flex: 0 0 300px; 
+    background: #bfbfbf80;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -462,6 +475,10 @@ footer {
     display: flex;
     flex-direction: column;
     text-align: left;
+    
+    /* AGGIUNTA: Predispone il bordo e la transizione per l'effetto */
+    border: 3px solid transparent; /* Bordo invisibile di base per non far saltare il layout */
+    transition: all 0.5s ease;     /* Rende fluido l'ingrandimento e il colore */
 }
 
 /* Mantiene i tuoi bottoni neri ma li centra nella card */

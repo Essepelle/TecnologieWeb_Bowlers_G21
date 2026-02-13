@@ -199,28 +199,37 @@ function scrollCarousel(direction) {
 
 <script>
 document.querySelectorAll('.sidebar-left a').forEach(link => {
-    link.addEventListener('click', function () {
-        const targetId = this.getAttribute('href').substring(1);
+    link.addEventListener('click', function (e) {
+        // 1. Impediamo il comportamento standard del link (che farebbe saltare la pagina)
+        e.preventDefault(); 
+
+        const targetId = this.getAttribute('href').substring(1); // Prende l'ID (es. "Bowling")
         const targetDiv = document.getElementById(targetId);
 
         if (targetDiv) {
-            // rimuove eventuali evidenziazioni precedenti
-            document.querySelectorAll('.evidenzia, .fade').forEach(el => {
-                el.classList.remove('evidenzia', 'fade');
+            // 2. Logica per scorrere il carosello fino alla card
+            // 'inline: center' è la magia che centra l'elemento orizzontalmente
+            targetDiv.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
             });
 
-            // aggiunge evidenzia
-            targetDiv.classList.add('evidenzia');
+            // 3. Rimuove l'evidenziazione da tutte le altre card (pulizia)
+            document.querySelectorAll('.card-gioco-carousel').forEach(el => {
+                el.classList.remove('evidenzia');
+            });
 
-            // dopo 3 secondi, avvia fade
+            // 4. Aggiunge l'effetto visivo alla card trovata
+            // Usiamo un piccolo ritardo per permettere allo scroll di iniziare
             setTimeout(() => {
-                targetDiv.classList.add('fade');
-            }, 1000);
+                targetDiv.classList.add('evidenzia');
+            }, 300);
 
-            // rimuove completamente 
+            // 5. Rimuove l'effetto dopo 2.5 secondi
             setTimeout(() => {
-                targetDiv.classList.remove('evidenzia', 'fade');
-            }, 2000);
+                targetDiv.classList.remove('evidenzia');
+            }, 1500);
         }
     });
 });
