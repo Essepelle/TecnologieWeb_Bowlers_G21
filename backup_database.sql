@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict 8Dx8GhKA9OEp80uzMDK2cIN2fjQtqK4BWdKlgAvFO5bWNvVIpp9ukimXOiNxtiz
+\restrict 2ZYho3ZHC2yAH1RNaCzji0oNYV4hkAzDF2tW73cC3vLCtJxh4v3ZMzlyhQQctsb
 
 -- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.1
 
--- Started on 2026-02-13 17:05:25
+-- Started on 2026-02-13 17:16:23
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -201,8 +201,8 @@ COPY public.faq (id_recensione, username, recensione, data_recensione, stelle) F
 COPY public.giochi (nome_gioco, immagine) FROM stdin;
 Bowling	img/bowling.jpg
 Biliardo	img/biliardo.jpg
-Laser Game	img/laser-game.jpg
-Torneo di Carte	img/carte.jpg
+Torneo di Carte	img/torneo_di_carte.jpg
+Laser Game	img/laser_game.jpg
 \.
 
 
@@ -219,10 +219,8 @@ COPY public.prenotazioni (id_prenotazione, username_utente, nome_gioco, data_ora
 70	pipa	Bowling	2026-02-20 22:30:00	13	\N	\N
 71	pipa	Biliardo	2026-02-20 01:00:00	\N	4	\N
 72	pipa	Biliardo	2026-02-20 17:30:00	\N	6	\N
-73	pipa	Torneo di Carte	2026-02-27 22:30:00	\N	\N	\N
 74	pipa	Bowling	2026-02-27 18:30:00	14	\N	\N
 75	pipa	Bowling	2026-02-20 17:00:00	11	\N	\N
-76	pipa	Laser Game	2026-02-21 21:00:00	\N	\N	4
 \.
 
 
@@ -400,11 +398,11 @@ GRANT SELECT,USAGE ON SEQUENCE public.prenotazioni_id_prenotazione_seq TO www;
 GRANT ALL ON TABLE public.utenti TO www;
 
 
--- Completed on 2026-02-13 17:05:25
+-- Completed on 2026-02-13 17:16:23
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 8Dx8GhKA9OEp80uzMDK2cIN2fjQtqK4BWdKlgAvFO5bWNvVIpp9ukimXOiNxtiz
+\unrestrict 2ZYho3ZHC2yAH1RNaCzji0oNYV4hkAzDF2tW73cC3vLCtJxh4v3ZMzlyhQQctsb
 
