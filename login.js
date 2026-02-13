@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
             return;
         }
-        if(email.value.trim() == "") {
+        if(email.value.trim() == "" || !email.value.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z]+$/)) {
             alert("Devi inserire un'email valida!");
             email.focus();
             event.preventDefault();

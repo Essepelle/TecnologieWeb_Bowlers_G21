@@ -102,7 +102,7 @@ unset($_SESSION['form_target']);
                     </div>
                     <hr />
                     <div class="input-row">
-                        <input type="" name="email" id="email" class="text" placeholder="Email"
+                        <input type="email" name="email" id="email" class="text" placeholder="Email"
                             value="<?php echo htmlspecialchars($old_email); ?>" />
                         <i class="fa-solid fa-envelope"></i>
                     </div>
