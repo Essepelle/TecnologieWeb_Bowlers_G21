@@ -184,7 +184,7 @@ main h1{
 }
 
 
-/* Griglia Giochi */
+/* Griglia Giochi 
 .grid-giochi {
     display: block;
     grid-template-columns: repeat(1, max);
@@ -246,8 +246,7 @@ main h1{
 .card-gioco:nth-child(4n) > *:not(img) {
     grid-column: 1;
 }
-
-
+*/
 
 .evidenzia {
     background-color: #ffbf0080;
@@ -338,11 +337,6 @@ footer {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Ombra più delicata */
 }
 
-#info_gioco {
-    font-size: 1.4em;
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-}
 
 .titolo {
     margin: unset;
@@ -355,6 +349,170 @@ footer {
     line-height: 1;
     color: #fff;
 }
+
+/* --- MODIFICHE STRETTAMENTE NECESSARIE PER IL CAROSELLO --- */
+
+/* 1. Rimuovi o commenta la vecchia .grid-giochi se non la usi più, 
+      ma l'importante è che non interferisca con il wrapper */
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.carousel-wrapper {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px 10px;
+    scrollbar-width: none; /* Nasconde scrollbar su Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+}
+
+.carousel-wrapper::-webkit-scrollbar {
+    display: none; /* Nasconde scrollbar su Chrome/Safari */
+}
+
+/* 2. Card: Forziamo il layout orizzontale e lo stile bianco */
+.card-gioco-carousel {
+    flex: 0 0 300px; /* Impedisce alle card di restringersi */
+    background: white;
+    color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-shadow: none; /* Fondamentale per la leggibilità su bianco */
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.card-gioco-carousel img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 0; /* Reset del raggio originale */
+}
+
+.card-content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* 3. Titoli e testi interni alle card */
+.card-content h1 {
+    color: #333 !important;
+    font-size: 1.5rem !important;
+    margin: 0 0 10px 0 !important;
+    padding: 0 !important;
+    background: none !important;
+}
+
+#info_gioco {
+    font-size: 0.9rem !important;
+    color: #666 !important;
+    line-height: 1.4 !important;
+    margin-bottom: 15px !important;
+    text-shadow: none !important;
+}
+
+/* --- FIX STRUTTURALE CAROSELLO --- */
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0;
+    padding: 0 10px;
+    width: 100%; /* Assicura che non superi il main */
+    position: relative; /* Necessario per bloccare le frecce ai lati */
+}
+
+.carousel-wrapper {
+    display: flex;
+    overflow-x: auto; /* Abilita lo scorrimento orizzontale */
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 20px 10px;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    max-width: 1000px; /* IMPORTANTE: limita la vista a circa 3 card alla volta */
+}
+
+.carousel-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.card-gioco-carousel {
+    flex: 0 0 300px; /* IMPORTANTE: forza la card a restare larga 300px, creando lo scroll */
+    background: white;
+    color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-shadow: none; 
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Mantiene i tuoi bottoni neri ma li centra nella card */
+.card-content button {
+    margin-top: auto; /* Trucco Flexbox: spinge l'elemento in fondo */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Centra perfettamente in verticale */
+    z-index: 10;
+    
+    /* Forma e Colore */
+    background: rgba(0, 0, 0, 0.6);
+    color: #00b7ff; /* Il blu del tuo tema */
+    border: 2px solid #00b7ff;
+    border-radius: 50%;
+    
+    /* Dimensioni */
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    
+    /* Allineamento testo < e > */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.carousel-arrow:hover {
+    background: #ff00ff; /* Cambia in viola al passaggio */
+    color: white;
+    border-color: white;
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+/* Posizionamento specifico */
+.carousel-arrow.left {
+    left: 10px;
+}
+
+.carousel-arrow.right {
+    right: 10px;
+}
+
 
 /* Responsive */
 @media (max-width: 900px) {

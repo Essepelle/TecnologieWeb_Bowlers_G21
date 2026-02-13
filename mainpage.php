@@ -84,21 +84,21 @@ if (!empty($username)) {
         Aperti ogni giorno dalle <b>17:00</b> alle <b>02:00</b> per garantirti il massimo dell'adrenalina 
         quando preferisci. <br> Siamo il punto di riferimento per chi cerca lanci mozzafiato, 
         sfide laser e ottima cucina. <br> La tua prossima serata memorabile inizia qui!</p>
-
-    <div class="grid-giochi">
-        <?php
-        pg_result_seek($risultatoGiochi, 0);
-        while ($row = pg_fetch_assoc($risultatoGiochi)):
-            $anchorId = str_replace(' ', '-', $row['nome_gioco']);
-            
-            // Puntamento alla cartella descrizioni/
-            $nomeFilePres = "descrizioni/pres_" . strtolower(str_replace(' ', '_', $row['nome_gioco'])) . ".txt";
-            $presentazione = file_exists($nomeFilePres) ? file_get_contents($nomeFilePres) : "Scopri di più cliccando su prenota.";
-        ?>
-            <hr/>
-            <div id="<?= $anchorId ?>" class="card-gioco">
-                <img src="<?= htmlspecialchars($row['immagine']) ?>" alt="<?= htmlspecialchars($row['nome_gioco']) ?>">
+    <div class="carousel-container">
+        <button class="carousel-arrow left" onclick="scrollCarousel(-1)"><</button>
+        <div class="carousel-wrapper" id="gameCarousel">
+            <?php
+            pg_result_seek($risultatoGiochi, 0);
+            while ($row = pg_fetch_assoc($risultatoGiochi)):
+                $anchorId = str_replace(' ', '-', $row['nome_gioco']);
                 
+                // Puntamento alla cartella descrizioni/
+                $nomeFilePres = "descrizioni/pres_" . strtolower(str_replace(' ', '_', $row['nome_gioco'])) . ".txt";
+                $presentazione = file_exists($nomeFilePres) ? file_get_contents($nomeFilePres) : "Scopri di più cliccando su prenota.";
+            ?>
+            <div id="<?= $anchorId ?>" class="card-gioco-carousel">
+                <img src="<?= htmlspecialchars($row['immagine']) ?>" alt="<?= htmlspecialchars($row['nome_gioco']) ?>">
+                <div class="card-content">
                     <h1><?= htmlspecialchars($row['nome_gioco']) ?></h1>
                     <p id="info_gioco"><?= nl2br(htmlspecialchars($presentazione)) ?></p>
 
@@ -117,25 +117,38 @@ if (!empty($username)) {
                             Prenota
                         </button>
                     <?php endif; ?>
+                </div>
             </div>
-        <?php endwhile; ?>
+            <?php endwhile; ?>
 
-        <hr/>
-        <div id="area-food" class="card-gioco">
-            <img src="img/area_food.jpg" alt="Area Food">
-            
-                <h1>Area Food & Recensioni</h1>
-                <p id="info_gioco">Vieni a scoprire la nostra selezione di snack, pizze e cocktail! <br>
-                Il posto perfetto per ricaricarsi tra una partita e l'altra.</p>
+            <div id="area-food" class="card-gioco-carousel">
+                <img src="img/area_food.jpg" alt="Area Food">
+                <div class="card-content">
+                    <h1>Area Food & Recensioni</h1>
+                    <p id="info_gioco">Vieni a scoprire la nostra selezione di snack, pizze e cocktail! <br>
+                    Il posto perfetto per ricaricarsi tra una partita e l'altra.</p>
 
-                <button type="button" 
-                    onclick="window.location.href='area_faq.php'">
-                    Vai alle Recensioni
-                </button>
+                    <button type="button" 
+                        onclick="window.location.href='area_faq.php'">
+                        Vai alle Recensioni
+                    </button>
+                </div>
+            </div>
         </div>
-        </div> </main>
+        <button class="carousel-arrow right" onclick="scrollCarousel(1)">></button>
     </div>
+
 </main>
+
+<!-- SCRIPT PER IL FUNZIONAMENTO DEL CAROSELLO -->
+<script>
+function scrollCarousel(direction) {
+    const carousel = document.getElementById('gameCarousel');
+    const scrollAmount = 320; // Larghezza card + gap
+    carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+}
+</script>
+
 
 <aside class="sidebar-right">
     <p class="titolo-sidebar">ACCOUNT</p>
