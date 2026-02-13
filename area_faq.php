@@ -93,7 +93,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 </aside>
 
 <main class="main-content">
-    <h1 id="titolo" class="page-title">Area Food & Community</h1>
+    <h1 id="titolo" class="page-title">Area Food & Recensioni</h1>
     
     <div class="food-section">
         <div class="photo-menu">
