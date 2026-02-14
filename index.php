@@ -137,36 +137,39 @@ if (!empty($username)) {
  
     <div class="card-info">
         
-        <div class="info-map">
-            <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2969.8!2d12.49!3d41.90!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sit!2sit!4v1600000000000!5m2!1sit!2sit" 
-                width="100%" 
-                height="300" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
-        </div>
-        <div class="info-details"> 
-            <h3>Vienici a trovare!</h3>
-            <p>Siamo aperti tutti i giorni dalle <b>17:00</b> alle <b>02:00</b>.</p>
-            
-            <p class="contact-list" style="justify-content: flex-end;">
-                <p>Via del Bowling, 123 - Roma <i class="fas fa-map-marker-alt"></i></li>
-                <p>+39 3299552538 <i class="fas fa-phone"></i></li>
-                <p>simonPelle@outlook.it <i class="fas fa-envelope"></i></li>
-            </p>
+    <div class="info-map">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.2345!2d14.8080!3d40.6558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133bc3983637e163%3A0xc64441584284d7a8!2sVia%20Picentino%2C%2023%2C%2084131%20Salerno%20SA!5e0!3m2!1sit!2sit!4v1700000000000" 
+            width="100%" 
+            height="300" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+    <div class="info-details"> 
+        <h3>Vienici a trovare!</h3>
+        <p>Siamo aperti tutti i giorni dalle <b>17:00</b> alle <b>02:00</b>.</p>
+        
+        <p class="contact-list">
+            <a style="color: white" href="https://www.google.com/maps/place/Bowling+The+Club/@40.6435226,14.8595867,15.38z/data=!4m6!3m5!1s0x133bdd44b2c34d83:0x830d2ca79eaf0653!8m2!3d40.6437912!4d14.8652385!16s%2Fg%2F11b6j06d6z?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D">
+                <p> Via Picentino, 23, 84131 Salerno SA 
+                <i class="fas fa-map-marker-alt"></i></li></a>
+            <p> 089 849884 <i class="fas fa-phone"></i></li>
+            <p> thebowlerclub@gmail.com <i class="fas fa-envelope"></i></li>
+        </p>
 
-            <div class="social-links">
-                <h4>Seguici su:</h4>
-                <a href="https://facebook.com" target="_blank" class="social-btn facebook">
-                    <i class="fab fa-facebook-f"></i> Facebook
-                </a>
-                <a href="https://instagram.com" target="_blank" class="social-btn instagram">
-                    <i class="fab fa-instagram"></i> Instagram
-                </a>
-            </div>
+        <div class="social-links">
+            <h4>Seguici su:</h4>
+            <a href="https://www.facebook.com/BowlingTheClubPontecagnano/photos" target="_blank" class="social-btn facebook">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://www.instagram.com/bowling_pontecagnano?igsh=MXBhbTlsb2hxaGJ1MA==" target="_blank" class="social-btn instagram">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
         </div>
+    </div>
 
     </div>
 

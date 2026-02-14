@@ -127,9 +127,13 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
         </div>
         <img src="img/area_food.jpg">
         </div>
-        <p>
-            Appendi la stecca al chiodo e posa la carabina: è tempo di rifocillarsi nella nostra Area Food, il quartier generale del gusto e del relax! Tra un burger succulento e una pizza da campioni, potrai commentare i tuoi successi (o le tue clamorose sviste) in un'atmosfera vibrante e amichevole. Che tu sia qui per una cena di squadra o per uno snack veloce tra una sfida e l'altra, troverai sempre il carburante giusto per tornare in pista più forte di prima. Ricorda: lo strike più importante della serata è quello che farai seduto a tavola! Unisciti a noi, brinda con gli amici e goditi il lato più saporito del divertimento.
-        </p>
+        <div class="food-description">
+            <p>
+                Appendi la stecca al chiodo e posa la carabina: è tempo di rifocillarsi nella nostra <strong>Area Food</strong>, 
+                il quartier generale del gusto! Tra un burger succulento e una pizza da campioni, lo strike più importante 
+                della serata è quello che farai seduto a tavola. <strong>Brinda con gli amici e goditi il lato più saporito del divertimento!</strong>
+            </p>
+        </div>
     </div>
 
     <div class="faq-area">

@@ -26,6 +26,17 @@
     border: 1px solid #333; */
 }
 
+.food-description {
+    background: linear-gradient(90deg, rgba(255, 0, 255, 0.1), rgba(0, 183, 255, 0.1));
+    border: 1px solid #444;
+    padding: 25px;
+    border-radius: 20px;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    color: #fff;
+}
+
 main h2 {
     color: #00b7ff; 
     text-shadow: 0 0 10pt black;

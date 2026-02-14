@@ -237,7 +237,8 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(1, 1fr);
-    background: rgba(255, 255, 255, 0.05);
+    /*background: rgba(255, 255, 255, 0.05);*/
+    background: linear-gradient(90deg, rgba(255, 0, 255, 0.1), rgba(0, 183, 255, 0.1));
     border-radius: 15px;
     padding: 25px;
     margin-top: 30px;
@@ -319,6 +320,10 @@ footer {
     letter-spacing: 4px;
     line-height: 1;
     color: #fff;
+}
+
+.contact-list {
+    justify-content: flex-end;
 }
 
 /* --- MODIFICHE STRETTAMENTE NECESSARIE PER IL CAROSELLO --- */
@@ -435,7 +440,7 @@ footer {
 
 .card-gioco-carousel {
     flex: 0 0 300px; 
-    background: rgba(255, 255, 255, 0.05);;
+    background: linear-gradient(90deg, rgba(255, 0, 255, 0.1), rgba(0, 183, 255, 0.1));
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
@@ -445,7 +450,7 @@ footer {
     text-align: left;
     
     /* AGGIUNTA: Predispone il bordo e la transizione per l'effetto */
-    border: 3px solid transparent; /* Bordo invisibile di base per non far saltare il layout */
+    border: 1px solid transparent; /* Bordo invisibile di base per non far saltare il layout */
     transition: all 0.5s ease;     /* Rende fluido l'ingrandimento e il colore */
 }
 
