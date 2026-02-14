@@ -99,27 +99,27 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
         <div class="photo-menu">
         <div class="comments-scroll-box">
         <div class="menu">
-            <strong>Burger & Main Course</strong>
+            <strong>🍔Burger & Main Course🍔</strong>
             <a id="article">Strike Burger</a><a id="price">11.00€</a>
             <a id="article">Chicken King</a><a id="price">10.50€</a>
             <a id="article">Veggie Spare</a><a id="price">12.00€</a>
             <a id="article">Hot Dog Classico</a><a id="price">7.50€</a>
             <a id="article">Pinsa Margherita</a><a id="price">9.00€</a>
-            <strong>Bibite & Birre</strong>
+            <strong>🍻Bibite & Birre🍻</strong>
             <a id="article">Acqua Naturale/Frizzante</a><a id="price">1.00€</a>
             <a id="article">Soft drinks</a><a id="price">2.50€</a>
             <a id="article">Birra alla spina 20cl</a><a id="price">3.50€</a>
             <a id="article">Birra alla spina 40cl</a><a id="price">5.00€</a>
             <a id="article">Birre Speciali in bottiglia</a><a id="price">5.00€</a>
             <a id="article">Monster/Red Bull</a><a id="price">3.50€</a>
-            <strong>Cocktail & Bowling Nigh</strong>
+            <strong>🍸Cocktail & Bowling Nigh🍸</strong>
             <a id="article">Spritz (Aperol/Campari)</a><a id="price">6.50€</a>
             <a id="article">Gin Tonic/Lemon</a><a id="price">6.50€</a>
             <a id="article">Vodka Tonic/Lemon</a><a id="price">6.00€</a>
             <a id="article">Mojito</a><a id="price">7.00€</a>
             <a id="article">Long Island Iced Tea</a><a id="price">7.00€</a>
             <a id="article">Analcolico alla Frutta</a><a id="price">5.00€</a>
-            <strong>Dolci e Caffè</strong>
+            <strong>🍨Dolci e Caffè🍨</strong>
             <a id="article">Waffle con Nutella e panna</a><a id="price">5.50€</a>
             <a id="article">Coppa Gelato (3 gusti)</a><a id="price">4.00€</a>
             <a id="article">Caffè Espresso</a><a id="price">1.00€</a>
