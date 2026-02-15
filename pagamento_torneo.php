@@ -75,7 +75,7 @@ $dati = $_SESSION['pending_reservation'];
                 </div>
                 
                 <input type="submit" name="esegui_pagamento" class="btn-pay" value="PAGA ORA">
-                <a href="dettaglio_gioco.php?gioco=Carte" class="btn-cancel">Annulla</a>
+                <a href="dettaglio_gioco.php?gioco=Torneo di Carte" class="btn-cancel">Annulla</a>
             </div>
             </form>
         </div>

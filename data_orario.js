@@ -30,12 +30,13 @@ function initPrenotazione(nomeGioco) {
         const giornoSettimana = dataObj.getDay(); // 0=Dom, 1=Lun, ..., 3=Mer, 5=Ven
 
         // --- CONTROLLO GIOCO CARTE ---
+        // --- CONTROLLO GIOCO CARTE ---
         // (Solo Mercoledì=3 e Venerdì=5)
-        if (nomeGioco === 'Carte') {
+        if (nomeGioco === 'Torneo di Carte') { 
             if (giornoSettimana !== 3 && giornoSettimana !== 5) {
-                alert("Per le Carte si prenota solo di Mercoledì e Venerdì!");
+                alert("Per il Torneo di Carte si prenota solo di Mercoledì e Venerdì!");
                 this.value = ""; // Cancella la data sbagliata
-                container.innerHTML = "<p>Data non valida per il gioco delle Carte.</p>";
+                container.innerHTML = "<p>Data non valida per il Torneo di Carte.</p>";
                 return;
             }
         }
@@ -66,7 +67,7 @@ function generaBottoniOrari(dataScelta, nomeGioco) {
     let orari = [];
 
     // --- DEFINIZIONE ORARI DISPONIBILI ---
-    if (nomeGioco === 'Carte') {
+    if (nomeGioco === 'Torneo di Carte') {
         // Le carte hanno solo un orario fisso
         orari.push({ h: 21, m: 0, label: "21:00" });
     } else {

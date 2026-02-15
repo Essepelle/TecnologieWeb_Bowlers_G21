@@ -26,11 +26,22 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
 
     // Aggiorniamo la validazione esistente
     if (strlen($numero_carta) !== 16 || strlen($cvv) !== 3 || $is_expired) {
-        header("Location: dettaglio_gioco.php?gioco=Carte&res=payment_failed");
+        header("Location: dettaglio_gioco.php?gioco=Torneo di Carte&res=payment_failed");
         exit();
     }
 
-    $params = $_SESSION['pending_reservation'];
+    // --- INIZIO MODIFICA ---
+    $dati_sessione = $_SESSION['pending_reservation'];
+
+    // Ricostruiamo l'array per avere sempre 6 elementi (se mancano, mette NULL)
+    $params = array(
+        $dati_sessione[0],                                    // Username
+        $dati_sessione[1],                                    // Nome Gioco
+        $dati_sessione[2],                                    // Data Ora
+        isset($dati_sessione[3]) ? $dati_sessione[3] : NULL,  // Pista
+        isset($dati_sessione[4]) ? $dati_sessione[4] : NULL,  // Tavolo
+        isset($dati_sessione[5]) ? $dati_sessione[5] : NULL   // Persone
+    );
     // ... resto del codice per l'inserimento nel DB ...
     $sql_insert = "INSERT INTO prenotazioni (username_utente, nome_gioco, data_ora, numero_pista, numero_tavolo, numero_persone) 
                    VALUES ($1, $2, $3, $4, $5, $6)";
@@ -39,7 +50,7 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
 
     if ($res_insert) {
         unset($_SESSION['pending_reservation']);
-        header("Location: dettaglio_gioco.php?gioco=Carte&res=success");
+        header("Location: dettaglio_gioco.php?gioco=Torneo di Carte&res=success");
     } else {
         echo "Errore tecnico durante il salvataggio: " . pg_last_error($db);
     }
