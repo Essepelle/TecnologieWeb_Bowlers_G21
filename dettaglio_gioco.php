@@ -118,21 +118,22 @@ $oggi = date('Y-m-d');
         <form method="POST" action="gestisci_prenotazione.php" onsubmit="if(!document.getElementById('ora_prenotazione_valore').value){alert('Seleziona un orario!'); return false;}">
             <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
             
+
             <div class="prenotazione-layout">
                 
-<div class="col-data-ora">
-    <label for="data_prenotazione">SCEGLI IL GIORNO:</label>
-    <input type="date" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." required>
+                <div class="col-data-ora">
+                <label for="data_prenotazione">SCEGLI IL GIORNO:</label>
+                <input type="date" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." required>
 
-    <label>SCEGLI L'ORARIO:</label>
-    <span class="label-istruzioni">(Clicca su un orario disponibile)</span>
+                <label>SCEGLI L'ORARIO:</label>
+                <span class="label-istruzioni">(Clicca su un orario disponibile)</span>
     
-    <div id="orari-bottoni-container" class="orari-container">
-        <p>Seleziona prima una data valida!</p>
-    </div>
+                    <div id="orari-bottoni-container" class="orari-container">
+                        <p>Seleziona prima una data valida!</p>
+                    </div>
     
-    <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" required>
-</div>
+                <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" required>
+                </div>
 
                 <div class="col-opzioni">
                     <div class="box-input-specifici">
@@ -228,6 +229,8 @@ $oggi = date('Y-m-d');
                     alert("Attenzione! Hai già una prenotazione per questa fascia oraria.");
                 <?php elseif ($_GET['res'] == 'risorsa_occupata'): ?>
                     alert("Attenzione! Il tavolo o la pista selezionata è già occupata. Per favore seleziona un'altra risorsa o un altro orario.");
+                <?php elseif ($_GET['res'] == 'payment_failed'): ?>
+                    alert("ERRORE PAGAMENTO: I dati della carta non sono validi o la carta è scaduta.");
                 <?php endif; ?>
                 const url = new URL(window.location);
                 url.searchParams.delete('res');

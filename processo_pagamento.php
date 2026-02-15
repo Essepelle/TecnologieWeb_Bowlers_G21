@@ -2,59 +2,71 @@
 include "db.php";
 session_start();
 
+// Controllo se ci sono dati in sessione e se il form è stato inviato
 if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])) {
     
+    // --- 1. VALIDAZIONE CARTA DI CREDITO ---
     $numero_carta = $_POST['numero_carta'] ?? '';
     $cvv = $_POST['cvv'] ?? '';
-    $scadenza = $_POST['scadenza'] ?? ''; // Recuperiamo la scadenza
+    $scadenza = $_POST['scadenza'] ?? '';
 
-    // --- NUOVO CONTROLLO DATA SCADENZA ---
     $is_expired = false;
+    // Controllo formato MM/AA e validità temporale
     if (preg_match('/^(0[1-9]|1[0-2])\/([0-9]{2})$/', $scadenza, $matches)) {
         $mese = (int)$matches[1];
         $anno = (int)$matches[2];
         $mese_attuale = (int)date('m');
-        $anno_attuale = (int)date('y');
+        $anno_attuale = (int)date('y'); // Anno a 2 cifre
 
         if ($anno < $anno_attuale || ($anno == $anno_attuale && $mese < $mese_attuale)) {
             $is_expired = true;
         }
     } else {
-        $is_expired = true; // Formato non valido
+        $is_expired = true; 
     }
-    // -------------------------------------
 
-    // Aggiorniamo la validazione esistente
+    // Se la carta non è valida, rimanda indietro con errore
     if (strlen($numero_carta) !== 16 || strlen($cvv) !== 3 || $is_expired) {
-        header("Location: dettaglio_gioco.php?gioco=Torneo di Carte&res=payment_failed");
+        // Recuperiamo il nome del gioco per il redirect corretto
+        $nomeGiocoRedirect = $_SESSION['pending_reservation'][1] ?? 'Torneo di Carte';
+        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGiocoRedirect) . "&res=payment_failed");
         exit();
     }
 
-    // --- INIZIO MODIFICA ---
+    // --- 2. PREPARAZIONE DATI PER IL DATABASE ---
     $dati_sessione = $_SESSION['pending_reservation'];
 
-    // Ricostruiamo l'array per avere sempre 6 elementi (se mancano, mette NULL)
+    // Ricostruiamo l'array per avere sempre ESATTAMENTE 6 parametri.
+    // Questo è il passaggio chiave che ha fatto funzionare il debug.
     $params = array(
         $dati_sessione[0],                                    // Username
         $dati_sessione[1],                                    // Nome Gioco
         $dati_sessione[2],                                    // Data Ora
-        isset($dati_sessione[3]) ? $dati_sessione[3] : NULL,  // Pista
-        isset($dati_sessione[4]) ? $dati_sessione[4] : NULL,  // Tavolo
-        isset($dati_sessione[5]) ? $dati_sessione[5] : NULL   // Persone
+        isset($dati_sessione[3]) ? $dati_sessione[3] : NULL,  // Pista (o NULL)
+        isset($dati_sessione[4]) ? $dati_sessione[4] : NULL,  // Tavolo (o NULL)
+        isset($dati_sessione[5]) ? $dati_sessione[5] : NULL   // Persone (o NULL)
     );
-    // ... resto del codice per l'inserimento nel DB ...
+
+    // --- 3. INSERIMENTO NEL DATABASE ---
     $sql_insert = "INSERT INTO prenotazioni (username_utente, nome_gioco, data_ora, numero_pista, numero_tavolo, numero_persone) 
                    VALUES ($1, $2, $3, $4, $5, $6)";
     
     $res_insert = pg_query_params($db, $sql_insert, $params);
 
     if ($res_insert) {
+        // Successo: puliamo la sessione e reindirizziamo
         unset($_SESSION['pending_reservation']);
-        header("Location: dettaglio_gioco.php?gioco=Torneo di Carte&res=success");
+        header("Location: dettaglio_gioco.php?gioco=" . urlencode($params[1]) . "&res=success");
+        exit();
     } else {
-        echo "Errore tecnico durante il salvataggio: " . pg_last_error($db);
+        // Errore tecnico del database (mostriamo l'errore se capita)
+        echo "<h1>Errore durante il salvataggio</h1>";
+        echo "<p>" . pg_last_error($db) . "</p>";
+        echo "<a href='index.php'>Torna alla Home</a>";
     }
+
 } else {
+    // Accesso non autorizzato (es. accesso diretto via URL)
     header("Location: index.php");
     exit();
 }
