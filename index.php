@@ -172,7 +172,7 @@ if (!empty($username)) {
             const distanza = R * c;
 
             document.getElementById("distanza-info").innerHTML = 
-                "Disti solo <b>" + distanza.toFixed(2) + " km</b> da The Bowler Club.";
+                "La tua posizione attuale dista circa <b>" + distanza.toFixed(2) + " km</b> da The Bowler Club.";
         }
 
         // Funzione in caso di errore
