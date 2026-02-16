@@ -148,6 +148,46 @@ if (!empty($username)) {
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
     </div>
+
+    <p id="distanza-info">Calcolo della distanza in corso...</p>
+
+    <script>
+        // Funzione invocata in caso di successo
+        function mostraPosizione(position) {
+            // Coordinate di Via Picentino, 23, Salerno
+            const latDest = 40.64379;
+            const lonDest = 14.86524;
+            
+            // Coordinate dell'utente
+            const latUser = position.coords.latitude;
+            const lonUser = position.coords.longitude;
+
+            // Calcolo semplificato della distanza (formula di Haversine)
+            const R = 6371; // Raggio della Terra in km
+            const dLat = (latDest - latUser) * Math.PI / 180;
+            const dLon = (lonDest - lonUser) * Math.PI / 180;
+            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                    Math.cos(latUser * Math.PI / 180) * Math.cos(latDest * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+            const distanza = R * c;
+
+            document.getElementById("distanza-info").innerHTML = 
+                "La tua posizione attuale dista circa <b>" + distanza.toFixed(2) + " km</b> da The Bowler Club.";
+        }
+
+        // Funzione in caso di errore
+        function errore() {
+            document.getElementById("distanza-info").innerHTML = "Impossibile recuperare la tua posizione.";
+        }
+
+        // Richiesta One-Shot (come indicato nelle tue slide)
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(mostraPosizione, errore);
+        } else {
+            document.getElementById("distanza-info").innerHTML = "Geolocalizzazione non supportata dal browser.";
+        }
+    </script>
+
     <div class="info-details"> 
         <h3>Vienici a trovare!</h3>
         <p>Siamo aperti tutti i giorni dalle <b>17:00</b> alle <b>02:00</b>.</p>
