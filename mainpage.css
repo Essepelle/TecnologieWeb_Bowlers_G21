@@ -251,9 +251,23 @@ button:hover {
     height: 100%;
     grid-column: 1; 
     grid-row: 1;
+    border-radius: 15px;
+    background-color: white;
+    color: black;
+}
+
+.info-map iframe{
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#distanza-info{
+    margin:0.5em;
+    text-shadow: none;
 }
 
 .card-info .info-details {
+    align-self: center;
     text-align: center;
     grid-column: 2; /* Forza la colonna 2 (Destra) */
     grid-row: 1;    /* O grid-row: 1 / span 2; se vuoi che prenda tutto lo spazio verticale */

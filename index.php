@@ -147,9 +147,9 @@ if (!empty($username)) {
             loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
+        <p id="distanza-info">Calcolo della distanza in corso...</p>
     </div>
 
-    <p id="distanza-info">Calcolo della distanza in corso...</p>
 
     <script>
         // Funzione invocata in caso di successo
@@ -172,7 +172,7 @@ if (!empty($username)) {
             const distanza = R * c;
 
             document.getElementById("distanza-info").innerHTML = 
-                "La tua posizione attuale dista circa <b>" + distanza.toFixed(2) + " km</b> da The Bowler Club.";
+                "Disti solo <b>" + distanza.toFixed(2) + " km</b> da The Bowler Club.";
         }
 
         // Funzione in caso di errore
