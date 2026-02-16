@@ -166,10 +166,14 @@ $oggi = date('Y-m-d');
                             </div>
                         
                         <?php elseif ($nomeGioco == 'Torneo di Carte'): ?>
+                        <label>INFO DATA e ORARIO</label>
+                        <p style="font-size: 0.9em; color: #bbb; margin-top: 10px;">
+                        I Tornei di Carte si svolgono ogni Mercoledì e Venerdì del mese alle 21:00.
+                        </p>
                         <br><br>
                         <label><u>ATTENZIONE</u> : Pagamento Bancario</label>
                         <p style="font-size: 0.9em; color: #bbb; margin-top: 10px;">
-                        Per questo servizio è richiesto il pagamento anticipato.
+                        Per questo servizio è richiesto il pagamento anticipato di € 5.00.
                         Cliccando su "Conferma Prenotazione", sarai reindirizzato 
                         in modo sicuro al nostro portale di pagamento bancario 
                         per completare l'operazione.

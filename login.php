@@ -108,7 +108,7 @@ unset($_SESSION['form_target']);
                     </div>
                     <hr />
                     <div class="input-row">
-                        <input type="text" name="username" id="username" class="text" placeholder="Scegli Username"
+                        <input type="text" name="username" id="username" class="text" placeholder="Username"
                             value="<?php echo htmlspecialchars($old_user); ?>" />
                         <i class="fa-solid fa-user"></i>
                     </div>
