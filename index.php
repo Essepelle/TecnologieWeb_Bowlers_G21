@@ -136,80 +136,80 @@ if (!empty($username)) {
     </div>
  
     <div class="card-info">
-        
-    <div class="info-map">
-        <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.2345!2d14.8080!3d40.6558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133bc3983637e163%3A0xc64441584284d7a8!2sVia%20Picentino%2C%2023%2C%2084131%20Salerno%20SA!5e0!3m2!1sit!2sit!4v1700000000000" 
-            width="100%" 
-            height="300" 
-            style="border:0;" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
-        </iframe>
-        <p id="distanza-info">Calcolo della distanza in corso...</p>
-    </div>
-
-
-    <script>
-        // Funzione invocata in caso di successo
-        function mostraPosizione(position) {
-            // Coordinate di Via Picentino, 23, Salerno
-            const latDest = 40.64379;
-            const lonDest = 14.86524;
             
-            // Coordinate dell'utente
-            const latUser = position.coords.latitude;
-            const lonUser = position.coords.longitude;
-
-            // Calcolo semplificato della distanza (formula di Haversine)
-            const R = 6371; // Raggio della Terra in km
-            const dLat = (latDest - latUser) * Math.PI / 180;
-            const dLon = (lonDest - lonUser) * Math.PI / 180;
-            const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                    Math.cos(latUser * Math.PI / 180) * Math.cos(latDest * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
-            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-            const distanza = R * c;
-
-            document.getElementById("distanza-info").innerHTML = 
-                "La tua posizione attuale dista circa <b>" + distanza.toFixed(2) + " km</b> da The Bowler Club.";
-        }
-
-        // Funzione in caso di errore
-        function errore() {
-            document.getElementById("distanza-info").innerHTML = "Impossibile recuperare la tua posizione.";
-        }
-
-        // Richiesta One-Shot (come indicato nelle tue slide)
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(mostraPosizione, errore);
-        } else {
-            document.getElementById("distanza-info").innerHTML = "Geolocalizzazione non supportata dal browser.";
-        }
-    </script>
-
-    <div class="info-details"> 
-        <h3>Vienici a trovare!</h3>
-        <p>Siamo aperti tutti i giorni dalle <b>17:00</b> alle <b>02:00</b>.</p>
-        
-        <p class="contact-list">
-            <a style="color: white" href="https://www.google.com/maps/place/Bowling+The+Club/@40.6435226,14.8595867,15.38z/data=!4m6!3m5!1s0x133bdd44b2c34d83:0x830d2ca79eaf0653!8m2!3d40.6437912!4d14.8652385!16s%2Fg%2F11b6j06d6z?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D">
-                <p> Via Picentino, 23, 84131 Salerno SA 
-                <i class="fas fa-map-marker-alt"></i></li></a>
-            <p> 089 849884 <i class="fas fa-phone"></i></li>
-            <p> thebowlerclub@gmail.com <i class="fas fa-envelope"></i></li>
-        </p>
-
-        <div class="social-links">
-            <h4>Seguici su:</h4>
-            <a href="https://www.facebook.com/BowlingTheClubPontecagnano/photos" target="_blank" class="social-btn facebook">
-                <i class="fab fa-facebook-f"></i> Facebook
-            </a>
-            <a href="https://www.instagram.com/bowling_pontecagnano?igsh=MXBhbTlsb2hxaGJ1MA==" target="_blank" class="social-btn instagram">
-                <i class="fab fa-instagram"></i> Instagram
-            </a>
+        <div class="info-map">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.2345!2d14.8080!3d40.6558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133bc3983637e163%3A0xc64441584284d7a8!2sVia%20Picentino%2C%2023%2C%2084131%20Salerno%20SA!5e0!3m2!1sit!2sit!4v1700000000000" 
+                width="100%" 
+                height="300" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <p id="distanza-info">Calcolo della distanza in corso...</p>
         </div>
-    </div>
+
+
+        <script>
+            // Funzione invocata in caso di successo
+            function mostraPosizione(position) {
+                // Coordinate di Via Picentino, 23, Salerno
+                const latDest = 40.64379;
+                const lonDest = 14.86524;
+                
+                // Coordinate dell'utente
+                const latUser = position.coords.latitude;
+                const lonUser = position.coords.longitude;
+
+                // Calcolo semplificato della distanza (formula di Haversine)
+                const R = 6371; // Raggio della Terra in km
+                const dLat = (latDest - latUser) * Math.PI / 180;
+                const dLon = (lonDest - lonUser) * Math.PI / 180;
+                const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                        Math.cos(latUser * Math.PI / 180) * Math.cos(latDest * Math.PI / 180) * Math.sin(dLon/2) * Math.sin(dLon/2);
+                const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                const distanza = R * c;
+
+                document.getElementById("distanza-info").innerHTML = 
+                    "La tua posizione attuale dista circa <b>" + distanza.toFixed(2) + " km</b> da The Bowler Club.";
+            }
+
+            // Funzione in caso di errore
+            function errore() {
+                document.getElementById("distanza-info").innerHTML = "Impossibile recuperare la tua posizione.";
+            }
+
+            // Richiesta One-Shot (come indicato nelle tue slide)
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(mostraPosizione, errore);
+            } else {
+                document.getElementById("distanza-info").innerHTML = "Geolocalizzazione non supportata dal browser.";
+            }
+        </script>
+
+        <div class="info-details"> 
+            <h3>Vienici a trovare!</h3>
+            <p>Siamo aperti tutti i giorni dalle <b>17:00</b> alle <b>02:00</b>.</p>
+            
+            <p class="contact-list">
+                <a style="color: white" href="https://www.google.com/maps/place/Bowling+The+Club/@40.6435226,14.8595867,15.38z/data=!4m6!3m5!1s0x133bdd44b2c34d83:0x830d2ca79eaf0653!8m2!3d40.6437912!4d14.8652385!16s%2Fg%2F11b6j06d6z?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D">
+                    <p> Via Picentino, 23, 84131 Salerno SA 
+                    <i class="fas fa-map-marker-alt"></i></li></a>
+                <p> 089 849884 <i class="fas fa-phone"></i></li>
+                <p> thebowlerclub@gmail.com <i class="fas fa-envelope"></i></li>
+            </p>
+
+            <div class="social-links">
+                <h4>Seguici su:</h4>
+                <a href="https://www.facebook.com/BowlingTheClubPontecagnano/photos" target="_blank" class="social-btn facebook">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://www.instagram.com/bowling_pontecagnano?igsh=MXBhbTlsb2hxaGJ1MA==" target="_blank" class="social-btn instagram">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+            </div>
+        </div>
 
     </div>
 
