@@ -80,12 +80,10 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 
         foreach ($prenotazioni_per_data as $data => $lista_pren): ?>
             
-            <h2>
-                <?= $data ?> 
-                <span style="justify-self: right;">
-                    (<?= count($lista_pren) ?> <?= count($lista_pren) == 1 ? 'prenotazione' : 'prenotazioni' ?>)
-                </span>
-            </h2>
+            <div class="data-num">
+                <h2 id="data"><?= $data ?></h2> 
+                <h2 id="num"><?= count($lista_pren) ?> <?= count($lista_pren) == 1 ? 'prenotazione' : 'prenotazioni' ?></h2>
+            </div>
             
             <hr>
 

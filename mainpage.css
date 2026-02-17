@@ -444,8 +444,8 @@ footer {
     justify-content: center;
     position: relative;
     margin: 20px 0;
-    padding: 0 10px;
-    width: 100%; /* Assicura che non superi il main */
+    padding: unset;
+    width: 70fr; /* Assicura che non superi il main */
     position: relative; /* Necessario per bloccare le frecce ai lati */
 }
 
@@ -454,10 +454,12 @@ footer {
     overflow-x: auto; /* Abilita lo scorrimento orizzontale */
     scroll-behavior: smooth;
     gap: 20px;
-    padding: 20px 10px;
+    padding: 20px 65px;
     scrollbar-width: none; 
     -ms-overflow-style: none;
     max-width: 1000px; /* IMPORTANTE: limita la vista a circa 3 card alla volta */
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
 
 .carousel-wrapper::-webkit-scrollbar {
@@ -522,11 +524,11 @@ footer {
 
 /* Posizionamento specifico */
 .carousel-arrow.left {
-    left: 10px;
+    left: 0;
 }
 
 .carousel-arrow.right {
-    right: 10px;
+    right: 0;
 }
 
 

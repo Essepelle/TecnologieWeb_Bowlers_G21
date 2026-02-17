@@ -63,6 +63,11 @@ main{
     box-shadow: 0 0 10px #ff00ff;
     z-index: 1;
 }
+.payment-form input:autofill{
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: white !important;
+}
+
 
 .form-row {
     display: grid;

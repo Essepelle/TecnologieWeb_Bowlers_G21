@@ -100,6 +100,13 @@ $dati = $_SESSION['pending_reservation'];
                 e.preventDefault(); // Blocca l'invio del form
             }
         });
+
+        document.getElementById('scadenza').addEventListener('input', function(e) {
+            if (e.target.value.length === 2 && e.inputType !== 'deleteContentBackward') {
+                e.target.value += '/';
+            }
+
+        });
     </script>
 
 </body>
