@@ -82,7 +82,7 @@ if (!empty($username)) {
     <h1 id="presentazione" class="titolo" style="font-size: 3em;">Vieni a scoprire il tempio del divertimento da The Bowler Club!</h1>
     
     <div class="carousel-container">
-        <button class="carousel-arrow left" onclick="scrollCarousel(-1)"><</button>
+        <button class="carousel-arrow left" onclick="scrollCarousel(-1)"><i class="fa-solid fa-chevron-left"></i></button>
         <div class="carousel-wrapper" id="gameCarousel">
             <?php
             pg_result_seek($risultatoGiochi, 0);
@@ -132,7 +132,7 @@ if (!empty($username)) {
                 </div>
             </div>
         </div>
-        <button class="carousel-arrow right" onclick="scrollCarousel(1)">></button>
+        <button class="carousel-arrow right" onclick="scrollCarousel(1)"><i class="fa-solid fa-chevron-right"></i></button>
     </div>
  
     <div class="card-info">
