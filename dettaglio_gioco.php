@@ -1,6 +1,12 @@
 <?php
 include "db.php";
 session_start();
+
+// --- RECUPERO DATI STICKY ---
+$old_data = $_SESSION['old_post'] ?? [];
+unset($_SESSION['old_post']); // Pulisce la sessione dopo aver preso i dati
+// ----------------------------
+
 $username = $_SESSION['utente'];
 $email = $_SESSION['email'];
 
@@ -115,7 +121,8 @@ $oggi = date('Y-m-d');
     <div class="card-prenotazione">
         <h2 style="border-bottom: 2px solid #00b7ff; padding-bottom: 10px; margin-top: unset; margin-bottom: 20px;">Prenota la tua partita</h2>
 
-        <form method="POST" action="gestisci_prenotazione.php" onsubmit="if(!document.getElementById('ora_prenotazione_valore').value){alert('Seleziona un orario!'); return false;}">
+        <form method="POST" action="gestisci_prenotazione.php" 
+            onsubmit="return validaPrenotazione('<?= htmlspecialchars($nomeGioco) ?>');"><!-- Quando si fa la submit si avviano i controlli in JS per gli errori lato client -->
             <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
             
 
@@ -123,7 +130,8 @@ $oggi = date('Y-m-d');
                 
                 <div class="col-data-ora">
                 <label for="data_prenotazione">SCEGLI IL GIORNO:</label>
-                <input type="date" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." required>
+                <input type="date" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." required
+                value="<?= htmlspecialchars($old_data['data_prenotazione'] ?? '') ?>">
 
                 <label>SCEGLI L'ORARIO:</label>
                 <span class="label-istruzioni">(Clicca su un orario disponibile)</span>
@@ -132,7 +140,8 @@ $oggi = date('Y-m-d');
                         <p>Seleziona prima una data valida!</p>
                     </div>
     
-                <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" required>
+                <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" 
+                value="<?= htmlspecialchars($old_data['ora_prenotazione'] ?? '') ?>">
                 </div>
 
                 <div class="col-opzioni">
@@ -142,7 +151,8 @@ $oggi = date('Y-m-d');
                             <label>Seleziona Pista (1-24):</label>
                             <div class="selector-grid">
                                 <?php for ($i = 1; $i <= 24; $i++): ?>
-                                    <input type="radio" id="pista_<?= $i ?>" name="numero_pista" value="<?= $i ?>" required>
+                                    <input type="radio" id="pista_<?= $i ?>" name="numero_pista" value="<?= $i ?>" 
+                                    <?= (isset($old_data['numero_pista']) && $old_data['numero_pista'] == $i) ? 'checked' : '' ?>><!-- Aggiunta logica per STICKY FORM -->
                                     <label for="pista_<?= $i ?>"><?= $i ?></label>
                                 <?php endfor; ?>
                             </div>
@@ -151,7 +161,8 @@ $oggi = date('Y-m-d');
                             <label>Seleziona Tavolo (1-6):</label>
                             <div class="selector-grid">
                                 <?php for ($i = 1; $i <= 6; $i++): ?>
-                                    <input type="radio" id="tavolo_<?= $i ?>" name="numero_tavolo" value="<?= $i ?>" required>
+                                    <input type="radio" id="tavolo_<?= $i ?>" name="numero_tavolo" value="<?= $i ?>" 
+                                    <?= (isset($old_data['numero_tavolo']) && $old_data['numero_tavolo'] == $i) ? 'checked' : '' ?>><!-- Aggiunta logica per STICKY FORM -->
                                     <label for="tavolo_<?= $i ?>"><?= $i ?></label>
                                 <?php endfor; ?>
                             </div>
@@ -160,7 +171,8 @@ $oggi = date('Y-m-d');
                             <label>Numero Persone (Max 10):</label>
                             <div class="selector-grid">
                                 <?php for ($i = 1; $i <= 10; $i++): ?>
-                                    <input type="radio" id="persone_<?= $i ?>" name="numero_persone" value="<?= $i ?>" required>
+                                    <input type="radio" id="persone_<?= $i ?>" name="numero_persone" value="<?= $i ?>" 
+                                    <?= (isset($old_data['numero_persone']) && $old_data['numero_persone'] == $i) ? 'checked' : '' ?>><!-- Aggiunta logica per STICKY FORM -->
                                     <label for="persone_<?= $i ?>"><?= $i ?></label>
                                 <?php endfor; ?>
                             </div>
@@ -247,9 +259,63 @@ $oggi = date('Y-m-d');
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Avvia la logica passando il nome del gioco da PHP a JS
+        // 1. Inizializza
         initPrenotazione("<?= $nomeGioco ?>");
+
+        // 2. Se PHP ha rimesso la data (sticky), scatena l'evento per mostrare gli orari
+        const dataInput = document.getElementById('data_prenotazione');
+        if (dataInput.value) {
+            dataInput.dispatchEvent(new Event('change'));
+        }
     });
+
+    // Funzione di validazione lato client prima dell'invio del form
+</script>
+
+<script>
+function validaPrenotazione(nomeGioco) {
+    // Pulisce eventuali spazi vuoti dal nome per sicurezza
+    var giocoClean = nomeGioco.trim();
+
+    // --- 1. CONTROLLO ORARIO ---
+    // (Vale per tutti tranne Torneo di Carte)
+    const orarioInput = document.getElementById('ora_prenotazione_valore');
+    
+    if (!orarioInput.value) {
+        alert("Per favore, seleziona un orario cliccando sui bottoni!");
+        return false; 
+    }
+
+    // --- 2. CONTROLLO RISORSE (Basato su cosa c'è nella pagina) ---
+
+    // CASO BOWLING: Cerco se esistono input con name="numero_pista"
+    if (document.querySelector('input[name="numero_pista"]')) {
+        // Se esistono, controllo se ALMENO UNO è selezionato (:checked)
+        if (!document.querySelector('input[name="numero_pista"]:checked')) {
+            alert("Devi selezionare il numero della Pista!");
+            return false;
+        }
+    }
+
+    // CASO BILIARDO: Cerco se esistono input con name="numero_tavolo"
+    if (document.querySelector('input[name="numero_tavolo"]')) {
+        if (!document.querySelector('input[name="numero_tavolo"]:checked')) {
+            alert("Devi selezionare il numero del Tavolo!");
+            return false;
+        }
+    }
+
+    // CASO LASER GAME: Cerco se esistono input con name="numero_persone"
+    if (document.querySelector('input[name="numero_persone"]')) {
+        if (!document.querySelector('input[name="numero_persone"]:checked')) {
+            alert("Devi selezionare il numero di persone!");
+            return false;
+        }
+    }
+
+    // Se tutto è ok
+    return true;
+}
 </script>
 </body>
 </html>

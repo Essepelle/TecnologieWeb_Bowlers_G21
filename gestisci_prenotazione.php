@@ -28,7 +28,8 @@ if (isset($_POST['conferma_prenotazione'])) {
     $sql_check_orario = "SELECT * FROM prenotazioni WHERE username_utente = $1 AND data_ora = $2";
     $res_check_orario = pg_query_params($db, $sql_check_orario, array($username, $dataOraFinale));
 
-    if (pg_num_rows($res_check_orario) > 0) {
+if (pg_num_rows($res_check_orario) > 0) {
+        $_SESSION['old_post'] = $_POST; // <--- AGGIUNTA: Salva i dati per STICKY FORM
         header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=orario_occupato");
         exit();
     }
@@ -53,6 +54,7 @@ if (isset($_POST['conferma_prenotazione'])) {
 
     if (pg_num_rows($res_dispo) > 0) {
         // Se il tavolo o la pista sono già occupati da qualcun altro
+        $_SESSION['old_post'] = $_POST; // <--- AGGIUNTA: Salva i dati PER STICKY FORM
         header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=risorsa_occupata");
         exit();
     }

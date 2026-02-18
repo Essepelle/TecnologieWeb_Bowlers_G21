@@ -382,7 +382,7 @@ footer {
     font-size: 1.5em;
 }
 
-/* Nascondiamo il pallino del radio button */
+/* Nascondiamo il pallino del radio button ed eventuali alert nativi dati da required*/
 .selector-grid input[type="radio"] {
     display: none;
 }

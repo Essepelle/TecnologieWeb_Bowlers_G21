@@ -49,6 +49,9 @@ function initPrenotazione(nomeGioco) {
 function generaBottoniOrari(dataScelta, nomeGioco) {
     const container = document.getElementById('orari-bottoni-container');
     const hiddenInput = document.getElementById('ora_prenotazione_valore');
+
+    // 1. Memorizza il valore che arriva dal PHP (Sticky)
+    const orarioPrecedente = hiddenInput.value;
     
     // Reset del contenitore
     container.innerHTML = ""; 
@@ -129,6 +132,14 @@ function generaBottoniOrari(dataScelta, nomeGioco) {
             btn.disabled = true;
             btn.title = "Orario passato";
         } else {
+
+            // --- AGGIUNTA: SE È L'ORARIO VECCHIO, SELEZIONALO E RIMETTI IL VALORE ---
+            if (slot.label === orarioPrecedente) {
+                btn.classList.add('selected');
+                hiddenInput.value = slot.label; // Ripristina il valore nel form
+            }
+            // -----------------------------------------------------------------------
+            
             // Evento click sul bottone orario
             btn.onclick = function() {
                 // 1. Rimuovi classe 'selected' da tutti gli altri bottoni
