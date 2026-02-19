@@ -27,10 +27,10 @@ if (!$gioco) {
 }
 
 // 3. Lettura descrizione estesa e ridotta
-$nomeFilePres = "descrizioni/pres_" . strtolower(str_replace(' ', '_', $nomeGioco)) . ".txt";
+$nomeFilePres = "resources/descrizioni/pres_" . strtolower(str_replace(' ', '_', $nomeGioco)) . ".txt";
 $descrizioneRidotta = file_exists("../" . $nomeFilePres) ? file_get_contents("../" . $nomeFilePres) : "Dettagli non disponibili.";
 
-$nomeFileDescr = "descrizioni/descr_" . strtolower(str_replace(' ', '_', $nomeGioco)) . ".txt";
+$nomeFileDescr = "resources/descrizioni/descr_" . strtolower(str_replace(' ', '_', $nomeGioco)) . ".txt";
 $descrizioneEstesa = file_exists("../" . $nomeFileDescr) ? file_get_contents("../" . $nomeFileDescr) : "Dettagli non disponibili.";
 
 // 4. Recupero i giochi per la sidebar sinistra

@@ -90,7 +90,7 @@ if (!empty($username)) {
                 $anchorId = str_replace(' ', '-', $row['nome_gioco']);
                 
                 // Puntamento alla cartella descrizioni/
-                $nomeFilePres = "descrizioni/pres_" . strtolower(str_replace(' ', '_', $row['nome_gioco'])) . ".txt";
+                $nomeFilePres = "resources/descrizioni/pres_" . strtolower(str_replace(' ', '_', $row['nome_gioco'])) . ".txt";
                 $presentazione = file_exists($nomeFilePres) ? file_get_contents($nomeFilePres) : "Scopri di più cliccando su prenota.";
             ?>
             <div id="<?= $anchorId ?>" class="card-gioco-carousel">
@@ -119,7 +119,7 @@ if (!empty($username)) {
             <?php endwhile; ?>
 
             <div id="area-food" class="card-gioco-carousel">
-                <img src="img/area_food.jpg" alt="Area Food">
+                <img src="resources/img_giochi/area_food.jpg" alt="Area Food">
                 <div class="card-content">
                     <h1>Area Food & Recensioni</h1>
                     <p id="info_gioco">Vieni a scoprire la nostra selezione di snack, pizze e cocktail! <br>

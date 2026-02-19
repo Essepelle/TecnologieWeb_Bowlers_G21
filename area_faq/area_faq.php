@@ -125,7 +125,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
             <a id="article">Caffè Espresso</a><a id="price">€ 1.00</a>
         </div>
         </div>
-        <img src="../img/area_food.jpg">
+        <img src="../resources/img_giochi/area_food.jpg">
         </div>
         <div class="food-description">
             <p>

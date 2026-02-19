@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict 2ZYho3ZHC2yAH1RNaCzji0oNYV4hkAzDF2tW73cC3vLCtJxh4v3ZMzlyhQQctsb
+\restrict brKAUVmSDATApzw34CABAtkGBW3nurEVbBH8vPxaOrL3YLRw2fgxgnq6CXnaRB7
 
 -- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.1
 
--- Started on 2026-02-13 17:16:23
+-- Started on 2026-02-19 13:06:40
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -32,7 +32,7 @@ CREATE SCHEMA public;
 ALTER SCHEMA public OWNER TO pg_database_owner;
 
 --
--- TOC entry 5046 (class 0 OID 0)
+-- TOC entry 5045 (class 0 OID 0)
 -- Dependencies: 4
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
 --
@@ -45,7 +45,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 224 (class 1259 OID 16612)
+-- TOC entry 223 (class 1259 OID 16612)
 -- Name: faq; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -62,7 +62,7 @@ CREATE TABLE public.faq (
 ALTER TABLE public.faq OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 16611)
+-- TOC entry 222 (class 1259 OID 16611)
 -- Name: faq_id_recensione_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -78,8 +78,8 @@ CREATE SEQUENCE public.faq_id_recensione_seq
 ALTER SEQUENCE public.faq_id_recensione_seq OWNER TO postgres;
 
 --
--- TOC entry 5048 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 5047 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: faq_id_recensione_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -87,7 +87,7 @@ ALTER SEQUENCE public.faq_id_recensione_seq OWNED BY public.faq.id_recensione;
 
 
 --
--- TOC entry 219 (class 1259 OID 16491)
+-- TOC entry 224 (class 1259 OID 16631)
 -- Name: giochi; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -100,7 +100,7 @@ CREATE TABLE public.giochi (
 ALTER TABLE public.giochi OWNER TO postgres;
 
 --
--- TOC entry 222 (class 1259 OID 16565)
+-- TOC entry 221 (class 1259 OID 16565)
 -- Name: prenotazioni; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -118,7 +118,7 @@ CREATE TABLE public.prenotazioni (
 ALTER TABLE public.prenotazioni OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 16564)
+-- TOC entry 220 (class 1259 OID 16564)
 -- Name: prenotazioni_id_prenotazione_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -134,8 +134,8 @@ CREATE SEQUENCE public.prenotazioni_id_prenotazione_seq
 ALTER SEQUENCE public.prenotazioni_id_prenotazione_seq OWNER TO postgres;
 
 --
--- TOC entry 5052 (class 0 OID 0)
--- Dependencies: 221
+-- TOC entry 5051 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: prenotazioni_id_prenotazione_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -143,7 +143,7 @@ ALTER SEQUENCE public.prenotazioni_id_prenotazione_seq OWNED BY public.prenotazi
 
 
 --
--- TOC entry 220 (class 1259 OID 16552)
+-- TOC entry 219 (class 1259 OID 16552)
 -- Name: utenti; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -174,8 +174,8 @@ ALTER TABLE ONLY public.prenotazioni ALTER COLUMN id_prenotazione SET DEFAULT ne
 
 
 --
--- TOC entry 5040 (class 0 OID 16612)
--- Dependencies: 224
+-- TOC entry 5038 (class 0 OID 16612)
+-- Dependencies: 223
 -- Data for Name: faq; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -189,44 +189,46 @@ COPY public.faq (id_recensione, username, recensione, data_recensione, stelle) F
 17	sasasas	SERVIZI AL TOP, DIVERTIMENTO ASSICURATO	2026-02-12 21:42:09.927257	4
 18	ginseng	Sica è stronzo	2026-02-13 09:25:01.051971	5
 19	pipa	dd	2026-02-13 14:32:47.590402	3
+20	pipa	mio	2026-02-15 01:18:48.706495	1
 \.
 
 
 --
--- TOC entry 5035 (class 0 OID 16491)
--- Dependencies: 219
+-- TOC entry 5039 (class 0 OID 16631)
+-- Dependencies: 224
 -- Data for Name: giochi; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.giochi (nome_gioco, immagine) FROM stdin;
-Bowling	img/bowling.jpg
-Biliardo	img/biliardo.jpg
-Torneo di Carte	img/torneo_di_carte.jpg
-Laser Game	img/laser_game.jpg
+Bowling	resources/img_giochi/bowling.jpg
+Biliardo	resources/img_giochi/biliardo.jpg
+Torneo di Carte	resources/img_giochi/torneo_di_carte.jpg
+Laser Game	resources/img_giochi/laser_game.jpg
 \.
 
 
 --
--- TOC entry 5038 (class 0 OID 16565)
--- Dependencies: 222
+-- TOC entry 5036 (class 0 OID 16565)
+-- Dependencies: 221
 -- Data for Name: prenotazioni; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.prenotazioni (id_prenotazione, username_utente, nome_gioco, data_ora, numero_pista, numero_tavolo, numero_persone) FROM stdin;
-61	sasasas	Biliardo	2026-02-19 00:00:00	\N	2	\N
-64	ginseng	Biliardo	2026-02-14 20:30:00	\N	2	\N
 68	pipa	Bowling	2026-02-20 18:30:00	12	\N	\N
-70	pipa	Bowling	2026-02-20 22:30:00	13	\N	\N
 71	pipa	Biliardo	2026-02-20 01:00:00	\N	4	\N
 72	pipa	Biliardo	2026-02-20 17:30:00	\N	6	\N
 74	pipa	Bowling	2026-02-27 18:30:00	14	\N	\N
 75	pipa	Bowling	2026-02-20 17:00:00	11	\N	\N
+77	pipa4	Bowling	2026-02-25 18:00:00	17	\N	\N
+78	pipa	Bowling	2026-02-26 18:00:00	14	\N	\N
+80	pipa	Torneo di Carte	2026-02-27 21:00:00	\N	\N	\N
+81	pipa	Biliardo	2026-02-20 19:00:00	\N	4	\N
 \.
 
 
 --
--- TOC entry 5036 (class 0 OID 16552)
--- Dependencies: 220
+-- TOC entry 5034 (class 0 OID 16552)
+-- Dependencies: 219
 -- Data for Name: utenti; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -235,29 +237,31 @@ pipa	MARTINA	martina0turi@gmail.com	$2y$10$iFcxUB2Ct8/1itk4C8TsruPeaOggjrZ6oMMhq
 sasasas	antonio 	avalenza15@gmail.com	$2y$10$d5vSk7NAKGbqpWS7NBs8GOflEDfN0w4Nk1ynYhgRBCK0WbYJsn/d6
 ginseng	Gabriele Imparato	mipiaceilcazzo@gmail.com	$2y$10$nWjb8.oUNeSuQbs.NyckheoWcINegTdjhEruLLIzMrSj2NuOhGZqy
 antonio	PincoPallino	kkkkkk@a	$2y$10$9ST7O42ymNVKIX6H.QoabuDCwlWJe2m1ZaNwU21D/wWMfG5Mntt1m
+admin_user	Admin Test	admin@example.com	55
+pipa4	MARTINA4	martina04turi@gmail.com	$2y$10$PD/oek/Aw4zmPL96/jVMgufNXWuwgIttMNSpwrSayYpRosXE8TXTK
 \.
 
 
 --
--- TOC entry 5055 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 5054 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: faq_id_recensione_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.faq_id_recensione_seq', 19, true);
+SELECT pg_catalog.setval('public.faq_id_recensione_seq', 20, true);
 
 
 --
--- TOC entry 5056 (class 0 OID 0)
--- Dependencies: 221
+-- TOC entry 5055 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: prenotazioni_id_prenotazione_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.prenotazioni_id_prenotazione_seq', 76, true);
+SELECT pg_catalog.setval('public.prenotazioni_id_prenotazione_seq', 82, true);
 
 
 --
--- TOC entry 4884 (class 2606 OID 16622)
+-- TOC entry 4882 (class 2606 OID 16622)
 -- Name: faq faq_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -266,7 +270,7 @@ ALTER TABLE ONLY public.faq
 
 
 --
--- TOC entry 4874 (class 2606 OID 16496)
+-- TOC entry 4884 (class 2606 OID 16636)
 -- Name: giochi giochi_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -275,7 +279,7 @@ ALTER TABLE ONLY public.giochi
 
 
 --
--- TOC entry 4880 (class 2606 OID 16573)
+-- TOC entry 4878 (class 2606 OID 16573)
 -- Name: prenotazioni prenotazioni_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -284,7 +288,7 @@ ALTER TABLE ONLY public.prenotazioni
 
 
 --
--- TOC entry 4876 (class 2606 OID 16563)
+-- TOC entry 4874 (class 2606 OID 16563)
 -- Name: utenti utenti_email_key; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -293,7 +297,7 @@ ALTER TABLE ONLY public.utenti
 
 
 --
--- TOC entry 4878 (class 2606 OID 16561)
+-- TOC entry 4876 (class 2606 OID 16561)
 -- Name: utenti utenti_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -302,7 +306,7 @@ ALTER TABLE ONLY public.utenti
 
 
 --
--- TOC entry 4881 (class 1259 OID 16609)
+-- TOC entry 4879 (class 1259 OID 16609)
 -- Name: unica_prenotazione_pista; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -310,7 +314,7 @@ CREATE UNIQUE INDEX unica_prenotazione_pista ON public.prenotazioni USING btree 
 
 
 --
--- TOC entry 4882 (class 1259 OID 16610)
+-- TOC entry 4880 (class 1259 OID 16610)
 -- Name: unica_prenotazione_tavolo; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -318,7 +322,7 @@ CREATE UNIQUE INDEX unica_prenotazione_tavolo ON public.prenotazioni USING btree
 
 
 --
--- TOC entry 4887 (class 2606 OID 16623)
+-- TOC entry 4886 (class 2606 OID 16623)
 -- Name: faq fk_utente; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -327,16 +331,7 @@ ALTER TABLE ONLY public.faq
 
 
 --
--- TOC entry 4885 (class 2606 OID 16579)
--- Name: prenotazioni prenotazioni_nome_gioco_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public.prenotazioni
-    ADD CONSTRAINT prenotazioni_nome_gioco_fkey FOREIGN KEY (nome_gioco) REFERENCES public.giochi(nome_gioco) ON UPDATE CASCADE;
-
-
---
--- TOC entry 4886 (class 2606 OID 16574)
+-- TOC entry 4885 (class 2606 OID 16574)
 -- Name: prenotazioni prenotazioni_username_utente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -345,8 +340,8 @@ ALTER TABLE ONLY public.prenotazioni
 
 
 --
--- TOC entry 5047 (class 0 OID 0)
--- Dependencies: 224
+-- TOC entry 5046 (class 0 OID 0)
+-- Dependencies: 223
 -- Name: TABLE faq; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -354,8 +349,8 @@ GRANT ALL ON TABLE public.faq TO www;
 
 
 --
--- TOC entry 5049 (class 0 OID 0)
--- Dependencies: 223
+-- TOC entry 5048 (class 0 OID 0)
+-- Dependencies: 222
 -- Name: SEQUENCE faq_id_recensione_seq; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -363,8 +358,8 @@ GRANT SELECT,USAGE ON SEQUENCE public.faq_id_recensione_seq TO www;
 
 
 --
--- TOC entry 5050 (class 0 OID 0)
--- Dependencies: 219
+-- TOC entry 5049 (class 0 OID 0)
+-- Dependencies: 224
 -- Name: TABLE giochi; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -372,8 +367,8 @@ GRANT ALL ON TABLE public.giochi TO www;
 
 
 --
--- TOC entry 5051 (class 0 OID 0)
--- Dependencies: 222
+-- TOC entry 5050 (class 0 OID 0)
+-- Dependencies: 221
 -- Name: TABLE prenotazioni; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -381,8 +376,8 @@ GRANT ALL ON TABLE public.prenotazioni TO www;
 
 
 --
--- TOC entry 5053 (class 0 OID 0)
--- Dependencies: 221
+-- TOC entry 5052 (class 0 OID 0)
+-- Dependencies: 220
 -- Name: SEQUENCE prenotazioni_id_prenotazione_seq; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -390,19 +385,19 @@ GRANT SELECT,USAGE ON SEQUENCE public.prenotazioni_id_prenotazione_seq TO www;
 
 
 --
--- TOC entry 5054 (class 0 OID 0)
--- Dependencies: 220
+-- TOC entry 5053 (class 0 OID 0)
+-- Dependencies: 219
 -- Name: TABLE utenti; Type: ACL; Schema: public; Owner: postgres
 --
 
 GRANT ALL ON TABLE public.utenti TO www;
 
 
--- Completed on 2026-02-13 17:16:23
+-- Completed on 2026-02-19 13:06:41
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict 2ZYho3ZHC2yAH1RNaCzji0oNYV4hkAzDF2tW73cC3vLCtJxh4v3ZMzlyhQQctsb
+\unrestrict brKAUVmSDATApzw34CABAtkGBW3nurEVbBH8vPxaOrL3YLRw2fgxgnq6CXnaRB7
 

@@ -62,10 +62,10 @@ GRANT ALL PRIVILEGES ON TABLE faq TO www;
 
 -- Inserimento Giochi
 INSERT INTO public.giochi (nome_gioco, immagine) VALUES
-('Bowling', 'img/bowling.jpg'),
-('Biliardo', 'img/biliardo.jpg'),
-('Torneo di Carte', 'img/torneo_di_carte.jpg'),
-('Laser Game', 'img/laser_game.jpg');
+('Bowling', 'resources/img_giochi/bowling.jpg'),
+('Biliardo', 'resources/img_giochi/biliardo.jpg'),
+('Torneo di Carte', 'resources/img_giochi/torneo_di_carte.jpg'),
+('Laser Game', 'resources/img_giochi/laser_game.jpg');
 
 -- Inserimento Utenti Random
 INSERT INTO public.utenti (username, nome_completo, email, pass) VALUES
