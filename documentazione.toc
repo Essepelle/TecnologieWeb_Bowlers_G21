@@ -1,0 +1,44 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {section}{\numberline {1}Executive Summary}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Tema assegnato e Realtà di interesse}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Funzionalità principali}{1}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Progettazione}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Wireframe}{2}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Database}{2}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Interfaccia principale}{2}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Login}{2}{subsubsection.2.1.3}%
+\contentsline {paragraph}{\numberline {2.1.3.1}Validazione multilivello}{2}{paragraph.2.1.3.1}%
+\contentsline {paragraph}{\numberline {2.1.3.2}Sicurezza e Cifratura dei dati}{2}{paragraph.2.1.3.2}%
+\contentsline {subsubsection}{\numberline {2.1.4}Dettaglio Gioco}{2}{subsubsection.2.1.4}%
+\contentsline {paragraph}{\numberline {2.1.4.1}Sistema di Prenotazione e Calendario}{2}{paragraph.2.1.4.1}%
+\contentsline {subsubsection}{\numberline {2.1.5}Pagamento Torneo}{2}{subsubsection.2.1.5}%
+\contentsline {subsubsection}{\numberline {2.1.6}Area FAQ}{2}{subsubsection.2.1.6}%
+\contentsline {subsubsection}{\numberline {2.1.7}Account}{2}{subsubsection.2.1.7}%
+\contentsline {subsection}{\numberline {2.2}Wireflow}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Fogli di Stile}{2}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}\texttt {mainpage.css}}{2}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}\texttt {login.css}}{2}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}\texttt {dettaglio\_gioco.css}}{2}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}\texttt {area\_faq.css}}{2}{subsubsection.2.3.4}%
+\contentsline {subsubsection}{\numberline {2.3.5}\texttt {prenotazioni.css}}{2}{subsubsection.2.3.5}%
+\contentsline {subsubsection}{\numberline {2.3.6}\texttt {pagamento\_torneo.css}}{2}{subsubsection.2.3.6}%
+\contentsline {subsection}{\numberline {2.4}Differenze Utente Ospite e Utente Loggato}{2}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Navigazione e Header}{2}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Sidebar Destra (Account)}{2}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Interazione con i Servizi e le Prenotazioni}{2}{subsubsection.2.4.3}%
+\contentsline {subsubsection}{\numberline {2.4.4}Area food e Recensioni}{2}{subsubsection.2.4.4}%
+\contentsline {subsection}{\numberline {2.5}DETTAGLIO progettazione del sito}{2}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Descrizione del Sito}{3}{section.3}%
+\contentsline {subsubsection}{\numberline {3.0.1}Interfaccia principale}{3}{subsubsection.3.0.1}%
+\contentsline {subsubsection}{\numberline {3.0.2}Login}{3}{subsubsection.3.0.2}%
+\contentsline {subsubsection}{\numberline {3.0.3}Dettaglio Gioco}{3}{subsubsection.3.0.3}%
+\contentsline {paragraph}{\numberline {3.0.3.1}Pagamento Torneo}{3}{paragraph.3.0.3.1}%
+\contentsline {subsubsection}{\numberline {3.0.4}Area FAQ}{3}{subsubsection.3.0.4}%
+\contentsline {subsubsection}{\numberline {3.0.5}Account}{3}{subsubsection.3.0.5}%
+\contentsline {subsection}{\numberline {3.1}Scelte Progettuali in accordo alle Specifiche}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Dettagli implementativi peculiari}{3}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Tabella di Partecipazione}{4}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Tabella}{4}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Macroaree e Collaborazioni emerse}{4}{subsection.4.2}%
+\contentsline {section}{\numberline {5}EXCEL Descrizione Breve}{5}{section.5}%

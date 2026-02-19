@@ -1,0 +1,119 @@
+\documentclass[a4paper, twoside]{article}
+\usepackage{amsmath, graphicx, a4wide, amssymb, amsthm, ragged2e, tikz, cancel, txfonts, pifont, pgfplots, titling, fancyhdr, multicol, tocloft, changepage, enumitem, diagbox}
+\usepackage[export]{adjustbox}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, inner=3cm, outer=2cm, bindingoffset=0.5cm]{geometry}
+\usepackage[italian]{babel}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[linktocpage=true]{hyperref}
+\usepackage{titlesec}
+
+\titleformat{\paragraph}
+  {\normalfont\normalsize\bfseries} % Stile del font (normale, dimensione base, grassetto)
+  {\theparagraph}               % Etichetta numerica
+  {1em}                             % Spazio tra numero e titolo
+  {}                                % Codice che precede il titolo
+  [\vspace{0.2ex}]                  % Spazio dopo il titolo (forza l'andata a capo)
+
+\titlespacing*{\paragraph}
+  {0pt}               % Rientro a sinistra
+  {3.25ex plus 1ex minus .2ex} % Spazio sopra
+  {1.5ex plus .2ex}   % Spazio sotto (fondamentale per il distacco dal testo)
+\usetikzlibrary{decorations.markings, backgrounds}
+\pagestyle{fancy}
+\begin{document}
+\pagenumbering{roman}
+\fancyhead{}
+\fancyfoot{}
+\fancyhead[C]{\textbf{Documento Tecnico di Progetto - The Bowler Club}}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,RE]{Pascariello Vincenzo - Pellecchia Simone - Turi Martina}
+\renewcommand{\footrulewidth}{0.4pt}
+\newcommand{\lrft}{\overset{\mathcal{F}}{\leftrightarrow}}
+\newcommand{\toft}{\overset{\mathcal{F}}{\to}}
+\newcommand{\imp}{\Rightarrow}
+\justifying
+\newgeometry{margin=2.5cm, bindingoffset=0cm}
+\begin{titlepage}
+    \centering
+    {\scshape\Huge UNIVERSITÀ DEGLI STUDI DI SALERNO \par}
+    \vspace{1cm}
+    {\scshape\normalsize Dipartimento di Ingegneria dell’Informazione ed Elettrica e Matematica applicata \par}
+    \vspace{0.5cm}
+    {\scshape\Large Corso di Laurea in Ingegneria Informatica \par}
+    \vspace*{\fill}
+    \includegraphics[width=0.3\textwidth]{logo_standard.png}\par
+    \vspace{0.5cm}
+    {\huge \bfseries Documento Tecnico di Progetto\\The Bowler Club\par}
+    \vspace{0.5cm}
+    {\large\bfseries Tecnologie Web\par}
+    \vspace{1.0cm}
+    {\large
+    \begin{tabular}{c @{\hspace{2cm}} c}
+        \textbf{Docente} & \textbf{Gruppo 21 - Bowlers}\\
+        Prof.ssa Senatore Sabrina & Pascariello Vincenzo\\
+        & Pellecchia Simone\\
+        & Turi Martina\\
+    \end{tabular}\par}
+    \vspace{1.0cm}
+        \vspace*{\fill}
+    {\large Anno Accademico 2025/2026\par}
+\end{titlepage}
+\restoregeometry
+\thispagestyle{empty}
+\,\newpage
+\setcounter{page}{1}
+\cftpagenumbersoff{section}
+\cftpagenumbersoff{paragraph}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+\tableofcontents
+\newpage
+\pagenumbering{arabic}
+\section{Executive Summary}
+\subsection{Tema assegnato e Realtà di interesse}
+\subsection{Funzionalità principali}
+\newpage
+\section{Progettazione}
+\subsection{Wireframe}
+\subsubsection{Database}
+\subsubsection{Interfaccia principale}
+\subsubsection{Login}
+\paragraph{Validazione multilivello}
+\paragraph{Sicurezza e Cifratura dei dati}
+\subsubsection{Dettaglio Gioco}
+\paragraph{Sistema di Prenotazione e Calendario}
+\subsubsection{Pagamento Torneo}
+\subsubsection{Area FAQ}
+\subsubsection{Account}
+\subsection{Wireflow}
+\subsection{Fogli di Stile}
+\subsubsection{\texttt{mainpage.css}}
+\subsubsection{\texttt{login.css}}
+\subsubsection{\texttt{dettaglio\_gioco.css}}
+\subsubsection{\texttt{area\_faq.css}}
+\subsubsection{\texttt{prenotazioni.css}}
+\subsubsection{\texttt{pagamento\_torneo.css}}
+\subsection{Differenze Utente Ospite e Utente Loggato}
+\subsubsection{Navigazione e Header}
+\subsubsection{Sidebar Destra (Account)}
+\subsubsection{Interazione con i Servizi e le Prenotazioni}
+\subsubsection{Area food e Recensioni}
+\subsection{DETTAGLIO progettazione del sito}
+\newpage
+\section{Descrizione del Sito}
+\subsubsection{Interfaccia principale}
+\subsubsection{Login}
+\subsubsection{Dettaglio Gioco}
+\paragraph{Pagamento Torneo}
+\subsubsection{Area FAQ}
+\subsubsection{Account}
+\subsection{Scelte Progettuali in accordo alle Specifiche}
+\subsection{Dettagli implementativi peculiari}
+\newpage
+\section{Tabella di Partecipazione}
+\subsection{Tabella}
+\subsection{Macroaree e Collaborazioni emerse}
+\newpage
+\section{EXCEL Descrizione Breve}
+\end{document}
