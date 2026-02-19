@@ -4,7 +4,7 @@
 
 /* Reset e Sfondo Generale */
 body {
-    background-image: url("resources/capocchia.jpeg"); /* Immagine del club */
+    background-image: url("resources/sfondo.jpeg"); /* Immagine del club */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

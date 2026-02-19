@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "../db.php";
 session_start();
 
 // Controllo se ci sono dati in sessione e se il form è stato inviato
@@ -29,7 +29,7 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
     if (strlen($numero_carta) !== 16 || strlen($cvv) !== 3 || $is_expired) {
         // Recuperiamo il nome del gioco per il redirect corretto
         $nomeGiocoRedirect = $_SESSION['pending_reservation'][1] ?? 'Torneo di Carte';
-        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGiocoRedirect) . "&res=payment_failed");
+        header("Location: ../dettaglio_gioco/dettaglio_gioco.php?gioco=" . urlencode($nomeGiocoRedirect) . "&res=payment_failed");
         exit();
     }
 
@@ -56,18 +56,18 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
     if ($res_insert) {
         // Successo: puliamo la sessione e reindirizziamo
         unset($_SESSION['pending_reservation']);
-        header("Location: dettaglio_gioco.php?gioco=" . urlencode($params[1]) . "&res=success");
+        header("Location: ../dettaglio_gioco/dettaglio_gioco.php?gioco=" . urlencode($params[1]) . "&res=success");
         exit();
     } else {
         // Errore tecnico del database (mostriamo l'errore se capita)
         echo "<h1>Errore durante il salvataggio</h1>";
         echo "<p>" . pg_last_error($db) . "</p>";
-        echo "<a href='index.php'>Torna alla Home</a>";
+        echo "<a href='../index.php'>Torna alla Home</a>";
     }
 
 } else {
     // Accesso non autorizzato (es. accesso diretto via URL)
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "../db.php";
 session_start();
 
 // --- RECUPERO DATI STICKY ---
@@ -13,7 +13,7 @@ $email = $_SESSION['email'];
 // 1. Recupero il nome del gioco dalla URL
 $nomeGioco = $_GET['gioco'] ?? '';
 if (empty($nomeGioco)) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -28,10 +28,10 @@ if (!$gioco) {
 
 // 3. Lettura descrizione estesa e ridotta
 $nomeFilePres = "descrizioni/pres_" . strtolower(str_replace(' ', '_', $nomeGioco)) . ".txt";
-$descrizioneRidotta = file_exists($nomeFilePres) ? file_get_contents($nomeFilePres) : "Dettagli non disponibili.";
+$descrizioneRidotta = file_exists("../" . $nomeFilePres) ? file_get_contents("../" . $nomeFilePres) : "Dettagli non disponibili.";
 
 $nomeFileDescr = "descrizioni/descr_" . strtolower(str_replace(' ', '_', $nomeGioco)) . ".txt";
-$descrizioneEstesa = file_exists($nomeFileDescr) ? file_get_contents($nomeFileDescr) : "Dettagli non disponibili.";
+$descrizioneEstesa = file_exists("../" . $nomeFileDescr) ? file_get_contents("../" . $nomeFileDescr) : "Dettagli non disponibili.";
 
 // 4. Recupero i giochi per la sidebar sinistra
 $sqlGiochi = "SELECT nome_gioco FROM giochi ORDER BY nome_gioco;";
@@ -53,9 +53,9 @@ $oggi = date('Y-m-d');
     <meta charset="UTF-8">
     <title><?= htmlspecialchars($nomeGioco) ?> - Prenota</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="../mainpage.css">
     <link rel="stylesheet" href="dettaglio_gioco.css">
-    <link rel="icon" type="icon" href="resources/logo.png"/>
+    <link rel="icon" type="icon" href="../resources/logo.png"/>
     
     <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css"> 
@@ -67,8 +67,8 @@ $oggi = date('Y-m-d');
 <body>
 
 <header>
-    <div class="site" onclick="window.location.href='index.php'">
-        <img src="resources/logo.png" class="logo" alt="Logo">
+    <div class="site" onclick="window.location.href='../index.php'">
+        <img src="../resources/logo.png" class="logo" alt="Logo">
         <h1>The Bowler Club</h1>
     </div>
     <div class="user">
@@ -76,12 +76,12 @@ $oggi = date('Y-m-d');
             <div class="dropdown-container">
                 <h2 style="cursor: pointer;">Ciao <?= htmlspecialchars($_SESSION['nome']) ?></h2>
                 <div class="logged-menu">
-                    <a href="prenotazioni.php">Le mie Prenotazioni</a>
-                    <a href="logout.php">Logout</a>
+                    <a href="../account/prenotazioni.php">Le mie Prenotazioni</a>
+                    <a href="../account/logout.php">Logout</a>
                 </div>
             </div>
         <?php else: ?>
-            <h2 onclick="window.location.href='login.php'" style="cursor:pointer;">Effettua il Login</h2>
+            <h2 onclick="window.location.href='../login/login.php'" style="cursor:pointer;">Effettua il Login</h2>
         <?php endif; ?>
     </div>
 </header>
@@ -89,7 +89,7 @@ $oggi = date('Y-m-d');
 <aside class="sidebar-left">
     <p class="titolo-sidebar">SERVIZI OFFERTI</p>
     <ul>
-        <li><a href="index.php">Torna alla Home</a></li>
+        <li><a href="../index.php">Torna alla Home</a></li>
         <?php while ($r = pg_fetch_assoc($risultatoGiochi)): ?>
             <li>
                 <a href="dettaglio_gioco.php?gioco=<?= urlencode($r['nome_gioco']) ?>">
@@ -97,13 +97,13 @@ $oggi = date('Y-m-d');
                 </a>
             </li>
         <?php endwhile; ?>
-        <li><a href="area_faq.php">Area Food e Recensioni</a></li>
+        <li><a href="../area_faq/area_faq.php">Area Food e Recensioni</a></li>
     </ul>
 </aside>
 
 <main>
     <div class="card-gioco-odd">
-        <img src="<?= htmlspecialchars($gioco['immagine']) ?>">
+        <img src="../<?= htmlspecialchars($gioco['immagine']) ?>">
         <div>
             <h1 id="titolo"><?= htmlspecialchars($nomeGioco) ?></h1>
             

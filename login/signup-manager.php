@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include '../db.php';
 session_start();
 
 // Verifichiamo la ricezione di tutti i dati dal form HTML

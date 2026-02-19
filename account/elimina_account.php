@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "../db.php";
 session_start();
 
 // Controllo sicurezza: l'utente deve essere loggato
@@ -21,7 +21,7 @@ $result = pg_query_params($db, $sql_del_user, array($username));
 if ($result) {
     // 3. Distruggi la sessione e reindirizza alla pagina di login o home
     session_destroy();
-    header("Location: login.php?msg=account_eliminato");
+    header("Location: ../login/login.php?msg=account_eliminato");
     exit();
 } else {
     echo "Errore durante l'eliminazione dell'account: " . pg_last_error($db);

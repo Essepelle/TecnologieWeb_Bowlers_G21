@@ -22,15 +22,15 @@ unset($_SESSION['form_target']);
 <head>
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="login.css" />
-    <link rel="icon" type="icon" href="resources/logo.png" />
+    <link rel="icon" type="icon" href="../resources/logo.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="login.js" defer></script>
 </head>
 
 <body>
     <header>
-        <div class="site" onclick="window.location.href='index.php'">
-            <img src="resources/logo.png" class="logo" alt="Logo">
+        <div class="site" onclick="window.location.href='../index.php'">
+            <img src="../resources/logo.png" class="logo" alt="Logo">
             <h1>The Bowler Club</h1>
         </div>
     </header>
@@ -134,7 +134,7 @@ unset($_SESSION['form_target']);
             </div>
         </div>
 
-        <img src="resources/logo.png" class="logo" />
+        <img src="../resources/logo.png" class="logo" />
     </main>
     <footer>
         © 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21

@@ -52,12 +52,12 @@ if (!empty($username)) {
                     Ciao <?= htmlspecialchars($_SESSION['nome']) ?>
                 </h2>
                 <div class="logged-menu">
-                    <a href="prenotazioni.php">Le mie Prenotazioni</a>
-                    <a href="logout.php">Logout</a>
+                    <a href="account/prenotazioni.php">Le mie Prenotazioni</a>
+                    <a href="account/logout.php">Logout</a>
                 </div>
             </div>
         <?php else: ?>
-            <h2 onclick="window.location.href='login.php'" style="cursor:pointer;">Effettua il Login</h2>
+            <h2 onclick="window.location.href='login/login.php'" style="cursor:pointer;">Effettua il Login</h2>
         <?php endif; ?>
     </div>
 </header>
@@ -104,13 +104,13 @@ if (!empty($username)) {
                     <?php if (isset($_SESSION['utente'])): ?>
                     <!-- utente loggato -->
                     <button type="button"
-                        onclick="window.location.href='dettaglio_gioco.php?gioco=<?= urlencode($row['nome_gioco']) ?>'">
+                        onclick="window.location.href='dettaglio_gioco/dettaglio_gioco.php?gioco=<?= urlencode($row['nome_gioco']) ?>'">
                         Prenota
                     </button>
                     <?php else: ?>
                     <!-- utente non loggato -->
                     <button type="button"
-                            onclick="window.location.href='login.php?redirect=prenota&gioco=<?= urlencode($row['nome_gioco']) ?>'">
+                            onclick="window.location.href='login/login.php?redirect=prenota&gioco=<?= urlencode($row['nome_gioco']) ?>'">
                             Prenota
                         </button>
                     <?php endif; ?>
@@ -126,7 +126,7 @@ if (!empty($username)) {
                     Il posto perfetto per ricaricarsi tra una partita e l'altra.</p>
 
                     <button type="button" 
-                        onclick="window.location.href='area_faq.php'">
+                        onclick="window.location.href='area_faq/area_faq.php'">
                         Vai alle Recensioni
                     </button>
                 </div>

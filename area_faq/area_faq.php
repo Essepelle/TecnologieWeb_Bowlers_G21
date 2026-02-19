@@ -1,5 +1,5 @@
 <?php
-include "db.php";
+include "../db.php";
 session_start();
 
 $username = $_SESSION['utente'] ?? null;
@@ -55,14 +55,14 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <head>
     <meta charset="UTF-8">
     <title>Area Food & FAQ - The Bowler Club</title>
-    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="../mainpage.css">
     <link rel="stylesheet" href="area_faq.css">
 </head>
 <body>
 
 <header>
     <div class="site clickable" onclick="window.location.href='index.php'">
-        <img src="resources/logo.png" class="logo" alt="Logo">
+        <img src="../resources/logo.png" class="logo" alt="Logo">
         <h1>The Bowler Club</h1>
     </div>
     <div class="user">
@@ -70,12 +70,12 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
             <div class="dropdown-container">
                 <h2 class="clickable">Ciao <?= htmlspecialchars($_SESSION['nome']) ?></h2>
                 <div class="logged-menu">
-                    <a href="prenotazioni.php">Le mie Prenotazioni</a>
-                    <a href="logout.php">Logout</a>
+                    <a href="../account/prenotazioni.php">Le mie Prenotazioni</a>
+                    <a href="../account/logout.php">Logout</a>
                 </div>
             </div>
         <?php else: ?>
-            <h2 onclick="window.location.href='login.php'" class="clickable">Effettua il Login</h2>
+            <h2 onclick="window.location.href='../login/login.php'" class="clickable">Effettua il Login</h2>
         <?php endif; ?>
     </div>
 </header>
@@ -83,10 +83,10 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <aside class="sidebar-left">
     <p class="titolo-sidebar">SERVIZI OFFERTI</p>
     <ul>
-        <li><a href="index.php"><?= $username ? 'Torna alla Home' : 'Home' ?></a></li>
+        <li><a href="../index.php"><?= $username ? 'Torna alla Home' : 'Home' ?></a></li>
         <?php pg_result_seek($risultatoGiochi, 0);
         while ($r = pg_fetch_assoc($risultatoGiochi)): ?>
-            <li><a href="dettaglio_gioco.php?gioco=<?= urlencode($r['nome_gioco']) ?>"><?= htmlspecialchars($r['nome_gioco']) ?></a></li>
+            <li><a href="../dettaglio_gioco/dettaglio_gioco.php?gioco=<?= urlencode($r['nome_gioco']) ?>"><?= htmlspecialchars($r['nome_gioco']) ?></a></li>
         <?php endwhile; ?>
         <li><a href="area_faq.php">Area Food e Recensioni</a></li>
     </ul>
@@ -125,7 +125,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
             <a id="article">Caffè Espresso</a><a id="price">€ 1.00</a>
         </div>
         </div>
-        <img src="img/area_food.jpg">
+        <img src="../img/area_food.jpg">
         </div>
         <div class="food-description">
             <p>
@@ -157,7 +157,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                 <button type="submit" name="invia_commento" class="btn-submit-review">PUBBLICA RECENSIONE</button>
             </form>
         <?php else: ?>
-            <p class="login-alert"><a href="login.php">Accedi</a> per poter scrivere una recensione.</p>
+            <p class="login-alert"><a href="../login/login.php">Accedi</a> per poter scrivere una recensione.</p>
         <?php endif; ?>
 
         <div class="reviews-container">

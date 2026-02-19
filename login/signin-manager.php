@@ -1,5 +1,5 @@
 <?php
-include 'db.php';
+include '../db.php';
 session_start();
 
 // Verifichiamo che i dati siano stati inviati dal form
@@ -30,7 +30,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             unset($_SESSION['old_data']);
             unset($_SESSION['form_target']);
             // Reindirizzamento alla home del sito
-            header("Location: index.php");
+            header("Location: ../index.php");
             exit;
         } else {
             $_SESSION['error_signin'] = "Username o password errati.";

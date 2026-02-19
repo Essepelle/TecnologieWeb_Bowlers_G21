@@ -1,10 +1,10 @@
 <?php
-include "db.php";
+include "../db.php";
 session_start();
 
 // Se non ci sono dati di prenotazione in sospeso, torna alla home
 if (!isset($_SESSION['pending_reservation'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -17,14 +17,14 @@ $dati = $_SESSION['pending_reservation'];
 <head>
     <meta charset="UTF-8">
     <title>Pagamento Torneo - The Bowler Club</title>
-    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="../mainpage.css">
     <link rel="stylesheet" href="pagamento_torneo.css">
-    <link rel="icon" type="icon" href="resources/logo.png"/>
+    <link rel="icon" type="icon" href="../resources/logo.png"/>
 </head>
 <body>
     <header>
-        <div class="site" onclick="window.location.href='index.php'">
-            <img src="resources/logo.png" class="logo" alt="Logo">
+        <div class="site" onclick="window.location.href='../index.php'">
+            <img src="../resources/logo.png" class="logo" alt="Logo">
             <h1>The Bowler Club</h1>
         </div>
         <div class="user">
@@ -32,12 +32,12 @@ $dati = $_SESSION['pending_reservation'];
                 <div class="dropdown-container">
                     <h2 style="cursor: pointer;">Ciao <?= htmlspecialchars($_SESSION['nome']) ?></h2>
                     <div class="logged-menu">
-                        <a href="prenotazioni.php">Le mie Prenotazioni</a>
-                        <a href="logout.php">Logout</a>
+                        <a href="../account/prenotazioni.php">Le mie Prenotazioni</a>
+                        <a href="../account/logout.php">Logout</a>
                     </div>
                 </div>
             <?php else: ?>
-                <h2 onclick="window.location.href='login.php'" style="cursor:pointer;">Effettua il Login</h2>
+                <h2 onclick="window.location.href='../login/login.php'" style="cursor:pointer;">Effettua il Login</h2>
             <?php endif; ?>
         </div>
     </header>
@@ -75,7 +75,7 @@ $dati = $_SESSION['pending_reservation'];
                 </div>
                 
                 <input type="submit" name="esegui_pagamento" class="btn-pay" value="PAGA ORA">
-                <a href="dettaglio_gioco.php?gioco=Torneo di Carte" class="btn-cancel">Annulla</a>
+                <a href="../dettaglio_gioco/dettaglio_gioco.php?gioco=Torneo di Carte" class="btn-cancel">Annulla</a>
             </div>
             </form>
         </div>

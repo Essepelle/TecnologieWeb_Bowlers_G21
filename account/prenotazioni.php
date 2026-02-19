@@ -1,10 +1,10 @@
 <?php
-include "db.php";
+include "../db.php";
 session_start();
 
 // Controllo se l'utente è loggato
 if (!isset($_SESSION['utente'])) {
-    header("Location: login.php");
+    header("Location: ../login/login.php");
     exit();
 }
 
@@ -40,15 +40,15 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <head>
     <meta charset="UTF-8">
     <title>Le Mie Prenotazioni - The Bowler Club</title>
-    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="../mainpage.css">
     <link rel="stylesheet" href="prenotazioni.css">
 </head>
 
 <body>
 
 <header>
-    <div class="site" onclick="window.location.href='index.php'">
-        <img src="resources/logo.png" class="logo">
+    <div class="site" onclick="window.location.href='../index.php'">
+        <img src="../resources/logo.png" class="logo">
         <h1>The Bowler Club</h1>
     </div>
     <div class="user">
@@ -59,11 +59,11 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <aside class="sidebar-left">
     <p class="titolo-sidebar">SERVIZI OFFERTI</p>
     <ul>
-        <li><a href="index.php">Torna alla Home</a></li>
+        <li><a href="../index.php">Torna alla Home</a></li>
         <?php while ($r = pg_fetch_assoc($risultatoGiochi)): ?>
-            <li><a href="dettaglio_gioco.php?gioco=<?= urlencode($r['nome_gioco']) ?>"><?= htmlspecialchars($r['nome_gioco']) ?></a></li>
+            <li><a href="../dettaglio_gioco/dettaglio_gioco.php?gioco=<?= urlencode($r['nome_gioco']) ?>"><?= htmlspecialchars($r['nome_gioco']) ?></a></li>
         <?php endwhile; ?>
-        <li><a href="area_faq.php">Area Food e Recensioni</a></li>
+        <li><a href="../area_faq/area_faq.php">Area Food e Recensioni</a></li>
     </ul>
 </aside>
 
@@ -129,7 +129,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
     <?php else: ?>
         <div>
             <p>Non hai ancora effettuato prenotazioni attive.</p>
-            <button onclick="window.location.href='index.php'">Prenota ora</button>
+            <button onclick="window.location.href='../index.php'">Prenota ora</button>
         </div>
     <?php endif; ?>
 </main>

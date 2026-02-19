@@ -1,9 +1,9 @@
 <?php
-include "db.php";
+include "../db.php";
 session_start();
 
 if (!isset($_SESSION['utente'])) {
-    header("Location: login.php");
+    header("Location: ../login/login.php");
     exit();
 }
 
@@ -89,7 +89,7 @@ if (pg_num_rows($res_check_orario) > 0) {
     // Logica Torneo Carte
     if ($nomeGioco === 'Torneo di Carte') {
         $_SESSION['pending_reservation'] = $params;
-        header("Location: pagamento_torneo.php");
+        header("Location: ../pagamento_torneo/pagamento_torneo.php");
         exit();
     }
     
@@ -101,7 +101,7 @@ if (pg_num_rows($res_check_orario) > 0) {
         echo "Errore DB: " . pg_last_error($db);
     }
 } else {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
 body{
-    background-image: url("resources/capocchia.jpeg");
+    background-image: url("../resources/sfondo.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
