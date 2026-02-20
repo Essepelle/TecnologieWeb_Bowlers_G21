@@ -527,3 +527,22 @@ footer {
         padding: 15px;
     }
 }
+
+/* div rossi e verdi */
+.error-box, .success-box {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    place-items: center center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.5em 20pt;
+    border-radius: 20pt;
+    box-shadow: 0 0 10px black;
+    text-shadow: 0 0 10px black;
+    margin-bottom: 20pt;
+    text-align: center;
+}
+
+.error-box { background-color: #ff000080; }
+.success-box { background-color: #00ff0080; }

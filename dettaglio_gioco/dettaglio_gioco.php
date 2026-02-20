@@ -2,11 +2,17 @@
 include "../db.php";
 session_start();
 
-// --- RECUPERO DATI STICKY ---
+// recupero dati sticky form
 $old_data = $_SESSION['old_post'] ?? [];
 unset($_SESSION['old_post']); // Pulisce la sessione dopo aver preso i dati
-// ----------------------------
 
+
+// recupero errori/successi lato server
+$error_prenotazione = $_SESSION['error_prenotazione'] ?? '';
+$success_prenotazione = $_SESSION['success_prenotazione'] ?? '';
+unset($_SESSION['error_prenotazione'], $_SESSION['success_prenotazione']);
+
+// Dati utente per sidebar e logica prenotazione
 $username = $_SESSION['utente'];
 $email = $_SESSION['email'];
 
@@ -121,6 +127,23 @@ $oggi = date('Y-m-d');
     <div class="card-prenotazione">
         <h2 style="border-bottom: 2px solid #00b7ff; padding-bottom: 10px; margin-top: unset; margin-bottom: 20px;">Prenota la tua partita</h2>
 
+        <!-- div per gli errori lato server -->
+            <?php if (!empty($success_prenotazione)): ?>
+        <div class="success-box">
+            <i class="fa-solid fa-circle-check"></i> 
+            <?= htmlspecialchars($success_prenotazione) ?>
+            <i class="fa-solid fa-circle-check"></i> 
+        </div>
+    <?php endif; ?>
+
+    <?php if (!empty($error_prenotazione)): ?>
+        <div class="error-box">
+            <i class="fa-solid fa-triangle-exclamation"></i> 
+            <?= htmlspecialchars($error_prenotazione) ?>
+            <i class="fa-solid fa-triangle-exclamation"></i> 
+        </div>
+    <?php endif; ?>
+
         <form method="POST" action="gestisci_prenotazione.php" 
             onsubmit="return validaPrenotazione('<?= htmlspecialchars($nomeGioco) ?>');"><!-- Quando si fa la submit si avviano i controlli in JS per gli errori lato client -->
             <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
@@ -233,29 +256,6 @@ $oggi = date('Y-m-d');
 <footer>
     © 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21
 </footer>
-
-<?php if (isset($_GET['res'])): ?>
-    <script>
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                <?php if ($_GET['res'] == 'success'): ?>
-                    alert("Prenotazione registrata con successo!");
-                <?php elseif ($_GET['res'] == 'duplicate'): ?>
-                    alert("Attenzione! Hai già una prenotazione per questa fascia oraria.");
-                <?php elseif ($_GET['res'] == 'orario_occupato'): ?>
-                    alert("Attenzione! Hai già una prenotazione per questa fascia oraria.");
-                <?php elseif ($_GET['res'] == 'risorsa_occupata'): ?>
-                    alert("Attenzione! Il tavolo o la pista selezionata è già occupata. Per favore seleziona un'altra risorsa o un altro orario.");
-                <?php elseif ($_GET['res'] == 'payment_failed'): ?>
-                    alert("ERRORE PAGAMENTO: I dati della carta non sono validi o la carta è scaduta.");
-                <?php endif; ?>
-                const url = new URL(window.location);
-                url.searchParams.delete('res');
-                window.history.replaceState({}, document.title, url);
-            }, 100);
-        });
-    </script>
-<?php endif; ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {

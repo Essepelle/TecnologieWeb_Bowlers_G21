@@ -30,7 +30,8 @@ if (isset($_POST['conferma_prenotazione'])) {
 
 if (pg_num_rows($res_check_orario) > 0) {
         $_SESSION['old_post'] = $_POST; // <--- AGGIUNTA: Salva i dati per STICKY FORM
-        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=orario_occupato");
+        $_SESSION['error_prenotazione'] = "Attenzione! Hai già una prenotazione per questa fascia oraria.";
+        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco));
         exit();
     }
 
@@ -55,7 +56,8 @@ if (pg_num_rows($res_check_orario) > 0) {
     if (pg_num_rows($res_dispo) > 0) {
         // Se il tavolo o la pista sono già occupati da qualcun altro
         $_SESSION['old_post'] = $_POST; // <--- AGGIUNTA: Salva i dati PER STICKY FORM
-        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=risorsa_occupata");
+        $_SESSION['error_prenotazione'] = "Attenzione! Il tavolo o la pista selezionata è già occupata. Seleziona un'altra risorsa o un altro orario.";
+        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco));
         exit();
     }
 
@@ -96,10 +98,15 @@ if (pg_num_rows($res_check_orario) > 0) {
     $res_insert = pg_query_params($db, $sql_insert, $params);
 
     if ($res_insert) {
-        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco) . "&res=success");
+        $_SESSION['success_prenotazione'] = "Prenotazione registrata con successo!";
+        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco));
+        exit();
     } else {
-        echo "Errore DB: " . pg_last_error($db);
+        $_SESSION['error_prenotazione'] = "Errore di Sistema nel database.";
+        header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco));
+        exit();
     }
+    
 } else {
     header("Location: ../index.php");
     exit();

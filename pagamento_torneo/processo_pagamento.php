@@ -54,13 +54,16 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
     $res_insert = pg_query_params($db, $sql_insert, $params);
 
     if ($res_insert) {
-        // ... (lascia intatto il blocco del successo) ...
         unset($_SESSION['pending_reservation']);
-        header("Location: ../dettaglio_gioco/dettaglio_gioco.php?gioco=" . urlencode($params[1]) . "&res=success");
+
+        $_SESSION['success_prenotazione'] = "Prenotazione e pagamento registrati con successo!";        
+        // Redirect 
+        header("Location: ../dettaglio_gioco/dettaglio_gioco.php?gioco=" . urlencode($params[1]));
         exit();
     } else {
         // Errore tecnico del database
         $_SESSION['error_payment'] = "Errore di Sistema nel salvataggio. Riprova.";
+        $_SESSION['old_payment'] = $_POST; //Aggiunto anche qui lo sticky form in caso di errore DB
         header("Location: pagamento_torneo.php");
         exit();
     }
