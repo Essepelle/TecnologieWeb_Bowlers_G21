@@ -27,9 +27,8 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
 
     // Se la carta non è valida, rimanda indietro con errore
     if (strlen($numero_carta) !== 16 || strlen($cvv) !== 3 || $is_expired) {
-        // Recuperiamo il nome del gioco per il redirect corretto
-        $nomeGiocoRedirect = $_SESSION['pending_reservation'][1] ?? 'Torneo di Carte';
-        header("Location: ../dettaglio_gioco/dettaglio_gioco.php?gioco=" . urlencode($nomeGiocoRedirect) . "&res=payment_failed");
+        $_SESSION['error_payment'] = "I dati della carta non sono validi o la carta risulta scaduta.";
+        header("Location: pagamento_torneo.php");
         exit();
     }
 
@@ -54,15 +53,15 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
     $res_insert = pg_query_params($db, $sql_insert, $params);
 
     if ($res_insert) {
-        // Successo: puliamo la sessione e reindirizziamo
+        // ... (lascia intatto il blocco del successo) ...
         unset($_SESSION['pending_reservation']);
         header("Location: ../dettaglio_gioco/dettaglio_gioco.php?gioco=" . urlencode($params[1]) . "&res=success");
         exit();
     } else {
-        // Errore tecnico del database (mostriamo l'errore se capita)
-        echo "<h1>Errore durante il salvataggio</h1>";
-        echo "<p>" . pg_last_error($db) . "</p>";
-        echo "<a href='../index.php'>Torna alla Home</a>";
+        // Errore tecnico del database
+        $_SESSION['error_payment'] = "Errore di Sistema nel salvataggio. Riprova.";
+        header("Location: pagamento_torneo.php");
+        exit();
     }
 
 } else {
