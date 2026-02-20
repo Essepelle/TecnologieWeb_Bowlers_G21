@@ -28,6 +28,7 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
     // Se la carta non è valida, rimanda indietro con errore
     if (strlen($numero_carta) !== 16 || strlen($cvv) !== 3 || $is_expired) {
         $_SESSION['error_payment'] = "I dati della carta non sono validi o la carta risulta scaduta.";
+        $_SESSION['old_payment'] = $_POST; // per lo sticky form
         header("Location: pagamento_torneo.php");
         exit();
     }

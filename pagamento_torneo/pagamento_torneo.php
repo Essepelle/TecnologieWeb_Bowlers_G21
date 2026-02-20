@@ -14,6 +14,10 @@ $dati = $_SESSION['pending_reservation'];
 // recupero errori lato server e li ripulisco dalla sessione
 $error_payment = $_SESSION['error_payment'] ?? '';
 unset($_SESSION['error_payment']);
+
+// recupero vecchi dati per lo sticky form
+$old_data = $_SESSION['old_payment'] ?? [];
+unset($_SESSION['old_payment']);
 ?>
 
 <!DOCTYPE html>
@@ -67,18 +71,20 @@ unset($_SESSION['error_payment']);
             <form action="processo_pagamento.php" method="POST" onsubmit="return validaPagamento();">
             <div class="payment-form">    
                 <label>Titolare Carta</label>
-                <input type="text" id="titolare" name="titolare" placeholder="Nome Cognome">
-                
+                    <input type="text" id="titolare" name="titolare" placeholder="Nome Cognome"
+                    value="<?= htmlspecialchars($old_data['titolare'] ?? '') ?>">
+    
                 <label>Numero Carta</label>
-                <input type="text" id="numero_carta" name="numero_carta" placeholder="1234567812345678" maxlength="16">
-                
-                <div class="form-row">
-                    <label>Scadenza</label>
-                    <label>CVV</label>
+                    <input type="text" id="numero_carta" name="numero_carta" placeholder="1234567812345678" maxlength="16"
+                    value="<?= htmlspecialchars($old_data['numero_carta'] ?? '') ?>">
+    
+            <div class="form-row">
+                <label>Scadenza</label>
+                <label>CVV</label>
                     <input type="text" id="scadenza" name="scadenza" placeholder="MM/AA" maxlength="5">
+               
                     <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3">
-                </div>
-                
+            </div>    
                 <input type="submit" name="esegui_pagamento" class="btn-pay" value="PAGA ORA">
                 <a href="../dettaglio_gioco/dettaglio_gioco.php?gioco=Torneo di Carte" class="btn-cancel">Annulla</a>
             </div>
