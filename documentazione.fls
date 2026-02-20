@@ -2,8 +2,8 @@ PWD c:\Users\Simone\Downloads\The Bowler club\TecnologieWeb_Bowlers_G21
 INPUT C:\Users\Simone\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
 INPUT c:\Users\Simone\Downloads\The Bowler club\TecnologieWeb_Bowlers_G21\documentazione.tex
 OUTPUT documentazione.log
-INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
-INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\base\size10.clo
@@ -560,6 +560,11 @@ INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\rtx
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\rtxb.tfm
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\vf\public\txfonts\txr.vf
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\rtxr.tfm
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\txr.tfm
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\txb.tfm
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\vf\public\txfonts\txb.vf
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\rtxptmb.tfm
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\rtxb.tfm
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\txbtt.tfm
 INPUT documentazione.aux
 INPUT .\documentazione.out

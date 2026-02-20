@@ -1,4 +1,4 @@
-\documentclass[a4paper, twoside]{article}
+\documentclass[a4paper, twoside]{report}
 \usepackage{amsmath, graphicx, a4wide, amssymb, amsthm, ragged2e, tikz, cancel, txfonts, pifont, pgfplots, titling, fancyhdr, multicol, tocloft, changepage, enumitem, diagbox}
 \usepackage[export]{adjustbox}
 \usepackage[a4paper, top=2.5cm, bottom=2.5cm, inner=3cm, outer=2cm, bindingoffset=0.5cm]{geometry}
@@ -7,22 +7,34 @@
 \usepackage[most]{tcolorbox}
 \usepackage[linktocpage=true]{hyperref}
 \usepackage{titlesec}
+\titleformat{\chapter}
+  {\normalfont\Huge\bfseries}
+  {\thechapter}
+  {1em}
+  {}
+  [\vspace{0.2ex}]
 
-\titleformat{\paragraph}
+\titlespacing*{\chapter}
+  {0pt}
+  {3.25ex plus 1ex minus .2ex}
+  {1.5ex plus .2ex}
+
+\assignpagestyle{\chapter}{fancy}
+
+\titleformat{\subsubsection}
   {\normalfont\normalsize\bfseries} % Stile del font (normale, dimensione base, grassetto)
-  {\theparagraph}               % Etichetta numerica
+  {\thesubsubsection}               % Etichetta numerica
   {1em}                             % Spazio tra numero e titolo
   {}                                % Codice che precede il titolo
   [\vspace{0.2ex}]                  % Spazio dopo il titolo (forza l'andata a capo)
 
-\titlespacing*{\paragraph}
+\titlespacing*{\subsubsection}
   {0pt}               % Rientro a sinistra
   {3.25ex plus 1ex minus .2ex} % Spazio sopra
   {1.5ex plus .2ex}   % Spazio sotto (fondamentale per il distacco dal testo)
 \usetikzlibrary{decorations.markings, backgrounds}
 \pagestyle{fancy}
 \begin{document}
-\pagenumbering{roman}
 \fancyhead{}
 \fancyfoot{}
 \fancyhead[C]{\textbf{Documento Tecnico di Progetto - The Bowler Club}}
@@ -60,60 +72,61 @@
     {\large Anno Accademico 2025/2026\par}
 \end{titlepage}
 \restoregeometry
-\thispagestyle{empty}
-\,\newpage
-\setcounter{page}{1}
-\cftpagenumbersoff{section}
-\cftpagenumbersoff{paragraph}
-\setcounter{secnumdepth}{4}
-\setcounter{tocdepth}{4}
+\pagenumbering{roman}
+\cftpagenumbersoff{chapter}
+\cftpagenumbersoff{subsubsection}
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
 \tableofcontents
 \newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
 \pagenumbering{arabic}
-\section{Executive Summary}
-\subsection{Tema assegnato e Realtà di interesse}
-\subsection{Funzionalità principali}
-\newpage
-\section{Progettazione}
-\subsection{Wireframe}
-\subsubsection{Database}
-\subsubsection{Interfaccia principale}
-\subsubsection{Login}
-\paragraph{Validazione multilivello}
-\paragraph{Sicurezza e Cifratura dei dati}
-\subsubsection{Dettaglio Gioco}
-\paragraph{Sistema di Prenotazione e Calendario}
-\subsubsection{Pagamento Torneo}
-\subsubsection{Area FAQ}
-\subsubsection{Account}
-\subsection{Wireflow}
-\subsection{Fogli di Stile}
-\subsubsection{\texttt{mainpage.css}}
-\subsubsection{\texttt{login.css}}
-\subsubsection{\texttt{dettaglio\_gioco.css}}
-\subsubsection{\texttt{area\_faq.css}}
-\subsubsection{\texttt{prenotazioni.css}}
-\subsubsection{\texttt{pagamento\_torneo.css}}
-\subsection{Differenze Utente Ospite e Utente Loggato}
-\subsubsection{Navigazione e Header}
-\subsubsection{Sidebar Destra (Account)}
-\subsubsection{Interazione con i Servizi e le Prenotazioni}
-\subsubsection{Area food e Recensioni}
-\subsection{DETTAGLIO progettazione del sito}
-\newpage
-\section{Descrizione del Sito}
-\subsubsection{Interfaccia principale}
-\subsubsection{Login}
-\subsubsection{Dettaglio Gioco}
-\paragraph{Pagamento Torneo}
-\subsubsection{Area FAQ}
-\subsubsection{Account}
-\subsection{Scelte Progettuali in accordo alle Specifiche}
-\subsection{Dettagli implementativi peculiari}
-\newpage
-\section{Tabella di Partecipazione}
-\subsection{Tabella}
-\subsection{Macroaree e Collaborazioni emerse}
-\newpage
-\section{EXCEL Descrizione Breve}
+\chapter{Executive Summary}
+\section{Tema assegnato e Realtà di interesse}
+\section{Funzionalità principali}
+
+\chapter{Progettazione}
+\section{Wireframe}
+\subsection{Database}
+\subsection{Interfaccia principale}
+\subsection{Login}
+\subsubsection{Validazione multilivello}
+\subsubsection{Sicurezza e Cifratura dei dati}
+\subsection{Dettaglio Gioco}
+\subsubsection{Sistema di Prenotazione e Calendario}
+\subsection{Pagamento Torneo}
+\subsection{Area FAQ}
+\subsection{Account}
+\section{Wireflow}
+\section{Fogli di Stile}
+\subsection{\texttt{mainpage.css}}
+\subsection{\texttt{login.css}}
+\subsection{\texttt{dettaglio\_gioco.css}}
+\subsection{\texttt{area\_faq.css}}
+\subsection{\texttt{prenotazioni.css}}
+\subsection{\texttt{pagamento\_torneo.css}}
+\section{Differenze Utente Ospite e Utente Loggato}
+\subsection{Navigazione e Header}
+\subsection{Sidebar Destra (Account)}
+\subsection{Interazione con i Servizi e le Prenotazioni}
+\subsection{Area food e Recensioni}
+\section{DETTAGLIO Progettazione del Sito}
+
+\chapter{Descrizione del Sito}
+\section{Interfaccia principale}
+\section{Login}
+\section{Dettaglio Gioco}
+\subsection{Pagamento Torneo}
+\section{Area FAQ}
+\section{Account}
+\section{Scelte Progettuali in accordo alle Specifiche}
+\section{Dettagli implementativi peculiari}
+
+\chapter{Tabella di Partecipazione}
+\section{Tabella}
+\section{Macroaree e Collaborazioni emerse}
+
+\chapter{EXCEL Descrizione Breve}
 \end{document}

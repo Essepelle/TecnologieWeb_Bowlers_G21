@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1771520636.54708 "c:/Users/Simone/Downloads/The Bowler club/TecnologieWeb_Bowlers_G21/documentazione.tex" "documentazione.pdf" "documentazione" 1771520637.69815 0
-  "C:/Users/Simone/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1771519316 84158 d77284a6843bde1e4b9764f09fb2e89e ""
+["pdflatex"] 1771588912.75103 "c:/Users/Simone/Downloads/The Bowler club/TecnologieWeb_Bowlers_G21/documentazione.tex" "documentazione.pdf" "documentazione" 1771588914.03374 0
+  "C:/Users/Simone/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1771588201 84158 d77284a6843bde1e4b9764f09fb2e89e ""
   "C:/Users/Simone/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1758647474 13287450 a5b02051cce2da5ec2a5f78c309b1d78 ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/symbol/psyr.tfm" 1136768654 1408 5937f58aa508ea2cea4901c07d10f5fe ""
@@ -169,8 +169,8 @@
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amstext.sty" 1750428995 2444 9983e1d0683f102e3b190c64a49313aa ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/arabi/bblopts.cfg" 1705750854 902 c30e5c373bc58bde21f8f63a3091626f ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/babel-italian/italian.ldf" 1729264547 11361 8658bbf8ead5c43fd2f199c4b2910145 ""
-  "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/base/article.cls" 1749467999 20144 b966087dda3b194755eb460d32e2ef75 ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/base/inputenc.sty" 1749467999 5048 0270515b828149155424600fd2d58ac5 ""
+  "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/base/report.cls" 1749467999 23203 f495085ac76be4e20c5e1e88646a241e ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/base/size10.clo" 1749467999 8448 686612a86f0e04f41ea577f5ec7e83d8 ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/cancel/cancel.sty" 1388370247 7592 dd751af313a16a0308545d5bfd7aaaa2 ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/changepage/changepage.sty" 1256021817 4523 a9044e2dc40e764dac60d2acda7ae919 ""
@@ -272,12 +272,12 @@
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/varwidth/varwidth.sty" 1238469540 10894 d359a13923460b2a73d4312d613554c8 ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "c:/Users/Simone/Downloads/The Bowler club/TecnologieWeb_Bowlers_G21/documentazione.tex" 1771520635 4451 b85b5a2e23f9335c54a4afa2942c99c8 ""
-  "documentazione.aux" 1771520637 5918 0c6f7c96154340ee503b3a5fa9306242 "pdflatex"
-  "documentazione.out" 1771520637 6954 9adb778373123ac630a88d9a8519390c "pdflatex"
-  "documentazione.tex" 1771520635 4451 b85b5a2e23f9335c54a4afa2942c99c8 ""
-  "documentazione.toc" 1771520637 3911 4e1f2dbff0ecd470741107a3a0e46d47 "pdflatex"
-  "logo_standard.png" 1771434741 123576 faf390134e30a1e1d534559668669cff ""
+  "c:/Users/Simone/Downloads/The Bowler club/TecnologieWeb_Bowlers_G21/documentazione.tex" 1771588912 4552 0fdc39752bae2868745aefac95a7e79e ""
+  "documentazione.aux" 1771588913 6072 a5c81f1ad8de45148187c99694d3726e "pdflatex"
+  "documentazione.out" 1771588913 6733 671ba8ed20b1b185e12a6bfb9beb322f "pdflatex"
+  "documentazione.tex" 1771588912 4552 0fdc39752bae2868745aefac95a7e79e ""
+  "documentazione.toc" 1771588913 3685 95405452cb214242e5c6553a602e8a42 "pdflatex"
+  "logo_standard.png" 1771586588 123576 faf390134e30a1e1d534559668669cff ""
   (generated)
   "documentazione.aux"
   "documentazione.log"
