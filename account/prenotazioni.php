@@ -73,7 +73,8 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                 <li><a href="../index.php">Torna alla Home</a></li>
                 <!-- Apro un ciclo while che continua finché ci sono righe nella variabile $risultatoGiochi e -
                     verrà ripetuto tante volte quanti sono i giochi presenti nella tabella del database -->
-                <?php while ($r = pg_fetch_assoc($risultatoGiochi)): ?>
+                <?php pg_result_seek($risultatoGiochi, 0);  //riportare il "puntatore" del risultato della query all'inizio (riga 0).
+                    while ($r = pg_fetch_assoc($risultatoGiochi)): ?>
                     <li><a href="../dettaglio_gioco/dettaglio_gioco.php?gioco=<?= urlencode($r['nome_gioco']) ?>"><?= htmlspecialchars($r['nome_gioco']) ?></a></li>
                 <?php endwhile; ?>
                 <li><a href="../area_faq/area_faq.php">Area Food e Recensioni</a></li>

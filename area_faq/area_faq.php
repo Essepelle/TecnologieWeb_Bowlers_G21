@@ -264,7 +264,6 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                         <?php endif; ?>
                     </div>
                 
-                
                     <?php else: ?>
                     <p style="font-style: italic; line-height: 1.6; color: #ccc;">
                         Non sei ancora dei nostri?<br>

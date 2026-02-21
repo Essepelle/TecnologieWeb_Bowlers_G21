@@ -1,5 +1,7 @@
 // --- LOGICA GEOLOCALIZZAZIONE ---
-// Funzione invocata in caso di successo
+
+// Gestisce il successo della geolocalizzazione: riceve l'oggetto 'position',
+// calcola la distanza tra l'utente e la destinazione e aggiorna l'interfaccia. 
 function mostraPosizione(position) {
     // Coordinate di Via Picentino, 23, Salerno
     const latDest = 40.64379;
@@ -18,24 +20,30 @@ function mostraPosizione(position) {
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     const distanza = R * c;
 
+    // // Inserisco il risultato formattato (2 decimali) all'interno dell'elemento HTML con ID "distanza-info"
     document.getElementById("distanza-info").innerHTML = 
         "La tua posizione attuale dista circa <b>" + distanza.toFixed(2) + " km</b> da The Bowler Club.";
 }
 
-// Funzione in caso di errore
+// Funzione eseguita nel caso in cui l'utente neghi il permesso, o si verifichi un errore nel rilevamento GPS.
 function errore() {
     document.getElementById("distanza-info").innerHTML = "Impossibile recuperare la tua posizione.";
 }
 
-// Richiesta One-Shot (come indicato nelle tue slide)
+/* Punto di ingresso: verifica se il browser supporta le API di geolocalizzazione.
+   In caso positivo, richiede la posizione attuale (richiesta One-Shot). */
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(mostraPosizione, errore);
 } else {
+    // Gestione del caso in cui il browser sia troppo datato o non supporti la funzione
     document.getElementById("distanza-info").innerHTML = "Geolocalizzazione non supportata dal browser.";
 }
 
 
 // --- LOGICA CAROSELLO ---
+
+// Permette di scorrere orizzontalmente il contenitore dei giochi di 320 pixel verso destra o verso 
+// sinistra con un'animazione fluida, a seconda che il parametro direction sia positivo o negativo.
 function scrollCarousel(direction) {
     const carousel = document.getElementById('gameCarousel');
     const scrollAmount = 320; // Larghezza card + gap
