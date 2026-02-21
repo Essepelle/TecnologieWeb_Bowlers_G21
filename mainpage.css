@@ -126,7 +126,16 @@ aside {
 .sidebar-right{
     grid-area: 2 / 3 / 3 / 4;
     text-align: right;
+    font-size: 0.9em;
+    color: #ccc;
 }
+
+#dettaglio-pren-gioco {
+    margin-bottom: 15px; 
+    border-bottom: 1px solid #ff00ff40; 
+    padding-bottom: 5px;
+}
+
 
 /* Stili specifici per la navigazione nella sidebar sinistra */
 aside ul {
@@ -155,6 +164,7 @@ aside li a:hover {
     font-size: 125%; 
     font-weight: bold;
     margin-top: 0;
+    color: white;
 }
 
 #title-blue{

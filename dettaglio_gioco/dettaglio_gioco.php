@@ -78,9 +78,9 @@ $oggi = date('Y-m-d');
             <div class="dropdown-container">
                 <h2 style="cursor: pointer;">
                     <?php 
-                        // Dividiamo il nome completo in un array usando lo spazio come separatore
+                        // Dividio il nome completo in un array usando lo spazio come separatore, 
+                        // in modo da prendere solo il nome
                         $parti_nome = explode(' ', trim($_SESSION['nome'])); 
-                        // Prendiamo solo la prima parola
                         $primo_nome = $parti_nome[0]; 
                     ?>
                     Ciao <?= htmlspecialchars($primo_nome) ?>
@@ -230,20 +230,22 @@ $oggi = date('Y-m-d');
 
 <aside class="sidebar-right">
     <p class="titolo-sidebar">ACCOUNT</p>
-    <div style="font-size: 0.9em; color: #ccc;">
-        <p style="overflow-wrap: break-word;"> <p id="title-blue"> Username </p> <?= htmlspecialchars($username) ?></p>
-        <p style="overflow-wrap: break-word;"> <p id="title-blue"> Email </p> <?= htmlspecialchars($email) ?></p>
+    <div>
+        <p> <p id="title-blue"> Username </p> <?= htmlspecialchars($username) ?></p>
+        <p > <p id="title-blue"> Email </p> <?= htmlspecialchars($email) ?></p>
         <p class="titolo-sidebar" style="margin-top: 40px;">PRENOTAZIONI ATTIVE</p>
     
         <div id="carrello-box">
-            <?php if (pg_num_rows($res_sidebar) > 0): ?>
+            <?php if ($res_sidebar && pg_num_rows($res_sidebar) > 0): ?>
                 <p style="color:#888;">Solo le più recenti:</p>
-                <ul style="list-style: none; padding: 0;">
+                <ul>
                     <?php while ($item = pg_fetch_assoc($res_sidebar)): 
-                        $data_f = date('d M, H:i', strtotime($item['data_ora']));
+                        $data_f = date('d M, H:i', strtotime($item['data_ora'])); //Formatto la data
                     ?>
-                        <li style="margin-bottom: 15px; border-bottom: 1px solid #ff00ff40; padding-bottom: 5px;">
-                            <strong id="title-blue"><?= htmlspecialchars($item['nome_gioco']) ?></strong><br>
+                        <li id="dettaglio-pren-gioco">
+                            <strong id="title-blue">
+                                <?= htmlspecialchars($item['nome_gioco']) ?>
+                            </strong><br>
                             <span style="color: #ccc;"><?= $data_f ?></span>
                         </li>
                     <?php endwhile; ?>
