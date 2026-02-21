@@ -140,18 +140,18 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
         <h2 class="faq-section-title">Lascia una Recensione</h2>
         
         <?php if ($username): ?>
-            <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+            <form method="POST" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" onsubmit="return validaRecensione();">
                 <span class="label-voto">Seleziona il tuo voto:</span>
                 <div class="rating-stars">
                     <?php for($i=5; $i>=1; $i--): ?>
-                        <input type="radio" id="star<?= $i ?>" name="voto_stelle" value="<?= $i ?>" <?= $i==5?'required':'' ?> /><label for="star<?= $i ?>">★</label>
+                        <input type="radio" id="star<?= $i ?>" name="voto_stelle" value="<?= $i ?>" /><label for="star<?= $i ?>">★</label>
                     <?php endfor; ?>
                 </div>
             <textarea 
+                id="testo_commento"
                 name="testo_commento" 
                 class="review-textarea" 
                 placeholder="Cosa ne pensi?" 
-                required
                 oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
             ></textarea>
                 <button type="submit" name="invia_commento" class="btn-submit-review">PUBBLICA RECENSIONE</button>
@@ -237,6 +237,28 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <footer>
     © 2026 - The Bowler Club - Pascariello Vincenzo, Pellecchia Simone, Turi Martina - Bowlers G21
 </footer>
+
+<script>
+    function validaRecensione() {
+        // 1. Controllo Stelle (obbligatorio)
+        const stelle = document.querySelector('input[name="voto_stelle"]:checked');
+        if (!stelle) {
+            alert("Attenzione: Devi selezionare un voto (da 1 a 5 stelle)!");
+            return false; // Blocca l'invio
+        }
+
+        // 2. Controllo Testo Recensione (obbligatorio e non solo spazi vuoti)
+        const testo = document.getElementById('testo_commento').value.trim();
+        if (testo === "") {
+            alert("Attenzione: Inserisci il testo della tua recensione!");
+            document.getElementById('testo_commento').focus(); // Riporta il cursore nella casella
+            return false; // Blocca l'invio
+        }
+
+        // Se tutto è compilato correttamente, il form parte
+        return true;
+    }
+</script>
 
 </body>
 </html>
