@@ -52,7 +52,15 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
         <h1>The Bowler Club</h1>
     </div>
     <div class="user">
-        <h2>Ciao <?= htmlspecialchars($_SESSION['nome']) ?></h2>
+        <h2 style="cursor: pointer;">
+            <?php 
+                // Dividiamo il nome completo in un array usando lo spazio come separatore
+                $parti_nome = explode(' ', trim($_SESSION['nome'])); 
+                // Prendiamo solo la prima parola
+                $primo_nome = $parti_nome[0]; 
+            ?>
+            Ciao <?= htmlspecialchars($primo_nome) ?>
+        </h2>
     </div>
 </header>
 

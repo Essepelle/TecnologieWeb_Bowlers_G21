@@ -39,7 +39,15 @@ unset($_SESSION['old_payment']);
         <div class="user">
             <?php if (isset($_SESSION['utente'])): ?>
                 <div class="dropdown-container">
-                    <h2 style="cursor: pointer;">Ciao <?= htmlspecialchars($_SESSION['nome']) ?></h2>
+                    <h2 style="cursor: pointer;">
+                        <?php 
+                            // Dividiamo il nome completo in un array usando lo spazio come separatore
+                            $parti_nome = explode(' ', trim($_SESSION['nome'])); 
+                            // Prendiamo solo la prima parola
+                            $primo_nome = $parti_nome[0]; 
+                        ?>
+                        Ciao <?= htmlspecialchars($primo_nome) ?>
+                    </h2>
                     <div class="logged-menu">
                         <a href="../account/prenotazioni.php">Le mie Prenotazioni</a>
                         <a href="../account/logout.php">Logout</a>
