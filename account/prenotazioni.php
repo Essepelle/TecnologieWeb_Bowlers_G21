@@ -57,7 +57,8 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
             <div class="user">
                 <h2 style="cursor: pointer;">
                     <?php 
-                        // Dividio il nome completo in un array usando lo spazio come separatore, in modo da prendere solo il nome
+                        // Dividio il nome completo in un array usando lo spazio come separatore, 
+                        // in modo da prendere solo il nome
                         $parti_nome = explode(' ', trim($_SESSION['nome'])); 
                         $primo_nome = $parti_nome[0]; 
                     ?>
@@ -87,12 +88,12 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                 if (pg_num_rows($risultato_pren) > 0):
                     $prenotazioni_per_data = [];    //array vuoto per raggruppare le prenotazioni
                     
-                    // Estraggo una riga alla volta dal risultato della query finché ce ne sono
-                    while ($pren = pg_fetch_assoc($risultato_pren)) {
-                        $data = date('d/m/Y', strtotime($pren['data_ora']));    //formatto il risultato
-                        // Organizzo l'array in modo che ogni data diventa una "chiave" che contiene una lista di prenotazioni
-                        $prenotazioni_per_data[$data][] = $pren;
-                    }
+                // Estraggo una riga alla volta dal risultato della query finché ce ne sono
+                while ($pren = pg_fetch_assoc($risultato_pren)) {
+                    $data = date('d/m/Y', strtotime($pren['data_ora']));    //formatto il risultato
+                    // Organizzo l'array in modo che ogni data diventa una "chiave" che contiene una lista di prenotazioni
+                    $prenotazioni_per_data[$data][] = $pren;
+                }
                 // Inizio a ciclare le date, per ogni giorno creo una sezione dedicata
                 foreach ($prenotazioni_per_data as $data => $lista_pren): 
             ?>
@@ -155,7 +156,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 
         <aside class="sidebar-right">
             <p class="titolo-sidebar">ACCOUNT</p>
-            <div >
+            <div>
                 <p> <p id="title-blue"> Username </p> <?= htmlspecialchars($username) ?></p>
                 <p> <p id="title-blue"> Email </p> <?= htmlspecialchars($email) ?></p>
                 
