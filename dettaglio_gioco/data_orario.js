@@ -102,25 +102,11 @@ function generaBottoniOrari(dataScelta, nomeGioco) {
 
         // --- LOGICA DISABILITAZIONE ORARI PASSATI ---
         if (dataScelta === oggiStr) {
-            // Se l'orario è "domani mattina presto" (00:00 - 04:00) ed è "oggi" pomeriggio,
-            // tecnicamente quegli orari appartengono alla notte che verrà, quindi sono validi.
-            // MA se sono le 01:00 di notte ADESSO, le 00:00 sono passate.
-            
-            // Caso speciale: orari dopo mezzanotte (0, 1)
-            if (slot.h < 5) {
-                // Se sono le 00:30, non posso prenotare le 00:00
-                if (oraCorrente < 5) { // Siamo nella notte
-                    if (slot.h < oraCorrente || (slot.h === oraCorrente && slot.m <= minutiCorrenti)) {
-                        disabilitato = true;
-                    }
-                }
-                // Se sono le 17:00, le 00:00 e 01:00 sono "future" (stanotte), quindi OK.
-            } 
-            // Caso standard: orari serali (17 - 23)
-            else {
-                if (slot.h < oraCorrente || (slot.h === oraCorrente && slot.m <= minutiCorrenti)) {
-                    disabilitato = true;
-                }
+            // Dato che 00:00 e 01:00 rappresentano l'inizio della giornata corrente,
+            // se siamo di pomeriggio sono orari già passati da molte ore.
+            // Quindi basta un solo controllo lineare per tutte le ore del giorno:
+            if (slot.h < oraCorrente || (slot.h === oraCorrente && slot.m <= minutiCorrenti)) {
+                disabilitato = true;
             }
         }
         // Se la data scelta è nel passato (ma il min="today" dovrebbe impedirlo)

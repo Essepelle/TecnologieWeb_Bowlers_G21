@@ -63,10 +63,6 @@ $oggi = date('Y-m-d');
     <link rel="stylesheet" href="dettaglio_gioco.css">
     <link rel="icon" type="icon" href="../resources/logo.png"/>
     
-    <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css"> 
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="https://npmcdn.com/flatpickr/dist/l10n/it.js"></script>-->
     <script src="data_orario.js"></script>
 </head>
 
