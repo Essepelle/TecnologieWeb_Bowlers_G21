@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1771678388.52871 "c:/Users/Simone/Downloads/The Bowler club/TecnologieWeb_Bowlers_G21/documentazione.tex" "documentazione.pdf" "documentazione" 1771678389.70075 0
+["pdflatex"] 1771678498.40822 "c:/Users/Simone/Downloads/The Bowler club/TecnologieWeb_Bowlers_G21/documentazione.tex" "documentazione.pdf" "documentazione" 1771678499.60842 0
   "C:/Users/Simone/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1771588201 84158 d77284a6843bde1e4b9764f09fb2e89e ""
   "C:/Users/Simone/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1758647474 13287450 a5b02051cce2da5ec2a5f78c309b1d78 ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -277,11 +277,11 @@
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/varwidth/varwidth.sty" 1238469540 10894 d359a13923460b2a73d4312d613554c8 ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "C:/Users/Simone/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "c:/Users/Simone/Downloads/The Bowler club/TecnologieWeb_Bowlers_G21/documentazione.tex" 1771678385 6099 697378b6b4d02c96597d645eb31ed273 ""
-  "documentazione.aux" 1771678389 6072 c4c9a238830b87e95c65b3f87936f39b "pdflatex"
-  "documentazione.out" 1771678389 6733 671ba8ed20b1b185e12a6bfb9beb322f "pdflatex"
-  "documentazione.tex" 1771678385 6099 697378b6b4d02c96597d645eb31ed273 ""
-  "documentazione.toc" 1771678389 3685 95405452cb214242e5c6553a602e8a42 "pdflatex"
+  "c:/Users/Simone/Downloads/The Bowler club/TecnologieWeb_Bowlers_G21/documentazione.tex" 1771678498 6160 13aeca014a44dea659b43890baf0f4a6 ""
+  "documentazione.aux" 1771678499 6072 c4c9a238830b87e95c65b3f87936f39b "pdflatex"
+  "documentazione.out" 1771678499 6733 671ba8ed20b1b185e12a6bfb9beb322f "pdflatex"
+  "documentazione.tex" 1771678498 6160 13aeca014a44dea659b43890baf0f4a6 ""
+  "documentazione.toc" 1771678499 3685 95405452cb214242e5c6553a602e8a42 "pdflatex"
   "logo_standard.png" 1771672103 123576 faf390134e30a1e1d534559668669cff ""
   (generated)
   "documentazione.aux"
