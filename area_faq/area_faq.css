@@ -194,7 +194,14 @@ main h2 {
 .login-alert a { color: #ff00ff; font-weight: bold; text-decoration: none; }
 .clickable { cursor: pointer; }
 
-/* Scrollbar WebKit */
+
+/* --- SCROLLBAR WEBKIT --- 
+WebKit è il motore di Chrome, Safari e le versioni recenti di Edge. 
+Con questi comandi è come se dicessi al browser che se utilizzano questo tipo di motore, deve adottare questo stile. */
+
+/*Qui definisco la larghezza totale della barra (8 pixel). */*/
 .comments-scroll-box::-webkit-scrollbar { width: 8px; }
+/* Qui definisco lo stile del 'track', ovvero la pista su cui scorre la barra.*/
 .comments-scroll-box::-webkit-scrollbar-track { background: #222; }
+/* Qui personalizzo il 'thumb', cioè la parte che l'utente trascina fisicamente.*/
 .comments-scroll-box::-webkit-scrollbar-thumb { background: #ff00ff; border-radius: 10px; }
