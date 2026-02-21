@@ -61,6 +61,20 @@ if (pg_num_rows($res_check_orario) > 0) {
         exit();
     }
 
+    //Per il Laser Game controllo la prenotazione sia unica per in certo orario, indipendentemente da tavolo/pista, perché è un'arena unica.
+    if ($nomeGioco === 'Laser Game') {
+        $sql_laser = "SELECT * FROM prenotazioni WHERE nome_gioco = $1 AND data_ora = $2";
+        $res_laser = pg_query_params($db, $sql_laser, array($nomeGioco, $dataOraFinale));
+        
+        // Se trova anche solo UNA prenotazione per quell'ora, blocca tutto!
+        if (pg_num_rows($res_laser) > 0) {
+            $_SESSION['old_post'] = $_POST; // Salva i dati per lo sticky form
+            $_SESSION['error_prenotazione'] = "Attenzione! L'arena del Laser Game è già prenotata in questo orario. Scegli un'altra ora.";
+            header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco));
+            exit();
+        }
+    }
+
     // Conversione valore torneo per colonna boolean
     $torneo_bool = null;
     if ($torneo === 'si') {
