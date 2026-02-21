@@ -138,12 +138,13 @@
    .sidebar-left {
        grid-area: 2 / 1 / 3 / 2;
        text-align: left;
+       font-size: 0.95em;
    }
    
    .sidebar-right {
        grid-area: 2 / 3 / 3 / 4;
        text-align: right;
-       font-size: 0.9em;
+       font-size: 0.95em;
        color: #ccc;
    }
    
