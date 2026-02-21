@@ -38,6 +38,7 @@ CREATE TABLE public.prenotazioni (
 -- Indici di unicità per evitare conflitti di prenotazione (Piste e Tavoli)
 CREATE UNIQUE INDEX unica_prenotazione_pista ON public.prenotazioni (nome_gioco, data_ora, numero_pista) WHERE (numero_pista IS NOT NULL);
 CREATE UNIQUE INDEX unica_prenotazione_tavolo ON public.prenotazioni (nome_gioco, data_ora, numero_tavolo) WHERE (numero_tavolo IS NOT NULL);
+CREATE UNIQUE INDEX unica_prenotazione_persone ON public.prenotazioni (nome_gioco, data_ora, numero_persone) WHERE (numero_persone IS NOT NULL);
 
 -- Tabella Recensioni (FAQ)
 CREATE TABLE public.faq (
