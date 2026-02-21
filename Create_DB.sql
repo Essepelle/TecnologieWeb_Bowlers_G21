@@ -64,10 +64,7 @@ INSERT INTO public.utenti (username, nome_completo, email, pass) VALUES
 ('admin_user', 'Admin Test', 'admin@example.com', '$2y$10$iFcxUB2Ct8/1itk4C8TsruPeaOggjrZ6oMMhquneZqxRdcHiSnnse'),
 ('mario_rossi', 'Mario Rossi', 'mario@rossi.it', '$2y$10$d5vSk7NAKGbqpWS7NBs8GOflEDfN0w4Nk1ynYhgRBCK0WbYJsn/d6'),
 ('giulia_b', 'Giulia Bianchi', 'giulia@provider.it', '$2y$10$9ST7O42ymNVKIX6H.QoabuDCwlWJe2m1ZaNwU21D/wWMfG5Mntt1m'),
-('luca_v', 'Luca Verdi', 'luca@mail.com', '$2y$10$nWjb8.oUNeSuQbs.NyckheoWcINegTdjhEruLLIzMrSj2NuOhGZqy');
-
-INSERT INTO public.utenti (username, nome_completo, email, pass) VALUES
-('pipa', 'PincoPallino', 'pincopallino@gioco.it', '555'); -- La password non verrà crittografata perchè questo è gestito in php -- 
+('luca_v', 'Luca Verdi', 'luca@mail.com', '$2y$10$nWjb8.oUNeSuQbs.NyckheoWcINegTdjhEruLLIzMrSj2NuOhGZqy'); 
 
 -- Inserimento Prenotazioni Random
 INSERT INTO public.prenotazioni (username_utente, nome_gioco, data_ora, numero_pista, numero_tavolo, numero_persone) VALUES
