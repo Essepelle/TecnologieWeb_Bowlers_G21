@@ -80,7 +80,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
         </aside>
 
         <main>
-            <h1 class="titolo" >Gestione Prenotazioni</h1>
+            <h1 id="titolo" >Gestione Prenotazioni</h1>
             
             <?php
                 // Controllo se il database mi ha restituito almeno una prenotazione attiva

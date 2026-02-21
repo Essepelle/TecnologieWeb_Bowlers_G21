@@ -1,4 +1,14 @@
 /* --- HEADER E TITOLI --- */
+#titolo {
+    margin: 0 0 10pt 0;
+    font-size: 4rem;
+    font-family: "Racing Sans One", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+}
 
 /* Layout della riga con data e numero prenotazioni */
 .data-num {
