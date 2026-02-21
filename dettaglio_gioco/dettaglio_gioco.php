@@ -196,7 +196,7 @@ $oggi = date('Y-m-d');
                         <?php elseif ($nomeGioco == 'Laser Game'): ?>
                             <label>Numero Persone (Max 10):</label>
                             <div class="selector-grid">
-                                <?php for ($i = 1; $i <= 10; $i++): ?>
+                                <?php for ($i = 2; $i <= 10; $i++): ?>
                                     <input type="radio" id="persone_<?= $i ?>" name="numero_persone" value="<?= $i ?>" 
                                     <?= (isset($old_data['numero_persone']) && $old_data['numero_persone'] == $i) ? 'checked' : '' ?>><!-- Aggiunta logica per STICKY FORM -->
                                     <label for="persone_<?= $i ?>"><?= $i ?></label>
