@@ -61,7 +61,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
 <body>
 
 <header>
-    <div class="site clickable" onclick="window.location.href='index.php'">
+    <div class="site clickable" onclick="window.location.href='../index.php'"> 
         <img src="../resources/logo.png" class="logo" alt="Logo">
         <h1>The Bowler Club</h1>
     </div>
