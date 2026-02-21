@@ -115,3 +115,21 @@ main{
     font-size: 0.8em;
     font-family: 'Belanosima', sans-serif;
 }
+
+/* div rossi per errori lato server */
+.error-box {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 1fr;
+    place-items: center center;
+    background-color: #ff000080;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    padding: 0.5em 20pt;
+    border-radius: 20pt;
+    box-shadow: 0 0 10px black;
+    text-shadow: 0 0 10px black;
+    margin-bottom: 20pt;
+    text-align: center;
+}
