@@ -122,12 +122,12 @@ $oggi = date('Y-m-d');
             <h1 id="titolo"><?= htmlspecialchars($nomeGioco) ?></h1>
             
             <div class="box-descrizione">
-                <?= nl2br(htmlspecialchars($descrizioneRidotta)) ?>
+                <?php echo nl2br(htmlspecialchars($descrizioneRidotta)); ?> <!-- nl2br è un metodo che mantiene gli spazi dettati dentro la stringa originale -->
             </div>
 
             <div class="box-regole">
                 <p class="titolo-sidebar">REGOLE:</p>
-                <?= nl2br(htmlspecialchars($descrizioneEstesa)) ?>
+                <?php echo nl2br(htmlspecialchars($descrizioneEstesa)); ?> <!-- nl2br è un metodo che mantiene gli spazi dettati dentro la stringa originale -->
             </div>
         </div> 
     </div> 
@@ -136,43 +136,42 @@ $oggi = date('Y-m-d');
         <h2 style="border-bottom: 2px solid #00b7ff; padding-bottom: 10px; margin-top: unset; margin-bottom: 20px;">Prenota la tua partita</h2>
 
         <!-- div per gli errori lato server -->
-            <?php if (!empty($success_prenotazione)): ?>
-        <div class="success-box">
-            <i class="fa-solid fa-circle-check"></i> 
-            <?= htmlspecialchars($success_prenotazione) ?>
-            <i class="fa-solid fa-circle-check"></i> 
-        </div>
-    <?php endif; ?>
+        <?php if (!empty($success_prenotazione)): ?>
+            <div class="success-box">
+                <i class="fa-solid fa-circle-check"></i> 
+                <?= htmlspecialchars($success_prenotazione) ?>
+                <i class="fa-solid fa-circle-check"></i> 
+            </div>
+        <?php endif; ?>
 
-    <?php if (!empty($error_prenotazione)): ?>
-        <div class="error-box">
-            <i class="fa-solid fa-triangle-exclamation"></i> 
-            <?= htmlspecialchars($error_prenotazione) ?>
-            <i class="fa-solid fa-triangle-exclamation"></i> 
-        </div>
-    <?php endif; ?>
+        <?php if (!empty($error_prenotazione)): ?>
+            <div class="error-box">
+                <i class="fa-solid fa-triangle-exclamation"></i> 
+                <?= htmlspecialchars($error_prenotazione) ?>
+                <i class="fa-solid fa-triangle-exclamation"></i> 
+            </div>
+        <?php endif; ?>
 
         <form method="POST" action="gestisci_prenotazione.php" 
             onsubmit="return validaPrenotazione('<?= htmlspecialchars($nomeGioco) ?>');"><!-- Quando si fa la submit si avviano i controlli in JS per gli errori lato client -->
             <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
             
-
             <div class="prenotazione-layout">
                 
                 <div class="col-data-ora">
-                <label for="data_prenotazione">SCEGLI IL GIORNO:</label>
-                <input type="date" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." required
-                value="<?= htmlspecialchars($old_data['data_prenotazione'] ?? '') ?>">
+                    <label for="data_prenotazione">SCEGLI IL GIORNO:</label>
+                    <input type="date" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." required
+                    value="<?= htmlspecialchars($old_data['data_prenotazione'] ?? '') ?>">
 
-                <label>SCEGLI L'ORARIO:</label>
-                <span class="label-istruzioni">(Clicca su un orario disponibile)</span>
+                    <label>SCEGLI L'ORARIO:</label>
+                    <span class="label-istruzioni">(Clicca su un orario disponibile)</span>
     
-                    <div id="orari-bottoni-container" class="orari-container">
-                        <p>Seleziona prima una data valida!</p>
-                    </div>
+                        <div id="orari-bottoni-container" class="orari-container">
+                            <p>Seleziona prima una data valida!</p>
+                        </div>
     
-                <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" 
-                value="<?= htmlspecialchars($old_data['ora_prenotazione'] ?? '') ?>">
+                    <input type="hidden" id="ora_prenotazione_valore" name="ora_prenotazione" 
+                    value="<?= htmlspecialchars($old_data['ora_prenotazione'] ?? '') ?>">
                 </div>
 
                 <div class="col-opzioni">

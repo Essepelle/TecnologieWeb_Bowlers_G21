@@ -1,8 +1,8 @@
 /* ==========================================================================
    1. IMPORTAZIONE FONT E RESET
    ========================================================================== */
-@import url('[https://fonts.googleapis.com/css2?family=Belanosima&display=swap](https://fonts.googleapis.com/css2?family=Belanosima&display=swap)');
-@import url('[https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap](https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap)');
+@import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap');
 
 body {
     background-image: url("../resources/sfondo.jpeg");
@@ -270,19 +270,22 @@ button:hover {
 
 /* GESTIONE DATE PICKER */
 
+/* Input Data: Centrato anche il testo interno */
 #data_prenotazione {
     background: #222;
     color: #fff;
     border: 1px solid #444;
     padding: 12px;
-    width: 280px;
+    width: 100%;
+    max-width: 280px; 
     border-radius: 5px;
     cursor: pointer;
     outline: none;
+    box-sizing: border-box;
     
     /* NUOVE PROPRIETÀ PER IL CALENDARIO NATIVO */
     font-family: inherit;       /* Usa il font del sito */
-    text-align: center;         /* Centra la data */
+    text-align: center;         /* Il cursore e la data scritta staranno al centro */
     text-transform: uppercase;  /* Rende la data più elegante */
     appearance: none;           /* Rimuove stili brutti di default */
 }
@@ -372,12 +375,14 @@ footer {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Ombra più delicata */
 }
 
-/* --- GRIGLIA PULSANTI (Identica a .orari-container) --- */
+/* --- GRIGLIA PULSANTI E NUMERI --- */
 .selector-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(25px, 1fr)); 
-    gap: 10px;
-    width: 100%;
+    display: flex;           /* Usiamo Flexbox per allinearli */
+    flex-wrap: wrap;         /* Se sono tanti, vanno a capo ordinatamente */
+    justify-content: center; /* CENTRA TUTTO IL GRUPPO DI PULSANTI */
+    gap: 10px;               /* Spazio tra i quadratini */
+    width: 100%;             /* Occupa tutta la larghezza disponibile */
+    margin-top: 10px;        /* Un po' di aria dalla scritta sopra */
     font-weight: bold;
     font-size: 1.5em;
 }
@@ -402,6 +407,9 @@ footer {
     cursor: pointer;
     transition: 0.3s;
     user-select: none;
+    min-width: 40px;         /* Larghezza minima per i numeri */
+    text-align: center;      /* Numero al centro del quadratino */
+    flex: 0 0 auto;          /* Evita che si deformino */
 }
 
 /* Effetto Hover */
@@ -474,15 +482,6 @@ footer {
     margin-top: 30px; /* Più spazio per separare visivamente i due gruppi */
 }
 
-/* Input Data: Centrato anche il testo interno */
-#data_prenotazione {
-    width: 100%;
-    max-width: 280px; 
-    box-sizing: border-box;
-    text-align: center; /* Il cursore e la data scritta staranno al centro */
-}
-
-
 /* --- COLONNA DESTRA: OPZIONI (Tutto Centrato) --- */
 .col-opzioni {
     display: flex;
@@ -499,22 +498,6 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-/* Griglia dei numeri */
-.selector-grid {
-    display: flex;           /* Usiamo Flexbox per allinearli */
-    flex-wrap: wrap;         /* Se sono tanti, vanno a capo ordinatamente */
-    justify-content: center; /* CENTRA TUTTO IL GRUPPO DI PULSANTI */
-    gap: 10px;               /* Spazio tra i quadratini */
-    width: 100%;             /* Occupa tutta la larghezza disponibile */
-    margin-top: 10px;        /* Un po' di aria dalla scritta sopra */
-}
-
-.selector-grid label {
-    min-width: 40px;         /* Larghezza minima per i numeri */
-    text-align: center;      /* Numero al centro del quadratino */
-    flex: 0 0 auto;          /* Evita che si deformino */
 }
 
 @media (max-width: 800px) {
