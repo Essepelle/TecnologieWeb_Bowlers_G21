@@ -49,14 +49,6 @@ CREATE TABLE public.faq (
 );
 
 -- 
--- PERMESSI ALLE TABELLE 
--- 
-GRANT ALL PRIVILEGES ON TABLE utenti TO www;
-GRANT ALL PRIVILEGES ON TABLE giochi TO www;
-GRANT ALL PRIVILEGES ON TABLE prenotazioni TO www;
-GRANT ALL PRIVILEGES ON TABLE faq TO www;
-
--- 
 -- POPOLAMENTO DATI 
 -- 
 
@@ -75,7 +67,7 @@ INSERT INTO public.utenti (username, nome_completo, email, pass) VALUES
 ('luca_v', 'Luca Verdi', 'luca@mail.com', '$2y$10$nWjb8.oUNeSuQbs.NyckheoWcINegTdjhEruLLIzMrSj2NuOhGZqy');
 
 INSERT INTO public.utenti (username, nome_completo, email, pass) VALUES
-('pipa', 'PincoPallino', 'pincopallino@gioco.it', '555'), -- La password non verrà crittografata perchè questo è gestito in php-- 
+('pipa', 'PincoPallino', 'pincopallino@gioco.it', '555'); -- La password non verrà crittografata perchè questo è gestito in php -- 
 
 -- Inserimento Prenotazioni Random
 INSERT INTO public.prenotazioni (username_utente, nome_gioco, data_ora, numero_pista, numero_tavolo, numero_persone) VALUES
