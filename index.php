@@ -172,7 +172,7 @@ if (!empty($username)) {
                     <p>Siamo aperti tutti i giorni dalle <b>17:00</b> alle <b>02:00</b>.</p>
                     
                     <p class="contact-list">
-                        <a style="color: white" href="https://www.google.com/maps/place/Bowling+The+Club/@40.6435226,14.8595867,15.38z/data=!4m6!3m5!1s0x133bdd44b2c34d83:0x830d2ca79eaf0653!8m2!3d40.6437912!4d14.8652385!16s%2Fg%2F11b6j06d6z?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D">
+                        <a style="color: white" target="blank" href="https://www.google.com/maps/place/Bowling+The+Club/@40.6435226,14.8595867,15.38z/data=!4m6!3m5!1s0x133bdd44b2c34d83:0x830d2ca79eaf0653!8m2!3d40.6437912!4d14.8652385!16s%2Fg%2F11b6j06d6z?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D">
                             <p> Via Picentino, 23, 84131 Salerno SA 
                             <i class="fas fa-map-marker-alt"></i></li></a>
                         <p> 089 849884 <i class="fas fa-phone"></i></li>

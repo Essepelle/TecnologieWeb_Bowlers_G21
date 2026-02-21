@@ -2,12 +2,12 @@
 -- PostgreSQL database dump
 --
 
-\restrict UcjgoddS76uOAAhOXufFOl4ziLFKT22pEbat2EmciwpKOUk1DTfiORWTinsDBSl
+\restrict CWewiZTeLl5gckJgOorrjWjWnXeOAZ7UYEqLcmyiJlkxLKaCKLUVXsfxXOiwWQq
 
 -- Dumped from database version 18.1
 -- Dumped by pg_dump version 18.1
 
--- Started on 2026-02-21 12:11:04
+-- Started on 2026-02-21 22:45:17
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -32,7 +32,7 @@ CREATE SCHEMA public;
 ALTER SCHEMA public OWNER TO pg_database_owner;
 
 --
--- TOC entry 5046 (class 0 OID 0)
+-- TOC entry 5047 (class 0 OID 0)
 -- Dependencies: 4
 -- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
 --
@@ -45,7 +45,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 224 (class 1259 OID 16677)
+-- TOC entry 224 (class 1259 OID 16735)
 -- Name: faq; Type: TABLE; Schema: public; Owner: www
 --
 
@@ -62,7 +62,7 @@ CREATE TABLE public.faq (
 ALTER TABLE public.faq OWNER TO www;
 
 --
--- TOC entry 223 (class 1259 OID 16676)
+-- TOC entry 223 (class 1259 OID 16734)
 -- Name: faq_id_recensione_seq; Type: SEQUENCE; Schema: public; Owner: www
 --
 
@@ -78,7 +78,7 @@ CREATE SEQUENCE public.faq_id_recensione_seq
 ALTER SEQUENCE public.faq_id_recensione_seq OWNER TO www;
 
 --
--- TOC entry 5047 (class 0 OID 0)
+-- TOC entry 5048 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: faq_id_recensione_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: www
 --
@@ -87,7 +87,7 @@ ALTER SEQUENCE public.faq_id_recensione_seq OWNED BY public.faq.id_recensione;
 
 
 --
--- TOC entry 219 (class 1259 OID 16637)
+-- TOC entry 219 (class 1259 OID 16694)
 -- Name: giochi; Type: TABLE; Schema: public; Owner: www
 --
 
@@ -100,7 +100,7 @@ CREATE TABLE public.giochi (
 ALTER TABLE public.giochi OWNER TO www;
 
 --
--- TOC entry 222 (class 1259 OID 16656)
+-- TOC entry 222 (class 1259 OID 16713)
 -- Name: prenotazioni; Type: TABLE; Schema: public; Owner: www
 --
 
@@ -118,7 +118,7 @@ CREATE TABLE public.prenotazioni (
 ALTER TABLE public.prenotazioni OWNER TO www;
 
 --
--- TOC entry 221 (class 1259 OID 16655)
+-- TOC entry 221 (class 1259 OID 16712)
 -- Name: prenotazioni_id_prenotazione_seq; Type: SEQUENCE; Schema: public; Owner: www
 --
 
@@ -134,7 +134,7 @@ CREATE SEQUENCE public.prenotazioni_id_prenotazione_seq
 ALTER SEQUENCE public.prenotazioni_id_prenotazione_seq OWNER TO www;
 
 --
--- TOC entry 5048 (class 0 OID 0)
+-- TOC entry 5049 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: prenotazioni_id_prenotazione_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: www
 --
@@ -143,7 +143,7 @@ ALTER SEQUENCE public.prenotazioni_id_prenotazione_seq OWNED BY public.prenotazi
 
 
 --
--- TOC entry 220 (class 1259 OID 16643)
+-- TOC entry 220 (class 1259 OID 16700)
 -- Name: utenti; Type: TABLE; Schema: public; Owner: www
 --
 
@@ -158,7 +158,7 @@ CREATE TABLE public.utenti (
 ALTER TABLE public.utenti OWNER TO www;
 
 --
--- TOC entry 4870 (class 2604 OID 16680)
+-- TOC entry 4870 (class 2604 OID 16738)
 -- Name: faq id_recensione; Type: DEFAULT; Schema: public; Owner: www
 --
 
@@ -166,7 +166,7 @@ ALTER TABLE ONLY public.faq ALTER COLUMN id_recensione SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4869 (class 2604 OID 16659)
+-- TOC entry 4869 (class 2604 OID 16716)
 -- Name: prenotazioni id_prenotazione; Type: DEFAULT; Schema: public; Owner: www
 --
 
@@ -174,21 +174,22 @@ ALTER TABLE ONLY public.prenotazioni ALTER COLUMN id_prenotazione SET DEFAULT ne
 
 
 --
--- TOC entry 5040 (class 0 OID 16677)
+-- TOC entry 5041 (class 0 OID 16735)
 -- Dependencies: 224
 -- Data for Name: faq; Type: TABLE DATA; Schema: public; Owner: www
 --
 
 COPY public.faq (id_recensione, username, recensione, data_recensione, stelle) FROM stdin;
-1	mario_rossi	Le piste da bowling sono fantastiche!	2026-02-21 12:06:01.696391	5
-2	giulia_b	Bella serata, ma i tavoli da biliardo erano quasi tutti occupati.	2026-02-21 12:06:01.696391	4
-3	luca_v	Laser game adrenalinico, torneremo sicuramente!	2026-02-21 12:06:01.696391	5
-4	admin_user	Sistema di prenotazione molto semplice da usare.	2026-02-21 12:06:01.696391	4
+1	mario_rossi	Le piste da bowling sono fantastiche!	2026-02-21 22:35:59.490488	5
+2	giulia_b	Bella serata, ma i tavoli da biliardo erano quasi tutti occupati.	2026-02-21 22:35:59.490488	4
+3	luca_v	Laser game adrenalinico, torneremo sicuramente!	2026-02-21 22:35:59.490488	5
+4	admin_user	Sistema di prenotazione molto semplice da usare.	2026-02-21 22:35:59.490488	4
+5	pipa	"Ottimo servizio ristorazione, personale molto gentile e competente."	2026-02-21 22:43:08.0278	5
 \.
 
 
 --
--- TOC entry 5035 (class 0 OID 16637)
+-- TOC entry 5036 (class 0 OID 16694)
 -- Dependencies: 219
 -- Data for Name: giochi; Type: TABLE DATA; Schema: public; Owner: www
 --
@@ -202,7 +203,7 @@ Laser Game	resources/img_giochi/laser_game.jpg
 
 
 --
--- TOC entry 5038 (class 0 OID 16656)
+-- TOC entry 5039 (class 0 OID 16713)
 -- Dependencies: 222
 -- Data for Name: prenotazioni; Type: TABLE DATA; Schema: public; Owner: www
 --
@@ -213,11 +214,20 @@ COPY public.prenotazioni (id_prenotazione, username_utente, nome_gioco, data_ora
 3	luca_v	Laser Game	2026-03-02 15:00:00	\N	\N	10
 4	admin_user	Torneo di Carte	2026-03-05 20:00:00	\N	\N	1
 5	mario_rossi	Bowling	2026-03-10 19:00:00	12	\N	5
+6	pipa	Bowling	2026-02-28 00:30:00	20	\N	\N
+7	pipa	Biliardo	2026-02-28 23:30:00	\N	4	\N
+8	pipa	Laser Game	2026-02-28 22:00:00	\N	\N	7
+9	pipa	Torneo di Carte	2026-02-25 21:00:00	\N	\N	\N
+10	pipa	Bowling	2026-02-25 01:30:00	20	\N	\N
+11	pipa	Laser Game	2026-02-25 23:30:00	\N	\N	6
+12	pipa	Laser Game	2026-02-25 18:00:00	\N	\N	8
+13	pipa	Laser Game	2026-02-25 20:00:00	\N	\N	10
+14	pipa	Laser Game	2026-02-25 19:00:00	\N	\N	5
 \.
 
 
 --
--- TOC entry 5036 (class 0 OID 16643)
+-- TOC entry 5037 (class 0 OID 16700)
 -- Dependencies: 220
 -- Data for Name: utenti; Type: TABLE DATA; Schema: public; Owner: www
 --
@@ -227,30 +237,30 @@ admin_user	Admin Test	admin@example.com	$2y$10$iFcxUB2Ct8/1itk4C8TsruPeaOggjrZ6o
 mario_rossi	Mario Rossi	mario@rossi.it	$2y$10$d5vSk7NAKGbqpWS7NBs8GOflEDfN0w4Nk1ynYhgRBCK0WbYJsn/d6
 giulia_b	Giulia Bianchi	giulia@provider.it	$2y$10$9ST7O42ymNVKIX6H.QoabuDCwlWJe2m1ZaNwU21D/wWMfG5Mntt1m
 luca_v	Luca Verdi	luca@mail.com	$2y$10$nWjb8.oUNeSuQbs.NyckheoWcINegTdjhEruLLIzMrSj2NuOhGZqy
-pipa	PincoPallino	pincopallino@gioco.it	555
+pipa	PincoPallino	pipa@gmail.com	$2y$10$vpzqYnuOzMu/zWptuYS8TegjPUGwIZOaDJ62VqgGaRtjOaFO3TqZq
 \.
 
 
 --
--- TOC entry 5049 (class 0 OID 0)
+-- TOC entry 5050 (class 0 OID 0)
 -- Dependencies: 223
 -- Name: faq_id_recensione_seq; Type: SEQUENCE SET; Schema: public; Owner: www
 --
 
-SELECT pg_catalog.setval('public.faq_id_recensione_seq', 4, true);
+SELECT pg_catalog.setval('public.faq_id_recensione_seq', 5, true);
 
 
 --
--- TOC entry 5050 (class 0 OID 0)
+-- TOC entry 5051 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: prenotazioni_id_prenotazione_seq; Type: SEQUENCE SET; Schema: public; Owner: www
 --
 
-SELECT pg_catalog.setval('public.prenotazioni_id_prenotazione_seq', 5, true);
+SELECT pg_catalog.setval('public.prenotazioni_id_prenotazione_seq', 14, true);
 
 
 --
--- TOC entry 4884 (class 2606 OID 16687)
+-- TOC entry 4885 (class 2606 OID 16745)
 -- Name: faq faq_pkey; Type: CONSTRAINT; Schema: public; Owner: www
 --
 
@@ -259,7 +269,7 @@ ALTER TABLE ONLY public.faq
 
 
 --
--- TOC entry 4874 (class 2606 OID 16642)
+-- TOC entry 4874 (class 2606 OID 16699)
 -- Name: giochi giochi_pkey; Type: CONSTRAINT; Schema: public; Owner: www
 --
 
@@ -268,7 +278,7 @@ ALTER TABLE ONLY public.giochi
 
 
 --
--- TOC entry 4880 (class 2606 OID 16663)
+-- TOC entry 4880 (class 2606 OID 16720)
 -- Name: prenotazioni prenotazioni_pkey; Type: CONSTRAINT; Schema: public; Owner: www
 --
 
@@ -277,7 +287,7 @@ ALTER TABLE ONLY public.prenotazioni
 
 
 --
--- TOC entry 4876 (class 2606 OID 16654)
+-- TOC entry 4876 (class 2606 OID 16711)
 -- Name: utenti utenti_email_key; Type: CONSTRAINT; Schema: public; Owner: www
 --
 
@@ -286,7 +296,7 @@ ALTER TABLE ONLY public.utenti
 
 
 --
--- TOC entry 4878 (class 2606 OID 16652)
+-- TOC entry 4878 (class 2606 OID 16709)
 -- Name: utenti utenti_pkey; Type: CONSTRAINT; Schema: public; Owner: www
 --
 
@@ -295,7 +305,15 @@ ALTER TABLE ONLY public.utenti
 
 
 --
--- TOC entry 4881 (class 1259 OID 16674)
+-- TOC entry 4881 (class 1259 OID 16733)
+-- Name: unica_prenotazione_persone; Type: INDEX; Schema: public; Owner: www
+--
+
+CREATE UNIQUE INDEX unica_prenotazione_persone ON public.prenotazioni USING btree (nome_gioco, data_ora, numero_persone) WHERE (numero_persone IS NOT NULL);
+
+
+--
+-- TOC entry 4882 (class 1259 OID 16731)
 -- Name: unica_prenotazione_pista; Type: INDEX; Schema: public; Owner: www
 --
 
@@ -303,7 +321,7 @@ CREATE UNIQUE INDEX unica_prenotazione_pista ON public.prenotazioni USING btree 
 
 
 --
--- TOC entry 4882 (class 1259 OID 16675)
+-- TOC entry 4883 (class 1259 OID 16732)
 -- Name: unica_prenotazione_tavolo; Type: INDEX; Schema: public; Owner: www
 --
 
@@ -311,7 +329,7 @@ CREATE UNIQUE INDEX unica_prenotazione_tavolo ON public.prenotazioni USING btree
 
 
 --
--- TOC entry 4887 (class 2606 OID 16688)
+-- TOC entry 4888 (class 2606 OID 16746)
 -- Name: faq faq_username_fkey; Type: FK CONSTRAINT; Schema: public; Owner: www
 --
 
@@ -320,7 +338,7 @@ ALTER TABLE ONLY public.faq
 
 
 --
--- TOC entry 4885 (class 2606 OID 16669)
+-- TOC entry 4886 (class 2606 OID 16726)
 -- Name: prenotazioni prenotazioni_nome_gioco_fkey; Type: FK CONSTRAINT; Schema: public; Owner: www
 --
 
@@ -329,7 +347,7 @@ ALTER TABLE ONLY public.prenotazioni
 
 
 --
--- TOC entry 4886 (class 2606 OID 16664)
+-- TOC entry 4887 (class 2606 OID 16721)
 -- Name: prenotazioni prenotazioni_username_utente_fkey; Type: FK CONSTRAINT; Schema: public; Owner: www
 --
 
@@ -337,11 +355,11 @@ ALTER TABLE ONLY public.prenotazioni
     ADD CONSTRAINT prenotazioni_username_utente_fkey FOREIGN KEY (username_utente) REFERENCES public.utenti(username) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
--- Completed on 2026-02-21 12:11:04
+-- Completed on 2026-02-21 22:45:17
 
 --
 -- PostgreSQL database dump complete
 --
 
-\unrestrict UcjgoddS76uOAAhOXufFOl4ziLFKT22pEbat2EmciwpKOUk1DTfiORWTinsDBSl
+\unrestrict CWewiZTeLl5gckJgOorrjWjWnXeOAZ7UYEqLcmyiJlkxLKaCKLUVXsfxXOiwWQq
 
