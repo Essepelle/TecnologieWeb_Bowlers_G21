@@ -1,5 +1,7 @@
-/* Stili per i titoli e intestazioni */
-.data-num{
+/* --- HEADER E TITOLI --- */
+
+/* Layout della riga con data e numero prenotazioni */
+.data-num {
     margin-top: 40px;
     font-family: 'Racing Sans One';
     display: flex;
@@ -23,7 +25,7 @@ h3 {
     font-size: 1.2rem;
 }
 
-/* Linea di separazione orizzontale */
+/* Linea di separazione neon sotto la data */
 hr {
     border: 0;
     height: 2px;
@@ -31,27 +33,29 @@ hr {
     margin-bottom: 20px;
 }
 
-/* Container del Carousel */
+/* --- MAIN (CAROUSEL E CARD) --- */
+
+/* Imposto il contenitore principale del carosello */
 .carousel-container {
     margin-bottom: 50px;
     padding: 0;
     width: 100%;
 }
 
+/* Gestisco lo scorrimento orizzontale e la barra personalizzata */
 .carousel-wrapper {
-    max-width: 60vw; /* (200px * 5) + (20px * 4 gap) */
+    max-width: 60vw;
     justify-content: flex-start; 
     overflow-x: auto; 
     display: flex;
     gap: 20px;
     padding-bottom: 20px;
     margin: 0 auto;
-    /* Scrollbar personalizzata */
     scrollbar-width: thin;
     scrollbar-color: #00b7ff #222;
 }
 
-/* Personalizzazione scrollbar per browser WebKit (Chrome, Safari, Edge) */
+/* Stile barra di scorrimento */
 .carousel-wrapper::-webkit-scrollbar {
     height: 8px;
 }
@@ -63,9 +67,9 @@ hr {
     border-radius: 10px;
 }
 
-/* Card delle singole prenotazioni */
+/* Definisco l'aspetto estetico delle tessere prenotazione */
 .card-gioco-carousel {
-    flex: 0 0 200px; /* Larghezza fissa card */
+    flex: 0 0 200px;
     background: rgba(30, 30, 30, 0.9); 
     border: 2px solid #00b7ff80;
     border-radius: 15px;
@@ -88,7 +92,7 @@ hr {
     margin: 10px 0;
 }
 
-/* Box informazioni specifiche (Tavolo, Pista, Persone) */
+/* Dettagli specifici del gioco all'interno della card */
 #info_gioco {
     text-align: left;
     font-size: 0.85rem;
@@ -99,11 +103,13 @@ hr {
 
 #info_gioco p {
     margin: 2px 0;
-    font-weight: normal; /* sovrascrive il grassetto generico dei p della card */
+    font-weight: normal; 
     font-size: 0.85rem;
 }
 
-/* Form e Bottoni */
+/* --- FOOTER E BOTTONI --- */
+
+/* Gestisco i form e l'aspetto dei pulsanti di azione */
 form {
     margin-top: 15px;
 }
@@ -147,12 +153,174 @@ button[name="conferma_eliminazione"] {
     font-size: 90%;
 }
 
+/* Effetto hover universale per i pulsanti */
 button:hover {
     background-color: #ff00ff;
     box-shadow: 0 0 10pt black;
 }
 
-/* Stato vuoto (nessuna prenotazione) */
+/* --- HEADER E TITOLI --- */
+
+/* Gestisco il layout della riga con data e numero prenotazioni */
+.data-num {
+    margin-top: 40px;
+    font-family: 'Racing Sans One';
+    display: flex;
+    justify-content: space-between;
+    max-width: 70fr;
+}
+
+#data {
+    color: #ffffff;
+    text-align: left;
+}
+
+#num {
+    color: #aaaaaa;
+    text-align: right;
+}
+
+h3 {
+    color: #00b7ff;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+/* Linea di separazione neon sotto la data */
+hr {
+    border: 0;
+    height: 2px;
+    background: #ff00ff;
+    margin-bottom: 20px;
+}
+
+/* --- MAIN (CAROUSEL E CARD) --- */
+
+/* Imposto il contenitore principale del carosello */
+.carousel-container {
+    margin-bottom: 50px;
+    padding: 0;
+    width: 100%;
+}
+
+/* Gestisco lo scorrimento orizzontale e la barra personalizzata */
+.carousel-wrapper {
+    max-width: 60vw;
+    justify-content: flex-start; 
+    overflow-x: auto; 
+    display: flex;
+    gap: 20px;
+    padding-bottom: 20px;
+    margin: 0 auto;
+    scrollbar-width: thin;
+    scrollbar-color: #00b7ff #222;
+}
+
+/* Stile barra di scorrimento per Chrome e Safari */
+.carousel-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+.carousel-wrapper::-webkit-scrollbar-track {
+    background: #222;
+}
+.carousel-wrapper::-webkit-scrollbar-thumb {
+    background-color: #ff00ff;
+    border-radius: 10px;
+}
+
+/* Definisco l'aspetto estetico delle tessere prenotazione */
+.card-gioco-carousel {
+    flex: 0 0 200px;
+    background: rgba(30, 30, 30, 0.9); 
+    border: 2px solid #00b7ff80;
+    border-radius: 15px;
+    transition: 0.3s;
+    color: #fff;
+}
+
+.card-gioco-carousel:hover {
+    border-color: #00b7ff;       
+    box-shadow: 0 0 10px #ff00ff;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content p {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Dettagli specifici del gioco all'interno della card */
+#info_gioco {
+    text-align: left;
+    font-size: 0.85rem;
+    color: #eee;
+    text-shadow: none;
+    line-height: 1.5;
+}
+
+#info_gioco p {
+    margin: 2px 0;
+    font-weight: normal; 
+    font-size: 0.85rem;
+}
+
+/* --- FOOTER E BOTTONI --- */
+
+/* Gestisco i form e l'aspetto dei pulsanti di azione */
+form {
+    margin-top: 15px;
+}
+
+button[name="elimina_prenotazione"] {
+    background-color: #ff4d4d;
+    font-size: 0.8rem;
+    padding: 6px;
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+button[name="logout"] {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.3s;
+    margin-top: 10px;
+    max-width: fit-content; 
+    font-size: 100%;
+}
+
+button[name="conferma_eliminazione"] {
+    background-color: #222;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: 0.3s;
+    margin-top: unset;
+    max-width: fit-content; 
+    font-size: 90%;
+}
+
+/* Effetto hover universale per i pulsanti */
+button:hover {
+    background-color: #ff00ff;
+    box-shadow: 0 0 10pt black;
+}
+
+/* Visualizzazione per quando non ci sono dati */
 .empty-state {
     text-align: center;
     margin-top: 50px;
@@ -163,4 +331,5 @@ button:hover {
 
 .empty-state p {
     font-size: 1.2em;
+    color: #aaaaaa;
 }
