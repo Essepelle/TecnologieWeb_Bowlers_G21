@@ -49,7 +49,13 @@ if (!empty($username)) {
         <?php if (isset($_SESSION['utente'])): ?>
             <div class="dropdown-container">
                 <h2 style="cursor: pointer;">
-                    Ciao <?= htmlspecialchars($_SESSION['nome']) ?>
+                    <?php 
+                        // Dividiamo il nome completo in un array usando lo spazio come separatore
+                        $parti_nome = explode(' ', trim($_SESSION['nome'])); 
+                        // Prendiamo solo la prima parola
+                        $primo_nome = $parti_nome[0]; 
+                    ?>
+                    Ciao <?= htmlspecialchars($primo_nome) ?>
                 </h2>
                 <div class="logged-menu">
                     <a href="account/prenotazioni.php">Le mie Prenotazioni</a>
@@ -89,7 +95,7 @@ if (!empty($username)) {
             while ($row = pg_fetch_assoc($risultatoGiochi)):
                 $anchorId = str_replace(' ', '-', $row['nome_gioco']);
                 
-                // Puntamento alla cartella descrizioni/
+                // Puntamento alla cartella descrizioni
                 $nomeFilePres = "resources/descrizioni/pres_" . strtolower(str_replace(' ', '_', $row['nome_gioco'])) . ".txt";
                 $presentazione = file_exists($nomeFilePres) ? file_get_contents($nomeFilePres) : "Scopri di più cliccando su prenota.";
             ?>
