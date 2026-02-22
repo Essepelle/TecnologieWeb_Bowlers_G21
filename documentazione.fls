@@ -245,6 +245,10 @@ INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tools\array.sty
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tools\tabularx.sty
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tools\tabularx.sty
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\multirow\multirow.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\adjustbox\adjustbox.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\adjustbox\adjustbox.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\xkeyval\xkeyval.sty
@@ -293,6 +297,9 @@ INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\etoolbox\etoolbox.
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\graphics\dvipsnam.def
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\graphics\dvipsnam.def
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\graphics\dvipsnam.def
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\colortbl\colortbl.sty
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\graphics\color.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tcolorbox\tcolorbox.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tcolorbox\tcolorbox.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tools\verbatim.sty
@@ -317,7 +324,6 @@ INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\generic\ltxcmds\ltxcmds.
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\generic\ltxcmds\ltxcmds.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\generic\infwarerr\infwarerr.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\generic\infwarerr\infwarerr.sty
-INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\graphics\color.sty
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tcolorbox\tcbhooks.code.tex
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tcolorbox\tcbtheorems.code.tex
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\tex\latex\tcolorbox\tcbfitting.code.tex
@@ -572,6 +578,107 @@ INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\rtx
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\vf\public\txfonts\tcxr.vf
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\rtcxr.tfm
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\txbtt.tfm
+INPUT .\Wireframe\index.png
+INPUT .\Wireframe\index.png
+INPUT .\Wireframe\index.png
+INPUT .\Wireframe\index.png
+INPUT .\Wireframe\index.png
+INPUT .\Wireframe\index.png
+INPUT .\Wireframe\index.png
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\vf\public\txfonts\txi.vf
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\rtxptmri.tfm
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\rtxi.tfm
+INPUT .\Wireframe\login signin.png
+INPUT .\Wireframe\login signin.png
+INPUT .\Wireframe\login signin.png
+INPUT .\Wireframe\login signin.png
+INPUT .\Wireframe\login signin.png
+INPUT .\Wireframe\login signin.png
+INPUT .\Wireframe\login signin.png
+INPUT .\Wireframe\login signup.png
+INPUT .\Wireframe\login signup.png
+INPUT .\Wireframe\login signup.png
+INPUT .\Wireframe\login signup.png
+INPUT .\Wireframe\login signup.png
+INPUT .\Wireframe\login signup.png
+INPUT .\Wireframe\login signup.png
+INPUT .\Wireframe\dettaglio_gioco.png
+INPUT .\Wireframe\dettaglio_gioco.png
+INPUT .\Wireframe\dettaglio_gioco.png
+INPUT .\Wireframe\dettaglio_gioco.png
+INPUT .\Wireframe\dettaglio_gioco.png
+INPUT .\Wireframe\dettaglio_gioco.png
+INPUT .\Wireframe\dettaglio_gioco.png
+INPUT .\Wireframe\pagamento_torneo.png
+INPUT .\Wireframe\pagamento_torneo.png
+INPUT .\Wireframe\pagamento_torneo.png
+INPUT .\Wireframe\pagamento_torneo.png
+INPUT .\Wireframe\pagamento_torneo.png
+INPUT .\Wireframe\pagamento_torneo.png
+INPUT .\Wireframe\pagamento_torneo.png
+INPUT .\Wireframe\area_faq.png
+INPUT .\Wireframe\area_faq.png
+INPUT .\Wireframe\area_faq.png
+INPUT .\Wireframe\area_faq.png
+INPUT .\Wireframe\area_faq.png
+INPUT .\Wireframe\area_faq.png
+INPUT .\Wireframe\area_faq.png
+INPUT .\Wireframe\prenotazioni.png
+INPUT .\Wireframe\prenotazioni.png
+INPUT .\Wireframe\prenotazioni.png
+INPUT .\Wireframe\prenotazioni.png
+INPUT .\Wireframe\prenotazioni.png
+INPUT .\Wireframe\prenotazioni.png
+INPUT .\Wireframe\prenotazioni.png
+INPUT .\wireflow.pdf
+INPUT .\wireflow.pdf
+INPUT .\wireflow.pdf
+INPUT .\wireflow.pdf
+INPUT .\wireflow.pdf
+INPUT .\wireflow.pdf
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\tfm\public\txfonts\txbtt.tfm
+INPUT .\Stile\mainpage.jpeg
+INPUT .\Stile\mainpage.jpeg
+INPUT .\Stile\mainpage.jpeg
+INPUT .\Stile\mainpage.jpeg
+INPUT .\Stile\mainpage.jpeg
+INPUT .\Stile\mainpage.jpeg
+INPUT .\Stile\mainpage.jpeg
+INPUT .\Stile\login.jpeg
+INPUT .\Stile\login.jpeg
+INPUT .\Stile\login.jpeg
+INPUT .\Stile\login.jpeg
+INPUT .\Stile\login.jpeg
+INPUT .\Stile\login.jpeg
+INPUT .\Stile\login.jpeg
+INPUT .\Stile\dettaglio_gioco.jpeg
+INPUT .\Stile\dettaglio_gioco.jpeg
+INPUT .\Stile\dettaglio_gioco.jpeg
+INPUT .\Stile\dettaglio_gioco.jpeg
+INPUT .\Stile\dettaglio_gioco.jpeg
+INPUT .\Stile\dettaglio_gioco.jpeg
+INPUT .\Stile\dettaglio_gioco.jpeg
+INPUT .\Stile\area_faq.jpeg
+INPUT .\Stile\area_faq.jpeg
+INPUT .\Stile\area_faq.jpeg
+INPUT .\Stile\area_faq.jpeg
+INPUT .\Stile\area_faq.jpeg
+INPUT .\Stile\area_faq.jpeg
+INPUT .\Stile\area_faq.jpeg
+INPUT .\Stile\prenotazioni.jpeg
+INPUT .\Stile\prenotazioni.jpeg
+INPUT .\Stile\prenotazioni.jpeg
+INPUT .\Stile\prenotazioni.jpeg
+INPUT .\Stile\prenotazioni.jpeg
+INPUT .\Stile\prenotazioni.jpeg
+INPUT .\Stile\prenotazioni.jpeg
+INPUT .\Stile\pagamento_torneo.jpeg
+INPUT .\Stile\pagamento_torneo.jpeg
+INPUT .\Stile\pagamento_torneo.jpeg
+INPUT .\Stile\pagamento_torneo.jpeg
+INPUT .\Stile\pagamento_torneo.jpeg
+INPUT .\Stile\pagamento_torneo.jpeg
+INPUT .\Stile\pagamento_torneo.jpeg
 INPUT documentazione.aux
 INPUT .\documentazione.out
 INPUT .\documentazione.out
@@ -585,9 +692,13 @@ INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\public\txfonts\r
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\public\txfonts\rtxsc.pfb
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\public\txfonts\txbtt.pfb
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\public\txfonts\txbtt.pfb
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\public\txfonts\txsy.pfb
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\public\txfonts\txsy.pfb
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\public\txfonts\txtt.pfb
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\public\txfonts\txtt.pfb
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\urw\times\utmb8a.pfb
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\urw\times\utmb8a.pfb
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\urw\times\utmr8a.pfb
 INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\urw\times\utmr8a.pfb
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\urw\times\utmri8a.pfb
+INPUT C:\Users\Simone\AppData\Local\Programs\MiKTeX\fonts\type1\urw\times\utmri8a.pfb

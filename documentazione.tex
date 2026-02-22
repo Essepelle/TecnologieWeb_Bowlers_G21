@@ -1,9 +1,9 @@
 \documentclass[a4paper, twoside]{report}
-\usepackage{amsmath, graphicx, a4wide, amssymb, amsthm, ragged2e, tikz, cancel, txfonts, pifont, pgfplots, titling, fancyhdr, multicol, tocloft, changepage, enumitem, diagbox}
+\usepackage{amsmath, graphicx, a4wide, amssymb, amsthm, ragged2e, tikz, cancel, txfonts, pifont, pgfplots, titling, fancyhdr, multicol, tocloft, changepage, enumitem, diagbox, tabularx, multirow}
 \usepackage[export]{adjustbox}
-\usepackage[a4paper, top=2.5cm, bottom=2.5cm, inner=3cm, outer=2cm, bindingoffset=0.5cm]{geometry}
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, inner=2cm, outer=2cm]{geometry}
 \usepackage[italian]{babel}
-\usepackage[dvipsnames]{xcolor}
+\usepackage[dvipsnames, table]{xcolor}
 \usepackage[most]{tcolorbox}
 \usepackage[linktocpage=true]{hyperref}
 \usepackage{titlesec}
@@ -71,10 +71,6 @@
         \vspace*{\fill}
     {\large Anno Accademico 2025/2026\par}
 \end{titlepage}
-\newpage
-\thispagestyle{empty}
-\mbox{}
-\newpage
 \restoregeometry
 \pagenumbering{roman}
 \cftpagenumbersoff{chapter}
@@ -97,47 +93,351 @@ Il sito è stato realizzato puntando su:
 \end{itemize}
 \section{Funzionalità principali}
 Il sistema offre molteplici funzionalità: un elenco di giochi salvati e aggiornabili tramite un database, la gestione autonoma del profilo utente, un meccanismo di controllo per prevenire la sovrapposizione degli orari di prenotazione e una sezione FAQ per chiarire i dubbi, dove è possibile consultare anche le recensioni degli altri utenti.
+\subsubsection*{Funzionalità individuali}
+\begin{itemize}
+  \item \textbf{Navigazione}: Visualizzazione dei giochi disponibili tramite un carosello interattivo all’interno della homepage, con descrizioni brevi ed immagini.
+  \item \textbf{Logica Data e Ora}: Selezione dinamica di data e ora tramite script JS che calcola gli slot disponibili e blocca orari passati o non validi.
+  \item \textbf{Recensioni}: Scrittura di recensioni con un sistema di rating a 5 stelle e visualizzazione dei commenti della community.
+  \item \textbf{Sezione Account}: L'utente può visualizzare e cancellare in una sezione apposita le proprie prenotazioni e può effettuare logout o eliminazione del proprio profilo.
+\end{itemize}
+\subsubsection*{Business flow}
+Il flusso principale di business segue questi step:
+\begin{enumerate}
+  \item \textbf{Accesso}: L'utente atterra sulla Home. Per accedere ai servizi di prenotazione deve loggarsi o registrarsi.
+  \item \textbf{Selezione}: L'utente sceglie un gioco (es. Bowling) e visualizza la pagina di dettaglio.
+  \item \textbf{Configurazione}: Sceglie data, orario e l’attributo specifico di quel gioco (es. "Pista 5").
+  \item \textbf{Verifica}: Il sistema verifica la disponibilità.
+  \begin{itemize}
+    \item \textbf{Caso Standard}: Se disponibile, la prenotazione è confermata immediatamente.
+    \item \textbf{Caso Torneo}: Se è il Torneo di Carte, l'utente viene reindirizzato al modulo di pagamento. Solo dopo il successo del pagamento la prenotazione viene salvata.
+  \end{itemize}
+  \item \textbf{Conferma}: L'utente riceve un feedback visivo e la prenotazione appare nella sua area personale.
+\end{enumerate}
+\subsubsection*{Dati}
+Il sistema si preoccupa di gestire la memorizzazione dei dati riguardanti le tabelle: prenotazioni, utenti, giochi e faq attraverso l’utilizzo di un database relazionale PostgreSQL.
+\subsubsection*{Interfacce utente}
+Il design utilizza uno stile scuro ("Dark Mode") con accenti neon (rosa \colorbox[HTML]{FF00FF}{\textcolor{white}{\texttt{\#ff00ff}}} e azzurro \colorbox[HTML]{00B7FF}{\textcolor{white}{\texttt{\#00b7ff}}}) per richiamare l'atmosfera di un club/sala giochi.
+\begin{itemize}
+  \item \textbf{Home Page}: Presenta un header con logo, un carosello centrale per i giochi, e un footer con info di contatto. Include due sidebar: quella di sinistra per la navigazione e l’altra per la visualizzazione rapida di prenotazioni attive e dettagli account.
+  \item \textbf{Login/Signup}: Pagina dedicata contenente form dedicati all’accesso e alla registrazione intercambiabili con un apposito pulsante.
+  \item \textbf{Dettaglio Gioco}: Layout a griglia con immagine del gioco a sinistra, descrizione e regole al centro, e un pannello di prenotazione interattivo (datepicker, pulsanti orari e pulsanti attributo specifico).
+  \item \textbf{Prenotazioni e dettagli account}: Lista orizzontale (carosello) delle card relative ai giochi già prenotati dall’utente. La sidebar a destra mostra tutti i dettagli dell’account oltre alle possibilità di effettuare il logout e la cancellazione del profilo.
+\end{itemize}
 
 \chapter{Progettazione}
 \section{Wireframe}
 \subsection{Database}
+\subsubsection*{Configurazione Database \texttt{db.php}}
+\begin{itemize}
+  \item \textbf{Motore}: PostgreSQL.
+  \item \textbf{Parametri}: Host \textit{localhost}, porta \textit{5432}, utente \textit{www}, password \textit{www}, DB \textit{gruppo21}.
+  \item \textbf{Sicurezza}: La connessione centralizzata permette di gestire globalmente la risorsa \texttt{\$db}.
+\end{itemize}
+\subsubsection*{Architettura}
+Il sistema poggia su una solida struttura PostgreSQL definita per garantire che non vi siano sovrapposizioni nelle prenotazioni:
+\begin{itemize}
+  \item \textbf{Vincoli di Unicità}: Per evitare che una pista o un tavolo vengano prenotati due volte nello stesso slot, sono stati implementati indici univoci condizionali (\texttt{CREATE UNIQUE INDEX}) che agiscono solo se il numero della risorsa non è nullo.
+  \item \textbf{Gestione Utenti}: Le password vengono salvate sotto forma di hash tramite \texttt{password\_verify} e \texttt{password\_hash} in PHP, garantendo la sicurezza dei dati sensibili.
+  \item \textbf{Automazione}: Il sistema include logiche di "auto-cleaning" per eliminare le prenotazioni scadute ogni volta che un utente accede alla propria area personale.
+\end{itemize}
 \subsection{Interfaccia principale}
+$$\includegraphics[width=0.75\textwidth]{Wireframe/index.png}$$
+L’Home Page presenta \texttt{header}, \texttt{footer} e un layout a tre colonne sviluppato con tag semantici di HTML5 \texttt{aside} e \texttt{main}:
+\begin{itemize}
+  \item \textbf{Header}: Allineato a sinistra vi è il logo interattivo con collegamento a \texttt{index.php}, a destra è presente un contenuto variabile per utente loggato o meno:
+  \begin{itemize}
+    \item \textbf{Utente ospite}: scritta “effettua il login” con collegamento alla pagina apposita;
+    \item \textbf{Utente loggato}: scritta “ciao utente” con menù a scomparsa al passaggio del mouse contenente il collegamento alla pagina di gestione account e prenotazioni e il pulsante per effettuare il logout.
+  \end{itemize}
+  \item \textbf{Main}: È presente un carosello orizzontale con un'introduzione ai giochi con frecce di navigazione. La sezione informativa mostra una mappa interattiva con il calcolo automatico della distanza dalla posizione dell'utente grazie alle API di geolocalizzazione messa a disposizione da HTML5. Sulla destra sono indicati gli orari di apertura serali, l'indirizzo, il numero di telefono, l'email ed i contatti social di Facebook e Instagram.
+  \item \textbf{Sidebar-Left}: La sidebar sinistra permette di scorrere direttamente alla card del gioco desiderato, applicando un effetto di "evidenziazione" temporanea alla card centrata tramite \texttt{scrollIntoView}.
+  \item \textbf{Sidebar-Right}: La sidebar destra mostra all’utente ospite un invito a registrarsi mentre all’utente loggato mostra le informazioni principali dell’account e le prenotazioni più recenti.
+  \item \textbf{Footer}: L'indicazione del Copyright è seguita dal nome del centro, dagli sviluppatori e dal nome del team di lavoro con rispettivo identificativo del gruppo.
+\end{itemize}
 \subsection{Login}
-\subsubsection{Validazione multilivello}
-\subsubsection{Sicurezza e Cifratura dei dati}
+\includegraphics[width=0.5\textwidth-0.5cm]{Wireframe/login signin.png}\hspace{1cm}\includegraphics[width=0.5\textwidth-0.5cm]{Wireframe/login signup.png}
+La sezione di Login utilizza un unico file \texttt{login.php} che ospita sia il modulo di Accesso (\textit{signin}) che quello di Registrazione (\textit{signup}). Lo scambio tra i due avviene tramite JavaScript (\texttt{login.js}), che manipola la proprietà CSS \texttt{display} degli elementi per un passaggio immediato senza ricaricare la pagina.
+\begin{itemize}
+  \item \textbf{Persistenza dei Dati}: Se un utente commette un errore durante la registrazione (es. email duplicata), il sistema utilizza la variabile \texttt{\$\_SESSION['old\_data']} per ripopolare automaticamente i campi già compilati, evitando all'utente di dover reinserire le informazioni: per motivi di sicurezza non viene re-inserita automaticamente la password.
+  \item \textbf{Feedback Visivo}: Implementa box di stato (\texttt{success-box} e \texttt{error-box}) che compaiono dinamicamente per segnalare l'esito delle operazioni, come la conferma di avvenuta registrazione o l'avviso di credenziali errate.
+  \item \textbf{Gestione della sessione}: In \texttt{signin-manager.php} vengono inizializzate le variabili di dell'array di sessione \texttt{\$\_SESSION['utente']}, \texttt{\$\_SESSION['nome']} e \texttt{\$\_SESSION['email']}, che rendono i dati dell'utente disponibili in tutte le pagine del sito (es. per visualizzare il nome nell'header o filtrare le prenotazioni nella sidebar).
+\end{itemize}
+\subsubsection*{Validazione multilivello}
+La sicurezza e la pulizia dei dati sono garantite da un controllo a due stadi:
+\begin{itemize}
+  \item \textbf{Validazione Lato Client}: Il file \texttt{login.js} intercetta l'evento di invio del form per verificare la completezza dei campi, il formato dell'email tramite espressioni regolari e la corrispondenza tra password e conferma password prima ancora di interrogare il server.
+  \item \textbf{Validazione Lato Server}: I file manager (\texttt{signin-manager.php} e \texttt{signup-manager.php}) eseguono controlli di integrità definitivi, verificando l'esistenza dei dati nel database PostgreSQL e la validità dei parametri ricevuti tramite metodo \texttt{POST}.
+\end{itemize}
+\subsubsection*{Sicurezza e Cifratura dei dati}
+Il trattamento delle informazioni sensibili segue i seguenti standard di sicurezza:
+\begin{itemize}
+  \item \textbf{Hashing delle Password}: In fase di registrazione, la password è cifrata utilizzando \texttt{password\_hash()} con l'algoritmo \texttt{PASSWORD\_DEFAULT}. Nel database, la colonna \texttt{pass} memorizza quindi una stringa hash sicura e non la password in chiaro.
+  \item \textbf{Verifica dell'Identità}: Durante l'accesso, \texttt{signin-manager.php} utilizza \texttt{password\_verify()} per confrontare la stringa inserita dall'utente con l'hash memorizzato nel database, garantendo un'autenticazione sicura.
+  \item \textbf{Protezione SQL}: Tutte le interazioni con il database avvengono tramite \texttt{pg\_query\_params()}, utilizzando query parametrizzate per neutralizzare il rischio di attacchi.
+\end{itemize}
 \subsection{Dettaglio Gioco}
-\subsubsection{Sistema di Prenotazione e Calendario}
+$$\includegraphics[width=0.75\textwidth]{Wireframe/dettaglio_gioco.png}$$
+Ogni gioco è trattato come un'entità nel database con attributi specifici che determinano il comportamento del front-end in \texttt{dettaglio\_gioco.php}. Il sistema è progettato per adattarsi automaticamente al gioco selezionato. Per ogni gioco è presente una parte descrittiva con introduzione e rispettive regole, successivamente vi è il vero e proprio box di prenotazione dove è possibile specificare l’orario, il giorno e l’attributo specifico del gioco in questione:
+\begin{itemize}
+  \item \textbf{Bowling}: L'utente deve selezionare obbligatoriamente un numero di pista da 1 a 24.
+  \item \textbf{Biliardo}: Selezione obbligatoria del tavolo (1-6) tramite una griglia interattiva.
+  \item \textbf{Laser Game}: Non richiede una risorsa numerata ma il numero di partecipanti per slot.
+  \item \textbf{Torneo di Carte}: Disponibile solo Mercoledì e Venerdì alle 21:00; richiede il pagamento anticipato.
+\end{itemize}
+\subsubsection*{Sistema di Prenotazione e Calendario}
+La logica di prenotazione si articola in: Scelta Gioco $\rightarrow$ Dettaglio \& Data $\rightarrow$ (eventuale pagamento) $\rightarrow$ Conferma. È il cuore interattivo del sito, gestito dal file \texttt{data\_orario.js}:
+\begin{itemize}
+  \item \textbf{Generazione Slot}: Gli orari vengono generati dinamicamente ogni 30 minuti, dalle 17:00 alle 01:30 (coprendo la notte fino alle 02:00 come indicato nell'area contatti).
+  \item \textbf{Validazione Temporale}: Il JavaScript verifica l'orario locale: se l'utente tenta di prenotare per il giorno corrente, il sistema disabilita automaticamente i bottoni degli orari già passati.
+  \item \textbf{Check Disponibilità}: Prima dell'inserimento nel DB, il file \texttt{gestisci\_prenotazione.php} esegue varie query di controllo per verificare che le risorse siano effettivamente libere.
+  \item \textbf{Persistenza dei Dati}: Analogamente alla pagina di registrazione, il sistema adotta un meccanismo di conservazione dei dati in caso di errore lato server. Se il server rileva un conflitto (es. tavolo già prenotato o prenotazione già effettuata per un certo orario), la variabile \texttt{\$\_SESSION['old\_post']} viene utilizzata per ripopolare automaticamente la data, l'orario e l’opzione selettiva di ogni gioco. Questo evita la frustrazione di dover ricompilare l'intero form da zero.
+  \item \textbf{Feedback Visivo}: Implementa box di stato (\texttt{success-box} e \texttt{error-box}) che compaiono dinamicamente per segnalare l'esito delle operazioni, come la conferma di avvenuta registrazione o l'avviso di errori lato server.
+\end{itemize}
+\subsubsection*{Validazione multilivello}
+Per prevenire conflitti nel database e assicurare una User Experience fluida, il sistema implementa un controllo a due stadi:
+\begin{itemize}
+  \item \textbf{Validazione Lato Client}: Lo script embedded nella pagina verifica in tempo reale che l'utente abbia selezionato tutte le opzioni obbligatorie all’interno del form prima di consentire l'invio del modulo, mostrando \texttt{alert} personalizzati per bloccare le richieste incomplete.
+  \item \textbf{Validazione Logica Lato Server}: Il controller \texttt{gestisci\_prenotazione.php} processa i dati ed esegue controlli sul database. Verifica l'assenza di sovrapposizioni temporali per lo stesso utente e la reale disponibilità fisica della risorsa richiesta (pista o tavolo) per quella specifica data e orario.
+\end{itemize}
+\subsubsection*{Gestione dei dati}
+L'architettura dei moduli separa rigorosamente l'interfaccia utente dalla logica di business.
+\begin{itemize}
+  \item \textbf{Interfacciamento con l'utente}: La pagina \texttt{dettaglio\_gioco.php} opera esclusivamente come livello di presentazione (View), occupandosi della raccolta dati e del feedback visivo
+  \item \textbf{Interfacciamento con Database}: L'interazione diretta con il database PostgreSQL (lettura delle sovrapposizioni e scrittura della prenotazione) è delegata al file di back-end \texttt{gestisci\_prenotazione.php} (Controller). Questo approccio isola le query SQL dal front-end, garantendo un codice più leggibile e manutenibile.
+\end{itemize}
 \subsection{Pagamento Torneo}
+$$\includegraphics[width=0.75\textwidth]{Wireframe/pagamento_torneo.png}$$
+A differenza degli altri giochi, il Torneo di Carte implementa un modulo di finto Pagamento:
+\begin{itemize}
+  \item \textbf{Sessione Temporanea}: I dati della prenotazione in corso vengono memorizzati nella variabile dell'array di sessione \texttt{\$\_SESSION['pending\_reservation']} mentre l'utente procede al pagamento.
+  \item \textbf{Validazione Carta}: Il sistema verifica tramite Regex la correttezza delle 16 cifre, del CVV e, tramite logica PHP/JS, che la data di scadenza della carta sia futura rispetto al mese corrente.
+  \item \textbf{Persistenza dei Dati}: Anche nel modulo di pagamento è stata implementata la logica dello sticky form. In caso di transazione rifiutata (es. carta scaduta), il controller popola la variabile di sessione \texttt{\$\_SESSION['old\_payment']} con i dati inviati (\texttt{\$\_POST}). Questo permette alla pagina di ricaricarsi mantenendo precompilati i campi come il "Titolare" o il "Numero Carta".
+\end{itemize}
+\subsubsection*{Validazione multilivello}
+La correttezza delle informazioni della carta di credito è assicurata da un rigoroso doppio controllo:
+\begin{itemize}
+  \item \textbf{Validazione Lato Client}: La funzione JavaScript \texttt{validaPagamento()} sfrutta le espressioni regolari (Regex) per impedire l'invio di dati malformati. Il sistema esige che il Titolare contenga solo lettere e spazi, che il numero della carta sia composto da esattamente 16 cifre continue, il CVV da 3 cifre, e la scadenza rispetti il pattern MM/AA.
+  \item \textbf{Validazione Logica Lato Server}: Il controller \texttt{processo\_pagamento.php} non si limita a verificare il formato, ma esegue un controllo temporale sulle date. Se la carta risulta scaduta nel passato o nel mese corrente, l'operazione viene respinta e viene generato un messaggio di errore.
+\end{itemize}
+\subsubsection*{Gestione dei dati}
+Coerentemente con il resto del sistema, anche il modulo finanziario adotta una netta separazione dei ruoli. Il file \texttt{pagamento\_torneo.php} funge unicamente da interfaccia visiva per l'inserimento sicuro dei dati della carta. L'effettivo processo di validazione temporale della scadenza e l'esecuzione delle query nel database sono implementate nel modulo \texttt{processo\_pagamento.php}.
 \subsection{Area FAQ}
+$$\includegraphics[width=0.75\textwidth]{Wireframe/area_faq.png}$$
+L'Area FAQ funge sia da centro per la community, sia da area informativa per la ristorazione:
+\begin{itemize}
+  \item \textbf{Menu Dinamico}: Presenta un listino prezzi organizzato per categorie (Burger, Bibite, Cocktail, Dolci).
+  \item \textbf{Sistema di Recensioni}: Gli utenti loggati possono lasciare un commento e un voto da 1 a 5 stelle. Gli utenti non loggati possono solamente visualizzare le recensioni pubblicate.
+  \item \textbf{Filtri Dinamici}: La pagina permette di filtrare le recensioni per punteggio, ricaricando i dati dal database senza perdere il contesto della pagina tramite ancoraggi HTML (\texttt{\#sezione-recensioni}).
+\end{itemize}
+\subsubsection*{Validazione Lato Client}
+Sono presenti controlli per verificare la completezza dei campi quali il voto e la recensione implementati tramite JavaScript. Lo script fa in modo di avvisare l’utente tramite alert appositi. 
 \subsection{Account}
+$$\includegraphics[width=0.75\textwidth]{Wireframe/prenotazioni.png}$$
+La pagina \texttt{prenotazioni.php} rappresenta la dashboard personale dell'utente per la gestione delle proprie attività all'interno di The Bowler Club. Questa sezione permette di visualizzare e annullare le prenotazioni effettuate, garantendo un controllo completo sui servizi acquistati. Le principali funzionalità sono: 
+\begin{itemize}
+  \item \textbf{Visualizzazione Cronologica}: Le prenotazioni attive vengono recuperate dal database e raggruppate per data. Per ogni data, un'intestazione indica il numero di prenotazioni presenti (es. "12/03/2026 (2 prenotazioni)").
+  \item \textbf{Carousel delle Card}: All'interno di ogni blocco data, le singole prenotazioni sono visualizzate tramite un carousel orizzontale di card (\texttt{card-gioco-carousel}), rendendo la navigazione fluida anche in presenza di molti impegni nello stesso giorno.
+  \item \textbf{Dettagli Specifici}: Ogni card mostra dinamicamente le informazioni pertinenti al tipo di gioco con relativo attributo specifico e pulsante "Annulla" che, previa conferma tramite JavaScript, elimina la prenotazione dal database.
+  \item \textbf{Gestione Account}: L'utente può terminare la sessione in corso pulendo tutti i dati in \texttt{\$\_SESSION} con il pulsante di logout. Mentre per rimuovere definitivamente il proprio profilo dal club vi è l’apposito pulsante “Elimina Account”. Questa operazione permette all'utente di rimuovere il proprio profilo. Grazie al vincolo SQL \texttt{ON DELETE CASCADE} definito nella tabella \texttt{utenti}, l'eliminazione dello username comporta la rimozione automatica di tutte le righe correlate nelle tabelle \texttt{prenotazioni} e \texttt{faq}. Richiede una conferma esplicita per evitare cancellazioni accidentali.
+  \item \textbf{Pulizia Automatica}: All'apertura di \texttt{prenotazioni.php}, viene eseguita una query \texttt{DELETE FROM prenotazioni WHERE data\_ora < CURRENT\_TIMESTAMP}, garantendo che l'utente visualizzi solo impegni validi.
+\end{itemize}
 \section{Wireflow}
+Per una visione più dettagliata, è possibile consultare il file originale: \href{wireflow.pdf}{wireflow.pdf}\\
+\includegraphics[width=\textwidth]{wireflow.pdf}
 \section{Fogli di Stile}
+Abbiamo utilizzato fogli di stile esterni per ogni sezione del sito, garantendo una netta separazione tra struttura (HTML) e stile (CSS).
+\begin{itemize}
+  \item \textbf{Modularità}: Il sito sfrutta file CSS distinti per mantenere la separazione dei compiti. Elementi come la navbar e il footer sono integrati in modo coerente in tutte le pagine per rispettare il principio DRY.
+  \item \textbf{Librerie Esterne}: Utilizzo di Google Fonts ("Belanosima", "Racing Sans One") e Font Awesome per le icone.
+\end{itemize}
+Il design generale del sito segue un'estetica Cyberpunk / Neon-Dark, caratterizzata da sfondi scuri, effetti "glass morphism" (vetro sfocato), e forti accenti di colore Rosa Neon \colorbox[HTML]{FF00FF}{\textcolor{white}{\texttt{\#ff00ff}}} e Ciano \colorbox[HTML]{00B7FF}{\textcolor{white}{\texttt{\#00b7ff}}}.\\
+Poiché mainpage.css è il file base caricato ovunque, gestisce la struttura portante, mentre gli altri file agiscono come "specializzazioni" per le diverse sezioni.
 \subsection{\texttt{mainpage.css}}
+$$\includegraphics[width=0.75\textwidth]{Stile/mainpage.jpeg}$$
+È il foglio di stile fondamentale che definisce l'identità visiva e il layout di tutto il sito.
+  \begin{itemize}
+    \item \textbf{Layout a Griglia}: Imposta la struttura a 3 colonne del sito (Sidebar Sinistra - Main Content - Sidebar Destra).
+    \item \textbf{Layout Mobile}: Il layout è gestito diversamente in modalità verticale \texttt{@media(orientation: portrait)}. Sfruttando la griglia, gli elementi vengono riorganizzati in una singola colonna con larghezza \texttt{calc(90vw - 50pt)} e, contestualmente, viene modificata la larghezza massima del carosello. Questa configurazione assicura che l'interfaccia rimanga leggibile e funzionale anche su schermi ridotti, eliminando la necessità di scrolling orizzontale.
+    \item \textbf{Tema Visivo}: Gestisce lo sfondo fisso (sfondo.jpeg), i font (“Belanosima”, “Racing Sans One”) e gli effetti di ombra/luce al neon.
+    \item \textbf{Header \& Footer}: Definisce la barra di navigazione superiore (con menù a tendina per l'utente loggato) e il piè di pagina, usando colori semitrasparenti.
+    \item \textbf{Sidebar}: Stile per i menu laterali con effetto vetro (backdrop-filter: blur) e link che si illuminano all'hover.
+    \item \textbf{Carosello}: Gestisce lo scorrimento orizzontale delle card dei giochi.
+    \item \textbf{Bottoni}: Stile base dei pulsanti neri che diventano rosa neon al passaggio del mouse.
+    \item \textbf{Social \& Mappe}: Stili per le card informative (dove siamo, contatti).
+\end{itemize}
+\begin{multicols}{2}
 \subsection{\texttt{login.css}}
+Trasforma il layout standard in una vista focalizzata sull'accesso e la registrazione.
+  \begin{itemize}
+    \item Layout Centrato: A differenza delle altre pagine, qui il contenuto è un blocco centrale flottante.
+    \item Form Minimalisti: Gli input sono trasparenti senza bordi laterali/superiori, creando un look molto pulito.
+    \item Feedback Visivo: Include classi specifiche per i messaggi di successo (verde vetrato) e di errore (rosso vetrato).
+    \item Switch: Gestisce il toggle visivo per passare da "Sign In" a "Sign Up".
+  \end{itemize}
+  \newcolumn
+  \includegraphics[width=\columnwidth]{Stile/login.jpeg}
+\end{multicols}
 \subsection{\texttt{dettaglio\_gioco.css}}
+$$\includegraphics[width=0.75\textwidth]{Stile/dettaglio_gioco.jpeg}$$
+Gestisce la pagina specifica di un gioco e, soprattutto, l'interfaccia di prenotazione (calendario e orari).
+\begin{itemize}
+  \item \textbf{Descrizione Gioco}: Box specifici per la descrizione e le regole con bordi colorati laterali (bordo rosa per regole, blu per descrizione).
+  \item \textbf{Sistema di Prenotazione}:
+  \begin{itemize}
+    \item \textbf{Calendario Custom}: Personalizza l'input date nativo, invertendo i colori dell'icona del calendario per renderla visibile su sfondo scuro.
+    \item \textbf{Griglia Orari}: Trasforma i radio button degli orari in una griglia di pulsanti rettangolari.
+    \item \textbf{Selezione Neon}: Quando si seleziona un orario, il bottone si illumina di rosa neon con un effetto "glow".
+  \end{itemize}
+  \item \textbf{Layout Dedicato}: La scheda del gioco usa un layout asimmetrico (40\% immagine, 60\% testo).
+\end{itemize}
 \subsection{\texttt{area\_faq.css}}
+$$\includegraphics[width=0.75\textwidth]{Stile/area_faq.jpeg}$$
+Gestisce una pagina ibrida che funge sia da menu digitale (Food) che da area feedback/FAQ.
+\begin{itemize}
+  \item \textbf{Sezione Food}: Griglia per visualizzare a sinistrà il menù con una barra a scorrimento e a destra foto dell’area food (con ombre esterne). Include descrizioni con gradienti leggeri.
+  \item \textbf{Sistema di Recensioni}:
+    \begin{itemize}
+      \item \textbf{Stelle Interattive}: Implementa un sistema di rating a 5 stelle usando un trucco CSS (flex-direction: row-reverse) per gestire l'illuminazione delle stelle al passaggio del mouse.
+      \item \textbf{Box Commenti}: Un'area scrollabile con barra laterale rosa che contiene i commenti degli utenti.
+    \end{itemize}
+  \item \textbf{Area FAQ}: Stile per form di domanda/risposta con textarea che si illumina al focus.
+\end{itemize}
 \subsection{\texttt{prenotazioni.css}}
+$$\includegraphics[width=0.6\textwidth]{Stile/prenotazioni.jpeg}$$
+Gestisce la visualizzazione delle prenotazioni già effettuate dall'utente e la gestione dell’account.
+\begin{itemize}
+  \item \textbf{Carosello Prenotazioni}: Una lista orizzontale scrollabile di card più piccole rispetto a quelle della home.
+  \item \textbf{Card Prenotazione}: Stile specifico per le card "riepilogative" che includono dettagli come tavolo/pista e pulsanti di azione.
+  \item \textbf{Azioni}: Stili distinti per i pulsanti di annullamento prenotazione, logout e eliminazione account.
+  \item \textbf{Empty State}: Stile per il messaggio visualizzato quando non ci sono prenotazioni (box semitrasparente).
+\end{itemize}
+\begin{multicols}{2}
 \subsection{\texttt{pagamento\_torneo.css}}
+Gestisce esclusivamente l'interfaccia di inserimento dati della carta di credito.
+\begin{itemize}
+  \item \textbf{Card di Pagamento}: Un contenitore centrale con bordo blu neon.
+  \item \textbf{Input Carta di Credito}: Usa clip-path sugli input di "Scadenza" e "CVV" per creare un effetto visivo in cui i due campi sembrano incastrarsi o unirsi graficamente.
+  \item \textbf{Riepilogo}: Un box laterale (recap-box) con una spessa linea rosa a sinistra per evidenziare i dettagli dell'ordine prima del pagamento.
+\end{itemize}\newcolumn
+$$\includegraphics[width=\columnwidth]{Stile/pagamento_torneo.jpeg}$$
+\end{multicols}
 \section{Differenze Utente Ospite e Utente Loggato}
-\subsection{Navigazione e Header}
-\subsection{Sidebar Destra (Account)}
-\subsection{Interazione con i Servizi e le Prenotazioni}
-\subsection{Area food e Recensioni}
-\section{DETTAGLIO Progettazione del Sito}
+\subsection*{Navigazione e Header}
+\begin{itemize}
+  \item \textbf{Utente Ospite}: Nell'header, sul lato destro, visualizza l'opzione generica "Effettua il Login". Cliccando su quest'area, l'utente viene reindirizzato alla pagina di accesso/registrazione (\texttt{login.php}).
+  \item \textbf{Utente Loggato}: L'header si personalizza mostrando un saluto diretto, come "Ciao Nome Utente". Al posto del tasto login, compare un menu a tendina per la gestione rapida del profilo e del logout.
+\end{itemize}
+\subsection*{Sidebar Destra (Account)}
+\begin{itemize}
+  \item \textbf{Utente Ospite}: La sidebar mostra un messaggio di invito: "Non sei ancora dei nostri? Registrati subito per accedere a tutti i servizi del club e gestire le tue prenotazioni!". Non sono visibili dati sensibili.
+  \item \textbf{Utente Loggato}: La sezione diventa un box dinamico che mostra i dettagli dell'account (username ed email) e l'elenco delle ultime prenotazioni attive. Questo permette all'utente di monitorare i propri impegni direttamente dalla Home Page senza cambiare sezione.
+\end{itemize}
+\subsection*{Interazione con i Servizi e le Prenotazioni}
+\begin{itemize}
+  \item \textbf{Utente Ospite}: Può navigare nel carosello dei giochi, leggere le descrizioni brevi e le regole. Tuttavia, se tenta di cliccare su "Prenota", il sistema lo reindirizza alla pagina di login, impedendo la prenotazione ai non registrati.
+  \item \textbf{Utente Loggato}: Ha pieno accesso alla pagina di prenotazione specifica (\texttt{dettaglio\_gioco.php}). Può selezionare interattivamente il giorno, l'orario e la risorsa fisica (pista di bowling, tavolo da biliardo o numero di persone per il laser game).
+\end{itemize}
+\subsection*{Area food e Recensioni}
+\begin{itemize}
+  \item \textbf{Utente Ospite}: Può consultare liberamente il menù del club e leggere le recensioni lasciate dagli altri utenti.
+  \item \textbf{Utente Loggato}: Oltre alla lettura, l'utente autenticato è l'unico abilitato a lasciare una recensione. L'interfaccia gli mette a disposizione una \texttt{TextArea} dedicata per scrivere il proprio feedback e un sistema per assegnare il punteggio.
+\end{itemize}
+\section{Organizzazione e Descrizione File}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+\rowcolor{lightgray} \textbf{Blocco Funzionale} & \textbf{File} & \textbf{Responsabilità Tecnica e Specifiche File} \\ \hline
+\cellcolor{pink} \textbf{Database} & \texttt{Create\_DB.sql} & Script SQL per la creazione delle tabelle, degli indici di unicità (per evitare doppie prenotazioni di piste/tavoli) e dei vincoli di integrità referenziale (\texttt{FOREIGN KEY}) con azioni \texttt{ON DELETE CASCADE}. \\ \cline{2-3}
+\cellcolor{pink} & \texttt{backup\_database.sql} & Dump completo del database che include sequenze per gli ID autoincrementali, permessi granulari per l'utente \texttt{www} e i dati reali di produzione (utenti, giochi e prenotazioni esistenti). \\ \cline{2-3}
+\cellcolor{pink} & \texttt{db.php} & Centralizza i parametri di connessione (\texttt{host}, \texttt{dbname}, \texttt{user}, \texttt{pass}) al database PostgreSQL. \\ \hline
+
+\cellcolor{cyan!50!white} \textbf{Interfaccia principale} & \texttt{index.php} & Gestisce il carosello dinamico dei giochi e lo scorrimento fluido per centrare le card selezionate dalla sidebar. \\ \cline{2-3}
+\cellcolor{cyan!50!white} & \texttt{mainpage.css} & Definisce il layout "Grid" a tre colonne e gli effetti visivi neon per l'intera interfaccia. \\ \cline{2-3}
+\cellcolor{cyan!50!white} & \texttt{index.js} & Contiene gli script di supporto della pagina principale quali: geolocalizzazione, logica carosello, evidenziazione temporanea delle card. \\ \hline
+
+\cellcolor{ForestGreen!50!white} \textbf{Login} & \texttt{login.php} & Gestisce l'interfaccia di accesso/registrazione e la visualizzazione dei messaggi di stato. \\ \cline{2-3}
+\cellcolor{ForestGreen!50!white} & \texttt{login.css} & Definisce un'interfaccia visiva con font personalizzati, sfondi sfocati  e feedback cromatici per successi o fallimenti. \\ \cline{2-3}
+\cellcolor{ForestGreen!50!white} & \texttt{login.js} & Si occupa di validare i campi (email, password, username) prima dell'invio e di alternare la visualizzazione tra i box di accesso e registrazione. \\ \cline{2-3}
+\cellcolor{ForestGreen!50!white} & \texttt{signin-manager.php} & Verifica le credenziali utente e inizializza la sessione. \\ \cline{2-3}
+\cellcolor{ForestGreen!50!white} & \texttt{signup-manager.php} & Gestisce l'hashing sicuro delle password e il controllo dei duplicati. \\ \hline
+
+\cellcolor{yellow!50!white} \textbf{Dettaglio Gioco} & \texttt{dettaglio\_gioco.php} & Visualizza le regole dei singoli giochi e il form di prenotazione contestuale. \\ \cline{2-3}
+\cellcolor{yellow!50!white} & \texttt{dettaglio\_gioco.css} & Definisce un layout complesso a griglia e sidebar, con uno stile coerente "neon-dark" che include componenti interattivi come selettori numerici personalizzati e un calendario stilizzato per la scelta della data. \\ \cline{2-3}
+\cellcolor{yellow!50!white} & \texttt{gestisci\_prenotazione.php} & Gestisce il backend delle prenotazioni, occupandosi della sicurezza (es. controlli su giorni e orari per i tornei), della verifica di disponibilità delle risorse (tavoli o piste) e dell'inserimento dei dati nel database PostgreSQL. \\ \cline{2-3}
+\cellcolor{yellow!50!white} & \texttt{data\_orario.js} & Genera slot orari dinamici e gestisce la validazione temporale lato client. \\ \hline
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|l|X|X|}
+\hline
+\rowcolor{lightgray} \textbf{Blocco Funzionale} & \textbf{File} & \textbf{Responsabilità Tecnica e Specifiche File} \\ \hline
+\cellcolor{red!50!white} \textbf{Pagamento Torneo} & \texttt{pagamento\_torneo.php} & Interfaccia per l'inserimento dei dati di pagamento per i tornei. \\ \cline{2-3}
+\cellcolor{red!50!white} & \texttt{pagamento\_torneo.css} & Definisce un'interfaccia di pagamento in stile "neon-dark" che utilizza sfondi semitrasparenti con effetto sfocato, layout a griglia per i dati della carta e accenti cromatici fucsia e azzurri per garantire coerenza visiva e usabilità. \\ \cline{2-3}
+\cellcolor{red!50!white} & \texttt{processo\_pagamento.php} & Valida la carta e consolida l'iscrizione al torneo. \\ \hline
+
+\cellcolor{orange!50!white} \textbf{Area FAQ} & \texttt{area\_faq.php} & Pagina per il menu food e il sistema di recensioni/voto. \\ \cline{2-3}
+\cellcolor{orange!50!white} & \texttt{area\_faq.css} & Definisce il layout per le due sezioni della pagina: la griglia per l’area food e lo stile dei campi di input (stelle e textarea) delle recensioni. È definito inoltre lo stile della scrollbar per menù e elenco recensioni. \\ \hline
+
+\cellcolor{violet!50!white} \textbf{Account} & \texttt{prenotazioni.php} & Mostra le prenotazioni attive e ne permette l’annullamento, mostra i collegamenti per il logout e la cancellazione dell’account.\\ \cline{2-3}
+\cellcolor{violet!50!white} & \texttt{prenotazioni.css} & Definisce lo stile di un carosello interattivo per visualizzare le prenotazioni, utilizzando card con bordi azzurro neon ed effetti hover luminosi, completato da una barra di scorrimento personalizzata e pulsanti specifici per la gestione e l'eliminazione dei contenuti.\\ \cline{2-3}
+\cellcolor{violet!50!white} & \texttt{logout.php} & Termina in modo sicuro la sessione utente.\\ \cline{2-3}
+\cellcolor{violet!50!white} & \texttt{elimina\_account.php} & Esegue la rimozione totale dell'account e delle prenotazioni correlate.\\ \hline
+
+\cellcolor{gray} \textbf{Resources} && È la cartella risorse del progetto, contenente le directory per i testi descrittivi, le immagini dei giochi, ii file grafici principali come il logo ufficiale e lo sfondo a tema sala giochi e lo Sketch iniziale del progetto. \\ \hline
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
 
 \chapter{Descrizione del Sito}
 \section{Interfaccia principale}
+La Home Page è il punto d'accesso dinamico al portale The Bowler Club. L'architettura della pagina è suddivisa in tre blocchi funzionali per ottimizzare la navigazione e la conversione:
+\begin{itemize}
+  \item \textbf{Corpo Centrale (Servizi)}: Implementa un carosello dinamico che elenca le attività disponibili (Bowling, Biliardo, Laser Game). Ogni scheda è generata da database e permette l'accesso diretto alla funzione di prenotazione. L’unica scheda indipendente dal database è quella relativa all’Area FAQ.
+  \item \textbf{Sidebar Sinistra (Navigazione)}: Menu rapido per lo scorrimento tra i servizi. L'interfaccia risponde alla selezione attivando un evidenziazione temporanea della sezione corrispondente per migliorare la UX.
+  \item \textbf{Sidebar Destra (Account e Prenotazioni)}: Pannello contestuale che varia in base allo stato dell'utente. Se anonimo, funge da invito alla registrazione; se loggato, mostra dinamicamente le ultime prenotazioni effettuate e alcuni dettagli dell’account.
+  \item \textbf{Footer Informativo}: Integra una mappa interattiva, la distanza in tempo reale dalla posizione mostrata sulla stessa, indirizzo e recapiti del centro, gli orari di apertura e link ai profili social.
+\end{itemize}
 \section{Login}
+Questa pagina include entrambi i moduli di accesso e creazione account, gestendo l’alternarsi tra i due tramite pulsanti ed event listener in JavaScript (\texttt{login.js}). È presente la validazione JS per campi vuoti o password non corrispondenti e lo sticky form per il mantenimento dei dati inseriti in caso di errore.
 \section{Dettaglio Gioco}
-\subsection{Pagamento Torneo}
+La pagina di dettaglio dei singoli giochi è dinamica e funge da interfaccia universale per la presentazione e la prenotazione delle attività, adattando i contenuti in base al servizio selezionato.
+\begin{itemize}
+  \item \textbf{Caricamento Dinamico}: Utilizza parametri \texttt{GET} per recuperare due descrizioni da file \texttt{.txt} (una breve e una lunga) e immagini specifiche relative al gioco scelto.
+  \item \textbf{Sistema di Prenotazione}: Integra un modulo interattivo per la selezione della data, della risorsa (numero del tavolo, pista o numero di persone) e della fascia oraria.
+  \item \textbf{Gestione Orari (\texttt{data\_orario.js})}: Un apposito script lato client genera i pulsanti degli orari, disabilitando automaticamente gli orari passati.
+  \item \textbf{Validazione e Sicurezza}: Il sistema esegue un controllo lato client sulla completezza del form e controlli lato server per evitare prenotazioni duplicate da parte di più utenti (stesso gioco, attributo specifico e orario) o da un singolo utente (stesso orario).
+\end{itemize}
+\section{Pagamento Torneo}
+Il “Torneo di Carte” ha delle peculiarità rispetto agli altri giochi. Solo per questo è stato integrato un fittizio sistema di pagamento.
+\begin{itemize}
+  \item \textbf{Selezione Evento}: L'utente può scegliere la data e l'orario del torneo (solo mercoledì e venerdì alle 21:00) e il sistema mostra automaticamente le info specifiche e l'importo della quota di iscrizione.
+  \item \textbf{Pagamento}: Cliccando su "Conferma Prenotazione", l'utente viene indirizzato a un'interfaccia sicura per l'inserimento dei dati della carta (Titolare, Numero, Scadenza e CVV).
+  \item \textbf{Riepilogo Dinamico}: Un box di riepilogo mostra i dettagli della partecipazione (gioco, data/ora e quota) prima di procedere alla transazione finale tramite il pulsante "Paga Ora".
+  \item \textbf{Validazione}: Il sistema effettua controlli lato client sul formato e sulla completezza dei dati inseriti e lato server sulla scadenza della carta.
+  \item \textbf{Sicurezza}: Il processo garantisce la memorizzazione della prenotazione solo a seguito della conferma dell'avvenuto pagamento bancario.
+\end{itemize}
 \section{Area FAQ}
+Questa pagina è dedicata al mostrare informazioni riguardo al servizio ristorazione e alla visualizzazione/scrittura dei feedback della community. Le particolarità di questa pagina sono:
+\begin{itemize}
+  \item \textbf{Menu Digitale}: Presenta un listino prezzi dinamico suddiviso per categorie (Burger, Bibite, Birre) e una foto dell'area ristoro del locale.
+  \item \textbf{Sistema Feedback}: Permette agli utenti ospiti di visualizzare le recensioni e quelli loggati di pubblicarne. Le recensioni sono composte da una valutazione numerica (stelle) e un commento testuale.
+  \item \textbf{Gestione Dati}: I contributi vengono salvati nella tabella \texttt{faq} del database, associando ogni recensione all'account dell'autore tramite l'identificativo \texttt{username}.
+  \item \textbf{Filtro Recensioni}: Integra un sistema di filtraggio che consente ai visitatori di visualizzare i commenti in base al punteggio assegnato, facilitando la lettura delle opinioni della community.
+\end{itemize}
 \section{Account}
-\section{Scelte Progettuali in accordo alle Specifiche}
-\section{Dettagli implementativi peculiari}
-
+La pagina di Prenotazioni offre all'utente una completa gestione sia delle proprie attività programmate all'interno del club sia del suo profilo.
+\begin{itemize}
+  \item \textbf{Organizzazione Cronologica}: Le prenotazioni sono raggruppate per data, facilitando la lettura degli impegni futuri e indicando il numero totale di sessioni per ciascun giorno.
+  \item \textbf{Schede Dettaglio}: Ogni servizio prenotato (Bowling, Biliardo, Tornei) è visualizzato in un box dedicato che specifica l'orario e la risorsa assegnata (es. numero del tavolo o della pista).
+  \item \textbf{Cancellazione Interattiva}: Ogni scheda include un pulsante "Annulla" che permette di eliminare la prenotazione in tempo reale, liberando immediatamente la risorsa nel database per altri utenti.
+  \item \textbf{Gestione Account}: La pagina consente anche all'utente di effettuare il Logout o procedere all'Eliminazione dell’account, azione che comporta la rimozione automatica di tutte le prenotazioni attive visualizzate.
+\end{itemize}
 \chapter{Tabella di Partecipazione}
 \section{Tabella}
 \section{Macroaree e Collaborazioni emerse}
 
 \chapter{EXCEL Descrizione Breve}
+\section{Descrizione}
+Il progetto consiste nella realizzazione di una applicazione web incentrata sulla prenotazione e gestione di servizi di intrattenimento (bowling, biliardo, laser game e tornei). Il sito presenta una home page dove esplorare le attività disponibili tramite un carosello interattivo e una sidebar dinamica, visualizzando immediatamente le informazioni descrittive e i file multimediali tramite appositi riquadri.\\
+Inoltre, un utente registrato può visualizzare i dettagli tecnici di ogni servizio, consultarne le regole e procedere alla prenotazione selezionando parametri specifici come la data, la fascia oraria (con aggiornamento in tempo reale della disponibilità) e la risorsa fisica desiderata, come il numero di pista o di tavolo. Per i tornei competitivi, la piattaforma integra un modulo di pagamento elettronico sicuro per la conferma dell'iscrizione.\\
+È presente una sezione dedicata al Food \& Recensioni, dove l'utente può consultare il listino prezzi aggiornato e interagire con la community leggendo o pubblicando recensioni con valutazione stellata, filtrate tramite algoritmi di ordinamento dinamico. Ogni utente dispone di una area profilo e sidebar account che mostra i dati personali, l'email e un riepilogo delle prenotazioni attive, permettendone la gestione o l'annullamento immediato. Infine, la piattaforma funge da punto di incontro digitale per facilitare l'organizzazione del tempo libero e garantire l'accesso esclusivo ai servizi del club.
+
+
 \end{document}
