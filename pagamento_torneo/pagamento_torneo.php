@@ -41,9 +41,9 @@ unset($_SESSION['old_payment']);
                 <div class="dropdown-container">
                     <h2 style="cursor: pointer;">
                         <?php 
-                            // Dividiamo il nome completo in un array usando lo spazio come separatore
+                            // Divido il nome completo in un array usando lo spazio come separatore, 
+                            // in modo da prendere solo il nome
                             $parti_nome = explode(' ', trim($_SESSION['nome'])); 
-                            // Prendiamo solo la prima parola
                             $primo_nome = $parti_nome[0]; 
                         ?>
                         Ciao <?= htmlspecialchars($primo_nome) ?>
@@ -112,7 +112,7 @@ unset($_SESSION['old_payment']);
             const scadenza = document.getElementById('scadenza').value.trim();
             const cvv = document.getElementById('cvv').value.trim();
 
-            // 1. Controllo Titolare (solo lettere e spazi, min 5 caratteri)
+            // Controllo Titolare (solo lettere e spazi, min 5 caratteri)
             const regexTitolare = /^[A-Za-z\s]{5,}$/;
             if (!titolare) {
                 alert("Attenzione: Inserisci il nome del titolare della carta.");
@@ -122,7 +122,7 @@ unset($_SESSION['old_payment']);
                 return false;
             }
 
-            // 2. Controllo Numero Carta (esattamente 16 cifre)
+            // Controllo Numero Carta (esattamente 16 cifre)
             const regexCarta = /^\d{16}$/;
             if (!numeroCarta) {
                 alert("Attenzione: Inserisci il numero della carta.");
@@ -132,7 +132,7 @@ unset($_SESSION['old_payment']);
                 return false;
             }
 
-            // 3. Controllo Formato Scadenza (MM/AA)
+            // Controllo Formato Scadenza (MM/AA)
             const regexScadenza = /^(0[1-9]|1[0-2])\/\d{2}$/;
             if (!scadenza) {
                 alert("Attenzione: Inserisci la data di scadenza.");
@@ -141,7 +141,7 @@ unset($_SESSION['old_payment']);
                 alert("Attenzione: Il formato della scadenza deve essere MM/AA (es. 05/26).");
                 return false;
             }
-            // 4. Controllo CVV (esattamente 3 cifre)
+            // Controllo CVV (esattamente 3 cifre)
             const regexCVV = /^\d{3}$/;
             if (!cvv) {
                 alert("Attenzione: Inserisci il CVV (codice di 3 cifre).");
@@ -155,7 +155,7 @@ unset($_SESSION['old_payment']);
             return true;
         }
 
-        // Questo mantiene la comodità per l'utente: aggiunge lo slash '/' in automatico!
+        // Aggiunge lo slash in automatico
         document.getElementById('scadenza').addEventListener('input', function(e) {
             if (e.target.value.length === 2 && e.inputType !== 'deleteContentBackward') {
                 e.target.value += '/';

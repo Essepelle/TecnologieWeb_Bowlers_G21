@@ -5,7 +5,7 @@ session_start();
 // Controllo se ci sono dati in sessione e se il form è stato inviato
 if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])) {
     
-    // --- 1. VALIDAZIONE CARTA DI CREDITO ---
+    // VALIDAZIONE CARTA DI CREDITO 
     $numero_carta = $_POST['numero_carta'] ?? '';
     $cvv = $_POST['cvv'] ?? '';
     $scadenza = $_POST['scadenza'] ?? '';
@@ -33,11 +33,10 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
         exit();
     }
 
-    // --- 2. PREPARAZIONE DATI PER IL DATABASE ---
+    // PREPARAZIONE DATI PER IL DATABASE 
     $dati_sessione = $_SESSION['pending_reservation'];
 
-    // Ricostruiamo l'array per avere sempre ESATTAMENTE 6 parametri.
-    // Questo è il passaggio chiave che ha fatto funzionare il debug.
+    // Ricostruiamo l'array per avere sempre 6 parametri.
     $params = array(
         $dati_sessione[0],                                    // Username
         $dati_sessione[1],                                    // Nome Gioco
@@ -47,7 +46,7 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
         isset($dati_sessione[5]) ? $dati_sessione[5] : NULL   // Persone (o NULL)
     );
 
-    // --- 3. INSERIMENTO NEL DATABASE ---
+    // INSERIMENTO NEL DATABASE
     $sql_insert = "INSERT INTO prenotazioni (username_utente, nome_gioco, data_ora, numero_pista, numero_tavolo, numero_persone) 
                    VALUES ($1, $2, $3, $4, $5, $6)";
     
@@ -69,7 +68,7 @@ if (isset($_SESSION['pending_reservation']) && isset($_POST['esegui_pagamento'])
     }
 
 } else {
-    // Accesso non autorizzato (es. accesso diretto via URL)
+    // Accesso non autorizzato
     header("Location: ../index.php");
     exit();
 }

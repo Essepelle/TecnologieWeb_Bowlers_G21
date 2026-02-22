@@ -83,7 +83,7 @@ $risultatoGiochi = pg_query($db, "SELECT nome_gioco FROM giochi ORDER BY nome_gi
                     <div class="dropdown-container">
                         <h2 style="cursor: pointer;">
                             <?php 
-                                // Dividio il nome completo in un array usando lo spazio come separatore, 
+                                // Divido il nome completo in un array usando lo spazio come separatore, 
                                 // in modo da prendere solo il nome
                                 $parti_nome = explode(' ', trim($_SESSION['nome'])); 
                                 $primo_nome = $parti_nome[0]; 

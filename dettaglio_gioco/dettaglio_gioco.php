@@ -2,12 +2,12 @@
 include "../db.php";
 session_start();
 
-// recupero dati sticky form
+// Recupero dati sticky form
 $old_data = $_SESSION['old_post'] ?? [];
 unset($_SESSION['old_post']); // Pulisce la sessione dopo aver preso i dati
 
 
-// recupero errori/successi lato server
+// Recupero errori/successi lato server
 $error_prenotazione = $_SESSION['error_prenotazione'] ?? '';
 $success_prenotazione = $_SESSION['success_prenotazione'] ?? '';
 unset($_SESSION['error_prenotazione'], $_SESSION['success_prenotazione']);
@@ -16,14 +16,14 @@ unset($_SESSION['error_prenotazione'], $_SESSION['success_prenotazione']);
 $username = $_SESSION['utente'];
 $email = $_SESSION['email'];
 
-// 1. Recupero il nome del gioco dalla URL
+// Recupero il nome del gioco dalla URL
 $nomeGioco = $_GET['gioco'] ?? '';
 if (empty($nomeGioco)) {
     header("Location: ../index.php");
     exit();
 }
 
-// 2. Recupero dati immagine dal DB
+// Recupero dati immagine dal DB
 $sql = "SELECT immagine FROM giochi WHERE nome_gioco = $1";
 $risultato = pg_query_params($db, $sql, array($nomeGioco));
 $gioco = pg_fetch_assoc($risultato);
@@ -32,18 +32,18 @@ if (!$gioco) {
     die("Gioco non trovato.");
 }
 
-// 3. Lettura descrizione estesa e ridotta
+// Lettura descrizione estesa e ridotta
 $nomeFilePres = "resources/descrizioni/pres_" . strtolower(str_replace(' ', '_', $nomeGioco)) . ".txt";
 $descrizioneRidotta = file_exists("../" . $nomeFilePres) ? file_get_contents("../" . $nomeFilePres) : "Dettagli non disponibili.";
 
 $nomeFileDescr = "resources/descrizioni/descr_" . strtolower(str_replace(' ', '_', $nomeGioco)) . ".txt";
 $descrizioneEstesa = file_exists("../" . $nomeFileDescr) ? file_get_contents("../" . $nomeFileDescr) : "Dettagli non disponibili.";
 
-// 4. Recupero i giochi per la sidebar sinistra
+// Recupero i giochi per la sidebar sinistra
 $sqlGiochi = "SELECT nome_gioco FROM giochi ORDER BY nome_gioco;";
 $risultatoGiochi = pg_query($db, $sqlGiochi);
 
-// 5. Recupero le prenotazioni per la sidebar di destra
+// Recupero le prenotazioni per la sidebar di destra
 $sql_sidebar = "SELECT nome_gioco, data_ora FROM prenotazioni 
                 WHERE username_utente = $1 
                 AND data_ora >= CURRENT_TIMESTAMP
@@ -78,7 +78,7 @@ $oggi = date('Y-m-d');
             <div class="dropdown-container">
                 <h2 style="cursor: pointer;">
                     <?php 
-                        // Dividio il nome completo in un array usando lo spazio come separatore, 
+                        // Divido il nome completo in un array usando lo spazio come separatore, 
                         // in modo da prendere solo il nome
                         $parti_nome = explode(' ', trim($_SESSION['nome'])); 
                         $primo_nome = $parti_nome[0]; 
@@ -148,6 +148,7 @@ $oggi = date('Y-m-d');
             </div>
         <?php endif; ?>
 
+        <!-- Sticky form per l'inserimento dei dati relativi alla prenotazione-->
         <form method="POST" action="gestisci_prenotazione.php" 
             onsubmit="return validaPrenotazione();"><!-- Quando si fa la submit si avviano i controlli in JS per gli errori lato client -->
             <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
@@ -171,6 +172,7 @@ $oggi = date('Y-m-d');
                 </div>
 
                 <div class="col-opzioni">
+                    <!-- Box per le risorse specifiche di ogni gioco, diverse a seconda del gioco selezionato-->
                     <div class="box-input-specifici">
                         
                         <?php if ($nomeGioco == 'Bowling'): ?>
@@ -204,19 +206,19 @@ $oggi = date('Y-m-d');
                             </div>
                         
                         <?php elseif ($nomeGioco == 'Torneo di Carte'): ?>
-                        <label>INFO DATA e ORARIO</label>
-                        <p style="font-size: 0.9em; color: #bbb; margin-top: 10px;">
-                        I Tornei di Carte si svolgono ogni <b>Mercoledì</b> e <b>Venerdì</b> 
-                        del mese alle <b>21:00</b>.
-                        </p>
-                        <br><br>
-                        <label><u>ATTENZIONE</u> : Pagamento Bancario</label>
-                        <p style="font-size: 0.9em; color: #bbb; margin-top: 10px;">
-                        Per questo servizio è richiesto il pagamento anticipato di <b>€ 5.00</b>.
-                        Cliccando su "Conferma Prenotazione", sarai reindirizzato 
-                        in modo sicuro al nostro portale di pagamento bancario 
-                        per completare l'operazione.
-                        </p>
+                            <label>INFO DATA e ORARIO</label>
+                            <p style="font-size: 0.9em; color: #bbb; margin-top: 10px;">
+                            I Tornei di Carte si svolgono ogni <b>Mercoledì</b> e <b>Venerdì</b> 
+                            del mese alle <b>21:00</b>.
+                            </p>
+                            <br><br>
+                            <label><u>ATTENZIONE</u> : Pagamento Bancario</label>
+                            <p style="font-size: 0.9em; color: #bbb; margin-top: 10px;">
+                            Per questo servizio è richiesto il pagamento anticipato di <b>€ 5.00</b>.
+                            Cliccando su "Conferma Prenotazione", sarai reindirizzato 
+                            in modo sicuro al nostro portale di pagamento bancario 
+                            per completare l'operazione.
+                            </p>
                         <?php endif; ?>
 
                     </div>
@@ -264,30 +266,30 @@ $oggi = date('Y-m-d');
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // inizializza
+        // Inizializza, si occupa di caricare in modo coerente il calendario e la grid di orari
         initPrenotazione("<?= $nomeGioco ?>");
 
-        // se PHP ha rimesso la data (sticky), scatena l'evento per mostrare gli orari
+        // Se PHP ha rimesso la data (sticky), scatena l'evento per mostrare gli orari
         const dataInput = document.getElementById('data_prenotazione');
         if (dataInput.value) {
             dataInput.dispatchEvent(new Event('change'));
         }
     });
 
-    // funzione di validazione lato client prima dell'invio del form
+    // Funzione di validazione lato client prima dell'invio del form
 </script>
 
 <script>
 function validaPrenotazione() {
 
-    //controllo della data
+    // Controllo della data
     const dataInput = document.getElementById('data_prenotazione');
     if (!dataInput.value) {
         alert("Per favore, seleziona una data dal calendario!");
         return false; 
     }
 
-    // controllo dell'orario
+    // Controllo dell'orario
     const orarioInput = document.getElementById('ora_prenotazione_valore');
     
     if (!orarioInput.value) {
@@ -295,9 +297,9 @@ function validaPrenotazione() {
         return false; 
     }
 
-    // controllo dei campi specifici per ogni gioco
+    // Controllo dei campi specifici per ogni gioco
 
-    // bowling: cerco se esistono input con name="numero_pista"
+    // Bowling: cerco se esistono input con name="numero_pista"
     if (document.querySelector('input[name="numero_pista"]')) {
         // Se esistono, controllo se ALMENO UNO è selezionato (:checked)
         if (!document.querySelector('input[name="numero_pista"]:checked')) {
@@ -306,7 +308,7 @@ function validaPrenotazione() {
         }
     }
 
-    // biliardo: cerco se esistono input con name="numero_tavolo"
+    // Biliardo: cerco se esistono input con name="numero_tavolo"
     if (document.querySelector('input[name="numero_tavolo"]')) {
         if (!document.querySelector('input[name="numero_tavolo"]:checked')) {
             alert("Devi selezionare il numero del Tavolo!");
@@ -314,7 +316,7 @@ function validaPrenotazione() {
         }
     }
 
-    // laser game: cerco se esistono input con name="numero_persone"
+    // Laser game: cerco se esistono input con name="numero_persone"
     if (document.querySelector('input[name="numero_persone"]')) {
         if (!document.querySelector('input[name="numero_persone"]:checked')) {
             alert("Devi selezionare il numero di persone!");
