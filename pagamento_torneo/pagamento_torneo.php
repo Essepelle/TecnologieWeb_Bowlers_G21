@@ -41,9 +41,9 @@ unset($_SESSION['old_payment']);
                 <div class="dropdown-container">
                     <h2 style="cursor: pointer;">
                         <?php 
-                            // Dividio il nome completo in un array usando lo spazio come separatore, 
-                            // in modo da prendere solo il nome
+                            // Dividiamo il nome completo in un array usando lo spazio come separatore
                             $parti_nome = explode(' ', trim($_SESSION['nome'])); 
+                            // Prendiamo solo la prima parola
                             $primo_nome = $parti_nome[0]; 
                         ?>
                         Ciao <?= htmlspecialchars($primo_nome) ?>
