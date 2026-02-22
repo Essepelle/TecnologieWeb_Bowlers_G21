@@ -31,6 +31,5 @@
 \contentsline {section}{\numberline {3.6}Account}{21}{section.3.6}%
 \contentsline {chapter}{\numberline {4}Tabella di Partecipazione}{22}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Tabella}{22}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Macroaree e Collaborazioni emerse}{22}{section.4.2}%
 \contentsline {chapter}{\numberline {5}EXCEL Descrizione Breve}{23}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Descrizione}{23}{section.5.1}%

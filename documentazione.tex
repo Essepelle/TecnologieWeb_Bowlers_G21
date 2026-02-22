@@ -449,15 +449,23 @@ La pagina di Prenotazioni offre all'utente una completa gestione sia delle propr
 \chapter{Tabella di Partecipazione}
 \section{Tabella}
 \renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\textwidth}{|l|X|X|X|}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\begin{tabularx}{\textwidth}{|l|X|X|L|}
   \hline
   \rowcolor{lightgray} \textbf{Componente} & \textbf{Contributi Chiave (Logica \& Back-end)} & \textbf{Contributi Chiave (Interfaccia \& UX)} & \textbf{File trattati}\\ \hline
-  \textbf{Vincenzo Pascariello} & & & \\ \hline
-  \textbf{Simone Pellecchia} & & & \\ \hline
-  \textbf{Martina Turi} & & & \\ \hline
+  \textbf{Vincenzo Pascariello} & Sviluppo della logica per evitare l'inserimento di prenotazioni multiple nello stesso orario con lo stesso utente. Implementazione sticky form e gestione errori client/server nelle pagine di dettaglio gioco e pagamento torneo.
+                                & Raffinamento pagina dinamica dettaglio gioco con scripting JS, calendari e interazioni UI. Creazione layout e styling pulsanti in dettaglio gioco e stile info contatti, mappa e social nella pagina principale. 
+                                & data\_orario.js, gestione-prenotazioni.php, dettaglio\_gioco.php, dettaglio\_gioco.css, processo\_pagamento.php, pagamento\_torneo.php, index.php, index.js \\ \hline
+
+  \textbf{Simone Pellecchia}    & Progettazione del sistema di autenticazione (Signup/Login) con sticky forms, controlli di unicità email e validazione client/server, inizializzazione sessione, logica processo pagamento.
+                                & Implementazione globale del Grid Layout con uso di tag semantici (header, main,aside,footer). Gestione dei temi (gradienti), layout delle card dei giochi e stili di focus per i pagamenti. Layout login, Area Food e pagina pagamento torneo. 
+                                & login.php, login.js, login.css, signin-manager.php, signup-manager.php, pagamento\_torneo.php, processo\_pagamento.php, area\_faq.php, index.php, mainpage.css, area\_faq.css \\ \hline
+
+  \textbf{Martina Turi}         & Gestione integrale del Database (creazione, backup, dump SQL). Logica di sessione, logout e cancellazione account. Scripting JS per i caroselli e la geolocalizzazione. Logica gestione delle recensioni.
+                                & Sviluppo di sidebar dinamiche per prenotazioni attive. Creazione caroselli orizzontali e area FAQ. Creazione logica pagina dinamica adattabile al gioco selezionato. Raffinamento degli stili dei moduli di prenotazione.
+                                & backup\_database.sql, Create\_DB.sql, db.php, area\_faq.php, area\_faq.css, prenotazioni.php, prenotazioni.css, logout.php, elimina\_account.php, index.php, index.js \\ \hline
 \end{tabularx}
 \renewcommand{\arraystretch}{1}
-\section{Macroaree e Collaborazioni emerse}
 
 \chapter{EXCEL Descrizione Breve}
 \section{Descrizione}

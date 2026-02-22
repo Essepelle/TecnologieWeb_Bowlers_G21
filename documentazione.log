@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.23)  22 FEB 2026 16:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.23)  22 FEB 2026 16:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1171,7 +1171,7 @@ Package hyperref Info: Link coloring OFF on input line 37.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<logo_standard.png, id=178, 351.3125pt x 351.3125pt>
+<logo_standard.png, id=174, 351.3125pt x 351.3125pt>
 File: logo_standard.png Graphic file (type png)
 <use logo_standard.png>
 Package pdftex.def Info: logo_standard.png  used on input line 57.
@@ -1239,7 +1239,7 @@ l.121   \item \textbf
 
 [2]
 Capitolo 2.
-<Wireframe/index.png, id=242, 1028.34187pt x 578.16pt>
+<Wireframe/index.png, id=237, 1028.34187pt x 578.16pt>
 File: Wireframe/index.png Graphic file (type png)
 <use Wireframe/index.png>
 Package pdftex.def Info: Wireframe/index.png  used on input line 144.
@@ -1249,12 +1249,12 @@ Package pdftex.def Info: Wireframe/index.png  used on input line 144.
 [3
 
  <./Wireframe/index.png (PNG copy)>]
-<Wireframe/login signin.png, id=249, 1028.34187pt x 578.16pt>
+<Wireframe/login signin.png, id=244, 1028.34187pt x 578.16pt>
 File: Wireframe/login signin.png Graphic file (type png)
 <use Wireframe/login signin.png>
 Package pdftex.def Info: Wireframe/login signin.png  used on input line 158.
 (pdftex.def)             Requested size: 227.62207pt x 127.97192pt.
-<Wireframe/login signup.png, id=250, 1028.34187pt x 578.16pt>
+<Wireframe/login signup.png, id=245, 1028.34187pt x 578.16pt>
 File: Wireframe/login signup.png Graphic file (type png)
 <use Wireframe/login signup.png>
 Package pdftex.def Info: Wireframe/login signup.png  used on input line 158.
@@ -1262,7 +1262,7 @@ Package pdftex.def Info: Wireframe/login signup.png  used on input line 158.
 
 
 [4 <./Wireframe/login signin.png (PNG copy)> <./Wireframe/login signup.png (PNG copy)>]
-<Wireframe/dettaglio_gioco.png, id=256, 1028.34187pt x 578.16pt>
+<Wireframe/dettaglio_gioco.png, id=251, 1028.34187pt x 578.16pt>
 File: Wireframe/dettaglio_gioco.png Graphic file (type png)
 <use Wireframe/dettaglio_gioco.png>
 Package pdftex.def Info: Wireframe/dettaglio_gioco.png  used on input line 179.
@@ -1270,7 +1270,7 @@ Package pdftex.def Info: Wireframe/dettaglio_gioco.png  used on input line 179.
 
 
 [5 <./Wireframe/dettaglio_gioco.png (PNG copy)>]
-<Wireframe/pagamento_torneo.png, id=262, 1028.34187pt x 578.16pt>
+<Wireframe/pagamento_torneo.png, id=257, 1028.34187pt x 578.16pt>
 File: Wireframe/pagamento_torneo.png Graphic file (type png)
 <use Wireframe/pagamento_torneo.png>
 Package pdftex.def Info: Wireframe/pagamento_torneo.png  used on input line 209.
@@ -1278,12 +1278,12 @@ Package pdftex.def Info: Wireframe/pagamento_torneo.png  used on input line 209.
 
 
 [6 <./Wireframe/pagamento_torneo.png (PNG copy)>]
-<Wireframe/area_faq.png, id=267, 1028.34187pt x 578.16pt>
+<Wireframe/area_faq.png, id=262, 1028.34187pt x 578.16pt>
 File: Wireframe/area_faq.png Graphic file (type png)
 <use Wireframe/area_faq.png>
 Package pdftex.def Info: Wireframe/area_faq.png  used on input line 225.
 (pdftex.def)             Requested size: 362.77264pt x 203.96463pt.
-<Wireframe/prenotazioni.png, id=268, 1028.34187pt x 578.16pt>
+<Wireframe/prenotazioni.png, id=263, 1028.34187pt x 578.16pt>
 File: Wireframe/prenotazioni.png Graphic file (type png)
 <use Wireframe/prenotazioni.png>
 Package pdftex.def Info: Wireframe/prenotazioni.png  used on input line 235.
@@ -1301,7 +1301,7 @@ Overfull \hbox (1.78264pt too wide) in paragraph at lines 242--243
 
 
 pdfTeX warning: pdflatex (file ./wireflow.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<wireflow.pdf, id=274, 1195.5867pt x 1688.22713pt>
+<wireflow.pdf, id=269, 1195.5867pt x 1688.22713pt>
 File: wireflow.pdf Graphic file (type pdf)
 <use wireflow.pdf>
 Package pdftex.def Info: wireflow.pdf  used on input line 246.
@@ -1317,7 +1317,7 @@ Overfull \vbox (19.17664pt too high) has occurred while \output is active []
 
 
 [9 <./wireflow.pdf>]
-<Stile/mainpage.jpeg, id=306, 1268.74pt x 1170.3725pt>
+<Stile/mainpage.jpeg, id=301, 1268.74pt x 1170.3725pt>
 File: Stile/mainpage.jpeg Graphic file (type jpg)
 <use Stile/mainpage.jpeg>
 Package pdftex.def Info: Stile/mainpage.jpeg  used on input line 256.
@@ -1325,7 +1325,7 @@ Package pdftex.def Info: Stile/mainpage.jpeg  used on input line 256.
 
 
 [10 <./Stile/mainpage.jpeg>]
-<Stile/login.jpeg, id=312, 867.24pt x 1208.515pt>
+<Stile/login.jpeg, id=307, 867.24pt x 1208.515pt>
 File: Stile/login.jpeg Graphic file (type jpg)
 <use Stile/login.jpeg>
 Package pdftex.def Info: Stile/login.jpeg  used on input line 278.
@@ -1336,7 +1336,7 @@ Package pdftex.def Info: Stile/login.jpeg  used on input line 278.
 
 
 
-<Stile/dettaglio_gioco.jpeg, id=313, 1606.0pt x 1023.825pt>
+<Stile/dettaglio_gioco.jpeg, id=308, 1606.0pt x 1023.825pt>
 File: Stile/dettaglio_gioco.jpeg Graphic file (type jpg)
 <use Stile/dettaglio_gioco.jpeg>
 Package pdftex.def Info: Stile/dettaglio_gioco.jpeg  used on input line 281.
@@ -1344,12 +1344,12 @@ Package pdftex.def Info: Stile/dettaglio_gioco.jpeg  used on input line 281.
 
 
 [11 <./Stile/login.jpeg> <./Stile/dettaglio_gioco.jpeg>]
-<Stile/area_faq.jpeg, id=318, 1606.0pt x 1023.825pt>
+<Stile/area_faq.jpeg, id=313, 1606.0pt x 1023.825pt>
 File: Stile/area_faq.jpeg Graphic file (type jpg)
 <use Stile/area_faq.jpeg>
 Package pdftex.def Info: Stile/area_faq.jpeg  used on input line 294.
 (pdftex.def)             Requested size: 362.77264pt x 231.25677pt.
-<Stile/prenotazioni.jpeg, id=319, 1206.5075pt x 1017.8025pt>
+<Stile/prenotazioni.jpeg, id=314, 1206.5075pt x 1017.8025pt>
 File: Stile/prenotazioni.jpeg Graphic file (type jpg)
 <use Stile/prenotazioni.jpeg>
 Package pdftex.def Info: Stile/prenotazioni.jpeg  used on input line 306.
@@ -1360,7 +1360,7 @@ Underfull \vbox (badness 4792) has occurred while \output is active []
 
 
 [12 <./Stile/area_faq.jpeg>]
-<Stile/pagamento_torneo.jpeg, id=324, 1051.93pt x 1208.515pt>
+<Stile/pagamento_torneo.jpeg, id=319, 1051.93pt x 1208.515pt>
 File: Stile/pagamento_torneo.jpeg Graphic file (type jpg)
 <use Stile/pagamento_torneo.jpeg>
 Package pdftex.def Info: Stile/pagamento_torneo.jpeg  used on input line 322.
@@ -1442,17 +1442,17 @@ Overfull \vbox (43.51964pt too high) has occurred while \output is active []
 
 [16]
 Capitolo 3.
-<Screen/index 1.png, id=342, 2142.50438pt x 992.20688pt>
+<Screen/index 1.png, id=337, 2142.50438pt x 992.20688pt>
 File: Screen/index 1.png Graphic file (type png)
 <use Screen/index 1.png>
 Package pdftex.def Info: Screen/index 1.png  used on input line 390.
 (pdftex.def)             Requested size: 362.77264pt x 167.99164pt.
-<Screen/index 2.png, id=343, 2136.48187pt x 590.205pt>
+<Screen/index 2.png, id=338, 2136.48187pt x 590.205pt>
 File: Screen/index 2.png Graphic file (type png)
 <use Screen/index 2.png>
 Package pdftex.def Info: Screen/index 2.png  used on input line 391.
 (pdftex.def)             Requested size: 362.77264pt x 100.21645pt.
-<Screen/login 1.png, id=344, 2167.34718pt x 993.7125pt>
+<Screen/login 1.png, id=339, 2167.34718pt x 993.7125pt>
 File: Screen/login 1.png Graphic file (type png)
 <use Screen/login 1.png>
 Package pdftex.def Info: Screen/login 1.png  used on input line 400.
@@ -1465,17 +1465,17 @@ Underfull \vbox (badness 6125) has occurred while \output is active []
 [17
 
  <./Screen/index 1.png> <./Screen/index 2.png>]
-<Screen/login 2.png, id=351, 2139.49312pt x 994.46532pt>
+<Screen/login 2.png, id=346, 2139.49312pt x 994.46532pt>
 File: Screen/login 2.png Graphic file (type png)
 <use Screen/login 2.png>
 Package pdftex.def Info: Screen/login 2.png  used on input line 401.
 (pdftex.def)             Requested size: 362.77264pt x 168.6168pt.
-<Screen/dettaglio_gioco 1.png, id=352, 2134.97626pt x 828.84656pt>
+<Screen/dettaglio_gioco 1.png, id=347, 2134.97626pt x 828.84656pt>
 File: Screen/dettaglio_gioco 1.png Graphic file (type png)
 <use Screen/dettaglio_gioco 1.png>
 Package pdftex.def Info: Screen/dettaglio_gioco 1.png  used on input line 409.
 (pdftex.def)             Requested size: 362.77264pt x 140.82616pt.
-<Screen/dettaglio_gioco 2.png, id=353, 2122.17844pt x 747.54282pt>
+<Screen/dettaglio_gioco 2.png, id=348, 2122.17844pt x 747.54282pt>
 File: Screen/dettaglio_gioco 2.png Graphic file (type png)
 <use Screen/dettaglio_gioco 2.png>
 Package pdftex.def Info: Screen/dettaglio_gioco 2.png  used on input line 410.
@@ -1483,12 +1483,12 @@ Package pdftex.def Info: Screen/dettaglio_gioco 2.png  used on input line 410.
 
 
 [18 <./Screen/login 1.png> <./Screen/login 2.png> <./Screen/dettaglio_gioco 1.png>]
-<Screen/pagamento_torneo 1.png, id=361, 2130.45938pt x 576.65437pt>
+<Screen/pagamento_torneo 1.png, id=356, 2130.45938pt x 576.65437pt>
 File: Screen/pagamento_torneo 1.png Graphic file (type png)
 <use Screen/pagamento_torneo 1.png>
 Package pdftex.def Info: Screen/pagamento_torneo 1.png  used on input line 419.
 (pdftex.def)             Requested size: 362.77264pt x 98.18832pt.
-<Screen/pagamento_torneo 2.png, id=362, 1767.60374pt x 997.47656pt>
+<Screen/pagamento_torneo 2.png, id=357, 1767.60374pt x 997.47656pt>
 File: Screen/pagamento_torneo 2.png Graphic file (type png)
 <use Screen/pagamento_torneo 2.png>
 Package pdftex.def Info: Screen/pagamento_torneo 2.png  used on input line 420.
@@ -1496,17 +1496,17 @@ Package pdftex.def Info: Screen/pagamento_torneo 2.png  used on input line 420.
 
 
 [19 <./Screen/dettaglio_gioco 2.png> <./Screen/pagamento_torneo 1.png> <./Screen/pagamento_torneo 2.png>]
-<Screen/area_faq 1.png, id=370, 2139.49312pt x 992.20688pt>
+<Screen/area_faq 1.png, id=365, 2139.49312pt x 992.20688pt>
 File: Screen/area_faq 1.png Graphic file (type png)
 <use Screen/area_faq 1.png>
 Package pdftex.def Info: Screen/area_faq 1.png  used on input line 430.
 (pdftex.def)             Requested size: 362.77264pt x 168.23389pt.
-<Screen/area_faq 2.png, id=371, 1991.94188pt x 900.36375pt>
+<Screen/area_faq 2.png, id=366, 1991.94188pt x 900.36375pt>
 File: Screen/area_faq 2.png Graphic file (type png)
 <use Screen/area_faq 2.png>
 Package pdftex.def Info: Screen/area_faq 2.png  used on input line 431.
 (pdftex.def)             Requested size: 362.77264pt x 163.96812pt.
-<Screen/prenotazioni 1.png, id=372, 2142.50438pt x 722.7pt>
+<Screen/prenotazioni 1.png, id=367, 2142.50438pt x 722.7pt>
 File: Screen/prenotazioni 1.png Graphic file (type png)
 <use Screen/prenotazioni 1.png>
 Package pdftex.def Info: Screen/prenotazioni 1.png  used on input line 440.
@@ -1514,7 +1514,7 @@ Package pdftex.def Info: Screen/prenotazioni 1.png  used on input line 440.
 
 
 [20 <./Screen/area_faq 1.png> <./Screen/area_faq 2.png>]
-<Screen/prenotazioni 2.png, id=379, 2140.24594pt x 890.5772pt>
+<Screen/prenotazioni 2.png, id=374, 2140.24594pt x 890.5772pt>
 File: Screen/prenotazioni 2.png Graphic file (type png)
 <use Screen/prenotazioni 2.png>
 Package pdftex.def Info: Screen/prenotazioni 2.png  used on input line 441.
@@ -1524,12 +1524,77 @@ Package pdftex.def Info: Screen/prenotazioni 2.png  used on input line 441.
 [21 <./Screen/prenotazioni 1.png> <./Screen/prenotazioni 2.png>]
 Capitolo 4.
 
-Underfull \hbox (badness 1394) in paragraph at lines 458--458
+Underfull \hbox (badness 1394) in paragraph at lines 467--467
 []|\OT1/txr/bx/n/10 Contributi Chia-ve (In-ter-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 458--460
+Underfull \hbox (badness 3635) in paragraph at lines 467--467
+[]|\OT1/txr/m/n/10 Sviluppo del-la lo-gi-ca per
+ []
+
+
+Underfull \hbox (badness 1067) in paragraph at lines 467--467
+\OT1/txr/m/n/10 te. Im-ple-men-ta-zio-ne stic-
+ []
+
+
+Underfull \hbox (badness 1859) in paragraph at lines 467--467
+\OT1/txr/m/n/10 ky form e ge-stio-ne er-ro-ri
+ []
+
+
+Underfull \hbox (badness 2837) in paragraph at lines 467--467
+[]|\OT1/txr/m/n/10 Raffinamento pa-gi-na di-na-
+ []
+
+
+Underfull \hbox (badness 4995) in paragraph at lines 467--467
+\OT1/txr/m/n/10 mi-ca det-ta-glio gio-co con
+ []
+
+
+Underfull \hbox (badness 6675) in paragraph at lines 467--467
+\OT1/txr/m/n/10 au-ten-ti-ca-zio-ne (Si-gnu-p/-Lo-
+ []
+
+
+Underfull \hbox (badness 2142) in paragraph at lines 467--467
+\OT1/txr/m/n/10 liz-za-zio-ne ses-sio-ne, lo-gi-ca
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--467
+[]|\OT1/txr/m/n/10 Implementazione glo-ba-le
+ []
+
+
+Underfull \hbox (badness 2680) in paragraph at lines 467--467
+\OT1/txr/m/n/10 del Grid Lay-out con uso
+ []
+
+
+Underfull \hbox (badness 5652) in paragraph at lines 467--467
+\OT1/txr/m/n/10 di tag se-man-ti-ci (hea-der,
+ []
+
+
+Underfull \hbox (badness 1924) in paragraph at lines 467--467
+\OT1/txr/m/n/10 di fo-cus per i pa-ga-men-ti.
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 467--467
+[]|\OT1/txr/m/n/10 Gestione in-te-gra-le del Da-
+ []
+
+
+Underfull \hbox (badness 2351) in paragraph at lines 467--467
+\OT1/txr/m/n/10 ta-ba-se (crea-zio-ne, bac-kup,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 467--469
 
  []
 
@@ -1549,20 +1614,20 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-09-02>
  ***********
 Package rerunfilecheck Info: File `documentazione.out' has not changed.
-(rerunfilecheck)             Checksum: 2206415357D88A9D13CA36A9E3AD0BB9;4789.
+(rerunfilecheck)             Checksum: 7B57B4CEE159FDB7C7183BC6B5C2157B;4560.
  ) 
 Here is how much of TeX's memory you used:
  43089 strings out of 468130
- 997110 string characters out of 5430149
+ 997107 string characters out of 5430149
  1528312 words of memory out of 5000000
- 70884 multiletter control sequences out of 15000+600000
+ 70885 multiletter control sequences out of 15000+600000
  669653 words of font info for 139 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,12n,96p,810b,656s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/rtcxr.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/rtxb.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/rtxr.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/rtxsc.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txbtt.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txsy.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txtt.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on documentazione.pdf (26 pages, 45857088 bytes).
+Output written on documentazione.pdf (26 pages, 45858083 bytes).
 PDF statistics:
- 454 PDF objects out of 1000 (max. 8388607)
- 65 named destinations out of 1000 (max. 500000)
- 564 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 449 PDF objects out of 1000 (max. 8388607)
+ 64 named destinations out of 1000 (max. 500000)
+ 556 words of extra memory for PDF output out of 10000 (max. 10000000)
 
