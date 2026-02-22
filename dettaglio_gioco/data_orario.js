@@ -49,7 +49,7 @@ function generaBottoniOrari(dataScelta, nomeGioco) {
     const container = document.getElementById('orari-bottoni-container');
     const hiddenInput = document.getElementById('ora_prenotazione_valore');
 
-    // 1. Memorizza il valore che arriva dal PHP (Sticky)
+    // Memorizza il valore che arriva dal PHP (Sticky)
     const orarioPrecedente = hiddenInput.value;
     
     // Reset del contenitore
@@ -68,7 +68,7 @@ function generaBottoniOrari(dataScelta, nomeGioco) {
 
     let orari = [];
 
-    // --- DEFINIZIONE ORARI DISPONIBILI ---
+    // Definizione orari disponivili in base al gioco selezionato
     if (nomeGioco === 'Torneo di Carte') {
         // Le carte hanno solo un orario fisso
         orari.push({ h: 21, m: 0, label: "21:00" });
