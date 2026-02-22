@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.23)  22 FEB 2026 14:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.9.23)  22 FEB 2026 16:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1442,23 +1442,106 @@ Overfull \vbox (43.51964pt too high) has occurred while \output is active []
 
 [16]
 Capitolo 3.
+<Screen/index 1.png, id=342, 2142.50438pt x 992.20688pt>
+File: Screen/index 1.png Graphic file (type png)
+<use Screen/index 1.png>
+Package pdftex.def Info: Screen/index 1.png  used on input line 390.
+(pdftex.def)             Requested size: 362.77264pt x 167.99164pt.
+<Screen/index 2.png, id=343, 2136.48187pt x 590.205pt>
+File: Screen/index 2.png Graphic file (type png)
+<use Screen/index 2.png>
+Package pdftex.def Info: Screen/index 2.png  used on input line 391.
+(pdftex.def)             Requested size: 362.77264pt x 100.21645pt.
+<Screen/login 1.png, id=344, 2167.34718pt x 993.7125pt>
+File: Screen/login 1.png Graphic file (type png)
+<use Screen/login 1.png>
+Package pdftex.def Info: Screen/login 1.png  used on input line 400.
+(pdftex.def)             Requested size: 362.77264pt x 166.32088pt.
+
+Underfull \vbox (badness 6125) has occurred while \output is active []
+
 
 
 [17
 
-]
+ <./Screen/index 1.png> <./Screen/index 2.png>]
+<Screen/login 2.png, id=351, 2139.49312pt x 994.46532pt>
+File: Screen/login 2.png Graphic file (type png)
+<use Screen/login 2.png>
+Package pdftex.def Info: Screen/login 2.png  used on input line 401.
+(pdftex.def)             Requested size: 362.77264pt x 168.6168pt.
+<Screen/dettaglio_gioco 1.png, id=352, 2134.97626pt x 828.84656pt>
+File: Screen/dettaglio_gioco 1.png Graphic file (type png)
+<use Screen/dettaglio_gioco 1.png>
+Package pdftex.def Info: Screen/dettaglio_gioco 1.png  used on input line 409.
+(pdftex.def)             Requested size: 362.77264pt x 140.82616pt.
+<Screen/dettaglio_gioco 2.png, id=353, 2122.17844pt x 747.54282pt>
+File: Screen/dettaglio_gioco 2.png Graphic file (type png)
+<use Screen/dettaglio_gioco 2.png>
+Package pdftex.def Info: Screen/dettaglio_gioco 2.png  used on input line 410.
+(pdftex.def)             Requested size: 362.77264pt x 127.7878pt.
 
-[18]
+
+[18 <./Screen/login 1.png> <./Screen/login 2.png> <./Screen/dettaglio_gioco 1.png>]
+<Screen/pagamento_torneo 1.png, id=361, 2130.45938pt x 576.65437pt>
+File: Screen/pagamento_torneo 1.png Graphic file (type png)
+<use Screen/pagamento_torneo 1.png>
+Package pdftex.def Info: Screen/pagamento_torneo 1.png  used on input line 419.
+(pdftex.def)             Requested size: 362.77264pt x 98.18832pt.
+<Screen/pagamento_torneo 2.png, id=362, 1767.60374pt x 997.47656pt>
+File: Screen/pagamento_torneo 2.png Graphic file (type png)
+<use Screen/pagamento_torneo 2.png>
+Package pdftex.def Info: Screen/pagamento_torneo 2.png  used on input line 420.
+(pdftex.def)             Requested size: 362.77264pt x 204.71233pt.
+
+
+[19 <./Screen/dettaglio_gioco 2.png> <./Screen/pagamento_torneo 1.png> <./Screen/pagamento_torneo 2.png>]
+<Screen/area_faq 1.png, id=370, 2139.49312pt x 992.20688pt>
+File: Screen/area_faq 1.png Graphic file (type png)
+<use Screen/area_faq 1.png>
+Package pdftex.def Info: Screen/area_faq 1.png  used on input line 430.
+(pdftex.def)             Requested size: 362.77264pt x 168.23389pt.
+<Screen/area_faq 2.png, id=371, 1991.94188pt x 900.36375pt>
+File: Screen/area_faq 2.png Graphic file (type png)
+<use Screen/area_faq 2.png>
+Package pdftex.def Info: Screen/area_faq 2.png  used on input line 431.
+(pdftex.def)             Requested size: 362.77264pt x 163.96812pt.
+<Screen/prenotazioni 1.png, id=372, 2142.50438pt x 722.7pt>
+File: Screen/prenotazioni 1.png Graphic file (type png)
+<use Screen/prenotazioni 1.png>
+Package pdftex.def Info: Screen/prenotazioni 1.png  used on input line 440.
+(pdftex.def)             Requested size: 362.77264pt x 122.36113pt.
+
+
+[20 <./Screen/area_faq 1.png> <./Screen/area_faq 2.png>]
+<Screen/prenotazioni 2.png, id=379, 2140.24594pt x 890.5772pt>
+File: Screen/prenotazioni 2.png Graphic file (type png)
+<use Screen/prenotazioni 2.png>
+Package pdftex.def Info: Screen/prenotazioni 2.png  used on input line 441.
+(pdftex.def)             Requested size: 362.77264pt x 150.94768pt.
+
+
+[21 <./Screen/prenotazioni 1.png> <./Screen/prenotazioni 2.png>]
 Capitolo 4.
 
+Underfull \hbox (badness 1394) in paragraph at lines 458--458
+[]|\OT1/txr/bx/n/10 Contributi Chia-ve (In-ter-
+ []
 
-[19
+
+Underfull \hbox (badness 10000) in paragraph at lines 458--460
+
+ []
+
+
+
+[22
 
 ]
 Capitolo 5.
 
 
-[20
+[23
 
 ] (documentazione.aux)
  ***********
@@ -1469,17 +1552,17 @@ Package rerunfilecheck Info: File `documentazione.out' has not changed.
 (rerunfilecheck)             Checksum: 2206415357D88A9D13CA36A9E3AD0BB9;4789.
  ) 
 Here is how much of TeX's memory you used:
- 43002 strings out of 468130
- 994567 string characters out of 5430149
+ 43089 strings out of 468130
+ 997110 string characters out of 5430149
  1528312 words of memory out of 5000000
- 70800 multiletter control sequences out of 15000+600000
+ 70884 multiletter control sequences out of 15000+600000
  669653 words of font info for 139 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,12n,96p,810b,656s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/rtcxr.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/rtxb.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/rtxr.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/rtxsc.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txbtt.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txsy.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/txtt.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/Simone/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on documentazione.pdf (23 pages, 9275730 bytes).
+Output written on documentazione.pdf (26 pages, 45857088 bytes).
 PDF statistics:
- 417 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
- 504 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 454 PDF objects out of 1000 (max. 8388607)
+ 65 named destinations out of 1000 (max. 500000)
+ 564 words of extra memory for PDF output out of 10000 (max. 10000000)
 

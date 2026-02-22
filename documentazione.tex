@@ -136,7 +136,7 @@ Il design utilizza uno stile scuro ("Dark Mode") con accenti neon (rosa \colorbo
 \subsubsection*{Architettura}
 Il sistema poggia su una solida struttura PostgreSQL definita per garantire che non vi siano sovrapposizioni nelle prenotazioni:
 \begin{itemize}
-  \item \textbf{Vincoli di Unicità}: Per evitare che una pista o un tavolo vengano prenotati due volte nello stesso slot, sono stati implementati indici univoci condizionali (\texttt{CREATE UNIQUE INDEX}) che agiscono solo se il numero della risorsa non è nullo.
+  \item \textbf{Vincoli di Unicità}: Per evitare che una pista, un tavolo o la sala del laser-game vengano prenotati due volte nello stesso slot, sono stati implementati indici univoci condizionali (\texttt{CREATE UNIQUE INDEX}) che agiscono solo se il numero della risorsa non è nullo.
   \item \textbf{Gestione Utenti}: Le password vengono salvate sotto forma di hash tramite \texttt{password\_verify} e \texttt{password\_hash} in PHP, garantendo la sicurezza dei dati sensibili.
   \item \textbf{Automazione}: Il sistema include logiche di "auto-cleaning" per eliminare le prenotazioni scadute ogni volta che un utente accede alla propria area personale.
 \end{itemize}
@@ -387,6 +387,8 @@ $$\includegraphics[width=\columnwidth]{Stile/pagamento_torneo.jpeg}$$
 
 \chapter{Descrizione del Sito}
 \section{Interfaccia principale}
+$$\includegraphics[width=0.75\textwidth]{Screen/index 1.png}$$
+$$\includegraphics[width=0.75\textwidth]{Screen/index 2.png}$$
 La Home Page è il punto d'accesso dinamico al portale The Bowler Club. L'architettura della pagina è suddivisa in tre blocchi funzionali per ottimizzare la navigazione e la conversione:
 \begin{itemize}
   \item \textbf{Corpo Centrale (Servizi)}: Implementa un carosello dinamico che elenca le attività disponibili (Bowling, Biliardo, Laser Game). Ogni scheda è generata da database e permette l'accesso diretto alla funzione di prenotazione. L’unica scheda indipendente dal database è quella relativa all’Area FAQ.
@@ -395,8 +397,17 @@ La Home Page è il punto d'accesso dinamico al portale The Bowler Club. L'archit
   \item \textbf{Footer Informativo}: Integra una mappa interattiva, la distanza in tempo reale dalla posizione mostrata sulla stessa, indirizzo e recapiti del centro, gli orari di apertura e link ai profili social.
 \end{itemize}
 \section{Login}
-Questa pagina include entrambi i moduli di accesso e creazione account, gestendo l’alternarsi tra i due tramite pulsanti ed event listener in JavaScript (\texttt{login.js}). È presente la validazione JS per campi vuoti o password non corrispondenti e lo sticky form per il mantenimento dei dati inseriti in caso di errore.
+$$\includegraphics[width=0.75\textwidth]{Screen/login 1.png}$$
+$$\includegraphics[width=0.75\textwidth]{Screen/login 2.png}$$
+La pagina di login include funge da interfaccia condivisa per l’accesso e la registrazione di un utente.
+\begin{itemize}
+  \item \textbf{Alternanza form}: La pagina include entrambi i moduli di accesso (signin) e creazione account (signup), gestendo l’alternarsi tra i due tramite pulsanti ed event listener in JavaScript (\texttt{login.js}).
+  \item \textbf{Validazione e Sicurezza}: È presente la validazione JS per campi vuoti, non validi o con password non corrispondenti per i quali vengono mostrati degli alert e la validazione PHP per errori sui duplicati di username/email, inesistenza degli stessi o per la password errata.
+  \item \textbf{Sticky Form}: In caso di errore sono ricompilati automaticamente alcuni campi del form e vengono mostrati dettagli grafici per errori/successo. 
+\end{itemize}
 \section{Dettaglio Gioco}
+$$\includegraphics[width=0.75\textwidth]{Screen/dettaglio_gioco 1.png}$$
+$$\includegraphics[width=0.75\textwidth]{Screen/dettaglio_gioco 2.png}$$
 La pagina di dettaglio dei singoli giochi è dinamica e funge da interfaccia universale per la presentazione e la prenotazione delle attività, adattando i contenuti in base al servizio selezionato.
 \begin{itemize}
   \item \textbf{Caricamento Dinamico}: Utilizza parametri \texttt{GET} per recuperare due descrizioni da file \texttt{.txt} (una breve e una lunga) e immagini specifiche relative al gioco scelto.
@@ -405,6 +416,8 @@ La pagina di dettaglio dei singoli giochi è dinamica e funge da interfaccia uni
   \item \textbf{Validazione e Sicurezza}: Il sistema esegue un controllo lato client sulla completezza del form e controlli lato server per evitare prenotazioni duplicate da parte di più utenti (stesso gioco, attributo specifico e orario) o da un singolo utente (stesso orario).
 \end{itemize}
 \section{Pagamento Torneo}
+$$\includegraphics[width=0.75\textwidth]{Screen/pagamento_torneo 1.png}$$
+$$\includegraphics[width=0.75\textwidth]{Screen/pagamento_torneo 2.png}$$
 Il “Torneo di Carte” ha delle peculiarità rispetto agli altri giochi. Solo per questo è stato integrato un fittizio sistema di pagamento.
 \begin{itemize}
   \item \textbf{Selezione Evento}: L'utente può scegliere la data e l'orario del torneo (solo mercoledì e venerdì alle 21:00) e il sistema mostra automaticamente le info specifiche e l'importo della quota di iscrizione.
@@ -414,6 +427,8 @@ Il “Torneo di Carte” ha delle peculiarità rispetto agli altri giochi. Solo 
   \item \textbf{Sicurezza}: Il processo garantisce la memorizzazione della prenotazione solo a seguito della conferma dell'avvenuto pagamento bancario.
 \end{itemize}
 \section{Area FAQ}
+$$\includegraphics[width=0.75\textwidth]{Screen/area_faq 1.png}$$
+$$\includegraphics[width=0.75\textwidth]{Screen/area_faq 2.png}$$
 Questa pagina è dedicata al mostrare informazioni riguardo al servizio ristorazione e alla visualizzazione/scrittura dei feedback della community. Le particolarità di questa pagina sono:
 \begin{itemize}
   \item \textbf{Menu Digitale}: Presenta un listino prezzi dinamico suddiviso per categorie (Burger, Bibite, Birre) e una foto dell'area ristoro del locale.
@@ -422,6 +437,8 @@ Questa pagina è dedicata al mostrare informazioni riguardo al servizio ristoraz
   \item \textbf{Filtro Recensioni}: Integra un sistema di filtraggio che consente ai visitatori di visualizzare i commenti in base al punteggio assegnato, facilitando la lettura delle opinioni della community.
 \end{itemize}
 \section{Account}
+$$\includegraphics[width=0.75\textwidth]{Screen/prenotazioni 1.png}$$
+$$\includegraphics[width=0.75\textwidth]{Screen/prenotazioni 2.png}$$
 La pagina di Prenotazioni offre all'utente una completa gestione sia delle proprie attività programmate all'interno del club sia del suo profilo.
 \begin{itemize}
   \item \textbf{Organizzazione Cronologica}: Le prenotazioni sono raggruppate per data, facilitando la lettura degli impegni futuri e indicando il numero totale di sessioni per ciascun giorno.
@@ -431,13 +448,20 @@ La pagina di Prenotazioni offre all'utente una completa gestione sia delle propr
 \end{itemize}
 \chapter{Tabella di Partecipazione}
 \section{Tabella}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{|l|X|X|X|}
+  \hline
+  \rowcolor{lightgray} \textbf{Componente} & \textbf{Contributi Chiave (Logica \& Back-end)} & \textbf{Contributi Chiave (Interfaccia \& UX)} & \textbf{File trattati}\\ \hline
+  \textbf{Vincenzo Pascariello} & & & \\ \hline
+  \textbf{Simone Pellecchia} & & & \\ \hline
+  \textbf{Martina Turi} & & & \\ \hline
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
 \section{Macroaree e Collaborazioni emerse}
 
 \chapter{EXCEL Descrizione Breve}
 \section{Descrizione}
-Il progetto consiste nella realizzazione di una applicazione web incentrata sulla prenotazione e gestione di servizi di intrattenimento (bowling, biliardo, laser game e tornei). Il sito presenta una home page dove esplorare le attività disponibili tramite un carosello interattivo e una sidebar dinamica, visualizzando immediatamente le informazioni descrittive e i file multimediali tramite appositi riquadri.\\
-Inoltre, un utente registrato può visualizzare i dettagli tecnici di ogni servizio, consultarne le regole e procedere alla prenotazione selezionando parametri specifici come la data, la fascia oraria (con aggiornamento in tempo reale della disponibilità) e la risorsa fisica desiderata, come il numero di pista o di tavolo. Per i tornei competitivi, la piattaforma integra un modulo di pagamento elettronico sicuro per la conferma dell'iscrizione.\\
-È presente una sezione dedicata al Food \& Recensioni, dove l'utente può consultare il listino prezzi aggiornato e interagire con la community leggendo o pubblicando recensioni con valutazione stellata, filtrate tramite algoritmi di ordinamento dinamico. Ogni utente dispone di una area profilo e sidebar account che mostra i dati personali, l'email e un riepilogo delle prenotazioni attive, permettendone la gestione o l'annullamento immediato. Infine, la piattaforma funge da punto di incontro digitale per facilitare l'organizzazione del tempo libero e garantire l'accesso esclusivo ai servizi del club.
-
-
+Il progetto consiste in una web app per la prenotazione e gestione di servizi di intrattenimento (bowling, biliardo, laser game e tornei). La home page permette di esplorare le attività tramite un carosello interattivo e una sidebar dinamica, visualizzando descrizioni e contenuti multimediali.\\
+L’utente registrato può consultare dettagli tecnici e regole, procedendo alla prenotazione con selezione di data, fascia oraria (con disponibilità in tempo reale) e risorsa specifica (pista o tavolo o numero persone). Per i tornei è integrato un sistema di pagamento elettronico sicuro.\\
+Una sezione Food \& Recensioni consente di consultare il menu e interagire con la community tramite feedback stellati e filtri dinamici. Ogni utente dispone di un’area profilo per gestire dati personali e prenotazioni attive. La piattaforma funge da punto di incontro digitale per organizzare il tempo libero e garantire l’accesso esclusivo ai servizi del club.
 \end{document}

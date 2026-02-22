@@ -24,13 +24,13 @@
 \contentsline {section}{\numberline {2.5}Organizzazione e Descrizione File}{15}{section.2.5}%
 \contentsline {chapter}{\numberline {3}Descrizione del Sito}{17}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Interfaccia principale}{17}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Login}{17}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Dettaglio Gioco}{17}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Pagamento Torneo}{17}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Area FAQ}{18}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Account}{18}{section.3.6}%
-\contentsline {chapter}{\numberline {4}Tabella di Partecipazione}{19}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Tabella}{19}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Macroaree e Collaborazioni emerse}{19}{section.4.2}%
-\contentsline {chapter}{\numberline {5}EXCEL Descrizione Breve}{20}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Descrizione}{20}{section.5.1}%
+\contentsline {section}{\numberline {3.2}Login}{18}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Dettaglio Gioco}{18}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Pagamento Torneo}{19}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Area FAQ}{20}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Account}{21}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Tabella di Partecipazione}{22}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Tabella}{22}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Macroaree e Collaborazioni emerse}{22}{section.4.2}%
+\contentsline {chapter}{\numberline {5}EXCEL Descrizione Breve}{23}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Descrizione}{23}{section.5.1}%
