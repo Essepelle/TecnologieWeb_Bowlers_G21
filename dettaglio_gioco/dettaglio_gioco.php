@@ -149,14 +149,14 @@ $oggi = date('Y-m-d');
         <?php endif; ?>
 
         <form method="POST" action="gestisci_prenotazione.php" 
-            onsubmit="return validaPrenotazione('<?= htmlspecialchars($nomeGioco) ?>');"><!-- Quando si fa la submit si avviano i controlli in JS per gli errori lato client -->
+            onsubmit="return validaPrenotazione();"><!-- Quando si fa la submit si avviano i controlli in JS per gli errori lato client -->
             <input type="hidden" name="nome_gioco" value="<?= htmlspecialchars($nomeGioco) ?>">
             
             <div class="prenotazione-layout">
                 
                 <div class="col-data-ora">
                     <label for="data_prenotazione">SCEGLI IL GIORNO:</label>
-                    <input type="date" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.." required
+                    <input type="date" id="data_prenotazione" name="data_prenotazione" placeholder="Scegli data.."
                     value="<?= htmlspecialchars($old_data['data_prenotazione'] ?? '') ?>">
 
                     <label>SCEGLI L'ORARIO:</label>
@@ -264,26 +264,30 @@ $oggi = date('Y-m-d');
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // 1. Inizializza
+        // inizializza
         initPrenotazione("<?= $nomeGioco ?>");
 
-        // 2. Se PHP ha rimesso la data (sticky), scatena l'evento per mostrare gli orari
+        // se PHP ha rimesso la data (sticky), scatena l'evento per mostrare gli orari
         const dataInput = document.getElementById('data_prenotazione');
         if (dataInput.value) {
             dataInput.dispatchEvent(new Event('change'));
         }
     });
 
-    // Funzione di validazione lato client prima dell'invio del form
+    // funzione di validazione lato client prima dell'invio del form
 </script>
 
 <script>
-function validaPrenotazione(nomeGioco) {
-    // Pulisce eventuali spazi vuoti dal nome per sicurezza
-    var giocoClean = nomeGioco.trim();
+function validaPrenotazione() {
 
-    // --- 1. CONTROLLO ORARIO ---
-    // (Vale per tutti tranne Torneo di Carte)
+    //controllo della data
+    const dataInput = document.getElementById('data_prenotazione');
+    if (!dataInput.value) {
+        alert("Per favore, seleziona una data dal calendario!");
+        return false; 
+    }
+
+    // controllo dell'orario
     const orarioInput = document.getElementById('ora_prenotazione_valore');
     
     if (!orarioInput.value) {
@@ -291,9 +295,9 @@ function validaPrenotazione(nomeGioco) {
         return false; 
     }
 
-    // --- 2. CONTROLLO RISORSE (Basato su cosa c'è nella pagina) ---
+    // controllo dei campi specifici per ogni gioco
 
-    // CASO BOWLING: Cerco se esistono input con name="numero_pista"
+    // bowling: cerco se esistono input con name="numero_pista"
     if (document.querySelector('input[name="numero_pista"]')) {
         // Se esistono, controllo se ALMENO UNO è selezionato (:checked)
         if (!document.querySelector('input[name="numero_pista"]:checked')) {
@@ -302,7 +306,7 @@ function validaPrenotazione(nomeGioco) {
         }
     }
 
-    // CASO BILIARDO: Cerco se esistono input con name="numero_tavolo"
+    // biliardo: cerco se esistono input con name="numero_tavolo"
     if (document.querySelector('input[name="numero_tavolo"]')) {
         if (!document.querySelector('input[name="numero_tavolo"]:checked')) {
             alert("Devi selezionare il numero del Tavolo!");
@@ -310,7 +314,7 @@ function validaPrenotazione(nomeGioco) {
         }
     }
 
-    // CASO LASER GAME: Cerco se esistono input con name="numero_persone"
+    // laser game: cerco se esistono input con name="numero_persone"
     if (document.querySelector('input[name="numero_persone"]')) {
         if (!document.querySelector('input[name="numero_persone"]:checked')) {
             alert("Devi selezionare il numero di persone!");
@@ -318,7 +322,6 @@ function validaPrenotazione(nomeGioco) {
         }
     }
 
-    // Se tutto è ok
     return true;
 }
 </script>

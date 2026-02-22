@@ -6,7 +6,7 @@ function initPrenotazione(nomeGioco) {
     const dataInput = document.getElementById("data_prenotazione");
     const container = document.getElementById('orari-bottoni-container');
 
-    // 1. Impostiamo la data minima a OGGI (usando l'orario locale, non UTC)
+    // Impostiamo la data minima a OGGI (usando l'orario locale, non UTC)
     const adesso = new Date();
     // Formatta in YYYY-MM-DD rispettando il fuso orario locale
     const anno = adesso.getFullYear();
@@ -14,9 +14,10 @@ function initPrenotazione(nomeGioco) {
     const giorno = String(adesso.getDate()).padStart(2, '0');
     const oggiLocale = `${anno}-${mese}-${giorno}`;
     
+    //giorno minimo del calendario
     dataInput.setAttribute("min", oggiLocale);
 
-    // 2. ASCOLTA IL CAMBIO DATA
+    //operazioni da fare ad ogni cambio della data nel calendario
     dataInput.addEventListener("change", function() {
         const dataScelta = this.value; // Formato YYYY-MM-DD
         
@@ -29,9 +30,7 @@ function initPrenotazione(nomeGioco) {
         const dataObj = new Date(dataScelta);
         const giornoSettimana = dataObj.getDay(); // 0=Dom, 1=Lun, ..., 3=Mer, 5=Ven
 
-        // --- CONTROLLO GIOCO CARTE ---
-        // --- CONTROLLO GIOCO CARTE ---
-        // (Solo Mercoledì=3 e Venerdì=5)
+        //Se il gioco è "Torneo di Carte" sono validi solo Mercoledì=3 e Venerdì=5
         if (nomeGioco === 'Torneo di Carte') { 
             if (giornoSettimana !== 3 && giornoSettimana !== 5) {
                 alert("Per il Torneo di Carte si prenota solo di Mercoledì e Venerdì!");
@@ -86,12 +85,7 @@ function generaBottoniOrari(dataScelta, nomeGioco) {
         });
     }
 
-    // --- CREAZIONE BOTTONI NEL DOM ---
-    if (orari.length === 0) {
-        container.innerHTML = "<p>Nessun orario disponibile.</p>";
-        return;
-    }
-
+    // creazione di ogni singolo bottone associato ad ogni orario nell'array "orari"
     orari.forEach(slot => {
         const btn = document.createElement('button');
         btn.type = "button"; // Importante: evita che invii il form
@@ -100,11 +94,11 @@ function generaBottoniOrari(dataScelta, nomeGioco) {
 
         let disabilitato = false;
 
-        // --- LOGICA DISABILITAZIONE ORARI PASSATI ---
+        // logica per disabilitare i bottoni degli orari già passati 
         if (dataScelta === oggiStr) {
-            // Dato che 00:00 e 01:00 rappresentano l'inizio della giornata corrente,
+            // da 00:00 a 01:30 sono le prime ore della giornata corrente,
             // se siamo di pomeriggio sono orari già passati da molte ore.
-            // Quindi basta un solo controllo lineare per tutte le ore del giorno:
+            // basta solo un semplice controllo per tutte le ore del giorno:
             if (slot.h < oraCorrente || (slot.h === oraCorrente && slot.m <= minutiCorrenti)) {
                 disabilitato = true;
             }
@@ -119,23 +113,22 @@ function generaBottoniOrari(dataScelta, nomeGioco) {
             btn.title = "Orario passato";
         } else {
 
-            // --- AGGIUNTA: SE È L'ORARIO VECCHIO, SELEZIONALO E RIMETTI IL VALORE ---
-            if (slot.label === orarioPrecedente) {
+            // se l'orario corrente è uguale a quello salvato in precedenza (sticky), selezionalo e ripristina il valore nel form
+            if (slot.label === orarioPrecedente) {                                               
                 btn.classList.add('selected');
                 hiddenInput.value = slot.label; // Ripristina il valore nel form
             }
-            // -----------------------------------------------------------------------
             
-            // Evento click sul bottone orario
+            // evento click sul bottone orario
             btn.onclick = function() {
-                // 1. Rimuovi classe 'selected' da tutti gli altri bottoni
+                // Rimuovi classe 'selected' da tutti gli altri bottoni con un forEach simile a quello usato in precedenza
                 const allBtns = container.querySelectorAll('.btn-orario');
                 allBtns.forEach(b => b.classList.remove('selected'));
                 
-                // 2. Aggiungi classe al bottone cliccato
+                // aggiungi classe al bottone cliccato per lo stile CSS
                 btn.classList.add('selected');
                 
-                // 3. Salva il valore nell'input nascosto per il form
+                // salva il valore nell'input nascosto per il form
                 hiddenInput.value = slot.label;
             };
         }

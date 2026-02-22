@@ -331,6 +331,15 @@ footer {
     main { grid-area: 3 / 1 / 4 / 2; }
     .sidebar-right {grid-area: 4 / 1 / 5 / 2; }
     footer { grid-area: 5 / 1 / 6 / 2; }
+
+    .prenotazione-layout {
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+    
+    .card-prenotazione {
+        padding: 15px;
+    }
 }
 
 /* ==========================================================================
@@ -377,22 +386,22 @@ footer {
 
 /* --- GRIGLIA PULSANTI E NUMERI --- */
 .selector-grid {
-    display: flex;           /* Usiamo Flexbox per allinearli */
-    flex-wrap: wrap;         /* Se sono tanti, vanno a capo ordinatamente */
-    justify-content: center; /* CENTRA TUTTO IL GRUPPO DI PULSANTI */
+    display: flex;           /* con flex si allineano */
+    flex-wrap: wrap;         /* se sono tanti, vanno a capo ordinatamente */
+    justify-content: center; /* centriamo i pulsanti all'interno  */
     gap: 10px;               /* Spazio tra i quadratini */
-    width: 100%;             /* Occupa tutta la larghezza disponibile */
-    margin-top: 10px;        /* Un po' di aria dalla scritta sopra */
+    width: 100%;             /* occupa tutta la larghezza disponibile */
+    margin-top: 10px;        
     font-weight: bold;
     font-size: 1.5em;
 }
 
-/* Nascondiamo il pallino del radio button ed eventuali alert nativi dati da required*/
+/* nasconde il pallino del radio button ed eventuali alert nativi dati da required*/
 .selector-grid input[type="radio"] {
     display: none;
 }
 
-/* STILE DEL BOTTONE */
+/* stile del bottone */
 .selector-grid label {
     display: flex;
     justify-content: center;                                 /*stile per il calendario*/
@@ -407,9 +416,9 @@ footer {
     cursor: pointer;
     transition: 0.3s;
     user-select: none;
-    min-width: 40px;         /* Larghezza minima per i numeri */
-    text-align: center;      /* Numero al centro del quadratino */
-    flex: 0 0 auto;          /* Evita che si deformino */
+    min-width: 40px;         /* larghezza minima per i numeri */
+    text-align: center;      /* numero al centro del quadratino */
+    flex: 0 0 auto;          
 }
 
 /* Effetto Hover */
@@ -500,16 +509,7 @@ footer {
     align-items: center;
 }
 
-@media (max-width: 800px) {
-    .prenotazione-layout {
-        grid-template-columns: 1fr; 
-        gap: 30px;
-    }
-    
-    .card-prenotazione {
-        padding: 15px;
-    }
-}
+
 
 /* div rossi e verdi */
 .error-box, .success-box {

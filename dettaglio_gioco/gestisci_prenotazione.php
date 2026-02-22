@@ -13,7 +13,8 @@ if (isset($_POST['conferma_prenotazione'])) {
     $data = $_POST['data_prenotazione'];
     $ora = $_POST['ora_prenotazione'];
 
-    // Controllo sicurezza Carte: solo Mercoledì (3) e Venerdì (5) alle 21:00
+    // ulteriore controllo sicurezza Carte se malauguratamente si selezioni un giorno diverso da 
+    // Mercoledì (3) o Venerdì (5) alle 21:00 anche se il JS dovrebbe già bloccare questa possibilità
     if ($nomeGioco === 'Torneo di Carte') {
         $giorno = date('N', strtotime($data));
         if ($giorno != 3 && $giorno != 5) {
@@ -24,12 +25,12 @@ if (isset($_POST['conferma_prenotazione'])) {
 
     $dataOraFinale = $data . " " . $ora;
 
-    // Controllo 1: utente ha già una prenotazione a quest'ora (qualsiasi gioco)
+    // primo controllo: utente ha già una prenotazione a quest'ora per qualsiasi gioco
     $sql_check_orario = "SELECT * FROM prenotazioni WHERE username_utente = $1 AND data_ora = $2";
     $res_check_orario = pg_query_params($db, $sql_check_orario, array($username, $dataOraFinale));
 
 if (pg_num_rows($res_check_orario) > 0) {
-        $_SESSION['old_post'] = $_POST; // <--- AGGIUNTA: Salva i dati per STICKY FORM
+        $_SESSION['old_post'] = $_POST; // salva i dati per STICKY FORM
         $_SESSION['error_prenotazione'] = "Attenzione! Hai già una prenotazione per questa fascia oraria.";
         header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco));
         exit();
@@ -41,8 +42,7 @@ if (pg_num_rows($res_check_orario) > 0) {
     $n_persone = $_POST['numero_persone'] ?? null;
     $torneo   = $_POST['partecipa_torneo'] ?? null;
 
-    // NUOVO CONTROLLO: Verifica disponibilità fisica della risorsa (Tavolo o Pista)
-    // Questo previene l'errore "unica_prenotazione_tavolo" nel database
+    // secondo controllo: verifica disponibilità della risorsa specifica (Tavolo o Pista)
     $sql_check_disponibilita = "SELECT * FROM prenotazioni 
                                 WHERE nome_gioco = $1 
                                 AND data_ora = $2 
@@ -54,19 +54,19 @@ if (pg_num_rows($res_check_orario) > 0) {
     $res_dispo = pg_query_params($db, $sql_check_disponibilita, array($nomeGioco, $dataOraFinale, $n_tavolo, $n_pista));
 
     if (pg_num_rows($res_dispo) > 0) {
-        // Se il tavolo o la pista sono già occupati da qualcun altro
-        $_SESSION['old_post'] = $_POST; // <--- AGGIUNTA: Salva i dati PER STICKY FORM
+        // se il tavolo o la pista sono già occupati da qualcun altro
+        $_SESSION['old_post'] = $_POST; // salva i dati PER STICKY FORM
         $_SESSION['error_prenotazione'] = "Attenzione! Il tavolo o la pista selezionata è già occupata. Seleziona un'altra risorsa o un altro orario.";
         header("Location: dettaglio_gioco.php?gioco=" . urlencode($nomeGioco));
         exit();
     }
 
-    //Per il Laser Game controllo la prenotazione sia unica per in certo orario, indipendentemente da tavolo/pista, perché è un'arena unica.
+    // per il Laser Game controllo la prenotazione sia unica per in certo orario, indipendentemente da tavolo/pista, perché è un'arena unica.
     if ($nomeGioco === 'Laser Game') {
         $sql_laser = "SELECT * FROM prenotazioni WHERE nome_gioco = $1 AND data_ora = $2";
         $res_laser = pg_query_params($db, $sql_laser, array($nomeGioco, $dataOraFinale));
         
-        // Se trova anche solo UNA prenotazione per quell'ora, blocca tutto!
+        // se trova anche solo UNA prenotazione per quell'ora, blocca tutto
         if (pg_num_rows($res_laser) > 0) {
             $_SESSION['old_post'] = $_POST; // Salva i dati per lo sticky form
             $_SESSION['error_prenotazione'] = "Attenzione! L'arena del Laser Game è già prenotata in questo orario. Scegli un'altra ora.";
@@ -75,15 +75,7 @@ if (pg_num_rows($res_check_orario) > 0) {
         }
     }
 
-    // Conversione valore torneo per colonna boolean
-    $torneo_bool = null;
-    if ($torneo === 'si') {
-        $torneo_bool = 'true';
-    } elseif ($torneo === 'no') {
-        $torneo_bool = 'false';
-    }
-
-    // QUERY CORRETTA: senza la virgola di troppo
+    // query inserimento prenotazione
     $sql_insert = "INSERT INTO prenotazioni (
         username_utente, 
         nome_gioco, 
