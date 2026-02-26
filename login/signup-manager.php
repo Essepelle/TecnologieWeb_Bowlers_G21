@@ -58,17 +58,15 @@ if (isset($_POST['username'], $_POST['password'], $_POST['nome'], $_POST['email'
     exit;
 }
 
-/**
- * Verifica l'esistenza dello username (PK)
- */
+// Verifica l'esistenza dello username
 function user_exists($user, $db) {
-    // Nota: PostgreSQL è case-sensitive, assicurati che la tabella si chiami 'utenti'
     $sql = "SELECT username FROM utenti WHERE username = $1";
     $ret = pg_query_params($db, $sql, array($user));
     if ($ret && pg_num_rows($ret) > 0) return true;
     return false;
 }
 
+// Verifica l'esistenza dell'email
 function email_exists($email, $db) {
     $sql = "SELECT email FROM utenti WHERE email = $1";
     $ret = pg_query_params($db, $sql, array($email));
@@ -76,12 +74,8 @@ function email_exists($email, $db) {
     return false;
 }
 
-/**
- * Inserisce i dati usando i nomi colonne esatti del tuo screenshot:
- * username, nome_completo, email, pass
- */
+// Registrazione nuovo utente
 function register_user($username, $nome, $email, $pwd, $db) {
-    // Query adeguata ai nomi colonne: nome_completo e pass
     $sql = "INSERT INTO utenti (username, nome_completo, email, pass) VALUES ($1, $2, $3, $4)";
     $ret = pg_query_params($db, $sql, array($username, $nome, $email, $pwd));
     return (bool)$ret;
