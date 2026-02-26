@@ -54,14 +54,14 @@ function scrollCarousel(direction) {
 // --- LOGICA SIDEBAR E EVIDENZIAZIONE ---
 document.querySelectorAll('.sidebar-left a').forEach(link => {
     link.addEventListener('click', function (e) {
-        // 1. Impediamo il comportamento standard del link (che farebbe saltare la pagina)
+        // impediamo il comportamento standard del link
         e.preventDefault(); 
 
-        const targetId = this.getAttribute('href').substring(1); // Prende l'ID (es. "Bowling")
+        const targetId = this.getAttribute('href').substring(1); // Prende la stringa dall'href e rimuove il # iniziale 
         const targetDiv = document.getElementById(targetId);
 
         if (targetDiv) {
-            // 2. Logica per scorrere il carosello fino alla card
+            // logica per scorrere il carosello fino alla card
             // 'inline: center' è la magia che centra l'elemento orizzontalmente
             targetDiv.scrollIntoView({
                 behavior: 'smooth',
@@ -69,18 +69,18 @@ document.querySelectorAll('.sidebar-left a').forEach(link => {
                 inline: 'center'
             });
 
-            // 3. Rimuove l'evidenziazione da tutte le altre card (pulizia)
+            // Rimuove l'evidenziazione da tutte le altre card
             document.querySelectorAll('.card-gioco-carousel').forEach(el => {
                 el.classList.remove('evidenzia');
             });
 
-            // 4. Aggiunge l'effetto visivo alla card trovata
-            // Usiamo un piccolo ritardo per permettere allo scroll di iniziare
+            // Aggiunge l'effetto visivo alla card trovata
+            // Usiamo un piccolo ritardo per permettere allo scroll di arrivare
             setTimeout(() => {
                 targetDiv.classList.add('evidenzia');
             }, 300);
 
-            // 5. Rimuove l'effetto dopo 2.5 secondi
+            // Rimuove l'effetto dopo 2.5 secondi
             setTimeout(() => {
                 targetDiv.classList.remove('evidenzia');
             }, 1500);
